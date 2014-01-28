@@ -1,0 +1,206 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>个人信箱</title>
+<link href="css/bootstrap.css" rel="stylesheet"></link>
+<link href="css/actblock.css" rel="stylesheet"></link>
+<script src="js/jq.js"></script>
+<script src="js/setmail.js"></script>
+<script src="js/myutils.js"></script>
+<script src="js/global.js"></script>
+<script src="js/seteditor.js"></script>
+<style type="text/css">
+html{
+	height:100%;
+}
+body{
+	background-color:rgba(153,153,153,1);
+	font-family:"微软雅黑";
+	color:white;
+	height:100%;
+	padding:50px;
+}
+p{
+	text-align:left;
+	line-height:1.8em;
+	letter-spacing:0.2em;
+	text-indent:4ch;
+}
+a:link{
+	color:gold;
+	text-decoration:none;
+}
+a:hover{
+	color:gold;
+	text-decoration:none;
+}
+a:visited{
+	color:gold;
+	text-decoration:none;
+}
+a:active{
+	color:gold;
+	text-decoration:none;
+}
+table{
+	table-layout:fixed;
+}
+
+::-webkit-scrollbar-track{
+	color:blue;
+}
+.name{
+	display:inline-block;
+	width:40%;
+}
+.time{
+	display:inline-block;
+	text-align:right;
+	width:60%;
+}
+.mail{
+}
+
+/*Top Area*/
+.topbar{
+	width:100%;
+	text-align:right;
+	height:50px;
+	padding:0px;
+	margin-bottom:30px;
+}
+.mail_op{
+	margin-right:15px;
+	font-size:1.0em;
+	letter-spacing:0.2em;
+}
+.mail_detail{
+	width:100%;
+	background-color:grey;
+	border:silver 3px solid;
+}
+.mail_title{
+	line-height:30px;
+	padding-left:10px;
+	width:100%;
+}
+.mail_content{
+	height:200px;
+	padding:10px;
+	}
+.mail_append{
+	text-align:right;
+	padding-right:15px;
+}
+.append_item{
+	height:30px;
+	font-size:0.8em;
+	padding-top:5px;
+}
+</style>
+</head>
+
+<body>
+<div class="topbar">
+<table width="100%"><tr><td align="left" style="padding-left:10px;"><a href="#" id="recieved" class="mail_op">已阅</a><a href="#" id="sended" class="mail_op">已发送</a><a href="#" id="new_mail" class="mail_op">撰写</a></td>
+<td style="width:300px;">
+<form class="navbar-form" role="search">
+        <div class="input-group">
+            <input type="text" class="form-control" placeholder="搜索" name="srch-term" id="srch-term" style="width:200px;">
+            <div class="input-group-btn">
+                <button class="btn btn-default" type="submit"><i class="glyphicon glyphicon-search"></i></button>
+            </div>
+        </div>
+        </form>
+</td></tr></table>
+</div>
+<div id="acts"></div>
+<div class="outer_div mail" id="mail">
+<div class="description_div" id="description_div" style="display:table-cell; vertical-align:middle;">
+<p>请上交本周的策划</p>
+</div>
+<div class="bottom_div">
+<div class="name">刘金国</div><div class="time">2013年5月7日 18:16</div>
+</div>
+</div>
+
+<!--Detailed Block-->
+<div id="mail_detail" style="display:none;">
+<div class="mail_detail" >
+<table style='width:100%;'><tr><td align="left"  style="border-bottom:1px gold solid;">
+<table class="mail_title"><tr><td style="padding-left:10px;">谢闯：请上交本周的策划</td><td width="40px"></td></tr></table>
+</td></tr><tr><td>
+<div class="mail_append">
+<div class="append_item">附件：<a href="activity/a0000001/audio/feel.mp3">录音素材</a></div>
+</div>
+</td></tr><tr><td>
+<div class="mail_content"><p>我们一起欢快的游泳。然后看到一头虎鲸，挂了。。。。。。</p>
+</div>
+</td></tr>
+<tr><td id="editor_td">
+
+</td></tr></table>
+</div>
+</div>
+
+<!--The Send Block-->
+<div id="send_block" style="display:none;">
+<div class="mail_detail" >
+<table style='width:100%;'><tr><td align="left"  style="border-bottom:1px gold solid;">
+<table class="mail_title"><tr><td style="padding-left:10px;">收件人：徐沐阳</td><td width="40px"></td></tr></table>
+</td></tr>
+<tr><td id="editor_new">
+
+</td></tr></table>
+</div>
+</div>
+
+<!--Editor Block-->
+<div id="editor" style="display:none;">
+<div class="editor_block" id="editor_block" style="width:90%"><!--正常情况下折叠显示-->
+<table class="editor_content" cellpadding="0" cellspacing="0" id="editor_content">
+
+<tr><td align="left">
+<!--text Layer-->
+<textarea class="edit_area" id="edit_area" placeholder="Ctrl+回车发送">
+</textarea>
+</td>
+<td style="width:60px" align="right"><div align="left" class="expand_img" id="expand_editor"></div></td>
+
+</tr>
+<tr><td colspan="2">
+<!--Appendex Layer-->
+</td></tr>
+<tr style="background-color:grey;" valign="middle"><td align="right" valign="top" >
+<!--Color Bar-->
+
+<!--Bottom Bar Layer-->
+<div id="editor_bottombar" style="display:none;" align="right">
+<table cellpadding="0px" cellspacing="0px"  class="color_table">
+<tr><td id="color1" style="background-color:white;">&nbsp;
+</td>
+<td id="color2" style="background-color:rgba(0,0,153,1);">&nbsp;
+</td>
+<td id="color3" style="background-color:rgba(41,123,205,1);">&nbsp;
+</td>
+<td id="color4" style="background-color:rgba(51,51,102,1);">&nbsp;
+</td>
+<td id="color5" style="background-color:rgba(0,102,0,1);">&nbsp;
+</td><td style="width:200px;"><div class="editor_append" id="editor_append">添加附件</div>
+<div class="editor_append" id="editor_link">添加链接</div>
+<div class="editor_append" id="editor_important">标记重要</div>
+</td></tr>
+</table>
+
+</div>
+</td><td>
+<input type="submit" class="editor_submit" id="editor_submit" value="发送">
+</td><!--end of bottombar-->
+</tr>
+</table>
+</div>
+</div><!--End of Editor Block-->
+
+</body>
+</html>
