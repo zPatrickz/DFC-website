@@ -1,0 +1,68 @@
+@charset "utf-8";
+/* CSS Document */
+
+/*Response Block*/
+.link_operation{
+	margin-right:10px;
+}
+.response_main{
+	font-size:0.8em;
+	/*border:2px solid;
+	background-color:grey;*/
+}
+.response_wrap{
+	height:600px;
+	overflow:auto;
+}
+.response_left{
+	padding-top:17px;
+}
+.reply{
+	display:none;
+	margin-top:10px;
+}
+.topbar{
+	height:30px;
+	width:100%;
+	vertical-align:middle;
+	color:gold;
+}
+
+.file_block{
+	/*background-color:rgba(41,82,123,1);rgba(71,142,203,1);*/
+	margin-bottom:10px;
+	margin-left:30px;
+	margin-right:30px;
+}
+
+.left_row{
+	height:22px;
+}
+
+.default_img{
+	height:100px;
+	border:3px solid silver;
+}
+.figure_div {
+    text-align:center;
+	display:inline-block;
+	vertical-align:top;
+	margin-left:5px;
+	margin-right:5px;
+}
+.caption {
+    padding:0;
+	text-indent:0ch;
+    margin:0 0 5px 0;
+	font-size:0.8em;
+    color:#silver;
+	width:150px;
+	padding-left:7px;
+	padding-right:7px;
+	display:none;
+}
+
+.tag_img{
+	width:18px;
+	margin-right:3px;
+}

@@ -4,14 +4,49 @@ $(document).ready(function(e) {
 	seteditor();
 	$('#mail').click(function(){
 		//Show The Detailed Mail
-		$('#editor_td').html($('#editor').html());
-		var inner_div=$('#mail_detail').html();
-		popdialog(event,inner_div);
+		$('#detailed_view').modal();
 	});	
-	$('#new_mail').click(function(){
-		//Write A new Mail
-		$('#editor_new').html($('#editor').html());
-		var inner_div=$('#send_block').html();
-		popdialog(event,inner_div);
+	
+	$('#send_btn').click(function(){
+		 $('#modal_send').modal();
+	});
+	$('#sended_link').click(function(){
+		 $('#mail_ul li').removeClass('active');
+		 $('#sended_link').addClass('active');
+		 $('.mes_block').hide();
+		 $('#sended_block').show();
+	});
+	$('#recieved_link').click(function(){
+		 $('#mail_ul li').removeClass('active');
+		 $('#recieved_link').addClass('active');
+		 $('.mes_block').hide();
+		 $('#received_block').show();
+	});
+	$('#recruit_link').click(function(){
+		 $('#mail_ul li').removeClass('active');
+		 $('#recruit_link').addClass('active');
+		 $('.mes_block').hide();
+		 $('#recruit_block').show();
+	});
+	$('#newact_link').click(function(){
+		 $('#mail_ul li').removeClass('active');
+		 $('#newact_link').addClass('active');
+		 $('.mes_block').hide();
+		 $('#newact_block').show();
+	});
+	$('#actnotice_link').click(function(){
+		 $('#mail_ul li').removeClass('active');
+		 $('#actnotice_link').addClass('active');
+		 $('.mes_block').hide();
+		 $('#actnotice_block').show();
+	});
+	$('#groupnotice_link').click(function(){
+		 $('#mail_ul li').removeClass('active');
+		 $('#groupnotice_link').addClass('active');
+		 $('.mes_block').hide();
+		 $('#groupnotice_block').show();
+	});
+	$('#contact_btn').click(function(){
+		 $('#modal_contact').modal();
 	});
 });

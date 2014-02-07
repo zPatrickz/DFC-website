@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<title>注册新用户</title>
+
+<link href="css/bootstrap.min.css" rel="stylesheet">
+<script src="js/jquery.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/setregister.js"></script>
+<style type="text/css">
+body{
+	font-family:"微软雅黑";
+}
+</style>
+</head> 
+<body> 
+
+<!--My Profile-->
+<div class="container">
+<div class="row">
+<div class="span12">
+        <legend class="">注册</legend>
+</div>
+</div>
+
+
+<div class="row">
+<div class="span8 offset2">
+<form class="form-horizontal" method="post">
+<fieldset>
+
+<div class="control-group">
+    <label class="control-label" for="uname">用户名</label>
+    <div class="controls">
+    <input type="text" class="input-xlarge" id="uname" placeholder="用户名">
+    </div>
+</div>
+
+<div class="control-group">
+    <label class="control-label" for="passwd1">密码</label>
+    <div class="controls">
+    <input type="password" class="input-xlarge" id="passwd1" placeholder="密码">
+    </div>
+</div>
+
+<div class="control-group">
+    <label class="control-label" for="passwd2">重复密码</label>
+    <div class="controls">
+    <input type="password" class="input-xlarge" id="passwd2" placeholder="重复密码">
+    </div>
+</div>
+
+<div class="control-group">
+    <label class="control-label" for="mail">邮箱</label>
+    <div class="controls">
+    <input type="text" class="input-xlarge" id="mail" placeholder="邮箱">
+      <span class="add-on">
+        <button class="btn btn-small">发送验证信息</button>
+      </span>
+    </div>
+</div>
+
+<div class="control-group">
+    <label class="control-label" for="validation">验证信息</label>
+    <div class="controls">
+	<input type="text" class="input-xlarge" title="输入收到的验证信息" id="validation" rel="tooltip" placeholder="收到的验证信息">
+    </div>
+</div>
+<div class="control-group">
+	<div class="controls">
+    <button class="btn" id="finishl" type="submit"><a href="nextop.html">完成</a></button>
+    </div>
+</div>
+</fieldset></form>
+
+
+</div></div>
+</div>
+
+
+</body></html>

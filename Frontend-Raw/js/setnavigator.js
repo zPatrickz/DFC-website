@@ -11,4 +11,8 @@ $(document).ready(function(e) {
 			$('#avatar').width(40);
 		},200);
 	});
+	$('.navitem').click(function(){
+		 $('#navul li').removeClass('active');
+		 $(this).addClass('active');
+	});
 });

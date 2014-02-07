@@ -1,0 +1,98 @@
+@charset "utf-8";
+/* CSS Document */
+
+.test{
+	border:dotted;
+}
+.goldlink:link{
+	color:gold;
+	text-decoration:none;
+}
+.goldlink:hover{
+	color:gold;
+	text-decoration:none;
+}
+.goldlink:visited{
+	color:gold;
+	text-decoration:none;
+}
+.goldlink:active{
+	color:gold;
+	text-decoration:none;
+}
+
+/*act_block*/
+
+
+.desp{
+	text-align:left;
+	line-height:1.8em;
+	letter-spacing:0.2em;
+	text-indent:4ch;
+	font-family:"微软雅黑";
+}
+
+.outer_div{
+	width:100%;
+	display:inline-block;
+	background-position:center;
+	background-size:cover;
+	border: 2px black solid;
+	margin-bottom:15px;
+}
+.face_div{
+	width:100%;
+}
+.face_img{
+	width:100%;
+}
+.bottom_div{
+	width:100%;
+	height:25px;
+	background-color:black;
+	color:white;
+	padding-top:3px;
+	font-family:"微软雅黑";
+}
+.operation_div{
+	padding-left:5px;
+	padding-right:5px;
+	width:96%;
+	height:50px;
+	position:absolute;
+	z-index:60;
+	display:none;
+}
+.description_div{
+	padding:7px;
+}
+
+/*zoomin div*/
+.tempdiv_outer{
+	position:absolute;
+	top:0px;
+	left:0px;
+	background-color:rgba(214,214,214,0.7);
+}
+.poptable{
+	position:relative;
+	z-index:1002;
+}
+.zoomin_img{
+	border:5px solid silver;
+	width:700px;
+	display:inline;
+}
+.share_link{
+	width:30px;
+	height:100px;
+	display:none;
+	top:0px;
+	left:0px;
+	color:gold;
+	vertical-align:top;
+}
+.zoomin_div{
+	position:relative;
+	z-index:1002;
+}

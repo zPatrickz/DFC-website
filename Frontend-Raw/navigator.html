@@ -3,87 +3,33 @@
 <head>
 <meta charset="utf-8">
 <title>无标题文档</title>
-<script src="js/jq.js"></script>
+<link href="css/bootstrap.min.css" rel="stylesheet">
+<link href="css/bootstrap-combined.min.css" rel="stylesheet">
+<link href="css/mycss.css" rel="stylesheet">
+<script src="js/jquery.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
 <script type="text/javascript" src="js/setnavigator.js"></script>
 
-<link href="css/bootstrap.css" rel="stylesheet"></link>
 <style type="text/css">
 body{
-	overflow:hidden;
 	font-size:62.5%;
 }
-a:link{
-	color:gold;
-	text-decoration:none;
-}
-a:hover{
-	color:gold;
-	text-decoration:none;
-}
-a:visited{
-	color:gold;
-	text-decoration:none;
-}
-a:active{
-	color:gold;
-	text-decoration:none;
-}
-/*Settings of the Navigator*/
-.topbar{
-	background-color:grey;
-	display:block;
-	width:100%;
-	text-align:center;
-	position:fixed;
-	top:0px;
-	left:0px;
-	height:100%;
-	padding-top:4px;
-}
-.navi{
-	text-align:center;
-	font-family:"幼圆","Arial Unicode MS";
-	font-size:2em;
-	color:white;
+
+.mail_img{
+	height:28px;
+	width:28px;
+	display:inline-block;
+	background-image:url(image/icon/mail.png);
+	background-size:cover;
+	color:orange;
+	font-size:1.5em;
 	font-weight:bold;
-	width:100%;
-	}
-.navi tr{}
-.nvtd{
-	width:150px;
-	overflow:visible;
-	vertical-align:middle;
-	padding-top:10px;
-}
-.white_link:link{
-	color:#FFF;
-	text-decoration:none;
-	position:relative;
-	left:5px;
-	top:-10px;
-}
-.white_link:hover{
-	color:#FFF;
-	text-decoration:none;
-}
-.white_link:visited{
-	color:#FFF;
-	text-decoration:none;
-}
-.white_link:active{
-	color:#FFF;
-	text-decoration:none;
-}
-.change{
-	font-family:Segoe, 'Segoe UI', 'DejaVu Sans', 'Trebuchet MS', Verdana, sans-serif;
-}
-.right{
-	width:40px;
+	text-align:center;
 }
 .topbar_img{
 	height:28px;
 	display:inline-block;
-}
+	}
 .hidden_div{
 	display:none;
 	width:130px;
@@ -97,25 +43,43 @@ a:active{
 </head>
 
 <body>
-<div class="topbar">
-<table class="navi">
-<tr>
-<td class="nvtd"><div class="navi_div" style="width:180px;"><a href="mainpage.html" class="white_link change" target="_parent">Let's Change!</a></div></td>
-<td class="nvtd"><div class="navi_div"><a href="newact.html" class="white_link" target="main">正在进行</a></div></td>
-<td class="nvtd"><div class="navi_div"><a href="activities.html" class="white_link" target="main">展示区</a></div></td>
-<td class="nvtd"><div class="navi_div"><a href="explore.html" class="white_link" target="main">探索区</a></div></td>
-<td class="nvtd"><div class="navi_div"><a href="faq.html" class="white_link" target="main">问答区</a></div></td>
-<td></td>
-<td class="right"><a href="#"><img src="image/icon/files.png" title="备忘" class="topbar_img"></a></td>
-<td class="right"><a href="message.html" target="subframe"><img src="image/icon/mail.png" title="信息" class="topbar_img"></a></td>
-<td class="right"  id="avatar">
-<div class="hidden_div" id="hidden_div">
-<a href="#" class="myop">注销</a>
-<a href="#" class="myop">退出活动</a>
-</div>
-<a href="profile.html" target="subframe" ><img src="user/cacate/avatar.jpg" title="我的资料" class="topbar_img"></a>
-</td>
-</tr></table>
+ <div class="well-small" style="padding-top:0px; width:98%; position:fixed; top:0px;">
+     <div class="navbar">
+    <div class="navbar-inner">
+      <div class="container">
+        <a class="brand" href="index.html">I Can</a>
+          <ul class="nav" id="navul">
+            <li class="active navitem" id="intro_link"><a href="intro_dfc.html" target="content">首页</a></li>
+            <li class="navitem"><a href="recruit.html" id="recruit_link" target="content">我要行动</a></li>
+            <li class="navitem"><a href="activities.html" id="activities_link" target="content">DFC故事集</a></li>
+            <li class="navitem"><a href="awards.html" id="awards_link" target="content">DFC大奖赛</a></li>
+          </ul>
+          <ul class="nav pull-right">
+            <li>
+              <a href="message.html" target="content" style="padding:5px;">
+              <div class="mail_img"><div style="margin-top:4px;">10</div></div>
+              </a>
+            </li>
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" style="padding:5px;"><img src="image/avatar/1.jpg" class="topbar_img"></a>
+              <ul class="dropdown-menu">
+                <li><a href="myact.html" target="content">我的行动</a></li>
+                <li><a href="myteam.html" target="content">团队和志愿者面板</a></li>
+                <!--<li><a href="#">备忘</a></li>-->
+                <li class="divider"></li>
+                <li><a href="#" id="logout">注销</a></li>
+                <script>$('#logout').click(function(){alert('Logout！')});</script>
+                <li><a href="profile.html" target="content">修改个人资料</a></li>
+              </ul>
+            </li>
+          </ul>
+      </div>
+    </div><!-- /navbar-inner-->
+  </div><!-- /navbar-->
+        </div>
+
+<div style="width:100%; margin-top:50px;">
+<iframe src="intro_dfc.html" name="content" style="width:100%; border:0; height:100%; height:1000px"></iframe>
 </div>
 </body>
 </html>

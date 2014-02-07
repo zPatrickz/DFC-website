@@ -11,30 +11,125 @@ var activity_id='a0000001';
 var Creater='LiMing';
 $(document).ready(function(e) {
 	//browser=checkbrowser();
-	setlayout();
-	var res1=new Response(1,'cacate',currentTime(),'DFC南京~LoVe',['0.JPG','活动策划.pdf'],['important','proposal'],'a0000001');
-	append_reply(res1,'response_main');
-	var res2=new Response(2,'王强华',currentTime(),'刘金国啊，你该好好科研啦！你该好好科研啦！你该好好科研啦！你该好好科研啦！你该好好科研啦！你该好好科研啦！',['1.JPG','2.JPG'],['important','record'],'a0000001');
-	append_reply(res2,'response_main');
-	var res3=new Response(3,'谢闯',currentTime(),'其实，我想做个好人。',[],[],'a0000001');
-	append_reply(res3,'response_main');
-	var res4=new Response(4,'徐沐阳',currentTime(),'今天天气不错~',[],[],'a0000001','green');
-	append_reply(res4,'response_main');
-	var res5=new Response(5,'谢闯',currentTime(),'其实，我想做个好人。',[],[],'a0000001');
-	append_reply(res5,'response_main');
-	var res6=new Response(6,'徐沐阳',currentTime(),'今天天气不错~',[],[],'a0000001','green');
-	append_reply(res6,'response_main');
 	addevents();
 	showtask('share',0);
 	seteditor();
+
 });
 
-function setlayout(){
-}
 function addevents(){
-	$(window).resize(function(){
-		$('#editor_block').css("top",50);}
-	);
+	$('#mark').tooltip({'placement':'right'});
+	$('#cact_name').popover({'placement':'right'});
+	$('#zhangsan').popover({'placement':'top'});
+		$('#recruit_link').click(function(){
+		$('#invitevol').modal();
+	});
+	$('#placetime_link').click(function(){
+		$('#modal_placetime').modal();
+	});
+	$('#intro_link').click(function(){
+		$('#modal_intro').modal();
+	});
+	$('#contentdes_link').click(function(){
+		$('#modal_contentdes').modal();
+	});
+	$('#contentapp_link').click(function(){
+		$('#modal_contentapp').modal();
+	});
+	$('#manage_link').click(function(){
+		$('#modal_manage').modal();
+	});
+	$('#submit_link').click(function(){
+		$('#modal_submit').modal();
+	});
+	$('#addwork_link').click(function(){
+		$('#modal_addwork').modal();
+	});
+	$('#offline_link').click(function(){
+		$('#modal_offline').modal();
+	});
+	$('#feel_link').click(function(){
+		$('#modal_feel').modal();
+	});
+	$('#feelapp_link').click(function(){
+		$('#modal_feelapp').modal();
+	});
+	$('#imagine_link').click(function(){
+		$('#modal_imagine').modal();
+	});
+	$('#resource_link').click(function(){
+		$('#modal_resource').modal();
+	});
+	$('#doapp_link').click(function(){
+		$('#modal_doapp').modal();
+	});
+	$('#do_link').click(function(){
+		$('#modal_do').modal();
+	});
+	$('#dowork_link').click(function(){
+		$('#modal_dowork').modal();
+	});
+	$('#clip_link').click(function(){
+		$('#modal_clip').modal();
+	});
+	$('#giveup_link').click(function(){
+		$('#modal_giveup').modal();
+	});
+	$('#phone').tooltip({'placement':'right'});
+	$('#qq').tooltip({'placement':'right'});
+	$('#mail').tooltip({'placement':'right'});
+	
+	$('#btn-1').click(function(){
+		$('.taskcell').hide();
+		$('#task-1').show();
+	});	
+	$('#btn-2').click(function(){
+		$('.taskcell').hide();
+		$('#task-2').show();
+	});
+	$('#btn-3').click(function(){
+		$('.taskcell').hide();
+		$('#task-3').show();
+	});
+	$('#btn-4').click(function(){
+		$('.taskcell').hide();
+		$('#task-4').show();
+	});
+	$('#btn-5').click(function(){
+		$('.taskcell').hide();
+		$('#task-5').show();
+	});
+	$('#btn-6').click(function(){
+		$('.taskcell').hide();
+		$('#task-6').show();
+	});
+	$('#btn-7').click(function(){
+		$('.taskcell').hide();
+		$('#task-7').show();
+	});
+	$('#btn-8').click(function(){
+		$('.taskcell').hide();
+		$('#task-8').show();
+	});
+	$('#btn-9').click(function(){
+		$('.taskcell').hide();
+		$('#task-9').show();
+	});
+	$('#btn-10').click(function(){
+		$('.taskcell').hide();
+		$('#task-10').show();
+	});
+	$('#btn-11').click(function(){
+		$('.taskcell').hide();
+		$('#task-11').show();
+	});
+	$('#doublebar').click(function(event){
+		if($('.unimportant').css('display')=='none'){
+			$('.unimportant').show();
+		}
+		else if(event.target.id=='doublebar'){
+			$('.unimportant').hide();
+		}});
 	//Show the invisible dialog
 	$('#invite_friends').click(function(){
 		$('#invite_block').css("left",$(window).width()/2-$(invite_block).width()/2);

@@ -1,0 +1,113 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<script src="js/jq.js"></script>
+<script src="js/setmydfc.js"></script>
+<script src="js/physical.js"></script>
+<style type="text/css">
+html{
+	height:100%;
+}
+body{
+	font-size:120%;
+	background-color:rgba(153,153,153,1);
+	font-family:"微软雅黑";
+	color:white;
+	height:100%;
+	overflow:hidden;
+}
+ol, ul ,li{
+	list-style: none;
+	padding:0;
+	margin:0;
+} 
+p{
+	text-align:left;
+	line-height:2em;
+	letter-spacing:0.4em;
+}
+a:link{
+	color:gold;
+	text-decoration:none;
+}
+a:hover{
+	color:gold;
+	text-decoration:none;
+}
+a:visited{
+	color:gold;
+	text-decoration:none;
+}
+a:active{
+	color:gold;
+	text-decoration:none;
+}
+.main{
+	width:100%;
+	height:100%;
+}
+.left_col{
+	padding-top:30px;
+	width:200px;
+}
+.left_col li{
+}
+.col_menu{
+	height:35px;
+	padding-left:40px;
+	vertical-align:middle;
+	padding-top:7px;
+}
+.mcell{
+	height:30px;
+	margin-left:40px;
+	padding-left:20px;
+	padding-top:5px;
+	font-size:0.9em;
+	vertical-align:middle;
+}
+.selected{
+	background-color:rgba(0,0,0,1);
+}
+.mes_num{
+	margin-left:5px;
+}
+
+</style>
+</head>
+
+<body>
+<table class="main" cellpadding="0" cellspacing="0">
+<tr><td width="200px" style="background-color:rgba(51,51,51,1);" valign="top" align="left">
+<!--Left Column Part-->
+
+<ul id='left_col' class="left_col">
+<li>
+<div id='recruit' class="col_menu selected">招募信息<a href="#" class="mes_num">05</a></div>
+</li>
+<li>
+<div id='myact' class="col_menu">活动主页</div>
+</li>
+<li>
+<div id='signin' class="col_menu">开始公益之旅</div>
+</li>
+<li>
+<div id="myteam" class="col_menu">管理团队</div>
+</li>
+<li>
+<div id="mail" class="col_menu">个人信箱<a href="#" class="mes_num">02</a></div>
+</li>
+</ul>
+
+</td>
+
+<!--Content Part-->
+<td height="100%">
+<iframe id='subframe' src="recruit.html" frameborder="0" height="100%" width="100%" name="subframe">
+</iframe>
+</td></tr>
+</table>
+</body>
+</html>

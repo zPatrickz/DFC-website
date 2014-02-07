@@ -1,5 +1,5 @@
 // JavaScript Document
-var username='cacate';
+var username='Jack';
 var character='Normal';//Team Volunteer Normal Administrator
 var act1=new Activity('a0000001','cacate',['LiMing','Jack','谢闯','徐沐阳','王强华','cacate'],currentTime(),currentTime(),{'create':'','intro':new Intro('为流浪猫找个家','翠竹园小区的流浪猫非常可爱，软软的，绵绵的，暖暖的，像水一样，像糖一样，像永远不想醒来的被窝一样。','face.jpg'),'wherewhen':new WhereWhen(currentTime_min(),'翠竹园小区'),'volunteer':'','content':'','work_distri':'','feel':'','imagine':'','do':'','share':'','submit':''},[1,1,1,0,0,0,0,0,0,0],[1,2,3,4],0,0,0);
 var act2=new Activity('a0000002','Jack',['LiMing','Jack','谢闯','徐沐阳','王强华','cacate'],currentTime(),currentTime(),{'create':'','intro':new Intro('翠竹园的童书屋建设','翠竹园小区居然没有童书屋，没有，完全没有，全部没有，要有，一定要有。','face.gif'),'wherewhen':new WhereWhen(currentTime_min(),'翠竹园小区'),'volunteer':'','content':'','work_distri':'','record':'','share':'','submit':''},[1,1,1,0,0,0,0,0],[],0,0,0);
@@ -220,7 +220,7 @@ function cact(father_div){
     </div><div class="face_div">\
     <img src="activity/a0000002/image/face.jpg" class="face_img">\
 	</div><div class="description_div">\
-    <p class="desp">这是有翠竹园小区明志书屋项目组发起的一个活动。已经有7人参与。我是遗斯蒂芬斯蒂芬斯蒂芬斯蒂芬森防守对方传史哦就菲拉斯减肥啦睡觉了劳动法建立时间了。</p>\
+    <p class="smallp">这是有翠竹园小区明志书屋项目组发起的一个活动。已经有7人参与。我是遗斯蒂芬斯蒂芬斯蒂芬斯蒂芬森防守对方传史哦就菲拉斯减肥啦睡觉了劳动法建立时间了。</p>\
         <div class="infodiv">  \
         <div class="pull-right"><a href="#" class="label goldlink">by: 双方都刘金国</a></div>\
         </div></div><div class="bottom_div">\
@@ -231,14 +231,15 @@ function cact(father_div){
 
 function crec(father_div){
 	var content='<div class="outer_div" id="act_1">\
-            <div class="operation_div" id="operation_div" style=" display:block;">\
+            <div class="operation_div" id="operation_div" style="display:block;">\
             <span class="label"><a href="#" class="goldlink" id="track">跟踪动态</a></span>\
+            <div style=" width:140px;text-align:right; display:inline-block">\
             <span class="label"><a href="#" class="goldlink">分享(18)</a></span>\
-            <span class="label" style="margin-left:108px;"><a href="#" rel="tooltip" class="goldlink" title="需求：引导员3名，摄影师1名，已有引导员2名，摄影师一名。" id="enroll">加入(3/4)</a></span>\
-            </div><div class="face_div" id="facediv">\
+            <span class="label"><a href="#" rel="tooltip" class="goldlink" title="需求：引导员3名，摄影师1名，已有引导员2名，摄影师一名。" id="enroll">加入(3)</a></span></div></div>\
+			<div class="face_div" id="facediv">\
             <img src="activity/a0000001/image/poster.jpg" class="face_img"></div>\
             <div class="description_div">\
-            <p class="desp">这是有翠竹园小区明志书屋项目组发起的一个活动。已经有7人参与。</p><div class="infodiv">\
+            <p class="smallp">这是有翠竹园小区明志书屋项目组发起的一个活动。已经有7人参与。</p><div class="infodiv">\
                 <div class="pull-right"><a href="#" class="label goldlink">by: 刘金国</a></div></div>\
             </div><div class="bottom_div">\
             <div style="padding-left:7px;"> 翠竹园童书屋建设 </div></div>\
