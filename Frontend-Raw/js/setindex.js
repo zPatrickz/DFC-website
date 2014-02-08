@@ -6,4 +6,7 @@ $(document).ready(function() {
 	$('#donate_link').click(function(){
 		$('#modal_donate').modal({'height':'500px'});
 	});
+	$('#login_link').click(function(){
+		$('#modal_login').modal({'height':'500px'});
+	});
 })
