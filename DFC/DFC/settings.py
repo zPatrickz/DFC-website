@@ -7,7 +7,7 @@ TEMPLATE_DEBUG = DEBUG
 BASE_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), os.pardir))
 
 ADMINS = (
-    # ('Your Name', 'your_email@example.com'),
+    ('dfc', 'dfc.nanjing@gmail.com'),
 )
 
 MANAGERS = ADMINS
@@ -89,7 +89,6 @@ SECRET_KEY = '4200r38_sx!&m&m22qcnzejn(f6!d@7s(n8^#dkptk4_mszm)%'
 TEMPLATE_LOADERS = (
     'django.template.loaders.filesystem.Loader',
     'django.template.loaders.app_directories.Loader',
-#     'django.template.loaders.eggs.Loader',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -98,8 +97,6 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
-    # Uncomment the next line for simple clickjacking protection:
-    # 'django.middleware.clickjacking.XFrameOptionsMiddleware',
 )
 
 ROOT_URLCONF = 'DFC.urls'
@@ -108,9 +105,7 @@ ROOT_URLCONF = 'DFC.urls'
 WSGI_APPLICATION = 'DFC.wsgi.application'
 
 TEMPLATE_DIRS = (
-    # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
-    # Always use forward slashes, even on Windows.
-    # Don't forget to use absolute paths, not relative paths.
+    os.path.join(BASE_DIR, 'templates'),
 )
 
 INSTALLED_APPS = (
