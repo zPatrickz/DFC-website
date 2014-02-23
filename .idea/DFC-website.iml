@@ -4,7 +4,7 @@
     <facet type="django" name="Django">
       <configuration>
         <option name="rootFolder" value="$MODULE_DIR$" />
-        <option name="settingsModule" value="DFC/DFC/settings.py" />
+        <option name="settingsModule" value="DFC/DFC/local_settings.py" />
         <option name="manageScript" value="DFC/manage.py" />
       </configuration>
     </facet>

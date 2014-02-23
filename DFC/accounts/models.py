@@ -4,15 +4,13 @@ from django.contrib.auth.models import User
 
 
 class UserProfile(models.Model):
-    user = models.OneToOneField(User)
-    created = models.DateTimeField()
-    last_login = models.DateTimeField()
-    birthday = models.DateField()
-    sex = models.CharField(max_length=10)
-    telephone = models.CharField(max_length=11)
-    qq = models.CharField(max_length=20)
-    description = models.TextField()
-
-
-class ProfileForm(forms.Form):
-    user_profile = forms.modelform_defines_fields(UserProfile)
+    GENDER = (
+        ('M', 'Male'),
+        ('F', 'Female'),
+        ('A', 'Alien'),
+    )
+    user = models.OneToOneField(User, unique=True, verbose_name="User", primary_key=True)
+    gender = models.CharField(max_length=1, null=True, choices=GENDER)
+    birth_date = models.DateField(null=True)
+    phone = models.CharField(max_length=20, null=True)
+    description = models.TextField(max_length=140, null=True)

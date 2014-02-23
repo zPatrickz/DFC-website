@@ -1,36 +1,46 @@
+from django.contrib import auth
 from django.contrib.auth.forms import UserCreationForm
 from django.http import HttpResponseRedirect
 from django.shortcuts import render_to_response, RequestContext
-from django.core.urlresolvers import reverse
-from django.http import Http404
+from forms import UserProfileForm
+from models import UserProfile
 
 
 def register(request):
+
     if request.method == 'POST':
+        username = request.POST.get('username')
+        password = request.POST.get('password1')
         form = UserCreationForm(request.POST)
-        if form.is_valid():
-            user = form.save()
-            user.save()
-            _login(request, user.username, user.password)
-            return HttpResponseRedirect(reverse('accounts.views.index'))
-    else:
-        form = UserCreationForm()
+        errors = []
+        if not form.is_valid():
+            errors.extend(UserCreationForm.error_messages)
+            print UserCreationForm.error_messages
+            return HttpResponseRedirect('/accounts/register', {'errors': errors, })
+        user = form.save()
+        user.save()
+        user_profile = UserProfile(user=user)
+        user_profile.save()
+        new_user = auth.authenticate(username=username, password=password)
+        if new_user is not None:
+            auth.login(request, new_user)
+            return HttpResponseRedirect('/accounts/profile')
+        else:
+            return HttpResponseRedirect('/accounts/login')
+
+    form = UserCreationForm()
     return render_to_response("registration/register.html", {
         'form': form,
     }, context_instance=RequestContext(request))
 
 
-def index(request):
-    return render_to_response('index.html')
-
-
-def _login(request, username, password):
-    pass
-
-
-def getprofile(request):
-    if request.user.is_authenticated():
-
-        return render_to_response('profile.html', {'form': request.user})
+def show_profile(request):
+    user = request.user
+    if user.is_authenticated() and user.is_active:
+        profile = UserProfile.objects.get(user=user)
+        form = UserProfileForm(instance=profile)
+        return render_to_response('profile.html', {
+            'form': form,
+        }, context_instance=RequestContext(request))
     else:
-        raise Http404
+        return HttpResponseRedirect('/accounts/login')
