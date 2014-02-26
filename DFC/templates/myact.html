@@ -1,0 +1,1514 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>我的活动子页面</title>
+<link href="css/mycss.css" rel="stylesheet"></link>
+<link href="css/bootstrap-combined.min.css" rel="stylesheet">
+<link href="css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" type="text/css" media="screen" href="css/bootstrap-datetimepicker.min.css">
+<script src="js/jquery.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/setmyact.js"></script>
+<script src="js/seteditor.js"></script>
+<script src="js/myutils.js"></script>
+<script type="text/javascript" src="js/bootstrap-datetimepicker.min.js"></script>
+<script src="js/global.js"></script>
+<style type="text/css">
+
+/*Right Column*/
+.mapblock{
+	width:100%;
+	overflow:hidden;
+}
+.operationblock{
+	width:360px;
+	overflow:hidden;
+	padding-top:15px;
+}
+.poster_show{
+	width:100%;
+	text-align:center;
+}
+.op_edit{
+	width:100%;
+}
+.op_edit td{
+	padding-top:10px;
+}
+
+.num_input{
+	width:30px;
+	margin-left:10px;
+	margin-right:5px;
+}
+.feel_audio{
+	width:300px;
+	height:35px;
+	margin-top:3px;
+}
+.right_table{
+	height:100%;
+	width:100%;
+}
+.op_right{
+	font-size:0.6em; 
+	margin-left:10px;
+}
+.doublebar{
+    border-top:1px grey solid;
+    border-bottom:1px grey solid;
+	padding-top:3px;
+	padding-bottom:3px;
+	background-color:#EEE;
+}
+
+/*Map*/
+.maptable{
+	width:360px;
+	height:120px;
+	background-color:silver;
+	table-layout:fixed;
+}
+.maptable td{
+	width:25%;
+	height:25%;
+}
+.maptable button{
+	width:100%;
+	height:100%;
+	padding:0;
+	padding-left:5px;
+	text-align:left;
+}
+.maptable div{
+	width:100%;
+	height:100%;
+}
+.taskcell{
+	padding:10px;
+	display:none;
+}
+.modify{
+	font-size:0.6em; margin-left:10px;
+}
+.posterimg{
+	width:250px;
+	border:silver 2px solid;
+}
+.table_member td,.table_member th{
+	border:1px silver solid;
+}
+.table_member th{
+	background-color:#59C;
+}
+.unimportant{
+	display:none;
+}
+</style>
+</head>
+
+<body>
+<div style="overflow:visible; width:1000px;">
+<div class="span8">
+<!--Begin of Editor Block-->
+<!--Simplified Editor-->
+
+
+<div class="editor_simp" id="editor_simp">
+<div class="input-append">
+<input type="text" class="input-xlarge" style="height:18px; width:428px;" id="simp_input" placeholder="回车发送">
+<span class="btn add-on" id="expand_editor"><i class="icon-resize-vertical"></i></span>
+</div>
+</div>
+
+
+
+<!--Full Sized Editor-->
+<div class="editor_full" id="editor_full">
+
+<!--text Layer-->
+<div class="input-append" style="margin-bottom:0px;">
+    <textarea class="input-xlarge" id="full_area" style="width:432px; height:150px;margin-bottom:0px; resize:none;">
+    </textarea>
+    <span class="btn add-on" style="height:150px;" id="editor_minimize">
+    <i class="icon-resize-vertical"></i>
+    </span>
+</div>
+
+<!--Bottom Bar Layer-->
+<div id="full_bottom" class="full_bottom">
+<div class="navbar" style="margin:0">
+<ul class="nav">
+<li><a id="color1" href="#" style="background-color:black; padding:0;" class="navcell_color"></a></li>
+<li><a id="color2" href="#" style="background-color:#090; padding:0;" class="navcell_color"></a></li>
+<li><a id="color3" href="#" style="background-color:#09F; padding:0;" class="navcell_color"></a></li>
+<li><a id="color4" href="#" style="background-color:#63C; padding:0;" class="navcell_color"></a></li>
+<li><a id="color5" href="#" style="background-color:#999; padding:0;" class="navcell_color"></a></li>
+</ul>
+<ul class="nav pull-right">
+<li class="dropdown">
+<a href="#" class="navcell" data-toggle="dropdown" style="padding:0;"><img class="full_icon" src="image/icon/expression.png" title="添加表情" alt="添加表情"></a>
+    <ul class="dropdown-menu">
+    <li><span class="label emo">灰常开心</span><span class="label emo">弱弱地说</span></li>
+    <li><span class="label emo">当时就怒了</span><span class="label emo">表示有压力</span></li>
+    <li><span class="label emo">当时就不高兴了</span><span class="label emo">碎碎念</span></li>
+    <li><span class="label emo">作机器人状</span><span class="label emo">用营业员式的表情说</span></li>
+    </ul>
+</li>
+
+<li><a href="#" style="padding:0;" class="navcell" id="full_append">
+<img src="image/icon/attach.png" alt="添加附件" title="添加附件" class="full_icon" ></a></li>
+
+
+<li class="dropdown">
+<a href="#" class="navcell" data-toggle="dropdown" style="padding:0;">
+<img src="image/icon/important.png" title="添加标记" alt="添加标记" class="full_icon"></a>
+    <ul class="dropdown-menu">
+    <li><a href="#">重要信息</a></li>
+    <li><a href="#">活动记录</a></li>
+    <li><a href="#">活动感受</a></li>
+    <li><a href="#">通知</a></li>
+    <li><a href="intro_website.html" target="_new">标记有什么用？</a></li>
+    </ul>
+</li>
+<li><a href="#" class="navcell" style="padding:0;"><span class="btn" style=" margin:0; padding:0px; padding-left:7px; padding-right:7px; margin-left:20px;" id="full_submit">发送</span></a></li>
+</ul>
+</div>
+</div>
+
+<div class="file_block" align="left" style="padding-top:10px; vertical-align:top;">
+    <div class="figure_div" id="file_model_1">
+    <a href="activity/a0000001/file/活动策划.pdf" target="_new"><span class="label label-important" title="这是文档，这是文件的一段说明。">活动策划.pdf</span></a>
+    <a href="activity/a0000001/file/活动策划.pdf" target="_new"><span class="label label-important" title="这是文档，这是文件的一段说明。">活动演示稿.ppt</span></a>
+    </div>
+
+    </div>
+    
+</div>
+
+<!--
+<table cellpadding="0" cellspacing="0" style="display:none;">
+<tr><td>
+    <div class="input-append color_table">
+    <div id="color1" style="background-color:black;" class="colordiv"></div>
+    <div id="color2" style="background-color:#090;" class="colordiv"></div>
+    <div id="color3" style="background-color:#09F;" class="colordiv"></div>
+    <div id="color4" style="background-color:#63C;" class="colordiv"></div>
+    <div id="color5" style="background-color:#999;" class="colordiv"></div>
+    </div>
+</td><td style=" width:200px; text-align:right;">
+<div class="full_op" id="full_append">
+<img src="image/icon/attach.png" alt="添加附件" title="添加附件" class="default_icon" ></div>
+<div class="full_op" id="editor_link"><img src="image/icon/link.png" alt="添加链接" title="添加链接" class="default_icon"></div>
+<div class="full_op" id="editor_important"><img src="image/icon/important.png" title="标记为重要" alt="标记重要" class="default_icon"></div>
+<div class="full_op" id="editor_expression"><img src="image/icon/expression.png" title="添加表情" alt="添加表情" class="default_icon"></div>
+</td><td style="text-align:right; width:65px;">
+<button type="submit" class="btn full_submit" id="full_submit">发送</button>
+
+</td></tr>
+</table>
+</div>
+<!--Appendix Layer-->
+<!--<div></div>
+
+</div>
+<!--End of Editor Block-->
+
+<!--Response div-->
+<div style="text-align:left; padding-right:33px; padding-left:120px; margin-top:20px;">
+<div class="input-append" style="display:inline-block; padding-right:10px;">
+<input type="text" class="input-small" style="height:18px;" title="发帖人，内容或者时间"><span class="btn add-on"><i class="icon-search"></i>
+</span>
+</div>
+
+<a href="#" style="font-size:0.8em" class="pull-right">仅查看重要信息(8)</a>
+</div>
+
+
+
+
+<!--Begin Of Response Div-->
+<div id="model" class="response_main">
+<table class="restable">
+<tr>
+<td width="120px" align="right" valign="top" class="avatar_block">
+<div class="left_row">
+<a href="profile_show.html" target="_new"><img src="user/cacate/avatar.jpg" class="avatar" title="cacate" alt="cacate"></a>
+</div>
+</td>
+<td class="op_block" id="show_op" style="border-bottom:silver 1px solid;text-align:left; width:180px; vertical-align:bottom;">
+    <div style="text-align:left;">
+    <i class="icon-bookmark" title="重要信息"></i>
+    <i class="icon-comment" title="活动感受"></i>
+    </div>
+</td>
+<td style="text-align:right;vertical-align:bottom;">
+ <div class="btn-toolbar" style="margin:0;">
+        <div class="btn-group">
+            <button href="#" class="btn opbtn" style="padding-top:0; margin:0; color:grey;">回复</button>
+            <button href="#" class="btn opbtn" style="padding-top:0; margin:0; color:grey;">删除</button>
+          <button class="btn dropdown-toggle opbtn" data-toggle="dropdown" id="mark" title="为帖子添加标记，这些标记将会帮助你和活动的成员整理重要信息。" rel="tooltip" style="padding-top:0; margin:0; color:grey;">标记</button>
+          <ul class="dropdown-menu">
+            <li><i class="icon-ok" style="display:inline-block;"></i><a href="#" style="display:inline-block;">重要信息</a></li>
+            <li><a href="#">活动记录</a></li>
+            <li><a href="#">活动感受</a></li>
+          </ul>
+        </div><!-- /btn-group-->
+</div>
+</td>
+</tr>
+<tr>
+<td align="right" valign="top">
+    <div class="silver" style="vertical-align:top;line-height:1.8em;">5月12日 12:23:12</div>
+</td>
+<td rowspan="2" class="righttd" colspan="2">
+    <div>
+    <div class="text_block">
+    <p style="margin-left:0px; margin-right:30px;">我们是奥特曼，拯救地球来啦！我们是奥特曼，拯救地球来啦！我们是奥特曼，拯救地球来啦！我们是奥特曼，拯救地球来啦！我们是奥特曼，拯救地球来啦！<span class="label">cacate&nbsp;用营业员式的表情说</span></p>
+    </div>
+    </div>
+    
+    <div class="file_block" align="left">
+    <div class="figure_div" id="file_model_1">
+    <a href="activity/a0000001/file/活动策划.pdf" target="_new"><span class="label label-important" title="这是文档，这是文件的一段说明。">活动策划.pdf</span></a>
+    <a href="activity/a0000001/file/活动策划.pdf" target="_new"><span class="label label-important" title="这是文档，这是文件的一段说明。">活动演示稿.ppt</span></a>
+    </div>
+    </div>
+</td>
+</tr>
+<tr>
+<td style="text-align:right;vertical-align:top;">
+</td>
+</tr>
+</table>
+</div>
+<!--End of Response Div-->
+<!--Begin Of Response Div-->
+<div id="model" class="response_main">
+<table class="restable">
+<tr>
+<td width="120px" align="right" valign="top" class="avatar_block">
+<div class="left_row">
+<a href="profile_show.html" target="_new"><img src="user/cacate/avatar.jpg" class="avatar" title="cacate" alt="cacate"></a>
+</div>
+</td>
+<td class="op_block" id="show_op" style="border-bottom:silver 1px solid;text-align:left; width:180px; vertical-align:bottom;">
+    <div style="text-align:left;">
+    <i class="icon-camera" title="活动记录"></i>
+    </div>
+</td>
+<td style="text-align:right;vertical-align:bottom;">
+ <div class="btn-toolbar" style="margin:0;">
+        <div class="btn-group">
+            <button href="#" class="btn opbtn" style="padding-top:0; margin:0; color:grey;">回复</button>
+            <button href="#" class="btn opbtn" style="padding-top:0; margin:0; color:grey;">删除</button>
+          <button class="btn dropdown-toggle opbtn" data-toggle="dropdown" id="mark" title="为帖子添加标记，这些标记将会帮助你和活动的成员整理重要信息。" rel="tooltip" style="padding-top:0; margin:0; color:grey;">标记</button>
+          <ul class="dropdown-menu">
+            <li><i class="icon-ok" style="display:inline-block;"></i><a href="#" style="display:inline-block;">重要信息</a></li>
+            <li><a href="#">活动记录</a></li>
+            <li><a href="#">活动感受</a></li>
+          </ul>
+        </div><!-- /btn-group-->
+</div>
+</td>
+</tr>
+<tr>
+<td align="right" valign="top">
+    <div class="silver" style="vertical-align:top;line-height:1.8em;">5月12日 12:23:12</div>
+</td>
+<td rowspan="2" class="righttd" colspan="2">
+    <div>
+    <div class="text_block">
+    <p style="margin-left:0px; margin-right:30px;">我们是奥特曼，拯救地球来啦！<span class="label">cacate&nbsp;用营业员式的表情说</span></p>
+    </div>
+    </div>
+    
+    <div class="file_block" align="left">
+    <div class="figure_div" id="file_model_1">
+    <a href="#"><img src="activity/a0000001/image/1.JPG" class="default_img" title="这是活动的照片，这是图片的一段说明。" ></a>
+    </div>
+    <div class="figure_div">
+    <a href="#"><img src="activity/a0000001/image/1.JPG" class="default_img" ></a>
+    </div>
+    <div class="figure_div">
+    <a href="#"><img src="activity/a0000001/image/1.JPG" class="default_img" ></a>
+    </div>
+    </div>
+</td>
+</tr>
+<tr>
+<td style="text-align:right;vertical-align:top;">
+</td>
+</tr>
+</table>
+</div>
+<!--End of Response Div-->
+
+<div class="doublebar" id="doublebar">
+<!--Begin Of Response Div-->
+<div id="model" class="response_main unimportant">
+<table class="restable">
+<tr>
+<td width="120px" align="right" valign="top" class="avatar_block">
+<div class="left_row">
+<a href="profile_show.html" target="_new"><img src="user/cacate/avatar.jpg" class="avatar" title="cacate" alt="cacate"></a>
+</div>
+</td>
+<td class="op_block" id="show_op" style="border-bottom:silver 1px solid;text-align:left; width:180px; vertical-align:bottom;">
+    <div style="text-align:left;">
+    </div>
+</td>
+<td style="text-align:right;vertical-align:bottom;">
+ <div class="btn-toolbar" style="margin:0;">
+        <div class="btn-group">
+            <button href="#" class="btn opbtn" style="padding-top:0; margin:0; color:grey;">回复</button>
+            <button href="#" class="btn opbtn" style="padding-top:0; margin:0; color:grey;">删除</button>
+          <button class="btn dropdown-toggle opbtn" data-toggle="dropdown" id="mark" title="为帖子添加标记，这些标记将会帮助你和活动的成员整理重要信息。" rel="tooltip" style="padding-top:0; margin:0; color:grey;">标记</button>
+          <ul class="dropdown-menu">
+            <li><a href="#">重要信息</a></li>
+            <li><a href="#">活动记录</a></li>
+            <li><a href="#">活动感受</a></li>
+          </ul>
+        </div><!-- /btn-group-->
+</div>
+</td>
+</tr>
+<tr>
+<td align="right" valign="top">
+    <div class="silver" style="vertical-align:top;line-height:1.8em;">5月12日 12:23:12</div>
+</td>
+<td rowspan="2" class="righttd" colspan="2">
+    <div>
+    <div class="text_block">
+    <p style="margin-left:0px; margin-right:30px;">我们是奥特曼，拯救地球来啦！我们是奥特曼，拯救地球来啦！我们是奥特曼，拯救地球来啦！我们是奥特曼，拯救地球来啦！我们是奥特曼，拯救地球来啦！<span class="label">cacate&nbsp;用营业员式的表情说</span></p>
+    </div>
+    </div>
+    
+    <div class="file_block" align="left">
+    </div>
+</td>
+</tr>
+<tr>
+<td style="text-align:right;vertical-align:top;">
+</td>
+</tr>
+</table>
+</div>
+<!--End of Response Div-->
+<!--Begin Of Response Div-->
+<div id="model" class="response_main unimportant">
+<table class="restable">
+<tr>
+<td width="120px" align="right" valign="top" class="avatar_block">
+<div class="left_row">
+<a href="profile_show.html" target="_new"><img src="user/cacate/avatar.jpg" class="avatar" title="cacate" alt="cacate"></a>
+</div>
+</td>
+<td class="op_block" id="show_op" style="border-bottom:silver 1px solid;text-align:left; width:180px; vertical-align:bottom;">
+    <div style="text-align:left;">
+    </div>
+</td>
+<td style="text-align:right;vertical-align:bottom;">
+ <div class="btn-toolbar" style="margin:0;">
+        <div class="btn-group">
+            <button href="#" class="btn opbtn" style="padding-top:0; margin:0; color:grey;">回复</button>
+            <button href="#" class="btn opbtn" style="padding-top:0; margin:0; color:grey;">删除</button>
+          <button class="btn dropdown-toggle opbtn" data-toggle="dropdown" id="mark" title="为帖子添加标记，这些标记将会帮助你和活动的成员整理重要信息。" rel="tooltip" style="padding-top:0; margin:0; color:grey;">标记</button>
+          <ul class="dropdown-menu">
+            <li><a href="#">重要信息</a></li>
+            <li><a href="#">活动记录</a></li>
+            <li><a href="#">活动感受</a></li>
+          </ul>
+        </div><!-- /btn-group-->
+</div>
+</td>
+</tr>
+<tr>
+<td align="right" valign="top">
+    <div class="silver" style="vertical-align:top;line-height:1.8em;">5月12日 12:23:12</div>
+</td>
+<td rowspan="2" class="righttd" colspan="2">
+    <div>
+    <div class="text_block">
+    <p style="margin-left:0px; margin-right:30px;">我们是奥特曼，拯救地球来啦！我们是奥特曼，拯救地球来啦！我们是奥特曼，拯救地球来啦！我们是奥特曼，拯救地球来啦！我们是奥特曼，拯救地球来啦！<span class="label">cacate&nbsp;用营业员式的表情说</span></p>
+    </div>
+    </div>
+    
+    <div class="file_block" align="left">
+    </div>
+</td>
+</tr>
+<tr>
+<td style="text-align:right;vertical-align:top;">
+</td>
+</tr>
+</table>
+</div>
+<!--End of Response Div-->
+</div><!--End Of Double Bar-->
+
+
+<!--Begin Of Response Div-->
+<div id="model" class="response_main">
+<table class="restable">
+<tr>
+<td width="120px" align="right" valign="top" class="avatar_block">
+<div class="left_row">
+<a href="profile_show.html" target="_new"><img src="user/cacate/avatar.jpg" class="avatar" title="cacate" alt="cacate"></a>
+</div>
+</td>
+<td class="op_block" id="show_op" style="border-bottom:silver 1px solid;text-align:left; width:180px; vertical-align:bottom;">
+    <div style="text-align:left;">
+    <i class="icon-bookmark" title="重要信息"></i>
+    <i class="icon-comment" title="活动感受"></i>
+    </div>
+</td>
+<td style="text-align:right;vertical-align:bottom;">
+ <div class="btn-toolbar" style="margin:0;">
+        <div class="btn-group">
+            <button href="#" class="btn opbtn" style="padding-top:0; margin:0; color:grey;">回复</button>
+            <button href="#" class="btn opbtn" style="padding-top:0; margin:0; color:grey;">删除</button>
+          <button class="btn dropdown-toggle opbtn" data-toggle="dropdown" id="mark" title="为帖子添加标记，这些标记将会帮助你和活动的成员整理重要信息。" rel="tooltip" style="padding-top:0; margin:0; color:grey;">标记</button>
+          <ul class="dropdown-menu">
+            <li><i class="icon-ok" style="display:inline-block;"></i><a href="#" style="display:inline-block;">重要信息</a></li>
+            <li><a href="#">活动记录</a></li>
+            <li><a href="#">活动感受</a></li>
+          </ul>
+        </div><!-- /btn-group-->
+</div>
+</td>
+</tr>
+<tr>
+<td align="right" valign="top">
+    <div class="silver" style="vertical-align:top;line-height:1.8em;">5月12日 12:23:12</div>
+</td>
+<td rowspan="2" class="righttd" colspan="2">
+    <div>
+    <div class="text_block">
+    <p style="margin-left:0px; margin-right:30px;">我们是奥特曼，拯救地球来啦！我们是奥特曼，拯救地球来啦！我们是奥特曼，拯救地球来啦！我们是奥特曼，拯救地球来啦！我们是奥特曼，拯救地球来啦！<span class="label">cacate&nbsp;用营业员式的表情说</span></p>
+    </div>
+    </div>
+    
+    <div class="file_block" align="left">
+    <div class="figure_div" id="file_model_1">
+    <a href="activity/a0000001/file/活动策划.pdf" target="_new"><span class="label label-important" title="这是文档，这是文件的一段说明。">活动策划.pdf</span></a>
+    <a href="activity/a0000001/file/活动策划.pdf" target="_new"><span class="label label-important" title="这是文档，这是文件的一段说明。">活动演示稿.ppt</span></a>
+    </div>
+    </div>
+</td>
+</tr>
+<tr>
+<td style="text-align:right;vertical-align:top;">
+</td>
+</tr>
+</table>
+</div>
+<!--End of Response Div-->
+</div>
+
+
+<table class="maptable">
+<caption><h3>活动进度表</h3></caption>
+<tr><td>
+<div><button id="btn-1" class="btn btn-info"><span class="label label-info" style="margin-right:3px;">1</span>活动创建</button></div></td><td>
+<div><button id="btn-2" class="btn btn-info"><span class="label label-info" style="margin-right:3px;">2</span>活动简介</button></div></td><td>
+<div><button id="btn-3" class="btn btn-info"><span class="label label-info" style="margin-right:3px;">3</span>时间地点</button></div></td><td>
+<div><button id="btn-4" class="btn btn-info"><span class="label label-info" style="margin-right:3px;">4</span>活动成员</button></div></td></tr><tr><td>
+<div><button id="btn-5" class="btn btn-info"><span class="label label-info" style="margin-right:3px;">5</span>活动内容</button></div></td><td>
+<div><button id="btn-6" class="btn btn-success"><span class="label label-info" style="margin-right:3px;">6</span>任务分工</button></div></td><td>
+<div><button id="btn-7" class="btn"><span class="label label-info" style="margin-right:3px;">7</span>感受</button></div></td><td>
+<div><button id="btn-8" class="btn"><span class="label label-info" style="margin-right:3px;">8</span>想象</button></div></td></tr><tr><td>
+<div><button id="btn-9" class="btn"><span class="label label-info" style="margin-right:3px;">9</span>行动</button></div></td><td>
+<div><button id="btn-10" class="btn"><span class="label label-info" style="margin-right:3px;">10</span>总结分享</button></div></td><td>
+<div><button id="btn-11" class="btn"><span class="label label-info" style="margin-right:3px;">11</span>结束<i class="icon-flag"></i></button></div></td></tr>
+</table>
+
+<div class="operationblock" id="operation_div">
+<!--Create Div-->
+<div class="taskcell" id="task-1">
+<div class="taskinner">
+<legend>创建信息</legend>
+<p class="desp">该活动的创建者为：<a href="profile_show.html" title="基本信息" rel="popover" id="cact_name" data-content="所属团队：DFC南京<br>角色：团队成员<br>性别：男<br>签名：啊啊啊啊啊啊啊~水开了">cacate</a><br></p><p class="desp">
+创建时间为：2013年6月12日 12:23</p>
+</div>
+</div>
+
+
+<!--Intro Div-->
+<div class="taskcell" id="task-2" style="display:block;">
+<legend>活动简介<a href="#" class="pull-right modify" id="intro_link">修改</a></legend>
+<h3>为流浪猫找个家</h3>
+
+<p class="desp">这个活动是很有爱的活动！希望大家多多参与！希望大家多多参与！希望大家多多参与！~~~</p>
+
+    <div class="poster_block" id="poster_block">
+    <span class="label label-info">海报</span>
+    <div class="poster_show">
+    <img src="activity/a0000001/image/face.jpg" alt="海报" title="poster" class="posterimg">
+    </div>
+    </div>
+</div>
+
+
+<!--Place And Time-->
+<div class="taskcell" id="task-3">
+<legend>时间地点<a href="#" class="pull-right modify" id="placetime_link">修改</a></legend>
+<p class="desp">
+活动地点为：<a href="map.baidu.com">翠竹园小区</a><br></p>
+<p class="desp">
+活动时间为：2013年6月14日 12:23
+</p>
+</div>
+
+
+<!--Group members-->
+<div id="task-4" class="taskcell">
+<legend>成员信息<a href="#" class="modify" target="_new"><i class="icon-question-sign" title="如何操作？"></i></a><a href="#" class=" pull-right modify" id="recruit_link">招募</a><a href="#" class=" pull-right modify" id="manage_link">管理</a><a href="#" class=" pull-right modify" id="offline_link">添加线下成员</a></legend>
+<table width="100%" class="table_member">
+<tr style="font-weight:bold" align="center"><th>姓名</th><th style="width:45px;">角色</th><th style="width:100px;">联系方式</th><th style="width:30px;">状态</th></tr>
+<tr style="font-weight:bold" align="center"><td><a id="zhangsan" href="profile_show.html" rel="popover" data-content="上次登陆时间：2013年12月14日 09:12<br>发言次数：5<br>点开了解更多">张三</a></td><td>引导员</td><td><span class="label">手机</span>15195955770<br><span class="label">QQ</span>602668429<br><span class="label">邮箱</span>cacate0129@gmail.com</td><td>正常</td></tr>
+<tr style="font-weight:bold" align="center"><td><a id="zhangsan" href="profile_show.html" rel="popover" data-content="上次登陆时间：2013年12月14日 09:12<br>发言次数：5<br>点开了解更多">我是王强华</a></td><td>引导员</td><td><span class="label">手机</span>15195955770<br><span class="label">QQ</span>602668429</td><td>禁言</td></tr>
+</table>
+</div>
+
+
+<!--Content-->
+<div class="taskcell" id="task-5">
+<legend>活动内容<a href="#" class="modify" target="_new"><i class="icon-question-sign" title="如何操作？"></i></a><a href="#" class="pull-right modify" id="contentdes_link">填活动介绍</a><a href="#" class="pull-right modify" id="contentapp_link">传文件</a></legend>
+<h6>主要内容</h6>
+<p class="desp">
+我们活动的主要内容有：<br>
+1. 去拜访社区大妈。<br>
+2. 把它分享给大家。</p>
+    <div class="file_block">
+    <div class="file1">
+    <a href="activity/a0000001/file/活动策划.pdf">活动策划.pdf</a>
+    <p class="desp">这是我们的活动策划。</p>
+    </div>
+    <div>
+    <a href="activity/a0000001/file/活动策划.pdf">活动PPT.ppt</a>
+    <p class="desp">这是我们的活动PPT。</p>
+    </div>
+    </div>
+</div>
+
+
+<!--Begin of Work Distribution Block-->
+<div id="task-6" class="taskcell">
+<legend>任务分工<a href="#" class="modify" target="_new"><i class="icon-question-sign" title="如何操作？"></i></a><a href="#" class="pull-right modify" id="addwork_link">指派任务</a></legend>
+<blockquote>
+<p style="font-size:0.8em;">21号前联系张老师<a href="#" class="modify">删除</a></p>
+<small class="pull-right"><cite title="">cacate</cite></small>
+</blockquote>
+<blockquote>
+<p style="font-size:0.8em;">21号前做一百个俯卧撑。<a href="#" class="modify">删除</a></p>
+<small class="pull-right"><cite title="">cacate</cite></small>
+</blockquote>
+</div>
+
+
+<!--Begin of Feel Block-->
+<div id="task-7" class="taskcell">
+<legend>感受问题<a href="#" class="modify" target="_new"><i class="icon-question-sign" title="如何操作？"></i></a><a href="#" class="pull-right modify" id="feel_link">填写感受报告</a><a href="#" class="pull-right modify" id="feelapp_link">上传材料</a></legend>
+<h5>弄清问题的方法</h5><span class="label">现场采访</span>
+<p>我们采访了翠竹园10位普通居民，他们大多数表示知道这一片有流浪猫的行为，也觉得这些流浪猫很可怜，也给环卫工人带来了困难。希望有人能领养这些猫咪。</p>
+
+<h5>附件</h5>
+
+<div>
+<h6>现场录音:</h6>
+<audio src="activity/a0000001/audio/feel.mp3" controls class="feel_audio">采访录音.mp3</audio>
+</div>
+
+<div style="margin-bottom:5px;">
+<h6>现场照片:</h6>
+<img class="default_img" src="activity/a0000001/image/1.JPG" onMouseOver="$(this).tooltip('show')" data-toggle="tooltip" title="我们愉快的游戏" data-placement="top" >
+<img class="default_img" src="activity/a0000001/image/3.JPG" onMouseOver="$(this).tooltip('show')" data-toggle="tooltip" title="我们愉快的游戏" data-placement="top" >
+</div>
+</div>
+
+
+
+
+
+
+
+
+<!--Begin of Imagine Block-->
+<!--Show-->
+<div id="task-8" class="taskcell">
+<legend>想象解决方法<a href="#" class="modify" target="_new"><i class="icon-question-sign" title="如何操作？"></i></a><a href="#" class="pull-right modify" id="imagine_link">添加解决方案</a>
+<a href="#" class="pull-right modify" id="resource_link">确认可用资源</a></legend>
+<h5>我们的资源</h5>
+<p class="desp">张三钢琴十级，张三的妈妈是小区管理员。
+学校有个社团，可以资助我们。</p>
+<h5>方案</h5>
+<blockquote>
+<p style="font-size:0.8em;">让孤寡老人知道这一情况，让他们来收养。（6票）<a href="#" class="modify">删除</a></p>
+<small class="pull-right"><cite title="">cacate</cite></small>
+</blockquote>
+<blockquote>
+<p style="font-size:0.8em;">让小区负责人张三的爸爸来管理。（3票）<a href="#"  class="modify">删除</a>
+</p>
+<small class="pull-right"><cite title="">谢闯</cite></small>
+</blockquote>
+</div>
+
+
+
+
+
+<!--Begin of Do Block-->
+<!--Show-->
+<div id="task-9" class="taskcell">
+<legend>行动<a href="#" class="modify" target="_new"><i class="icon-question-sign" title="如何操作？"></i></a>
+<a href="#" class="modify pull-right" id="dowork_link">添加分工</a>
+<a href="#" class="modify pull-right" id="do_link">现场描述</a>
+<a href="#" class="modify pull-right" id="doapp_link">添加附件</a>
+</legend>
+<h5>分工</h5>
+<div>
+<blockquote>
+<p style="font-size:0.8em;">21号前联系张老师<a href="#" class="modify">删除</a></p>
+<small class="pull-right"><cite title="">cacate</cite></small>
+</blockquote>
+<blockquote>
+<p style="font-size:0.8em;">21号前做一百个俯卧撑。<a href="#" class="modify">删除</a></p>
+<small class="pull-right"><cite title="">cacate</cite></small>
+</blockquote>
+</div>
+<!--活动记录-->
+<h5>现场描述</h5>
+<p>现场灰常热闹。</p>
+
+
+<h5>现场照片</h5>
+<div style="padding-left:20px;">
+<img class="default_img" src="activity/a0000001/image/1.JPG"  onMouseOver="$(this).tooltip('show')" onMouseDown="zoominimg(event,this.src)" data-toggle="tooltip" title="我们愉快的游戏" data-placement="top">
+<img class="default_img" onMouseOver="$(this).tooltip('show')" onMouseDown="zoominimg(event,this.src)" data-toggle="tooltip" title="我们愉快的游戏" data-placement="top" src="activity/a0000001/image/3.JPG">
+</div>
+<h5><a href="http://v.youku.com/v_show/id_XMjk5NTI5NTk2.html">现场视频</a></h5>
+<embed src="http://player.youku.com/player.php/sid/XMjk5NTI5NTk2/v.swf" allowFullScreen="true" quality="high" width="300" align="middle" allowScriptAccess="always" type="application/x-shockwave-flash"></embed>
+
+</div>
+
+
+
+<!--Begin of Share Block-->
+<!--Show-->
+<div id="task-10" class="taskcell">
+<legend>分享感受<a href="#" class="modify" target="_new"><i class="icon-question-sign" title="如何操作？"></i></a><a href="#" class="pull-right modify" id="clip_link">贴视频链接</a></legend>
+<blockquote>
+<p style="font-size:0.8em;">我们很开心！<a href="#" class="modify">删除</a></p>
+<small class="pull-right"><cite title="">cacate</cite></small>
+</blockquote>
+<blockquote>
+<p style="font-size:0.8em;">我们真的很开心！<a href="#" class="modify">删除</a></p>
+<small class="pull-right"><cite title="">cacate</cite></small>
+</blockquote>
+
+</div>
+
+
+
+
+
+<div id="task-11" class="taskcell">
+<legend>作品状态<a href="#" class="modify" target="_new"><i class="icon-question-sign" title="如何操作？"></i></a><a href="#" class="pull-right modify" id="submit_link">提交</a><a href="#" class="pull-right modify" id="giveup_link">放弃</a></legend>
+<span class="label">活动中</span>
+<p class="desp">
+活动完成度8/11</p>
+
+</div>
+
+<!--submit activity-->
+
+
+</div><!--End of Operation-->
+
+</div><!--End of Right Column-->
+
+
+</div>
+</div><!--End of My Container-->
+
+
+
+
+
+<!--Modal Block-->
+
+<!--Intro bolck-->
+<!--Edit-->
+<div class="modal hide fade" id="modal_intro">
+<div class="modal-header">
+<button type="button" class="close" data-dismiss="modal">&times;</button>
+<h3>活动简介</h3></div>
+
+<div class="modal-body"><p class="desp">活动内容的简单介绍，简要描述活动是做什么的。如果有海报也可以附上哦，海报可以是JPG，PNG或者GIF格式。PS：没有活动内容介绍的活动将不会被公布给大家哦。</p>
+
+<div class="modal-form">
+<form method="post" class="form-horizontal" style="position:relative; left:-50px;">
+<fieldset>
+
+<div class="control-group">
+    <label class="control-label" for="titleinput">标题</label>
+    <div class="controls">
+    <input placeholder="标题" class="input-xlarge" title="标题" type="text" id="titleinput">
+    </div>
+</div>
+
+<div class="control-group">
+    <label class="control-label" for="introarea">简介</label>
+    <div class="controls">
+    <textarea placeholder="填写简介" maxlength="300" class="input-xlarge" style="" title="填写简介" id="introarea"></textarea>
+    </div>
+</div>
+<div class="control-group">
+    <label class="control-label" for="poster_upload">海报</label>
+    <div class="controls" id="poster_block">
+    <input type="file" class="input-xlarge" placeholder="上传海报" value="上传海报" title="上传海报" id="poster_upload">
+    </div>
+</div>
+
+<div class="control-group" style="text-align:right;">
+<div class="controls">
+<button class="btn" id="finish" type="submit">确定</button>
+</div>
+</div>
+</fieldset>
+</form>
+</div></div>
+</div><!--End of Intro Block-->
+
+<!--Begin of Place Time Block-->
+
+<!--Edit-->
+<div class="modal hide fade" id="modal_placetime">
+<div class="modal-header">
+<button type="button" class="close" data-dismiss="modal">&times;</button>
+<h3>时间地点</h3></div>
+<div class="modal-body">
+<p class="desp">活动时间和地点对于招募志愿者可是很重要的信息哦。不过您也可以留到以后再确定，这样我们任然会把这条信息推送给志愿者们。</p>
+<div class="modal-form">
+<form class="form-horizontal">
+<fieldset>
+<div class="control-group">
+<label class=" control-label" for="datetimeinput">时间</label>
+<div class="controls">
+    <div id="datetimepicker" class="input-append date" style="display:inline-block;">
+      <input type="text" id="datetimeinput" class="input-xlarge"></input>
+      <span class="add-on">
+        <i data-time-icon="icon-time" data-date-icon="icon-calendar"></i>
+      </span>
+    </div>
+</div>
+</div>
+    <script type="text/javascript">
+      $('#datetimepicker').datetimepicker({
+        format: 'yyyy年MM月dd日 hh:mm',
+        language: 'cn',
+        pickDate: true,
+        pickTime: true,
+        hourStep: 1,
+        minuteStep: 15,
+        secondStep: 30,
+        inputMask: true
+      });
+    </script>
+
+<div class="control-group">
+<label class="control-label" for="addressinput">地点</label>
+<div class="controls">
+<input type="text" placeholder="地点" id="addressinput" class="input-xlarge">
+</div>
+</div>
+<div class="control-group" style="text-align:right;">
+<div class="controls">
+<button class="btn" id="finish" type="submit">确定</button>
+</div>
+</div>
+</fieldset>
+</form>
+</div>
+</div>
+</div><!--End of Place Time Block-->
+
+<!--invite volunteer-->
+<div class="modal hide fade" id="invitevol">
+<div class="modal-header">
+<button type="button" class="close" data-dismiss="modal">&times;</button>
+<h3>邀请伙伴</h3></div>
+<div class="modal-body"><p class="desp">邀请志愿者和小伙伴们加入活动~</p>
+<div class="modal-form">
+<form method="post" class="form-horizontal">
+<fieldset>
+<div class="control-group">
+    <label class="control-label" for="facinum">引导员<a href="#" class="modify" target="_new"><i class="icon-question-sign" title="是什么？"></i></a></label>
+    <div class="controls">
+    <input type="number" class="input-mini" id="facinum">
+    </div>
+</div>
+<div class="control-group">
+    <label class="control-label" for="cameranum">摄影师<a href="#" class="modify" target="_new"><i class="icon-question-sign" title="是什么？"></i></a></label>
+    <div class="controls">
+    <input type="number" class="input-mini" id="cameranum">
+    </div>
+</div>
+<div class="control-group">
+    <label class="control-label" for="speachernum">主持人<a href="#" class="modify" target="_new"><i class="icon-question-sign" title="是什么？"></i></a></label>
+    <div class="controls">
+    <input type="number" class="input-mini" id="speachernum">人
+    </div>
+</div>
+
+<div class="control-group">
+    <label class="control-label" for="clipnum">后期处理<a href="#" class="modify" target="_new"><i class="icon-question-sign" title="是什么？"></i></a></label>
+    <div class="controls">
+    <input type="number" class="input-mini" id="clipnum">人
+    </div>
+</div>
+
+<div class="control-group">
+    <div class="controls">
+    <label class="checkbox">
+    <input type="checkbox" id="invitefriend">邀请我的好友参与
+    </label>
+    </div>
+</div>
+
+<div class="control-group" style="text-align:right;">
+<div class="controls">
+<button class="btn" id="finish" type="submit">确定</button>
+</div>
+</div>
+</fieldset>
+</form>
+</div></div>
+</div>
+
+<Manage Members>
+<div class="modal hide fade" id="modal_manage">
+<div class="modal-header">
+<button type="button" class="close" data-dismiss="modal">&times;</button>
+<h3>管理成员</h3></div>
+<div class="modal-body"><p class="desp">管理你们的成员~</p>
+<table width="100%" class="table_member">
+<tr style="font-weight:bold" align="center"><th>姓名</th><th style="width:45px;" colspan="3">操作</th></tr>
+<tr style="font-weight:bold" align="center"><td><a href="profile_show.html" target="_new">张三</a></td><td><a href="#">移除</a></td><td><a href="#">私信</a></td><td><a href="#">禁言</a></td></tr>
+<tr style="font-weight:bold" align="center"><td><a href="profile_show.html" target="_new">李四</a></td><td><a href="#">移除</a></td><td><a href="#">私信</a></td><td><a href="#">禁言</a></td></tr>
+</table>
+</div>
+</div>
+
+<!--Offline Member-->
+<!--添加分工-->
+<div class="modal hide fade" id="modal_offline">
+<div class="modal-header">
+<button type="button" class="close" data-dismiss="modal">&times;</button>
+<h3>添加线下成员</h3></div>
+<div class="modal-body">
+<p class="desp">
+有些成员并没有注册进本站，您可以手动添加他的信息到该次活动中，以便安排和展示活动。
+</p>
+<div class="modal-form">
+<form method="post" class="form-horizontal" style="position:relative; left:-50px;">
+<fieldset>
+<div class="control-group">
+    <label class="control-label" for="name_select">姓名</label>
+    <div class="controls">
+    <input type="text" class="input-xlarge" id="name_select">
+    </div>
+</div>
+
+        <div class="control-group">
+            <label id="contact" class="control-label" for="truename">联系方式</label>
+            <div class="controls">
+            <input type="text" class="input-xlarge" placeholder="手机号码" id="phone" title="手机号码" rel="tooltip">
+            <input type="text" class="input-xlarge" placeholder="QQ" id="qq" title="QQ" rel="tooltip">
+            <input type="text" class="input-xlarge" placeholder="邮箱" id="mail" title="邮箱" rel="tooltip">
+        	</div>
+        </div>
+
+<div class="control-group" style="text-align:right;">
+<div class="controls">
+<button class="btn" id="finish" type="submit">确定</button>
+</div>
+</div>
+</fieldset>
+</form>
+</div></div>
+</div>
+
+<!--Content Modal Block-->
+<div class="modal hide fade" id="modal_contentdes">
+<div class="modal-header">
+<button type="button" class="close" data-dismiss="modal">&times;</button>
+<h3>活动内容</h3></div>
+<div class="modal-body">
+<p class="desp">您可以在下面的输入框中填写好内容概要，让志愿者对内容有个迅速的了解，并用附件上传详细的计划。</p>
+
+<div class="modal-form">
+<form method="post" class="form-horizontal" style="position:relative; left:-50px;">
+<fieldset>
+<div style="width:100%; text-align:center;">
+<textarea placeholder="主要内容描述" style="height:200px;" id="brief" class="input-xlarge"></textarea>
+</div>
+<div class="control-group" style="text-align:right;">
+<div class="controls">
+<button class="btn" id="finish" type="submit">确定</button>
+</div>
+</div>
+</fieldset>
+</form>
+</div></div>
+</div><!--End of Content Block-->
+
+<div class="modal hide fade" id="modal_contentapp">
+<div class="modal-header">
+<button type="button" class="close" data-dismiss="modal">&times;</button>
+<h3>活动内容</h3></div>
+<div class="modal-body">
+<p class="desp">
+文档的具体内容包括活动环节，策划，活动PPT等，这些资料可以让进入活动的志愿者更好的了解到活动，有利于活动的开展。</p>
+<div class="modal-form">
+<form method="post" class="form-horizontal" style="position:relative; left:-50px;">
+<fieldset>
+<div class="control-group">
+    <label class="control-label" for="appendfile">附件</label>
+    <div class="controls">
+    <input type="file" class="input-xlarge" placeholder="选择文件" value="选择文件" id="appendfile">
+    </div>
+    <label class="control-label" for="filedes">附件描述</label>
+    <div class="controls">
+    <div class="input-append">
+    <input type="text" class="input-xlarge" placeholder="添加附件描述" id="filedes">
+    <span class="btn add-on">上传</span>
+    </div>
+    </div>
+</div>
+
+<div class="control-group" style="text-align:right;">
+<div class="controls">
+<button class="btn" id="finish" type="submit">确定</button>
+</div>
+</div>
+</fieldset>
+</form>
+</div></div>
+</div><!--End of Content Block-->
+
+
+<!--添加分工-->
+<div class="modal hide fade" id="modal_addwork">
+<div class="modal-header">
+<button type="button" class="close" data-dismiss="modal">&times;</button>
+<h3>指派任务</h3></div>
+<div class="modal-body">
+<p class="desp">
+文档的具体内容包括活动环节，策划，活动PPT等，这些资料可以让进入活动的志愿者更好的了解到活动，有利于活动的开展。</p>
+<div class="modal-form">
+<form method="post" class="form-horizontal" style="position:relative; left:-50px;">
+<fieldset>
+<div class="control-group">
+    <label class="control-label" for="name_select">姓名</label>
+    <div class="controls">
+    <select id="name_select">
+    <option>王卫</option>
+    <option>谢闯</option>
+    <option>cacate</option>
+    </select>
+    </div>
+</div>
+<div class="control-group">
+    <label class="control-label" for="workdes">任务描述</label>
+    <div class="controls">
+    <div class="input-append">
+    <input type="text" class="input-xlarge" placeholder="时间，地点，做什么，怎么做" id="workdes">
+    <span class="btn add-on">添加</span>
+    </div>
+    </div>
+</div>
+
+<div class="control-group" style="text-align:right;">
+<div class="controls">
+<button class="btn" id="finish" type="submit">确定</button>
+</div>
+</div>
+</fieldset>
+</form>
+</div></div>
+</div>
+
+<!--Feel-->
+<div class="modal hide fade" id="modal_feel">
+<div class="modal-header">
+<button type="button" class="close" data-dismiss="modal">&times;</button>
+<h3>感受环节</h3></div>
+<div class="modal-body">
+<p class="desp">
+感受，全面深入的了解问题。</p>
+<div class="modal-form">
+<form method="post" class="form-horizontal" style="position:relative; left:-50px;">
+<fieldset>
+<div class="control-group">
+    <label class="control-label" for="feel_select">感受方式</label>
+    <div class="controls">
+    <select id="feel_select">
+    <option>实地考察</option>
+    <option>教室授课</option>
+    <option>网络搜索</option>
+    <option>居民采访</option>
+    <option>问卷调查</option>
+    <option>其它</option>
+    </select>
+    </div>
+</div>
+<div class="control-group">
+    <label class="control-label" for="feel_des">结论描述</label>
+    <div class="controls">
+    <textarea type="text" class="input-xlarge" placeholder="问题是真实存在？哪些人被困扰？人们怎么说？搜集到哪些资料？问题发生的根本原因是什么？" id="feel_des" style="height:180px;"></textarea>
+    </div>
+</div>
+
+<div class="control-group" style="text-align:right;">
+<div class="controls">
+<button class="btn" id="feel_finish" type="submit">确定</button>
+</div>
+</div>
+</fieldset>
+</form>
+</div></div>
+</div>
+
+<!--Feel Append-->
+<div class="modal hide fade" id="modal_feelapp">
+<div class="modal-header">
+<button type="button" class="close" data-dismiss="modal">&times;</button>
+<h3>材料上传</h3></div>
+<div class="modal-body">
+<p class="desp">与感受有关的文件上传</p>
+<div class="modal-form">
+<form method="post" class="form-horizontal" style="position:relative; left:-50px;">
+<fieldset>
+
+<div class="control-group">
+    <label class="control-label" for="feelapp_select">材料内容</label>
+    <div class="controls">
+    <select id="feelapp_select">
+    <option>现场照片</option>
+    <option>采访录音</option>
+    <option>搜集的资料</option>
+    <option>文档（采访稿，表单等）</option>
+    <option>其它</option>
+    </select>
+    </div>
+</div>
+
+<div class="control-group">
+    <label class="control-label" for="feelapp_file">附件</label>
+    <div class="controls">
+    <input type="file" class="input-xlarge" placeholder="选择文件" value="选择文件" id="feelapp_file">
+    </div>
+    <label class="control-label" for="feelapp_des">附件描述</label>
+    <div class="controls">
+    <div class="input-append">
+    <input type="text" class="input-xlarge" placeholder="添加附件描述" id="feelapp_des">
+    <span class="btn add-on">上传</span>
+    </div>
+    </div>
+</div>
+
+<div class="control-group" style="text-align:right;">
+    <div class="controls">
+    <button class="btn" id="feelapp_finish" type="submit">确定</button>
+    </div>
+</div>
+</fieldset>
+</form>
+</div></div>
+</div>
+
+<!--Feel-->
+<div class="modal hide fade" id="modal_feel">
+<div class="modal-header">
+<button type="button" class="close" data-dismiss="modal">&times;</button>
+<h3>感受环节</h3></div>
+<div class="modal-body">
+<p class="desp">
+感受，全面深入的了解问题。</p>
+<div class="modal-form">
+<form method="post" class="form-horizontal" style="position:relative; left:-50px;">
+<fieldset>
+<div class="control-group">
+    <label class="control-label" for="feel_select">感受方式</label>
+    <div class="controls">
+    <select id="feel_select">
+    <option>实地考察</option>
+    <option>教室授课</option>
+    <option>网络搜索</option>
+    <option>居民采访</option>
+    <option>问卷调查</option>
+    <option>其它</option>
+    </select>
+    </div>
+</div>
+<div class="control-group">
+    <label class="control-label" for="feel_des">结论描述</label>
+    <div class="controls">
+    <textarea class="input-xlarge" placeholder="问题是真实存在？哪些人被困扰？人们怎么说？搜集到哪些资料？问题发生的根本原因是什么？" id="feel_des" style="height:180px;"></textarea>
+    </div>
+</div>
+
+<div class="control-group" style="text-align:right;">
+<div class="controls">
+<button class="btn" id="feel_finish" type="submit">确定</button>
+</div>
+</div>
+</fieldset>
+</form>
+</div></div>
+</div>
+
+<!--Imagine-->
+<div class="modal hide fade" id="modal_resource">
+<div class="modal-header">
+<button type="button" class="close" data-dismiss="modal">&times;</button>
+<h3>想象环节</h3></div>
+<div class="modal-body">
+<p class="desp">
+想象，想象问题解决的方法，充分利用可用资源。</p>
+<div class="modal-form">
+<form method="post" class="form-horizontal" style="position:relative; left:-50px;">
+<fieldset>
+<div class="control-group">
+    <label class="control-label" for="resource_area">确认可用资源</label>
+    <div class="controls">
+    <textarea class="input-xlarge" placeholder="我们自身有哪些才能？有哪些家长或者老师的职业技能和才能可以帮上忙？有哪些社团和单位可以联系？" id="resource_area" style="height:150px;"></textarea>
+    </div>
+</div>
+
+<div class="control-group" style="text-align:right;">
+    <div class="controls">
+    <button class="btn" id="resource_finish" type="submit">确定</button>
+    </div>
+</div>
+</fieldset>
+</form>
+</div></div>
+</div>
+
+<!--Add Imagine-->
+<div class="modal hide fade" id="modal_imagine">
+<div class="modal-header">
+<button type="button" class="close" data-dismiss="modal">&times;</button>
+<h3>添加想法</h3></div>
+<div class="modal-body">
+<p class="desp">在DFC，任何天马心空的想法都会被尊重~</p>
+<div class="modal-form">
+<form method="post" class="form-horizontal" style="position:relative; left:-50px;">
+<fieldset>
+
+<div class="control-group">
+    <label class="control-label" for="imagine_select">提出者</label>
+    <div class="controls">
+    <select id="imagine_select">
+    <option>cacate</option>
+    <option>王卫</option>
+    <option>谢闯</option>
+    <option>其它</option>
+    </select>
+    </div>
+</div>
+
+<div class="control-group">
+    <label class="control-label" for="imagine_area">方案描述</label>
+    <div class="controls">
+    <textarea class="input-xlarge" placeholder="方案构想，需要的资源，时间，可行性如何。" id="imagine_area" style="height:100px;"></textarea>
+    </div>
+</div>
+
+<div class="control-group">
+    <label class="control-label" for="imagine_vote">获得票数</label>
+    <div class="controls">
+    <input type="number" class="input-mini" id="imagine_vote">
+    </div>
+</div>
+
+<div class="control-group" style="text-align:right;">
+    <div class="controls">
+    <button class="btn" id="imagine_finish" type="submit">确定</button>
+    </div>
+</div>
+</fieldset>
+</form>
+</div></div>
+</div>
+
+
+<!--孩童分工-->
+<div class="modal hide fade" id="modal_dowork">
+<div class="modal-header">
+<button type="button" class="close" data-dismiss="modal">&times;</button>
+<h3>指派任务</h3></div>
+<div class="modal-body">
+<p class="desp">
+文档的具体内容包括活动环节，策划，活动PPT等，这些资料可以让进入活动的志愿者更好的了解到活动，有利于活动的开展。</p>
+<div class="modal-form">
+<form method="post" class="form-horizontal" style="position:relative; left:-50px;">
+<fieldset>
+<div class="control-group">
+    <label class="control-label" for="doname_select">姓名</label>
+    <div class="controls">
+    <select id="doname_select">
+    <option>王卫</option>
+    <option>谢闯</option>
+    <option>cacate</option>
+    </select>
+    </div>
+</div>
+<div class="control-group">
+    <label class="control-label" for="do_des">任务描述</label>
+    <div class="controls">
+    <div class="input-append">
+    <input type="text" class="input-xlarge" placeholder="时间，地点，做什么，怎么做" id="do_des">
+    <span class="btn add-on">添加</span>
+    </div>
+    </div>
+</div>
+
+<div class="control-group" style="text-align:right;">
+<div class="controls">
+<button class="btn" id="dowork_finish" type="submit">确定</button>
+</div>
+</div>
+</fieldset>
+</form>
+</div></div>
+</div>
+
+
+<!--Do Append-->
+<div class="modal hide fade" id="modal_doapp">
+<div class="modal-header">
+<button type="button" class="close" data-dismiss="modal">&times;</button>
+<h3>材料上传</h3></div>
+<div class="modal-body">
+<p class="desp">与行动有关的文件上传</p>
+<div class="modal-form">
+<form method="post" class="form-horizontal" style="position:relative; left:-50px;">
+<fieldset>
+
+<div class="control-group">
+    <label class="control-label" for="doapp_select">资料内容</label>
+    <div class="controls">
+    <select id="doapp_select">
+    <option>现场照片</option>
+    <option>音频资料</option>
+    <option>文档记录</option>
+    <option>其它</option>
+    </select>
+    </div>
+</div>
+
+<div class="control-group">
+    <label class="control-label" for="doapp_file">附件</label>
+    <div class="controls">
+    <input type="file" class="input-xlarge" placeholder="选择文件" value="选择文件" id="doapp_file">
+    </div>
+    <label class="control-label" for="doapp_des">附件描述</label>
+    <div class="controls">
+    <div class="input-append">
+    <input type="text" class="input-xlarge" placeholder="添加附件描述" id="doapp_des">
+    <span class="btn add-on">上传</span>
+    </div>
+    </div>
+</div>
+
+
+<div class="control-group" style="text-align:right;">
+    <div class="controls">
+    <button class="btn" id="doapp_finish" type="submit">确定</button>
+    </div>
+</div>
+</fieldset>
+</form>
+</div></div>
+</div>
+
+
+<!--Do Des-->
+<div class="modal hide fade" id="modal_do">
+<div class="modal-header">
+<button type="button" class="close" data-dismiss="modal">&times;</button>
+<h3>行动环节描述</h3></div>
+<div class="modal-body">
+<p class="desp">
+行动过程的记录与描述。</p>
+<div class="modal-form">
+<form method="post" class="form-horizontal" style="position:relative; left:-50px;">
+<fieldset>
+
+<div class="control-group">
+    <label class="control-label" for="do_des">过程描述</label>
+    <div class="controls">
+    <textarea type="text" class="input-xlarge" placeholder="活动现场描述，秩序如何？孩子们怎么做的？" id="do_des" style="height:180px;"></textarea>
+    </div>
+</div>
+
+<div class="control-group" style="text-align:right;">
+<div class="controls">
+<button class="btn" id="feel_finish" type="do_submit">确定</button>
+</div>
+</div>
+</fieldset>
+</form>
+</div></div>
+</div>
+
+
+<!--Share-->
+<div class="modal hide fade" id="modal_clip">
+<div class="modal-header">
+<button type="button" class="close" data-dismiss="modal">&times;</button>
+<h3>视频分享链接</h3></div>
+<div class="modal-body">
+<p class="desp">把视频传到优酷等视频网站，在此贴上分享链接的地址。这个视频可以是让后期处理过的，也可以保持原本的面貌。</p>
+<div class="modal-form">
+<form method="post" class="form-horizontal" style="position:relative; left:-50px;">
+<fieldset>
+<div class="control-group">
+    <label class="control-label" for="clip_share">视频链接</label>
+    <div class="controls">
+    <input id="clip_share" type="text" class="input-xlarge" placeholder="">
+    </div>
+</div>
+
+<div class="control-group">
+    <label class="control-label" for="clip_des">视频描述</label>
+    <div class="controls">
+    <textarea id="clip_des" style="height:100px;" class="input-xlarge" placeholder="视频的描述"></textarea>
+    </div>
+</div>
+
+<div class="control-group" style="text-align:right;">
+    <div class="controls">
+    <button class="btn" id="clip_finish" type="submit">确定</button>
+    </div>
+</div>
+</fieldset>
+</form>
+</div></div>
+</div>
+
+
+<!--提交活动-->
+<div class="modal hide fade" id="modal_submit">
+<div class="modal-header">
+<button type="button" class="close" data-dismiss="modal">&times;</button>
+<h3>提交活动</h3></div>
+<div class="modal-body">
+<p class="desp">提交后，活动将会被提交到故事界面，同时不再出现在你的活动面板，但您仍然可以从你的个人面板的活动记录中找到这个活动。</p>
+<div class="modal-form">
+<form class="form-horizontal" method="post">
+<!--上传故事封面-->
+<div class="control-group">
+    <label class="control-label" for="submit_file">上传故事封面</label>
+    <div class="controls">
+    <div class="input-append">
+    <input type="file" class="input-xlarge" placeholder="选择文件" value="选择文件" id="submit_file">
+    <span class="btn add-on">上传</span>
+    </div>
+    </div>
+</div>
+
+<div class="control-group">
+    <label class="control-label" for="submit_des">问题解决成果</label>
+    <div class="controls">
+    <textarea type="text" class="input-xlarge" placeholder="问题解决了吗？达到你们的预期了吗？有什么经验和教训呢？" id="submit_des" style="height:150px;"></textarea>
+    </div>
+</div>
+
+<div class="control-group">
+    <div class="controls">
+    <label class="checkbox">
+    <input type="checkbox" checked>用真实姓名代替ID</label>
+    </div>
+</div>
+
+<div class="control-group">
+    <label class="control-label" for="genstory">生成故事的方式</label>
+    <div class="controls">
+    <select id="genstory">
+    <option>自动生成</option>
+    <option>手动编辑</option>
+    </select>
+    
+    <a href="activity_show.html" target="_new" class="modify">预览自动生成效果</a>
+    </div>
+</div>
+
+<div class="control-group" style="text-align:right;">
+    <div class="controls">
+    <button class="btn" id="submit_finish" type="submit">确认提交</button>
+    </div>
+</div>
+</form>
+</div>
+</div></div>
+
+
+<!--提交活动-->
+<div class="modal hide fade" id="modal_giveup">
+<div class="modal-header">
+<button type="button" class="close" data-dismiss="modal">&times;</button>
+<h3>放弃活动</h3></div>
+<div class="modal-body">
+<p class="desp">确认要放弃吗？放弃后，活动将会被系统删除掉哦。</p>
+<div class="modal-form">
+<form class="form-horizontal" method="post">
+
+<div class="control-group" style="text-align:right;">
+    <div class="controls">
+    <button class="btn" id="giveup_finish" type="submit">确认放弃</button>
+    </div>
+</div>
+</form>
+</div>
+</div></div>
+
+<!--Begin of Reply Attach Block-->
+<div class="modal hide fade" id="modal_repapp">
+<div class="modal-header">
+<button type="button" class="close" data-dismiss="modal">&times;</button>
+<h3>添加附件</h3></div>
+<div class="modal-body">
+<div class="modal-form">
+<form method="post" class="form-horizontal" style="position:relative; left:-50px;">
+<fieldset>
+<div class="control-group">
+    <label class="control-label" for="repapp_file">附件</label>
+    <div class="controls">
+    <input type="file" class="input-xlarge" placeholder="选择文件" value="选择文件" id="repapp_file">
+    </div>
+    <label class="control-label" for="repapp_des">附件描述</label>
+    <div class="controls">
+    <div class="input-append">
+    <input type="text" class="input-xlarge" placeholder="添加附件描述" id="repapp_des">
+    <span class="btn add-on">上传</span>
+    </div>
+    </div>
+</div>
+
+<div class="control-group" style="text-align:right;">
+<div class="controls">
+<button class="btn" id="repapp_finish" type="submit">确定</button>
+</div>
+</div>
+</fieldset>
+</form>
+</div></div>
+</div><!--End of Reply Attach Block-->
+</body>
+</html>

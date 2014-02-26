@@ -1,0 +1,428 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>我的团队</title>
+<link href="css/mycss.css" rel="stylesheet"></link>
+<link href="css/bootstrap-combined.min.css" rel="stylesheet">
+<link href="css/bootstrap.min.css" rel="stylesheet">
+<script src="js/jquery.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/setmyteam.js"></script>
+<script src="js/seteditor.js"></script>
+<style type="text/css">
+
+.team_block{
+	display:none;
+}
+.team_member{
+	width:80%;
+	border-collapse:collapse;
+	margin:0 auto;
+}
+.team_member caption{
+	padding:15px;
+	font-size:1.2em;
+	font-weight:bold;
+}
+.team_member td{
+	border:solid 1px silver;
+	padding:5px;
+	text-align:center;
+}
+.team_member th{
+	border:solid 1px silver;
+	padding:5px;
+	text-align:center;
+}
+</style>
+<body>
+<div class="container">
+<div class="row">
+<div class="span2">
+<ul class="nav nav-pills nav-stacked" id="team_ul">
+<li class="nav-header">
+我的团队
+</li>
+<li id="chat_link" class="active"><a href="#">团队交流平台</a></li>
+<li id="info_link"><a href="#">近况和基本信息</a></li>
+<li class="nav-header">人员管理</li>
+<li id="vol_link"><a href="#">团队志愿者管理</a></li>
+<li id="member_link"><a href="#">团队成员管理</a></li>
+<li id="request_link"><a href="#">团队加入申请</a></li>
+<li class="nav-header">链接</li>
+<li id="mainpage_link"><a href="intro_dfc.html" target="_new">团队主页</a></li>
+<li><a href="message.html" target="_new">打开团队信箱</a></li>
+</ul>
+</div>
+<div class="span10">
+
+<div class="team_block" id="request_block">
+<h3>加入团队申请</h3>
+<hr>
+<div>
+<span class="label"><a href="profile_show.html" target="_new">徐沐阳</a></span>
+<h5>特长</h5>
+<p>跳绳，踢毽子。</p>
+<h5>自我介绍</h5>
+<p class="desp">我是徐沐阳，热爱大自然。我是徐沐阳，热爱大自然。我是徐沐阳，热爱大自然。我是徐沐阳，热爱大自然。我是徐沐阳，热爱大自然。我是徐沐阳，热爱大自然。我是徐沐阳，热爱大自然。我是徐沐阳，热爱大自然。我是徐沐阳，热爱大自然。我是徐沐阳，热爱大自然。我是徐沐阳，热爱大自然。</p>
+<div style="text-align:right">
+<button class="btn btn-primary">通过</button>
+</div>
+</div>
+<div>
+<hr>
+<span class="label"><a href="profile_show.html" target="_new">徐沐阳</a></span>
+<h5>特长</h5>
+<p>跳绳，踢毽子。</p>
+<h5>自我介绍</h5>
+<p class="desp">我是徐沐阳，热爱大自然。我是徐沐阳，热爱大自然。我是徐沐阳，热爱大自然。我是徐沐阳，热爱大自然。我是徐沐阳，热爱大自然。我是徐沐阳，热爱大自然。我是徐沐阳，热爱大自然。我是徐沐阳，热爱大自然。我是徐沐阳，热爱大自然。我是徐沐阳，热爱大自然。我是徐沐阳，热爱大自然。</p>
+<div style="text-align:right">
+<button class="btn btn-primary">通过</button>
+</div>
+</div>
+</div>
+
+<!--Mail Block-->
+<div class="span10 team_block" id="mail_block">
+<iframe class="span10" src="mail.html" style="height:700px; border:0"></iframe>
+</div>
+
+<!--Basic Info Block-->
+<div class="team_block" id="info_block">
+<h3>团队基本信息与近况</h3>
+<hr>
+	<div class="span2">
+      <div  style="font-size:0.7em;">
+      <label class="added_label">操作</label>
+      <ul>
+      <li><a href="#" class="namelink">修改资料</a></li>
+      </ul>
+      
+      <label class="added_label">团队活动记录</label>
+      <ul>
+      <li><a href="#" class="namelink">2013年12月31日：嘤鸣读书会--隐缠序</a></li>
+      <li><a href="#" class="namelink">2013年5月12日：谢闯加入</a></li>
+      <li><a href="#" class="namelink">2013年5月6日：翠竹园明智书屋建</a></li>
+      <li><a href="#" class="namelink">2013年5月3日：cacate加入</a></li>
+      <li><a href="#" class="namelink">2013年3月2日：团队建立</a></li>
+      </ul>
+      </div>
+    </div>
+  <div class="span7">
+    <form class="form-horizontal">
+    <fieldset>
+
+
+<div class="control-group">
+    <label class="control-label" for="uname">团队名</label>
+    <div class="controls">
+    <label class="control-label" style="text-align:left; width:300px;">DFC南京</label>
+    </div>
+</div>
+
+
+<div class="control-group">
+    <label class="control-label" for="truename">团队管理员</label>
+    <div class="controls">
+    <label class="control-label" style="text-align:left; width:300px;">cacate</label>
+    </div>
+</div>
+
+        <div class="control-group">
+            <label id="contact" class="control-label" for="truename" title="必须至少要留一个有效的联系方式以便活动组织方联系。" rel="tooltip">联系方式</label>
+        <div class="controls">
+            <label class="control-label" style="text-align:left; width:300px;">微博：<a href="微博链接" target="_new">@DFC南京</a><br>志愿者QQ群：312684<br>团队邮箱：dfcnanjing@163.com</label>
+        </div>
+        </div>
+
+                  <!-- Text input-->
+          <div class="control-group">
+              <label class="control-label" for="signature">主要业务</label>
+              <div class="controls">
+    			<label class="control-label" style="text-align:left; width:300px;">1. DFC工作坊<br>2. DFC少年行动<br>3. 青年工作坊</label>
+              </div>
+         </div>
+</fieldset></form></div></div>
+
+<!--团队成员管理-->
+<div class="team_block" id="member_block">
+<h3>团队成员管理</h3>
+<hr>
+<table cellpadding="0" cellspacing="0" class="team_member">
+<tr><th>姓名</th><th colspan="3">操作</th></tr>
+<tr><td><a id="liujinguo" target="_new" href="profile_show.html" title="活动记录" data-content="2013年2月3日：加入团队<br>2013年4月1日：给翠竹园小区流浪猫找个家<br>2013年9月12日：明志书屋建设<br>2013年12月7日：最近一次登录本站">刘金国</a></td>
+<td><a href="#">站内信</a></td>
+<td><a href="#">从团队移除</a></td>
+<td><a href="#">冻结该成员</a></td></tr>
+<tr><td><a id="liujinguo" target="_new" href="profile_show.html" title="活动记录" data-content="2013年2月3日：加入团队<br>2013年4月1日：给翠竹园小区流浪猫找个家<br>2013年9月12日：明志书屋建设<br>2013年12月7日：最近一次登录本站">谢闯</a></td>
+<td><a href="#">站内信</a></td>
+<td><a href="#">从团队移除</a></td>
+<td><a href="#">冻结该成员</a></td></tr>
+</table>
+</div><!--End of member management-->
+
+<!--志愿者管理-->
+<div class="team_block" id="vol_block">
+<h3>志愿者管理</h3>
+<hr>
+<table cellpadding="0" cellspacing="0" class="team_member">
+<tr><th>姓名</th><th colspan="3">操作</th></tr>
+<tr><td><a id="liujinguo" target="_new" href="profile_show.html" title="活动记录" data-content="2013年2月3日：加入团队<br>2013年4月1日：给翠竹园小区流浪猫找个家<br>2013年9月12日：明志书屋建设<br>2013年12月7日：最近一次登录本站">刘金国</a></td>
+<td><a href="#">站内信</a></td>
+<td><a href="#">邀请加入团队</a></td>
+<td><a href="#">冻结该成员</a></td></tr>
+<tr><td><a id="liujinguo" target="_new" href="profile_show.html" title="活动记录" data-content="2013年2月3日：加入团队<br>2013年4月1日：给翠竹园小区流浪猫找个家<br>2013年9月12日：明志书屋建设<br>2013年12月7日：最近一次登录本站">谢闯</a></td>
+<td><a href="#">站内信</a></td>
+<td><a href="#">邀请加入团队</a></td>
+<td><a href="#">冻结该成员</a></td></tr>
+</table>
+</div><!--End of volunteer management-->
+
+<div class="span8 team_block" id="chat_block" style="display:block;">
+<!--Begin of Editor Block-->
+<!--Simplified Editor-->
+
+<h3>团队交流平台</h3>
+<hr>
+
+<div class="editor_simp" id="editor_simp">
+<div class="input-append">
+<input type="text" class="input-xlarge" style="height:18px; width:428px;" id="simp_input" placeholder="回车发送">
+<span class="btn add-on" id="expand_editor"><i class="icon-resize-vertical"></i></span>
+</div>
+</div>
+
+
+
+<!--Full Sized Editor-->
+<div class="editor_full" id="editor_full">
+
+<!--text Layer-->
+<div class="input-append" style="margin-bottom:0px;">
+    <textarea class="input-xlarge" id="full_area" style="width:432px; height:150px;margin-bottom:0px; resize:none;">
+    </textarea>
+    <span class="btn add-on" style="height:150px;" id="editor_minimize">
+    <i class="icon-resize-vertical"></i>
+    </span>
+</div>
+
+<!--Bottom Bar Layer-->
+<div id="full_bottom" class="full_bottom">
+<div class="navbar" style="margin:0">
+<ul class="nav">
+<li><a id="color1" href="#" style="background-color:black; padding:0;" class="navcell_color"></a></li>
+<li><a id="color2" href="#" style="background-color:#090; padding:0;" class="navcell_color"></a></li>
+<li><a id="color3" href="#" style="background-color:#09F; padding:0;" class="navcell_color"></a></li>
+<li><a id="color4" href="#" style="background-color:#63C; padding:0;" class="navcell_color"></a></li>
+<li><a id="color5" href="#" style="background-color:#999; padding:0;" class="navcell_color"></a></li>
+</ul>
+<ul class="nav pull-right">
+<li class="dropdown">
+<a href="#" class="navcell" data-toggle="dropdown" style="padding:0;"><img class="full_icon" src="image/icon/expression.png" title="添加表情" alt="添加表情"></a>
+    <ul class="dropdown-menu">
+    <li><span class="label emo">灰常开心</span><span class="label emo">弱弱地说</span></li>
+    <li><span class="label emo">当时就怒了</span><span class="label emo">表示有压力</span></li>
+    <li><span class="label emo">当时就不高兴了</span><span class="label emo">碎碎念</span></li>
+    <li><span class="label emo">作机器人状</span><span class="label emo">用营业员式的表情说</span></li>
+    </ul>
+</li>
+
+<li><a href="#" style="padding:0;" class="navcell" id="full_append">
+<img src="image/icon/attach.png" alt="添加附件" title="添加附件" class="full_icon" ></a></li>
+
+
+<li class="dropdown">
+<a href="#" class="navcell" data-toggle="dropdown" style="padding:0;">
+<img src="image/icon/important.png" title="添加标记" alt="添加标记" class="full_icon"></a>
+    <ul class="dropdown-menu">
+    <li><a href="#">重要信息</a></li>
+    <li><a href="#">通知</a></li>
+    <li><a href="intro_website.html" target="_new">标记有什么用？</a></li>
+    </ul>
+</li>
+<li><a href="#" class="navcell" style="padding:0;"><span class="btn" style=" margin:0; padding:0px; padding-left:7px; padding-right:7px; margin-left:20px;" id="full_submit">发送</span></a></li>
+</ul>
+</div>
+</div>
+
+<div class="file_block" align="left" style="padding-top:10px; vertical-align:top;">
+    <div class="figure_div" id="file_model_1">
+    <a href="activity/a0000001/file/活动策划.pdf" target="_new"><span class="label label-important" title="这是文档，这是文件的一段说明。">活动策划.pdf</span></a>
+    <a href="activity/a0000001/file/活动策划.pdf" target="_new"><span class="label label-important" title="这是文档，这是文件的一段说明。">活动演示稿.ppt</span></a>
+    </div>
+
+    </div>
+    <!--Begin of Reply Attach Block-->
+<div class="modal hide fade" id="modal_repapp">
+<div class="modal-header">
+<button type="button" class="close" data-dismiss="modal">&times;</button>
+<h3>添加附件</h3></div>
+<div class="modal-body">
+<div class="modal-form">
+<form method="post" class="form-horizontal" style="position:relative; left:-50px;">
+<fieldset>
+<div class="control-group">
+    <label class="control-label" for="repapp_file">附件</label>
+    <div class="controls">
+    <input type="file" class="input-xlarge" placeholder="选择文件" value="选择文件" id="repapp_file">
+    </div>
+    <label class="control-label" for="repapp_des">附件描述</label>
+    <div class="controls">
+    <div class="input-append">
+    <input type="text" class="input-xlarge" placeholder="添加附件描述" id="repapp_des">
+    <span class="btn add-on">上传</span>
+    </div>
+    </div>
+</div>
+
+<div class="control-group" style="text-align:right;">
+<div class="controls">
+<button class="btn" id="repapp_finish" type="submit">确定</button>
+</div>
+</div>
+</fieldset>
+</form>
+</div></div>
+</div><!--End of Reply Attach Block-->
+    
+</div><!--End of Editor-->
+
+
+<!--Response div-->
+<div style="text-align:left; padding-right:33px; padding-left:120px; margin-top:20px;">
+<div class="input-append" style="display:inline-block; padding-right:10px;">
+<input type="text" class="input-small" style="height:18px;" title="发帖人，内容或者时间"><span class="btn add-on"><i class="icon-search"></i>
+</span>
+</div>
+
+<a href="#" style="font-size:0.8em" class="pull-right">仅查看重要信息(8)</a>
+</div>
+
+
+
+
+<!--Begin Of Response Div-->
+<div id="model" class="response_main">
+<table class="restable">
+<tr>
+<td width="120px" align="right" valign="top" class="avatar_block">
+<div class="left_row">
+<a href="profile_show.html" target="_new"><img src="user/cacate/avatar.jpg" class="avatar" title="cacate" alt="cacate"></a>
+</div>
+</td>
+<td class="op_block" id="show_op" style="border-bottom:silver 1px solid;text-align:left; width:180px; vertical-align:bottom;">
+    <div style="text-align:left;">
+    <i class="icon-bookmark" title="重要信息"></i>
+    <i class="icon-comment" title="活动感受"></i>
+    </div>
+</td>
+<td style="text-align:right;vertical-align:bottom;">
+ <div class="btn-toolbar" style="margin:0;">
+        <div class="btn-group">
+            <button href="#" class="btn opbtn" style="padding-top:0; margin:0; color:grey;">回复</button>
+            <button href="#" class="btn opbtn" style="padding-top:0; margin:0; color:grey;">删除</button>
+          <button class="btn dropdown-toggle opbtn" data-toggle="dropdown" id="mark" title="为帖子添加标记，这些标记将会帮助你和活动的成员整理重要信息。" rel="tooltip" style="padding-top:0; margin:0; color:grey;">标记</button>
+          <ul class="dropdown-menu">
+            <li><i class="icon-ok" style="display:inline-block;"></i><a href="#" style="display:inline-block;">重要信息</a></li>
+            <li><a href="#">活动记录</a></li>
+            <li><a href="#">活动感受</a></li>
+          </ul>
+        </div><!-- /btn-group-->
+</div>
+</td>
+</tr>
+<tr>
+<td align="right" valign="top">
+    <div class="silver" style="vertical-align:top;line-height:1.8em;">5月12日 12:23:12</div>
+</td>
+<td rowspan="2" class="righttd" colspan="2">
+    <div>
+    <div class="text_block">
+    <p style="margin-left:0px; margin-right:30px;">我们是奥特曼，拯救地球来啦！我们是奥特曼，拯救地球来啦！我们是奥特曼，拯救地球来啦！我们是奥特曼，拯救地球来啦！我们是奥特曼，拯救地球来啦！<span class="label">cacate&nbsp;用营业员式的表情说</span></p>
+    </div>
+    </div>
+    
+    <div class="file_block" align="left">
+    <div class="figure_div" id="file_model_1">
+    <a href="activity/a0000001/file/活动策划.pdf" target="_new"><span class="label label-important" title="这是文档，这是文件的一段说明。">活动策划.pdf</span></a>
+    <a href="activity/a0000001/file/活动策划.pdf" target="_new"><span class="label label-important" title="这是文档，这是文件的一段说明。">活动演示稿.ppt</span></a>
+    </div>
+    </div>
+</td>
+</tr>
+<tr>
+<td style="text-align:right;vertical-align:top;">
+</td>
+</tr>
+</table>
+</div>
+<!--End of Response Div-->
+<!--Begin Of Response Div-->
+<div id="model" class="response_main">
+<table class="restable">
+<tr>
+<td width="120px" align="right" valign="top" class="avatar_block">
+<div class="left_row">
+<a href="profile_show.html" target="_new"><img src="user/cacate/avatar.jpg" class="avatar" title="cacate" alt="cacate"></a>
+</div>
+</td>
+<td class="op_block" id="show_op" style="border-bottom:silver 1px solid;text-align:left; width:180px; vertical-align:bottom;">
+    <div style="text-align:left;">
+    <i class="icon-camera" title="活动记录"></i>
+    </div>
+</td>
+<td style="text-align:right;vertical-align:bottom;">
+ <div class="btn-toolbar" style="margin:0;">
+        <div class="btn-group">
+            <button href="#" class="btn opbtn" style="padding-top:0; margin:0; color:grey;">回复</button>
+            <button href="#" class="btn opbtn" style="padding-top:0; margin:0; color:grey;">删除</button>
+          <button class="btn dropdown-toggle opbtn" data-toggle="dropdown" id="mark" title="为帖子添加标记，这些标记将会帮助你和活动的成员整理重要信息。" rel="tooltip" style="padding-top:0; margin:0; color:grey;">标记</button>
+          <ul class="dropdown-menu">
+            <li><i class="icon-ok" style="display:inline-block;"></i><a href="#" style="display:inline-block;">重要信息</a></li>
+            <li><a href="#">活动记录</a></li>
+            <li><a href="#">活动感受</a></li>
+          </ul>
+        </div><!-- /btn-group-->
+</div>
+</td>
+</tr>
+<tr>
+<td align="right" valign="top">
+    <div class="silver" style="vertical-align:top;line-height:1.8em;">5月12日 12:23:12</div>
+</td>
+<td rowspan="2" class="righttd" colspan="2">
+    <div>
+    <div class="text_block">
+    <p style="margin-left:0px; margin-right:30px;">我们是奥特曼，拯救地球来啦！<span class="label">cacate&nbsp;用营业员式的表情说</span></p>
+    </div>
+    </div>
+    
+    <div class="file_block" align="left">
+    <div class="figure_div" id="file_model_1">
+    <a href="#"><img src="activity/a0000001/image/1.JPG" class="default_img" title="这是活动的照片，这是图片的一段说明。" ></a>
+    </div>
+    <div class="figure_div">
+    <a href="#"><img src="activity/a0000001/image/1.JPG" class="default_img" ></a>
+    </div>
+    <div class="figure_div">
+    <a href="#"><img src="activity/a0000001/image/1.JPG" class="default_img" ></a>
+    </div>
+    </div>
+</td>
+</tr>
+<tr>
+<td style="text-align:right;vertical-align:top;">
+</td>
+</tr>
+</table>
+</div>
+<!--End of Response Div-->
+</div>
+
+</div>
+</div>
+</div>
+
+</body>
+</html>
