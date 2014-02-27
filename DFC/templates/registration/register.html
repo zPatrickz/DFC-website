@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block title %}注册{% endblock %}
+
+{% block content %}
+  <h1>Create an account</h1>
+  {% if errors %}
+      {% for error in errors %}
+          <li>{{ error }}</li>
+      {% endfor %}
+  {% endif %}
+  <form action="" method="post">
+  {% csrf_token %}
+      {{ form.as_p }}
+      <input type="submit" value="Create the account">
+  </form>
+{% endblock %}
