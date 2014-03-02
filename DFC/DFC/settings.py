@@ -1,4 +1,4 @@
-# Django settings for DFC project.
+# Django settings for dfc project.
 import os
 
 DEBUG = True
@@ -13,23 +13,16 @@ ADMINS = (
 MANAGERS = ADMINS
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    }
+   'default': {
+       'ENGINE': 'django.db.backends.mysql', # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
+       'NAME': 'DFC',                      # Or path to database file if using sqlite3.
+       # The following settings are not used with sqlite3:
+       'USER': 'root',
+       'PASSWORD': '1234',
+       'HOST': 'dfc.org',                      # Empty for localhost through domain sockets or '127.0.0.1' for localhost through TCP.
+       'PORT': '',                      # Set to empty string for default.
+   }
 }
-
-#DATABASES = {
-#    'default': {
-#        'ENGINE': 'django.db.backends.mysql', # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
-#        'NAME': 'DFC',                      # Or path to database file if using sqlite3.
-#        # The following settings are not used with sqlite3:
-#        'USER': 'root',
-#        'PASSWORD': '1234',
-#        'HOST': 'dfc.org',                      # Empty for localhost through domain sockets or '127.0.0.1' for localhost through TCP.
-#        'PORT': '',                      # Set to empty string for default.
-#    }
-#}
 
 # Hosts/domain names that are valid for this site; required if DEBUG is False
 # See https://docs.djangoproject.com/en/1.5/ref/settings/#allowed-hosts
@@ -106,10 +99,10 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.messages.middleware.MessageMiddleware',
 )
 
-ROOT_URLCONF = 'DFC.urls'
+ROOT_URLCONF = 'dfc.urls'
 
 # Python dotted path to the WSGI application used by Django's runserver.
-WSGI_APPLICATION = 'DFC.wsgi.application'
+WSGI_APPLICATION = 'dfc.wsgi.application'
 
 TEMPLATE_DIRS = (
     os.path.join(BASE_DIR, 'templates'),

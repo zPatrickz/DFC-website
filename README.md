@@ -1,7 +1,5 @@
-Design For Change
+Volunteer2Here
 ===========
-
-Website for DFC (Design For Change) in Nanjing.
 
 ###Development Environment
 
@@ -9,24 +7,12 @@ Website for DFC (Design For Change) in Nanjing.
 
 Refer to `Setting.py` to checkout the settings used in project to access `MySQL`.
 
-For convenience, it is recommended that you use `dfc.org` as your host name.
+It is highly recommended to use **virtualenv**.
 
 ### Configure
 
 static files are collected in directory `ProjectRoot/static`, so add an alias in your VirtualHost:
 
 	Alias /static/ /path/to/project/static/
-
-###Naming Conventions
-
-	table prefix: 'dfc'
-
-	field prefix: 'your_table_name'
-
-	joint character: '_'
-
-
-
-
 
 

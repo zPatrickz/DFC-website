@@ -1,4 +1,4 @@
-# Django settings for DFC project.
+# Django settings for dfc project.
 import os
 
 DEBUG = True
@@ -91,10 +91,10 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.messages.middleware.MessageMiddleware',
 )
 
-ROOT_URLCONF = 'DFC.urls'
+ROOT_URLCONF = 'dfc.urls'
 
 # Python dotted path to the WSGI application used by Django's runserver.
-WSGI_APPLICATION = 'DFC.wsgi.application'
+WSGI_APPLICATION = 'dfc.wsgi.application'
 
 TEMPLATE_DIRS = (
     os.path.join(BASE_DIR, 'templates'),
