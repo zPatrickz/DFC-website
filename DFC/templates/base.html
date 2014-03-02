@@ -1,15 +1,35 @@
+{% load i18n static %}
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN">
 <html lang="en">
-<head>
-    <title>{% block title %}{% endblock %}</title>
-</head>
-<body>
-    <h1>Design For Change!</h1>
-    <p>
-        <a href="/accounts/register">注册新用户</a>
-        <a href="/accounts/login">登录</a>
-        <a href="/accounts/logout">注销</a>
-    </p>
-    {% block content %}{% endblock %}
-</body>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	    <title>{% block title %} Volunteer2Here {% endblock %}</title>
+	    {% block meta %}{% endblock %}
+	</head>
+	<body id="{% block body_id %}{% endblock %}" class="{% block body_class %}{% endblock %}">
+	    <div id="container">
+	    	<div id="header">
+	    		<h1><a href="{% url 'home' %}">Volunteer2Here</a></h1>
+			    {% block navigation %}
+			    <li><a href="{% url 'home' %}"><span>{% trans 'Home' %}</span></a></li>
+			    {% if user.is_authenticated %}
+			    <li><a href="{% url 'profile' %}"><span>{% trans 'Profile' %}</span></a></li>
+			    <li><a href="{% url 'logout' %}"><span>{% trans 'Signout' %}</span></span></a></li>
+			    {% else %}
+			    <li><a href="{% url 'login' %}"><span>{% trans 'Signin' %}</span></span></a></li>
+			    <li><a href="{% url 'register' %}"><span>{% trans 'Signup' %}</span></span></a></li>
+			    {% endif %}
+			    {% endblock %}
+		    </div>
+		    <div id="content-container">
+			    {% block content %}
+			    {% endblock %}
+		    </div>
+		    <div id="footer">
+			    {% block footer %}
+			    <p>&copy;Volunteer2Here</p>
+			    {% endblock %}
+		    </div>
+	    </div>
+	</body>
 </html>
