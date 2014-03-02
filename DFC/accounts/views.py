@@ -29,7 +29,7 @@ def register(request):
             return HttpResponseRedirect('/accounts/login')
 
     form = UserCreationForm()
-    return render_to_response("registration/register.html", {
+    return render_to_response("accounts/register.html", {
         'form': form,
     }, context_instance=RequestContext(request))
 
@@ -43,7 +43,7 @@ def user_profile(request):
             return HttpResponseRedirect('accounts/profile.html')
     else:
         form = UserProfileForm(instance=request.user.profile)
-    return render_to_response('profile.html', {
+    return render_to_response('accounts/profile.html', {
         'form': form,
         'user': request.user,
         }, context_instance=RequestContext(request))
