@@ -1,6 +1,8 @@
 # -*- coding: utf-8 -*-
 from django import forms
 from models import UserProfile
+from core.models import Organization
+from crispy_forms.helper import FormHelper
 from django.forms.extras.widgets import SelectDateWidget
 
 
@@ -25,3 +27,22 @@ class UserProfileForm(forms.ModelForm):
     class Meta:
         model = UserProfile
         exclude = ['user',]
+
+class OrganizationForm(forms.ModelForm):
+
+    name = forms.CharField(max_length = 256)
+    # members = models.ModelMultipleChoiceField()
+    official_link = forms.CharField(max_length = 1024)
+
+    helper = FormHelper()
+    helper.form_class = 'form_horizatal'
+    helper.form_id = 'id_organization_form'
+    helper.form_method = 'post'
+    helper.form_action = 'submit_organization_form'
+    # helper.add_input(Submit('submit', 'Submit'))
+
+    class Meta:
+        model = Organization
+        exclude = ('memebers', )
+
+        
