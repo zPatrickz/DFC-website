@@ -2,7 +2,7 @@ from django.contrib import auth
 from django.contrib.auth.forms import UserCreationForm
 from django.http import HttpResponseRedirect
 from django.shortcuts import render_to_response, RequestContext
-from forms import UserProfileForm
+from forms import UserProfileForm, OrganizationForm
 from models import UserProfile
 from django.contrib.auth.decorators import login_required
 
@@ -32,6 +32,13 @@ def register(request):
     return render_to_response("accounts/register.html", {
         'form': form,
     }, context_instance=RequestContext(request))
+
+
+def signup_organization(request):
+    singup_form = OrganizationForm()
+    return render_to_response('accounts/organization_signup.html', {
+        'form': singup_form,
+    })
 
 
 @login_required

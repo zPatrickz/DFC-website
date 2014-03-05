@@ -1,4 +1,7 @@
 {% extends "base.html" %}
+{% load i18n %}
+
+{% block title %}{% trans "Profile" %}{% endblock %}
 
 {% block content %}
 <h1>{{ user }}</h1>

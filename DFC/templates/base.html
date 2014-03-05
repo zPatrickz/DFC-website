@@ -1,35 +1,51 @@
 {% load i18n static %}
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN">
+<!DOCTYPE html>
 <html lang="en">
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<meta name="viewport" content="width:device-width, initial-scale:1.0">
+		<link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap-theme.min.css' %}">
+		<link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.min.css' %}">
+		<link rel="stylesheet" type="text/css" href="{% static 'css/custom.css' %}">
 	    <title>{% block title %} Volunteer2Here {% endblock %}</title>
 	    {% block meta %}{% endblock %}
 	</head>
 	<body id="{% block body_id %}{% endblock %}" class="{% block body_class %}{% endblock %}">
-	    <div id="container">
+	    <div id="body-container">
 	    	<div id="header">
-	    		<h1><a href="{% url 'home' %}">Volunteer2Here</a></h1>
-			    {% block navigation %}
-			    <li><a href="{% url 'home' %}"><span>{% trans 'Home' %}</span></a></li>
-			    {% if user.is_authenticated %}
-			    <li><a href="{% url 'profile' %}"><span>{% trans 'Profile' %}</span></a></li>
-			    <li><a href="{% url 'logout' %}"><span>{% trans 'Signout' %}</span></span></a></li>
-			    {% else %}
-			    <li><a href="{% url 'login' %}"><span>{% trans 'Signin' %}</span></span></a></li>
-			    <li><a href="{% url 'register' %}"><span>{% trans 'Signup' %}</span></span></a></li>
-			    {% endif %}
-			    {% endblock %}
+			    <nav class="navbar" role="navigation">
+			    	{% block navigation %}
+		    		<div class="navbar-header">
+					    <a class="navbar-brand" href="{% url 'home' %}">Volunteer2Here</a>
+				  	</div>
+				    <ul class="nav navbar-nav">
+					    <li class="active"><a href="{% url 'home' %}"><span>{% trans 'Home' %}</span></a></li>
+					    <li><a href="{% url 'signup_organization' %}"><span>{% trans 'Organization' %}</span></a></li>
+					    {% if user.is_authenticated %}
+					    <li><a href="{% url 'profile' %}"><span>{% trans 'Profile' %}</span></a></li>
+					    <li><a href="{% url 'logout' %}"><span>{% trans 'Signout' %}</span></span></a></li>
+					    {% else %}
+					    <li><a href="{% url 'login' %}"><span>{% trans 'Signin' %}</span></span></a></li>
+					    <li><a href="{% url 'register' %}"><span>{% trans 'Signup' %}</span></span></a></li>
+				    </ul>
+				    {% endif %}
+				    {% endblock %}
+			    </nav>
 		    </div>
-		    <div id="content-container">
+		    <div id="content-container" class="container">
 			    {% block content %}
 			    {% endblock %}
 		    </div>
-		    <div id="footer">
-			    {% block footer %}
-			    <p>&copy;Volunteer2Here</p>
-			    {% endblock %}
-		    </div>
 	    </div>
+	    
+	    <div id="footer">
+		    {% block footer %}
+		    <div class="container">
+			    <p class="text-muted">&copy;Volunteer2Here</p>
+		    </div>
+		    {% endblock %}
+	    </div>
+	    <script src="{% static 'js/jquery.min.js' %}"></script>
+	    <script type="{% static 'js/bootstrap.min.js' %}"></script>
 	</body>
 </html>
