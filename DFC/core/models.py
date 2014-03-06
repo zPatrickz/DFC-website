@@ -63,7 +63,7 @@ class Activity(models.Model):
     desc            = models.TextField()
     keywords        = models.TextField()
     config          = models.CharField(max_length = 1024)
-    cover           = models.ImageField(max_length = 1024)#change to ImageField after MEDIA_ROOT in settings.py is specified
+    cover           = models.ImageField(max_length = 1024, upload_to = 'activity/cover/%Y/%m/%d')#change to ImageField after MEDIA_ROOT in settings.py is specified
     official_link   = models.CharField(max_length = 1024)
     create_time     = models.DateTimeField(auto_now_add = True)
     status          = models.CharField(max_length = 3, choices = STATUS_CHOICES)
