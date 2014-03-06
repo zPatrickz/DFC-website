@@ -23,10 +23,10 @@
 					    <li><a href="{% url 'signup_organization' %}"><span>{% trans 'Organization' %}</span></a></li>
 					    {% if user.is_authenticated %}
 					    <li><a href="{% url 'profile' %}"><span>{% trans 'Profile' %}</span></a></li>
-					    <li><a href="{% url 'logout' %}"><span>{% trans 'Signout' %}</span></span></a></li>
+					    <li><a href="{% url 'logout' %}"><span>{% trans 'Sign Out' %}</span></span></a></li>
 					    {% else %}
-					    <li><a href="{% url 'login' %}"><span>{% trans 'Signin' %}</span></span></a></li>
-					    <li><a href="{% url 'register' %}"><span>{% trans 'Signup' %}</span></span></a></li>
+					    <li><a href="{% url 'login' %}"><span>{% trans 'Sign In' %}</span></span></a></li>
+					    <li><a href="{% url 'register' %}"><span>{% trans 'Sign Up' %}</span></span></a></li>
 				    </ul>
 				    {% endif %}
 				    {% endblock %}

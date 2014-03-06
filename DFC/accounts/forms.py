@@ -43,10 +43,10 @@ class OrganizationForm(forms.ModelForm):
         self.helper.field_class = 'col-sm-4'
         self.helper.layout = Layout(
             Fieldset(
-                'organization signup',
+                'Join Volunteer Organization',
                 'name',
                 'official_link',
-                StrictButton('submit', value='Create', css_class='btn btn-default col-sm-offset-2'),
+                StrictButton('Sign Up', value='Create', css_class='btn btn-default col-sm-offset-2'),
             ),
         )
 
