@@ -1,5 +1,6 @@
 # Django settings for dfc project.
 import os
+
 from settings import *
 
 DATABASES = {
@@ -13,3 +14,9 @@ TEMPLATE_LOADERS = (
     'django.template.loaders.filesystem.Loader',
     'django.template.loaders.app_directories.Loader',
 )
+
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticroot')
+
+MEDIA_ROOT = os.path.join(BASE_DIR, 'mediaroot')
+
+MEDIA_URL = '/media/'
