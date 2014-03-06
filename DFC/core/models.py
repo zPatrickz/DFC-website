@@ -18,6 +18,7 @@ class Place(models.Model):
     name        = models.CharField(max_length = 256, blank = False)
     longitude   = models.FloatField()
     latitude    = models.FloatField()
+    create_time = models.DateTimeField(auto_now_add = True)
     @classmethod
     def create(cls,name,longitude,latitude):
         '''
@@ -39,10 +40,11 @@ class Place(models.Model):
     class Meta:
         unique_together = (("longitude", "latitude"),)
     def __unicode__(self):
-        return name
+        return '['+self.name+','+str(self.longitude)+','+str(self.latitude)+']'
     def __str__(self):
         return unicode(self).encode('utf-8')
-
+    def __eq__(self, other):
+        return self.longitude == other.longitude and self.latitude == other.latitude
     
    
 class Poster(models.Model):
@@ -50,7 +52,7 @@ class Poster(models.Model):
 
 class Activity(models.Model):
     STATUS_CHOICES = (
-        ('DFT','Draft'),
+        ('PRP','Proposal'),
         ('ONG','Ongoing'),
         ('ABD','Abandoned'),
         ('FRZ','Frozen'),
@@ -59,14 +61,13 @@ class Activity(models.Model):
     name            = models.CharField(max_length = 256, blank = False)
     organizations   = models.ManyToManyField(Organization)
     participants    = models.ManyToManyField(User, through = "Participation")
-    place           = models.ManyToManyField(Place)
+    places           = models.ManyToManyField(Place)
     desc            = models.TextField()
-    keywords        = models.TextField()
-    config          = models.CharField(max_length = 1024)
     cover           = models.ImageField(max_length = 1024, upload_to = 'activity/cover/%Y/%m/%d')#change to ImageField after MEDIA_ROOT in settings.py is specified
     official_link   = models.CharField(max_length = 1024)
     create_time     = models.DateTimeField(auto_now_add = True)
-    status          = models.CharField(max_length = 3, choices = STATUS_CHOICES)
+    update_time     = models.DateTimeField(auto_now = True)
+    status          = models.CharField(max_length = 3, choices = STATUS_CHOICES, default = 'PRP')
     start_time      = models.DateTimeField(null = True)
     end_time        = models.DateTimeField(null = True)
     visits          = models.PositiveIntegerField(default = 0)
@@ -84,49 +85,41 @@ class Activity(models.Model):
         Returns
         ---------------
         a new Activity instance that has been saved to database
+        null if error occurs
         '''
+        if not name:
+            return null
         act = cls(name=name)
         act.save()
+        if not organizations:
+            return null
         for org in organizations:
             act.organizations.add(org)
         act.save()
         return act
-    def editInformation(self,field,val):
-        '''
-        Edit activity information.
-        
-        Parameters
-        ---------------
-        field - name of the field to edit, must not be empty
-        val - new value
-        
-        Returns
-        ---------------
-        none
-        '''
-        if field == "name":
-            self.name = val
-        elif field == "place":
-            self.place = val
-        elif field == "desc":
-            self.desc = val
-        elif field == "official_link":
-            self.official_link = val
+    def update_name(self,val):
+        if not val:
+            return
+        self.name = val
         self.save()
-    def addPlace(self,place):
-        self.place.add(place)
+    def update_desc(self,val):
+        if not val:
+            return
+        self.desc = val
         self.save()
-    def removePlace(self,place):
-        self.place.remove(place)
+    def update_official_link(self,val):
+        if not val:
+            return
+        self.official_link = val
         self.save()
-    def changeCover(self,cover):
+    def add_place(self,place):
+        self.places.add(place)
+        self.save()
+    def remove_place(self,place):
+        self.places.remove(place)
+        self.save()
+    def change_cover(self,cover):
         self.cover = cover
-        self.save()
-    def addPost(self,post):
-        self.posts.add(post)
-        self.save()
-    def removePost(self,post):
-        self.posts.remove(post)
         self.save()
     def publish(self):
         self.status = 'ONG'
@@ -140,7 +133,13 @@ class Activity(models.Model):
     def finish(self):
         self.status = 'FIN'
         self.save()
-    def getConfig(self):
+    def set_start_time(self,val):
+        self.start_time = val
+        self.save()
+    def set_end_time(self,val):
+        self.end_time = val
+        self.save()
+    def get_config(self):
         '''
         Get the values in config string.
         
@@ -153,7 +152,7 @@ class Activity(models.Model):
         value of all the config
         '''
         pass
-    def getConfig(self,name):
+    def get_config(self,name):
         '''
         Get the values in config string.
         
@@ -167,9 +166,11 @@ class Activity(models.Model):
         '''
         pass
     def __unicode__(self):
-        return name
+        return self.name
     def __str__(self):
         return unicode(self).encode('utf-8')
+    def __eq__(self, other):
+        return self.name == other.name and self.organizations == other.organizations and self.place == other.place
     class Meta:
         pass
         #unique_together = (("name","organization"))
@@ -182,9 +183,10 @@ class Post(models.Model):
     title           = models.CharField(max_length = 256, blank = False)
     content         = models.TextField(blank = False)
     organization    = models.ForeignKey(Organization)
-    author          = models.ForeignKey(User)
+    authors         = models.ManyToManyField(User)
     activity        = models.ForeignKey(Activity)
     create_time     = models.DateTimeField(auto_now_add = True)
+    update_time     = models.DateTimeField(auto_now = True)
     visits          = models.PositiveIntegerField(default = 0)
     @classmethod
     def create(cls,title,content,author,organization,activity):
@@ -200,13 +202,52 @@ class Post(models.Model):
         ---------------
         a new Place instance that has been saved in the database.
         '''
-        pst = cls(title=title,content=content,author=author,organization=organization,activity=activity)
+        pst = cls(title=title,content=content,organization=organization,activity=activity)
         pst.save()
+        pst.authors.add(author)
         return pst
+    def update_title(self,val):
+        '''
+        Edit the content of the post.
+        
+        Parameters
+        ---------------
+        val - new value
+        
+        Returns
+        ---------------
+        none
+        
+        Todos
+        ---------------
+        add author to author list when updated
+        '''
+        self.title = val
+        self.save()
+    def update_content(self,val):
+        '''
+        Edit the content of the post.
+        
+        Parameters
+        ---------------
+        val - new value
+        
+        Returns
+        ---------------
+        none
+        
+        Todos
+        ---------------
+        add author to author list when updated
+        '''
+        self.content = val
+        self.save()
     def __unicode__(self):
-        return title
+        return self.title
     def __str__(self):
         return unicode(self).encode('utf-8')
+    def __eq__(self, other):
+        return self.organization == other.organization and self.activity == other.activity and self.title == other.title
         
 class Participation(models.Model):
     '''
@@ -229,7 +270,9 @@ class Participation(models.Model):
         unique_together = (("user","activity"))
         
 class Membership(models.Model):
-    '''Membership describes the relationship between users and organizations'''
+    '''
+    Membership describes the relationship between users and organizations
+    '''
     ROLE_CHOICES = (
         ('FND','Founder'),
         ('MGR','Manager'),
