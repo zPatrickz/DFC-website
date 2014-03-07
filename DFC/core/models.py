@@ -1,5 +1,7 @@
 from django.db import models
 import random
+from django.utils.translation import ugettext as _
+
 # Core classes for DFC Project
 
 # For general field usage, please refer to https://docs.djangoproject.com/en/1.6/ref/models/fields/
@@ -9,10 +11,81 @@ import random
 # For model instance usage, please refer to https://docs.djangoproject.com/en/1.6/ref/models/instances/#model-instance-methods
 
 class User(models.Model):
-    pass
+    name = models.CharField(max_length=256, blank=False)
+    ## nick name is the one that displays on the page
+    nick_name = models.CharField(max_length=256, blank=False)
+    email = models.EmailField(max_length=75)
+    password = models.CharField(max_length=50)
+    birth = models.DateTimeField(null=True, auto_now_add=False)
+    telephone = models.CharField(max_length=20 ,null=True)
+    qq = models.IntegerField()
+    # avatar = models.ImageField(max_length=1024, upload_to='/users/avatar/')
+    descriptions = models.CharField(max_length=256)
+    create_time = models.DateTimeField(auto_now_add=True, null=False)
+    credit = models.IntegerField()
     
+
 class Organization(models.Model):
-    pass
+
+    name = models.CharField(max_length=256, 
+        unique=True, 
+        help_text=_('The organization will live at Volunteer2Here'), 
+        verbose_name=_('Orgnization Name'))
+
+    nick_name = models.CharField(max_length=256)
+    
+    email = models.EmailField(max_length=75)
+    
+    password = models.CharField(max_length=50)
+    
+    birth = models.DateTimeField(blank=True, 
+        auto_now_add=False)
+    
+    telephone = models.CharField(max_length=20, 
+        blank=True, 
+        null=True)
+    
+    qq = models.PositiveIntegerField(blank=True, 
+        null=True)
+    
+    descriptions = models.CharField(max_length=256, 
+        blank=True, 
+        null=True)
+
+    create_time = models.DateTimeField(auto_now_add=True, 
+        blank=True)
+    
+    credit = models.IntegerField(blank=True)
+
+    organization_page = models.CharField(max_length=1024, 
+        blank=True)
+    
+    pay_link = models.CharField(max_length=512, 
+        blank=True)
+    
+    members = models.ManyToManyField(User, through='Membership')
+
+    def __unicode__(self):
+        return self.name
+
+    def setFounders(self, founders):
+        """
+        set the organization founders
+
+        :param :founders
+        QuerySet of users (ForeignKey to User)
+
+        """
+        self.clearFounders()
+        self.save()
+        # for founder in founders:
+            # self.members.add()
+
+    def clearFounders(self):
+        self.members.filter(role='FND').delete()
+        self.save()
+
+
     
 class Place(models.Model):
     name        = models.CharField(max_length = 256, blank = False)
