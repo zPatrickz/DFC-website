@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block title %}{% trans "New Activity" %}{% endblock %}
+
+{% block content %}
+  <h1>New Activity</h1>
+  {% if errors %}
+      {% for error in errors %}
+          <li>{{ error }}</li>
+      {% endfor %}
+  {% endif %}
+  <form action="" method="post">
+  {% csrf_token %}
+      {{ form.as_p }}
+      <input type="submit" value="Create the activity">
+  </form>
+{% endblock %}

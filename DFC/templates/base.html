@@ -21,6 +21,7 @@
 				    <ul class="nav navbar-nav">
 					    <li class="active"><a href="{% url 'home' %}"><span>{% trans 'Home' %}</span></a></li>
 					    <li><a href="{% url 'signup_organization' %}"><span>{% trans 'Organization' %}</span></a></li>
+                        <li><a href="{% url 'activity_home' %}"><span>{% trans 'Activity' %}</span></a></li>
 					    {% if user.is_authenticated %}
 					    <li><a href="{% url 'profile' %}"><span>{% trans 'Profile' %}</span></a></li>
 					    <li><a href="{% url 'logout' %}"><span>{% trans 'Sign Out' %}</span></span></a></li>

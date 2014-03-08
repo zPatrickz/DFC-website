@@ -72,6 +72,8 @@ class Activity(models.Model):
     end_time        = models.DateTimeField(null = True)
     visits          = models.PositiveIntegerField(default = 0)
     
+    SHOW_ON_INDEXPAGE = 10
+    
     @classmethod
     def create(cls,name,organizations):
         '''

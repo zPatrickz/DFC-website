@@ -1,6 +1,8 @@
 from django.test import TestCase
 
-# Create your tests here.
+# DFC tests
+# More about testing in Django at: http://docs.djangoproject.com/en/1.6/topics/testing/
+
 from core.models import *
 
 class PostMethodTests(TestCase):
