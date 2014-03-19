@@ -1,9 +1,8 @@
-# -*- coding: utf-8 -*-
 from django import forms
 from core.models import Organization
 from crispy_forms.helper import FormHelper
-from crispy_forms.layout import Layout, Fieldset
-from crispy_forms.bootstrap import StrictButton
+from crispy_forms.layout import Layout, Fieldset, Submit
+from crispy_forms.bootstrap import FormActions
 
 
 class OrganizationSignUpForm(forms.ModelForm):
@@ -13,6 +12,8 @@ class OrganizationSignUpForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super(OrganizationSignUpForm, self).__init__(*args, **kwargs)
         self.helper = FormHelper()
+        self.helper.form_action = 'signup_organization'
+        self.helper.form_method = 'POST'
         self.helper.form_class = 'form-horizontal'
         self.helper.label_class = 'col-sm-2'
         self.helper.field_class = 'col-sm-4'
@@ -22,7 +23,9 @@ class OrganizationSignUpForm(forms.ModelForm):
                 'name',
                 'email',
                 'password',
-                StrictButton('Sign Up', value='Create', css_class='btn btn-default col-sm-offset-2'),
+                FormActions(
+                    Submit('sign up', 'Sign Up', css_class='btn col-sm-offset-2'),
+                )
             ),
         )
 

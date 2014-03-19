@@ -1,4 +1,4 @@
-from django.shortcuts import render_to_response, RequestContext
+from django.shortcuts import render_to_response
 from forms import OrganizationSignUpForm
 from django.contrib.auth.decorators import login_required
 
@@ -36,7 +36,10 @@ def signup_organization(request):
     if request.method == 'POST':
         form = OrganizationSignUpForm(request.POST)
         if form.is_valid():
-            organization = form.save()
+            return render_to_response('render.html', {'result': 'yes'})
+        else:
+            return render_to_response('render.html', {'result': 'no'})
+            #organization = form.save()
     else:
         return render_to_response('accounts/organization_signup.html', {
             'form': form,
