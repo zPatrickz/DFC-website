@@ -8,14 +8,28 @@ def index(request):
     act_list = Activity.objects.order_by('-create_time')[:Activity.SHOW_ON_INDEXPAGE]
     return render(request,'activity/index.html',{'act_list':act_list})
     
-def new_activity(request):
+def add_or_update_activity(request,act_id=None):
+    update = False
+    if act_id:
+        update = True
     if request.method == 'POST': # If the form has been submitted
         # Handle a submitted form
-        form = ActivityForm(request.POST)
-        if form.is_valid():
-            # FAKE CREATE HERE, NEED MORE MODELS!!!
-            Activity.create(name = form.cleaned_data['name'], organizations = Organization.objects.all())
-            return HttpResponseRedirect('..')
+        if act_id:
+            form = ActivityForm(request.POST, request.FILES,instance = Activity.objects.get(id=act_id))
+            if form.is_valid():
+                # FAKE SAVE HERE, NEED MORE MODELS!!!
+                form.save()
+                return HttpResponseRedirect('')
+        else:
+            form = ActivityForm(request.POST, request.FILES)
+            if form.is_valid():
+                # FAKE SAVE HERE, NEED MORE MODELS!!!
+                form.save()
+                return HttpResponseRedirect('..')
+    elif act_id:
+        #Handle an update form
+        form = ActivityForm(instance = Activity.objects.get(id=act_id))
     else:
+        #Handle an empty form
         form = ActivityForm()
-    return render(request,'activity/new.html',{'form':form})
+    return render(request,'activity/add_or_update.html',{'form':form,'update':update})

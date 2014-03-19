@@ -9,4 +9,4 @@ class ActivityForm(forms.ModelForm):
     
     class Meta:
         model = Activity
-        fields = ['name']
+        fields = ['name','desc','cover','official_link','start_time','end_time']

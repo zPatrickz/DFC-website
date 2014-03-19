@@ -1,5 +1,5 @@
 from django.db import models
-
+import random
 # Core classes for DFC Project
 
 # For general field usage, please refer to https://docs.djangoproject.com/en/1.6/ref/models/fields/
@@ -23,16 +23,10 @@ class Place(models.Model):
     def create(cls,name,longitude,latitude):
         '''
         Create a place.
-        
-        Parameters
-        ---------------
-        name - name of the place, must not be empty
-        longitude - longitude of the place, must not be empty
-        latitude - latitude of the place, must not be empty
-        
-        Returns
-        ---------------
-        a new Place instance that has been saved in the database.
+        # parameter name - name of the place, must not be empty
+        # parameter longitude - longitude of the place, must not be empty
+        # parameter latitude - latitude of the place, must not be empty
+        # return a new Place instance that has been saved in the database.
         '''
         plc = cls(name=name,longitude=longitude,latitude=latitude)
         plc.save()
@@ -50,6 +44,9 @@ class Place(models.Model):
 class Poster(models.Model):
     pass
 
+def get_activity_cover_path( instance, filename ):
+    return 'activity/'+str(instance.id)+'/cover.jpg'
+    
 class Activity(models.Model):
     STATUS_CHOICES = (
         ('PRP','Proposal'),
@@ -63,13 +60,14 @@ class Activity(models.Model):
     participants    = models.ManyToManyField(User, through = "Participation")
     places           = models.ManyToManyField(Place)
     desc            = models.TextField()
-    cover           = models.ImageField(max_length = 1024, upload_to = 'activity/cover/%Y/%m/%d')#change to ImageField after MEDIA_ROOT in settings.py is specified
-    official_link   = models.CharField(max_length = 1024)
+    cover           = models.ImageField(max_length = 1024, upload_to = get_activity_cover_path,default = 'activity/cover/default.jpg')#change to ImageField after MEDIA_ROOT in settings.py is specified
+    #By using callable function as the upload_to path, one must override the save function as below
+    official_link   = models.CharField(max_length = 1024,blank = True)
     create_time     = models.DateTimeField(auto_now_add = True)
     update_time     = models.DateTimeField(auto_now = True)
     status          = models.CharField(max_length = 3, choices = STATUS_CHOICES, default = 'PRP')
-    start_time      = models.DateTimeField(null = True)
-    end_time        = models.DateTimeField(null = True)
+    start_time      = models.DateTimeField(null = True,blank = True)
+    end_time        = models.DateTimeField(null = True,blank = True)
     visits          = models.PositiveIntegerField(default = 0)
     
     SHOW_ON_INDEXPAGE = 10
@@ -78,16 +76,10 @@ class Activity(models.Model):
     def create(cls,name,organizations):
         '''
         Create an activity.
-        
-        Parameters
-        ---------------
-        name - name of the activity, must not be empty
-        orgranizations - organization queryset that raise the activity, must not be empty
-        
-        Returns
-        ---------------
-        a new Activity instance that has been saved to database
-        null if error occurs
+        # parameter name - name of the activity, must not be empty
+        # parameter orgranizations - organization queryset that raise the activity, must not be empty
+        # return a new Activity instance that has been saved to database
+                    null if error occurs
         '''
         if not name:
             return null
@@ -99,6 +91,7 @@ class Activity(models.Model):
             act.organizations.add(org)
         act.save()
         return act
+    
     def update_name(self,val):
         if not val:
             return
@@ -142,31 +135,16 @@ class Activity(models.Model):
         self.end_time = val
         self.save()
     def get_config(self):
-        '''
-        Get the values in config string.
-        
-        Parameters
-        ---------------
-        field - name of the field to edit, must not be empty
-        
-        Returns
-        ---------------
-        value of all the config
-        '''
         pass
     def get_config(self,name):
-        '''
-        Get the values in config string.
-        
-        Parameters
-        ---------------
-        field - name of the field to edit, must not be empty
-        
-        Returns
-        ---------------
-        value of the field
-        '''
         pass
+    def save(self, *args, **kwargs):
+        if self.id is None:
+            saved_cover = self.cover
+            self.cover = None
+            super(Activity, self).save(*args, **kwargs)
+            self.cover = saved_cover
+        super(Activity, self).save(*args, **kwargs)
     def __unicode__(self):
         return self.name
     def __str__(self):
@@ -194,15 +172,9 @@ class Post(models.Model):
     def create(cls,title,content,author,organization,activity):
         '''
         Create a post.
-        
-        Parameters
-        ---------------
-        title - title of the post
-        content,author,organization,activity
-        
-        Returns
-        ---------------
-        a new Place instance that has been saved in the database.
+        # parameter title - title of the post
+        # parameter content,author,organization,activity
+        # return a new Place instance that has been saved in the database.
         '''
         pst = cls(title=title,content=content,organization=organization,activity=activity)
         pst.save()
@@ -211,36 +183,24 @@ class Post(models.Model):
     def update_title(self,val):
         '''
         Edit the content of the post.
-        
-        Parameters
-        ---------------
-        val - new value
-        
-        Returns
-        ---------------
-        none
+        # parameter val - new value
+        # return none
         
         Todos
         ---------------
-        add author to author list when updated
+        check if user is authorized
         '''
         self.title = val
         self.save()
     def update_content(self,val):
         '''
         Edit the content of the post.
-        
-        Parameters
-        ---------------
-        val - new value
-        
-        Returns
-        ---------------
-        none
+        # parameter val - new value
+        # return none
         
         Todos
         ---------------
-        add author to author list when updated
+        check if user is authorized
         '''
         self.content = val
         self.save()

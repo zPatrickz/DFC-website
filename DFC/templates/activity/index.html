@@ -7,9 +7,9 @@
 <h1>Activities</h1>
 <table>
 <tbody>
-<tr><th><h3>No.</h3></th><th><h3>Name</h3></thead></tr>
+<tr><th><h3>ID</h3></th><th><h3>Name</h3></thead></tr>
 {% for activity in act_list %}
-	<tr><td>{{forloop.counter}}</td><td>{{activity.name}}</td></tr>
+	<tr><td>{{activity.id}}</td><td><a href="update/{{activity.id}}">{{activity.name}}</a></td></tr>
 {% endfor %}
 </tbody>
 </table>
