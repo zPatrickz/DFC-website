@@ -15,10 +15,39 @@ class ParserMethodTests(TestCase):
     def testExtractContactsHorizontal(self):
         ip = IntelliParser()
         ip.parse_excel('/Users/apple/Documents/DFC-website/DFC-website/DFC/intelliparser/samples/2012MSTCMedia.xls')
-        print ip.extract_contacts()
+        contacts = ip.extract_contacts()
+        for contact in contacts:
+            print contact
+        print
         print
     def testExtractContactsVertical(self):
         ip = IntelliParser()
         ip.parse_excel('/Users/apple/Documents/DFC-website/DFC-website/DFC/intelliparser/samples/2012MSTCMediaVertical.xls')
-        print ip.extract_contacts()
+        contacts = ip.extract_contacts()
+        for contact in contacts:
+            print contact
+        print
+        print
+    def testRealSheets(self):
+        ip = IntelliParser()
+        
+        ip.parse_excel('/Users/apple/Documents/DFC-website/DFC-website/DFC/intelliparser/samples/DFCNanjingContacts.xls')
+        contacts = ip.extract_contacts()
+        for contact in contacts:
+            print contact
+        print
+        print
+        
+        ip.parse_excel('/Users/apple/Documents/DFC-website/DFC-website/DFC/intelliparser/samples/MingzhiBookHouse.xlsx')
+        contacts = ip.extract_contacts()
+        for contact in contacts:
+            print contact
+        print
+        print
+        
+        ip.parse_excel('/Users/apple/Documents/DFC-website/DFC-website/DFC/intelliparser/samples/volstartupsummit.xlsx')
+        contacts = ip.extract_contacts()
+        for contact in contacts:
+            print contact
+        print
         print
