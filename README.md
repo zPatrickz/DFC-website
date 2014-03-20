@@ -11,10 +11,10 @@ It is highly recommended to use **virtualenv**.
 
 ### Components
 
-`openpyxl` is an open python library for excel related operations
-To install openpyxl, please refer to http://openpyxl.readthedocs.org/en/latest/#getting-the-source, quick install:
+`xlutils` is an open python library for excel related operations
+To install `xlutils`, please refer to http://pythonhosted.org/xlutils/installation.html, quick install:
 
-	`pip install openpyxl`
+	`pip install xlutils`
 	
 
 ### Configure
