@@ -1,27 +1,173 @@
 {% extends "base.html" %}
-{% load i18n %}
+{% load i18n static%}
 
 {% block title %}{% trans "New Activity" %}{% endblock %}
 
 {% block content %}
-  <h1>New Activity</h1>
-  {% if errors %}
-      {% for error in errors %}
-          <li>{{ error }}</li>
-      {% endfor %}
-  {% endif %}
-  {% if form.is_multipart %}
-      <form enctype="multipart/form-data" method="post" action="">
-  {% else %}
-      <form method="post" action="">
-  {% endif %}
-  {% csrf_token %}
-      {{ form.as_p }}
-  {% if update %}
-      <input type="submit" value="Update activity">
-	  <input type="button" value="Delete activity">
-  {% else %}
-      <input type="submit" value="Create activity">
-  {% endif %}
-  </form>
+
+<div class="span9">
+	<div class="well">
+  	<h1>创建活动</h1>
+		{% if errors %}
+		    {% for error in errors %}
+		        <li>{{ error }}</li>
+		    {% endfor %}
+		{% endif %}  
+		
+		{% if form.is_multipart %}
+			<form class="form-horizontal" enctype="multipart/form-data" method="post" action="">
+		{% else %}
+      		<form class="form-horizontal" method="post" action="">
+  		{% endif %}
+			<fieldset>
+				<h3 class="page-header">活动基本信息</h3>
+				<div class="control-group">
+					<label class="control-label" for="activity-title">活动名称</label>
+					<div class="controls">
+						<input class="input-xlarge" type="text" placeholder="" id="activity-title">
+					</div>
+				</div>
+				<div class="control-group">
+					<label class="control-label" for="activity-brief">活动简介</label>
+					<div class="controls">
+						<textarea class="input-xlarge" placeholder="" id="activity-biref" style="height: 100px;"></textarea>
+					</div>
+				</div>
+				<div class="control-group">
+					<label class="control-label" for="activity-face">上传封面</label>
+					<div class="controls">
+						<input type="file" class="input-xlarge" placeholder="" id="activity-face">
+					</div>
+				</div>
+				<div class="control-group">
+					<label class=" control-label" for="activity-time">活动时间</label>
+					<div class="controls">
+					    <div id="datetimepicker" class="input-append date" style="display:inline-block;">
+					        <input type="text" id="activity-time" class="input-xlarge">
+					        <span class="add-on">
+					        	<i data-time-icon="icon-time" data-date-icon="icon-calendar"></i>
+					        </span>
+					    </div>
+					</div>
+				</div>
+				
+				<script type="text/javascript">
+				    $('#datetimepicker').datetimepicker({
+				        format: 'yyyy年MM月dd日',
+				        language: 'cn',
+				        pickDate: true,
+				        pickTime: false,
+				        hourStep: 1,
+				        minuteStep: 15,
+				        secondStep: 30,
+				        inputMask: true
+				    });
+				</script>
+
+				<div class="control-group">
+					<label class="control-label" for="activity-place">活动地点</label>
+					<div class="controls">
+						<input class="input-xlarge" type="text" placeholder="" id="activity-place">
+					</div>
+				</div>
+				<div class="control-group">
+					<label class=" control-label" for="activity-time">添加标签</label>
+					<div class="controls">
+						<div>
+							<span class="label label-info">儿童<button class="close" style="height:15px;">&times;</button></span>
+							<span class="label label-info">教育<button class="close" style="height:15px;">&times;</button></span>
+						</div>
+						<div class="input-append" style="margin-top: 10px">
+							<input type="text" class="input-xlarge">
+							<div class="btn-group">
+							    <span class="btn add-on">添加</span>
+							</div>
+						</div>
+						<div class="well well-small" style="width:240px;">
+							<span class="label">儿童</span>
+							<span class="label">儿童</span>
+							<span class="label">儿童</span>
+							<span class="label">儿童</span>
+							<span class="label">儿童</span>
+						</div>
+					</div>
+				</div>
+				
+				<h3 class="page-header" style="margin-top: 50px;">志愿者招募信息</h3>
+				<div class="control-group">
+					<label class="control-label" for="activity-num">人数</label>
+					<div class="controls">
+						<input class="input-mini" type="number" placeholder="" id="activity-num">
+					</div>
+				</div>
+				<div class="control-group">
+					<label class="control-label" for="activity-talent">技能需求</label>
+					<div class="controls">
+						<textarea class="input-xlarge" placeholder="" id="activity-talent" style="height: 100px;"></textarea>
+					</div>
+				</div>
+				<hr>
+				
+				<div class="control-group hide" id="vol-confirm">
+					<label class="control-label" for="activity-confirmtime">活动前</label>
+					<div class="controls">
+						<input class="input-mini" placeholder="" id="activity-confirmtime" type="number" value=24>小时通知志愿者确认
+					</div>
+				</div>
+				<div class="control-group hide" id="inform-set">
+					<label class="control-label" for="activity-inform">自动通知志愿者的方式</label>
+					<div class="controls">
+						<select>
+							<option>按志愿者偏好</option>
+							<option>仅用短信</option>
+							<option>仅用邮件</option>
+							<option>仅用微信</option>
+						</select>
+					</div>
+				</div>
+				<div class="control-group hide" id="vol-stop">
+					<label class="control-label" for="activity-max">报名人数到达</label>
+					<div class="controls">
+						<input class="input-mini" placeholder="" id="activity-max" type="number" value=133>%时停止招募
+					</div>
+				</div>
+				
+				<div class="control-group hide" id="activity-privacy">
+					<div class="controls">
+						<label class="checkbox" for="activity-autoconfirm">
+							<input type="checkbox" id="activity-publish">活动不对外招募（设为私密）
+						</label>
+					</div>
+				</div>
+				
+				<div class="control-group hide" id="activity-chatroom">
+					<label class="control-label" for="activity-inform">讨论区设置</label>
+					<div class="controls">
+						<select>
+							<option>非参与者不可见</option>
+							<option>非参与者仅可浏览信息</option>
+							<option>非参与者可见且参与讨论</option>
+						</select>
+					</div>
+				</div>
+				
+				<div>
+					<a href="javascript:void(0)" class="pull-right" onclick="$('#vol-stop,#vol-confirm,#inform-set,#activity-privacy,#activity-chatroom').show();$(this).hide();">展开高级选项</a>
+				</div>
+				<div class="control-group" style="margin-top: 40px">
+					<div class="controls">
+						{% if update %}
+							<button type="submit" value="Update activity" class="btn btn-info">确认修改</button>
+							<button class="btn btn-info">返回</button>
+						{% else %}
+							<button type="submit" value="Create activity" class="btn btn-info">创建</button>
+						{% endif %}
+					</div>
+				</div>
+			</fieldset>
+		</form>
+	</div>
+    
+</div>
+
 {% endblock %}
