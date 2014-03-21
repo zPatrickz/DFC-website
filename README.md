@@ -29,6 +29,9 @@ Notice that for Django 1.7, please specify STATIC_ROOT, and specify it to a fold
 
 To use `ImageField` and `openpyxl`, please make sure you have installed Pillow. Use:
 	`sudo pip install Pillow`
+	
+To put yourself away from case sensitive issues, please make sure your git is case sensitive, quick settings:
+	`git config --global core.ignorecase false`
 
 
 ### Database
