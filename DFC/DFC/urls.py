@@ -12,6 +12,7 @@ urlpatterns = patterns('',
 	url(r'^admin/', include(admin.site.urls)),
    	url(r'^accounts/', include('accounts.urls')),
     url(r'^activity/', include('activity.urls')),
+    url(r'^photo/', include('photo.urls')),
 )
 urlpatterns += staticfiles_urlpatterns()
 if settings.DEBUG:

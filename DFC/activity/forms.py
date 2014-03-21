@@ -1,4 +1,5 @@
 from django import forms
+from django.conf import settings
 from core.models import *
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Layout, Fieldset
@@ -9,4 +10,5 @@ class ActivityForm(forms.ModelForm):
     
     class Meta:
         model = Activity
-        fields = ['name','desc','cover','official_link','start_time','end_time']
+        fields = ('name','desc','cover','official_link','start_time','end_time')
+

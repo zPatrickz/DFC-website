@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block title %}{% trans "Photo" %}{% endblock %}
+
+{% block content %}
+<h1>Photo {{photo.id}}</h1>
+<p>{{photo.desc}}</p>
+<img src="{{photo.photo.url}}"/>
+{% endblock %}

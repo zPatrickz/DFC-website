@@ -40,12 +40,13 @@ class Place(models.Model):
     def __eq__(self, other):
         return self.longitude == other.longitude and self.latitude == other.latitude
     
-   
-class Poster(models.Model):
-    pass
 
-def get_activity_cover_path( instance, filename ):
-    return 'activity/'+str(instance.id)+'/cover.jpg'
+def get_photo_path( instance, filename ):
+    return 'photo/'+str(instance.id)+'.jpg'
+
+
+
+
     
 class Activity(models.Model):
     STATUS_CHOICES = (
@@ -56,11 +57,11 @@ class Activity(models.Model):
         ('FIN','Finished'),
     )
     name            = models.CharField(max_length = 256, blank = False)
-    organizations   = models.ManyToManyField(Organization)
-    participants    = models.ManyToManyField(User, through = "Participation")
-    places           = models.ManyToManyField(Place)
+    organizations   = models.ManyToManyField('Organization')
+    participants    = models.ManyToManyField('User', through = "Participation")
+    places           = models.ManyToManyField('Place')
     desc            = models.TextField()
-    cover           = models.ImageField(max_length = 1024, upload_to = get_activity_cover_path,default = 'activity/cover/default.jpg')#change to ImageField after MEDIA_ROOT in settings.py is specified
+    cover           = models.ForeignKey('Photo',null = True)#change to ImageField after MEDIA_ROOT in settings.py is specified
     #By using callable function as the upload_to path, one must override the save function as below
     official_link   = models.CharField(max_length = 1024,blank = True)
     create_time     = models.DateTimeField(auto_now_add = True)
@@ -156,15 +157,54 @@ class Activity(models.Model):
         #unique_together = (("name","organization"))
         ##The reason not to use unique_together here and in other models:https://code.djangoproject.com/ticket/702
 
+class Album(models.Model):
+    OWNER_TYPE_CHOICES = (
+        ('ORG','Organization'),
+        ('USR','User'),
+        ('ACT','Activity'),
+    )
+    
+    SHOW_ON_INDEXPAGE = 10
+    
+    title = models.CharField(max_length = 256, blank = False)
+    desc = models.TextField(blank = True)
+    owner_type = models.TextField(max_length = 3,choices = OWNER_TYPE_CHOICES,default = 'ACT')
+    owner_organization = models.ForeignKey('Organization',null=True)
+    owner_user = models.ForeignKey('User',null=True)
+    owner_activity = models.ForeignKey('Activity',null=True)
+    create_time = models.DateTimeField(auto_now_add = True)
+    def __unicode__(self):
+        return self.title
+    def __str__(self):
+        return unicode(self).encode('utf-8')
+        
+class Photo(models.Model):
+    photo = models.ImageField(max_length = 1024, upload_to = get_photo_path)
+    desc = models.TextField(blank = True)
+    album = models.ForeignKey('Album')
+    create_time = models.DateTimeField(auto_now_add = True)
+    visits = models.PositiveIntegerField(default = 0)
+    def save(self, *args, **kwargs):
+        if self.id is None:
+            saved_photo = self.photo
+            self.photo = None
+            super(Photo, self).save(*args, **kwargs)
+            self.photo = saved_photo
+        super(Photo, self).save(*args, **kwargs)
+    def __unicode__(self):
+        return 'Photo'+str(self.id)
+    def __str__(self):
+        return unicode(self).encode('utf-8')
+        
 class Post(models.Model):
     '''
     Forum posts.
     '''
     title           = models.CharField(max_length = 256, blank = False)
     content         = models.TextField(blank = False)
-    organization    = models.ForeignKey(Organization)
-    authors         = models.ManyToManyField(User)
-    activity        = models.ForeignKey(Activity)
+    organization    = models.ForeignKey('Organization')
+    author         = models.ForeignKey('User')
+    activity        = models.ForeignKey('Activity')
     create_time     = models.DateTimeField(auto_now_add = True)
     update_time     = models.DateTimeField(auto_now = True)
     visits          = models.PositiveIntegerField(default = 0)
@@ -224,8 +264,8 @@ class Participation(models.Model):
         ('APL','Apply'),
         ('ATD','Attended'),
     )
-    user = models.ForeignKey(User)
-    activity = models.ForeignKey(Activity)
+    user = models.ForeignKey('User')
+    activity = models.ForeignKey('Activity')
     role = models.CharField(max_length = 3, choices = ROLE_CHOICES)
     stage = models.CharField(max_length = 3, choices = STAGE_CHOICES)
     class Meta:
@@ -240,8 +280,8 @@ class Membership(models.Model):
         ('MGR','Manager'),
         ('MEM','Member'),
     )
-    user = models.ForeignKey(User)
-    organization = models.ForeignKey(Organization)
+    user = models.ForeignKey('User')
+    organization = models.ForeignKey('Organization')
     role = models.CharField(max_length = 3,choices = ROLE_CHOICES)
     join_time = models.DateTimeField(auto_now_add = True)
     class Meta:
