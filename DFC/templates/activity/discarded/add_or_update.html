@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% load i18n static%}
+
+{% block title %}{% trans "New Activity" %}{% endblock %}
+
+{% block content %}
+  <h1>New Activity</h1>
+  {% if errors %}
+      {% for error in errors %}
+          <li>{{ error }}</li>
+      {% endfor %}
+  {% endif %}
+  {% if form.is_multipart %}
+      <form enctype="multipart/form-data" method="post" action="">
+  {% else %}
+      <form method="post" action="">
+  {% endif %}
+  {% csrf_token %}
+      {{ form.as_p }}
+  {% if update %}
+      <input type="submit" value="Update activity">
+	  <input type="button" value="Delete activity">
+  {% else %}
+      <input type="submit" value="Create activity">
+  {% endif %}
+  </form>
+{% endblock %}

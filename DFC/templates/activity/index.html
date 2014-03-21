@@ -1,17 +1,102 @@
 {% extends "base.html" %}
-{% load i18n %}
+{% load i18n static%}
 
 {% block title %}{% trans "Activities" %}{% endblock %}
-
+<!--Content-->
 {% block content %}
-<h1>Activities</h1>
-<table>
-<tbody>
-<tr><th><h3>ID</h3></th><th><h3>Name</h3></thead></tr>
-{% for activity in act_list %}
-	<tr><td>{{activity.id}}</td><td><a href="update/{{activity.id}}">{{activity.name}}</a></td></tr>
-{% endfor %}
-</tbody>
-</table>
-<a href="new">create an activity</a>
+
+<script>
+	$('#nav1-ul li').removeClass('active');
+	$('#nav-activity').addClass('active');
+</script>
+<div class="container">
+	<h3 class="padding-small" style="display: inline-block;">招募中和进行中的公益行动</h3> &nbsp;&nbsp;<a href="new">创建活动</a>
+	<div  class="row">
+		<div class="span7">
+			<div class="padding-small">
+				<input type="text" class="input-xxlarge" style="font-size: 0.8em;" placeholder="请输入关键词：标题，简介，类型，主办方，创建者">
+				<div style="margin-bottom: 50px;">
+					<a class="muted" style="margin: 3px;" href="javascript:void(0)">儿童</a>
+					<a class="muted" style="margin: 3px;" href="javascript:void(0)">青春</a>
+					<a class="muted" style="margin: 3px;" href="javascript:void(0)">敬老</a>
+					<a class="muted" style="margin: 3px;" href="javascript:void(0)">教育</a>
+					<a class="muted" style="margin: 3px;" href="javascript:void(0)">社会问题</a>
+					<a class="muted" style="margin: 3px;" href="javascript:void(0)">环境</a>
+					<a class="muted" style="margin: 3px;" href="javascript:void(0)">人际</a>
+					<a class="muted" style="margin: 3px;" href="javascript:void(0)">文艺</a>
+					<a class="muted" style="margin: 3px;" href="javascript:void(0)">青春</a>
+					<a class="muted" style="margin: 3px;" href="javascript:void(0)">青春</a>
+					<a class="muted" style="margin: 3px;" href="javascript:void(0)">青春</a>
+					<a class="muted" style="margin: 3px;" href="javascript:void(0)">青春</a>
+					<a class="muted" style="margin: 3px;" href="javascript:void(0)">青春</a>
+					<a class="muted" style="margin: 3px;" href="javascript:void(0)">青春</a>
+					<a class="muted" style="margin: 3px;" href="javascript:void(0)">青春</a>
+					<a class="muted" style="margin: 3px;" href="javascript:void(0)">青春</a>
+					<a class="muted" style="margin: 3px;" href="javascript:void(0)">青春</a>
+					<a class="muted" style="margin: 3px;" href="javascript:void(0)">青春</a>
+					<a class="muted" style="margin: 3px;" href="javascript:void(0)">青春</a>
+					<a class="muted" style="margin: 3px;" href="javascript:void(0)">青春</a>
+					<a class="muted" style="margin: 3px;" href="javascript:void(0)">青春</a>
+					<a class="muted" style="margin: 3px;" href="javascript:void(0)">青春</a>
+				</div>
+			</div>
+		</div>
+		<div class="span3 offset2">
+			<div class="padding-small">
+				<span class="muted">排序：</span>
+				<a href="javascript:void(0)">时间最近</a>&nbsp;&nbsp;
+				<a href="javascript:void(0)">最受欢迎</a>&nbsp;&nbsp;
+				<a href="javascript:void(0)">信誉最高</a>
+			</div>
+			<div class="padding-small">
+				<span class="muted">显示：</span>
+				<label class="checkbox small-grey" style="display: inline-block;"><input type="checkbox" style="width:12px;" checked=""/>组织创建</label>&nbsp;&nbsp;
+				<label class="checkbox small-grey" style="display: inline-block;"><input type="checkbox" style="width:12px;"  checked=""/>个人创建</label><br>
+				<label class="checkbox small-grey" style="display: inline-block; margin-left: 39px;"><input type="checkbox" style="width:12px;" checked=""/>招募中</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				<label class="checkbox small-grey" style="display: inline-block;"><input type="checkbox" style="width:12px;" checked=""/>进行中</label>
+			</div>
+		</div>
+	</div>
+
+	{% for activity in act_list %}
+		<div class="row">
+			<div class="span12" style=" background-color: #EEEEEE;margin-bottom: 10px; ">
+				<div class="row" style="height: 140px;">
+					<div class="span2">
+						<div class="padding-middle">
+							<a href="活动页面"><img src="../static/img/wall/il3.jpg" class="image-fullsize"></a>
+						</div>
+					</div>
+					<div class="span7">
+						<div class="padding-small">
+							<h5 style="display: inline-block;color:#333333">{{activity.id}}: <a href="update/{{activity.id}}" style="color: #333333">{{activity.name}}</a></h5>
+							<span class="pull-right" style="color: #333333">TAG：青年 青春 传统</span>
+							<p class="muted" style="height: 56px; overflow: hidden;">{{activity.desc}}思奔，思考人生什么的最优意思。的拉萨解放军哦了思奔，思考人生什么的最优意思的拉
+								萨解放军，哦了思奔，思考人生什么的最优，意思的拉萨解放军哦了思奔，思考人生什么的最
+								优意思的拉萨解放军哦了
+							</p>
+							<a href="javascript:void(0)">了解更多</a>
+						</div>
+					</div>
+					<div class="span3">
+						<div class="padding-small">
+							<div style="border-left: silver 1px solid; height: 130px;">
+								<div class=" pull-right">
+									<a href="javascript:void(0)">参与(5/8)</a>&nbsp;&nbsp;&nbsp;
+									<a href="javascript:void(0)">关注(12)</a>&nbsp;&nbsp;&nbsp;
+									<a href="javascript:void(0)"><i class="icon-share"></i></a>&nbsp;&nbsp;
+								</div>
+								<div class=" pull-right">
+									<div class="muted" style="margin-top: 60px;" align="right">
+										<a href="赵健个人主页" class="muted">赵健</a>（<a href="嘤鸣读书会" style="color:#333333">嘤鸣读书会</a> <a href="信用度说明" style="color: orange">Cr.78</a>）&nbsp;&nbsp;<br>
+										<a href="百度地图" class="muted">随园大厦15楼 安仁会馆</a>&nbsp;&nbsp;{{activity.start_time}}&nbsp;&nbsp;
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	{% endfor %}
 {% endblock %}

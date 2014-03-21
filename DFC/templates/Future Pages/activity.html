@@ -1,0 +1,333 @@
+<!doctype html>
+<!--Navigator Block-->
+<html>
+<head>
+<meta charset="utf-8">
+<title>I Can</title>
+<link href="css/bootstrap.min.css" rel="stylesheet">
+<link href="css/ican.css" rel="stylesheet">
+<script src="js/jquery.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script type="text/javascript" src="http://api.map.baidu.com/api?v=1.5&ak=2b866a6daac9014292432d81fe9b47e3"></script>
+<script src="js/setactivity.js"></script>
+<script type="text/javascript" src="js/bootstrap-datetimepicker.min.js"></script>
+<link rel="stylesheet" href="css/redactor.css" />
+<script src="js/redactor.js"></script>
+</head>
+<body style="background-color:#DDDDDD;">
+    <div class="navbar navbar-static">
+    	<div class="navbar-inner">
+      		<div class="container">
+        		<a class="brand" href="index.html">I Can</a>
+	            <ul class="nav" id="nav1-ul">
+	              <li class="active navitem" id="intro_link"><a href="intro_dfc.html" target="content">志愿者招募</a></li>
+	              <li class="navitem"><a href="recruit.html" id="recruit_link" target="content">公益故事</a></li>
+	              <li class="navitem"><a href="activities.html" id="activities_link" target="content">公益团队</a></li>
+	              <li class="navitem"><a href="awards.html" id="awards_link" target="content">大奖赛</a></li>
+	            </ul>
+				<script>
+					$('#nav1-ul li').click(function(){
+						$('#nav1-ul li').removeClass('active');
+						$(this).addClass('active');
+					});
+				</script>
+	            
+	            <ul class="nav pull-right"> <!--Right hand side-->
+	          	  <li>  
+	          	    <form class="navbar-search pull-left">
+	  			        <input type="text" style="margin-bottom: 0;margin-right: 15px;" placeholder="搜索">
+				    </form>
+			  	  </li>
+	              <li>
+	                <a href="message.html" target="content" style="padding:5px;">
+	                <img class="avatar-middle" src="img/icon/mail.png">
+	                </a>
+	              </li>
+	              <li class="dropdown">
+	                  <a href="#" class="dropdown-toggle" data-toggle="dropdown" style="padding:5px;">
+	              		  <img src="img/avatar/1.jpg" class="avatar-middle">
+	                  </a>
+	                  <ul class="dropdown-menu">
+		                  <li><a href="myact.html" target="content">活动1</a></li>
+		                  <li><a href="myteam.html" target="content">活动2</a></li>
+		                  <!--<li><a href="#">备忘</a></li>-->
+		                  <li class="divider"></li>
+		                  <li><a href="myact.html" target="content">组织1</a></li>
+	  	                  <li><a href="myteam.html" target="content">组织2</a></li>
+  		                  <li class="divider"></li>
+		                  <li><a href="#" id="logout">注销</a></li>
+		                  <li><a href="profile.html" target="content">修改个人资料</a></li>
+	                  </ul>
+	                </li>
+	            </ul>
+        	</div>
+        </div><!-- /navbar-inner-->
+    </div><!-- /navbar-->
+  
+  
+  
+<!--Content-->
+<div class="container">
+	<div class="row">
+		<div class="span3">
+			<div class="well well-small">
+				<div class="overlap">
+					<span class="label">集合：2014年6月3日（<a href="#">天气</a>）</span>
+					<!--<iframe width="225" scrolling="no" height="25" frameborder="0" allowtransparency="true" src="http://i.tianqi.com/index.php?c=code&id=40&icon=1&num=3"></iframe>
+				-->
+				</div>
+				<div style="height:180px;" id="map-container">
+					<!--Here is the map-->
+				</div>
+			</div>
+			
+			<div>
+	  			<div class="well">
+	  				<!--Recruit Block-->
+	  				<div>
+	  					<div style="display: inline-block; margin-bottom: 10px;">
+	  						<button class="btn btn-mini btn-info" title="以志愿者或者组织者的身份参与活动。">加入</button>
+	  						<button class="btn btn-mini" title="关注后，您将会收到有关活动的推送信息。">关注</button>
+	  					</div>
+		  				<div class="pull-right" style="padding-right: 5px;">
+		  					<a href="#"><i class="icon-share" title="分享"></i></a>
+		  				</div>
+	  				</div>
+	  				<a href="#">
+	  					<div class="recruit-poster" style="background-image: url(activity/face.jpg);">
+	  				</div>
+	  				</a>
+	  				<div>
+	  					<h4 style="padding-bottom: 10px; height: 22px; overflow: hidden">趁着年轻去思奔</h4>
+	  					
+	  				</div>
+	  				<p class="brief">思考什么的人生什么的碉堡了。。思考什么的人
+	  					生。。思考什么的人生什么的碉堡了。。。思考什么的人生什么的碉堡了。。。思考什
+	  					么的人生什么的碉堡了。。。
+	  				</p>
+					<table>
+						<tr><td width="60px">
+							<a href="#" title="点击察看嘤鸣读书会主页">
+								<img src="img/avatar/2.jpg" class="avatar-large" alt="嘤鸣读书会">
+							</a>
+						</td><td align="bottom" style="font-size: 0.8em;">
+							<a href="#">赵健</a>
+							<label class="small-grey">Tel：15195955770</label>
+							<a href="#"><span class="label">嘤鸣读书会 <span style="color: gold;">信用 5</span></span></a>
+						</td></tr>
+					</table>
+					<div style="margin-top: 10px;">
+						<a href="#" title="点击了解cacate的个人信息"><img class="avatar-middle" src="img/avatar/2.jpg"></a>
+						<a href="#" title="点击了解acate的个人信息"><img class="avatar-middle" src="img/avatar/2.jpg"></a>
+						<a href="#" title="点击了解acate的个人信息"><img class="avatar-middle" src="img/avatar/2.jpg"></a>
+						<a href="#" title="点击了解acate的个人信息"><img class="avatar-middle" src="img/avatar/2.jpg"></a>
+						<a href="#" title="点击了解acate的个人信息"><img class="avatar-middle" src="img/avatar/2.jpg"></a>
+						<a href="#" title="点击了解acate的个人信息"><img class="avatar-middle" src="img/avatar/2.jpg"></a>
+						<a href="#" title="点击了解acate的个人信息"><img class="avatar-middle" src="img/avatar/2.jpg"></a>
+						<a href="#" title="点击了解acate的个人信息"><img class="avatar-middle" src="img/avatar/2.jpg"></a>
+						<a href="#" title="点击了解acate的个人信息"><img class="avatar-middle" src="img/avatar/2.jpg"></a>
+						<a href="#" title="点击了解acate的个人信息"><img class="avatar-middle" src="img/avatar/2.jpg"></a>
+						<a href="#" title="点击了解acate的个人信息"><img class="avatar-middle" src="img/avatar/2.jpg"></a>
+					</div>
+	  			</div>
+			</div>
+		</div>
+		<div class="span9">
+			<div style="display: inline-block">
+				<ul class="nav nav-pills" style="margin-bottom: 0" id="nav2-ul">
+				    <li class="active"><a href="#">讨论板块</a></li>
+				    <li><a href="#">活动动态</a></li>
+				    <li><a href="#">活动详细</a></li>
+				    <li><a href="#">活动文档</a></li>
+				    <li><a href="#">用户与通知</a></li>
+				</ul>
+				<script>
+					$('#nav2-ul li').click(function(){
+						$('#nav2-ul li').removeClass('active');
+						$(this).addClass('active');
+					});
+				</script>
+			</div>
+			<div class="pull-right">
+				<ul class="nav nav-pills" style="margin-bottom: 0">
+				    <li class="dropdown">
+				    	<a class="dropdown-toggle" data-toggle="dropdown" href="#">操作<b class="caret"></b></a>
+					    <ul class="dropdown-menu">
+							<li><a href="#">发表动态</a></li>
+					        <li><a href="editor.html" target="_new">
+					        	<span style="color: orange;">撰写故事 &nbsp;&nbsp;<i class="icon-pencil"></i></span>
+					        </a></li>
+					        <li class="divider"></li>
+					        <li><a href="#">修改活动</a></li>
+					        <li><a href="#">放弃活动</a></li>
+					        <li><a href="#">结束活动</a></li>
+					        <li><a href="#">举报</a></li>
+					        <li><a href="#">退出活动</a></li>
+					    </ul>
+				  	</li>
+			  	</ul>
+			</div>
+			<!--A Simple Editor-->
+			<div class="well well-small" style="height: 142px;">
+				<textarea id="redactor" name="content" class="simple-edit" placeholder="试试'@'你的小伙伴哦"></textarea>
+				<div>
+					<div class="pull-right">
+						<a class="silverlink" href="#">添加附件</a>
+						<a class="silverlink" href="#">添加链接</a>
+						<a class="silverlink" href="#">添加图片</a>
+					</div>
+				</div>
+			</div>
+			
+			<div class="well well-small">
+				<div class="">
+				<div>
+					<a href="#">仅看重要信息</a>
+				</div>
+				<!--Content-->
+				<!--A Message-->
+				<table style="margin-top: 15px; margin-bottom: 15px; width: 100%; border: silver 1px solid;">
+				<tr><td style="width: 50px;background-color:#DDDDDD;" valign="top" align="center" rowspan="3">
+					<a href="#" title="点击察看个人信息">
+						<img src="img/avatar/1.jpg" class="avatar-middle" style="margin-top: 10px;">
+					</a>
+					<label class="small-grey">Giggle Liu</label>
+				</td>
+				<td style="padding: 10px;">
+					<div>
+						<!--title-->
+						<span class="muted">回复</span> <a href="#">mzz(22#)</a>
+						<!--operation-->
+						<div class="pull-right">
+							<a href="#" style="margin-right: 10px;">回复</a>
+							<i class="icon-share" title="分享"></i>
+						</div>
+					</div>
+				</td></tr>
+				<tr><td style="padding-left: 10px; padding-right: 10px;">
+					<!--File Block-->
+					<div>
+						<img src="img/wall/bg6.jpeg" class="image-small" />
+						<img src="img/wall/bg7.jpg" class="image-small" />
+						<img src="img/wall/bg8.jpg" class="image-small" />
+					</div>
+					<!--Text Block-->
+					<div style="margin-top: 10px;">
+						<p>看我这张照片拍的怎么样？</p>
+					</div>
+				</td></tr>
+				<tr><td style=" padding-right: 10px;">
+					<div>
+						<div class="pull-right">
+							<span class="small-grey" style="margin-right: 10px;">6月7日 20:08</span>
+							<i class="icon-thumbs-up" title="顶"></i>
+						</div>
+					</div>
+				</td></tr>
+				</table>
+				<div align="center" style="padding: 10px; margin-top:10px;background-color: silver;">
+					<a href="#">显示更多</a>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+<!--Footer Block-->
+<div style="width: 100%; margin-top: 100px;">
+<div style="background-color: #777; padding:20px;">
+	<div class="container">
+		<div class="row" style="margin-bottom: 30px;">
+			<div class="span2">
+				<ul class="unstyled">
+					<li class=" bottom-label"><a href="#"><span class="label label">传统文化</span></a></li>
+					<li class=" bottom-label"><a href="#"><span class="label label">教育</span></a></li>
+					<li class=" bottom-label"><a href="#"><span class="label label">科技</span></a></li>
+				</ul>
+			</div>
+
+			<div class="span2">
+				<ul class="unstyled">
+					<li class=" bottom-label"><a href="#"><span class="label label">儿童</span></a></li>
+					<li class=" bottom-label"><a href="#"><span class="label label">敬老</span></a></li>
+					<li class=" bottom-label"><a href="#"><span class="label label">青年</span></a></li>
+					<li class=" bottom-label"><a href="#"><span class="label label">幼儿</span></a></li>
+				</ul>
+			</div>
+
+			<div class="span2">
+				<ul class="unstyled">
+					<li class=" bottom-label"><a href="#"><span class="label label">长期</span></a></li>
+					<li class=" bottom-label"><a href="#"><span class="label label">短期</span></a></li>
+				</ul>
+			</div>
+
+			<div class="span2">
+				<ul class="unstyled">
+					<li class=" bottom-label"><a href="#"><span class="label label">校园</span></a></li>
+					<li class=" bottom-label"><a href="#"><span class="label label">社会</span></a></li>
+				</ul>
+			</div>
+
+
+			<div class="span2">
+				<ul class="unstyled">
+					<li class=" bottom-label"><a href="#"><span class="label label">其他</span></a></li>
+					<li class=" bottom-label"><a href="#"><span class="label label">分类</span></a></li>
+				</ul>
+			</div>
+
+			<div class="span2">
+				<ul class="unstyled">
+					<li class=" bottom-label"><a href="#"><span class="label label">长期</span></a></li>
+					<li class=" bottom-label"><a href="#"><span class="label label">短期</span></a></li>
+				</ul>
+			</div>
+		</div>
+		<div class="row">
+			<div class="span3">
+				<ul class="unstyled">
+					<li>
+						<h5>关于I Can</h5>
+					</li>
+					<li>了解I Can</li>
+					<li>团队介绍</li>
+					<li>联系我们</li>
+				</ul>
+			</div>
+			<div class="span3">
+				<ul class="unstyled">
+					<li>
+						<h5>帮助</h5>
+					</li>
+					<li>建议反馈</li>
+					<li>网站使用手册</li>
+					<li>网站管理条例</li>
+				</ul>
+			</div>
+			<div class="span3">
+				<ul class="unstyled">
+					<li>
+						<h5>关注I Can</h5>
+					</li>
+					<li>新浪微博</li>
+					<li>人人网</li>
+					<li>豆瓣小组</li>
+				</ul>
+			</div>
+			
+			<div class="span3">
+				<ul class="unstyled">
+					<li>
+						<h5>官方微信</h5>
+					</li>
+					<li><img src="img/wall/bg4.jpg" class="avatar-large" /></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,42 @@
+<!doctype html>
+<!--Navigator Block-->
+<html>
+<head>
+<meta charset="utf-8">
+<title>I Can</title>
+<link href="css/bootstrap.min.css" rel="stylesheet">
+<link href="css/ican.css" rel="stylesheet">
+<script src="js/setactivity.js"></script>
+<script src="js/jquery.min.js"></script>
+<link rel="stylesheet" href="css/redactor.css" />
+<script src="js/redactor.js"></script>
+<script type="text/javascript">
+    $(function()
+    {
+        $('#content').redactor({
+			imageGetJson: '/tests/images.json',
+			imageUpload: '/webUpload/redactor/uploadImage/',
+			clipboardUploadUrl: '/webUpload/redactor/clipboardUpload/',
+			fileUpload: '/webUpload/redactor/fileUpload/'
+		});
+    });
+</script>
+</head>
+<body style="background-color:#DDDDDD;">
+<div class="container">
+	<div class="well">
+		<center><h2 style="margin-bottom: 30px;">写属于你们的故事</h2></center>
+		<div class="editor-container">
+			<textarea id="content" name="content"></textarea>
+		</div>
+		<div class="row" style=" margin-top: 20px;">
+			<div class="pull-right">
+				<button class="btn btn-info" style="margin-right: 50px;">放弃</button>
+				<button class="btn btn-info">保存</button>
+				<button class="btn btn-info">完成</button>
+			</div>
+		</div>
+	</div>
+</div>
+
+</body>
