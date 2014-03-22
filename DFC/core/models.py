@@ -1,5 +1,4 @@
 from django.db import models
-import random
 from django.utils.translation import ugettext as _
 
 # Core classes for DFC Project
@@ -19,7 +18,7 @@ class User(models.Model):
     birth = models.DateTimeField(null=True, auto_now_add=False)
     telephone = models.CharField(max_length=20 ,null=True)
     qq = models.IntegerField()
-    # avatar = models.ImageField(max_length=1024, upload_to='/users/avatar/')
+    ## avatar = models.ImageField(max_length=1024, upload_to='/users/avatar/')
     descriptions = models.CharField(max_length=256)
     create_time = models.DateTimeField(auto_now_add=True, null=False)
     credit = models.IntegerField()
@@ -27,42 +26,20 @@ class User(models.Model):
 
 class Organization(models.Model):
 
-    name = models.CharField(max_length=256, 
-        unique=True, 
+    name = models.CharField(max_length=256, unique=True,
         help_text=_('The organization will live at Volunteer2Here'), 
         verbose_name=_('Orgnization Name'))
-
     nick_name = models.CharField(max_length=256)
-    
     email = models.EmailField(max_length=75)
-    
     password = models.CharField(max_length=50)
-    
-    birth = models.DateTimeField(blank=True, 
-        auto_now_add=False)
-    
-    telephone = models.CharField(max_length=20, 
-        blank=True, 
-        null=True)
-    
-    qq = models.PositiveIntegerField(blank=True, 
-        null=True)
-    
-    descriptions = models.CharField(max_length=256, 
-        blank=True, 
-        null=True)
-
-    create_time = models.DateTimeField(auto_now_add=True, 
-        blank=True)
-    
+    birth = models.DateTimeField(blank=True, auto_now_add=False)
+    telephone = models.CharField(max_length=20, blank=True, null=True)
+    qq = models.PositiveIntegerField(blank=True, null=True)
+    descriptions = models.CharField(max_length=256, blank=True, null=True)
+    create_time = models.DateTimeField(auto_now_add=True, blank=True)
     credit = models.IntegerField(blank=True)
-
-    organization_page = models.CharField(max_length=1024, 
-        blank=True)
-    
-    pay_link = models.CharField(max_length=512, 
-        blank=True)
-    
+    organization_page = models.CharField(max_length=1024, blank=True)
+    pay_link = models.CharField(max_length=512, blank=True)
     members = models.ManyToManyField(User, through='Membership')
 
     def __unicode__(self):
@@ -76,10 +53,7 @@ class Organization(models.Model):
         QuerySet of users (ForeignKey to User)
 
         """
-        self.clearFounders()
-        self.save()
-        # for founder in founders:
-            # self.members.add()
+        pass
 
     def clearFounders(self):
         self.members.filter(role='FND').delete()
@@ -88,9 +62,9 @@ class Organization(models.Model):
 
     
 class Place(models.Model):
-    name        = models.CharField(max_length = 256, blank = False)
-    longitude   = models.FloatField()
-    latitude    = models.FloatField()
+    name = models.CharField(max_length = 256, blank = False)
+    longitude = models.FloatField()
+    latitude = models.FloatField()
     create_time = models.DateTimeField(auto_now_add = True)
     @classmethod
     def create(cls,name,longitude,latitude):
@@ -129,20 +103,20 @@ class Activity(models.Model):
         ('FRZ','Frozen'),
         ('FIN','Finished'),
     )
-    name            = models.CharField(max_length = 256, blank = False)
-    organizations   = models.ManyToManyField('Organization')
-    participants    = models.ManyToManyField('User', through = "Participation")
-    places           = models.ManyToManyField('Place')
-    desc            = models.TextField()
-    cover           = models.ForeignKey('Photo',null = True)#change to ImageField after MEDIA_ROOT in settings.py is specified
+    name = models.CharField(max_length = 256, blank = False)
+    organizations = models.ManyToManyField('Organization')
+    participants = models.ManyToManyField('User', through = "Participation")
+    places = models.ManyToManyField('Place')
+    desc = models.TextField()
+    cover = models.ForeignKey('Photo',null = True)#change to ImageField after MEDIA_ROOT in settings.py is specified
     #By using callable function as the upload_to path, one must override the save function as below
-    official_link   = models.CharField(max_length = 1024,blank = True)
-    create_time     = models.DateTimeField(auto_now_add = True)
-    update_time     = models.DateTimeField(auto_now = True)
-    status          = models.CharField(max_length = 3, choices = STATUS_CHOICES, default = 'PRP')
-    start_time      = models.DateTimeField(null = True,blank = True)
-    end_time        = models.DateTimeField(null = True,blank = True)
-    visits          = models.PositiveIntegerField(default = 0)
+    official_link = models.CharField(max_length = 1024,blank = True)
+    create_time = models.DateTimeField(auto_now_add = True)
+    update_time = models.DateTimeField(auto_now = True)
+    status = models.CharField(max_length = 3, choices = STATUS_CHOICES, default = 'PRP')
+    start_time = models.DateTimeField(null = True,blank = True)
+    end_time = models.DateTimeField(null = True,blank = True)
+    visits = models.PositiveIntegerField(default = 0)
     
     SHOW_ON_INDEXPAGE = 10
     
@@ -156,11 +130,11 @@ class Activity(models.Model):
                     null if error occurs
         '''
         if not name:
-            return null
+            return None
         act = cls(name=name)
         act.save()
         if not organizations:
-            return null
+            return None
         for org in organizations:
             act.organizations.add(org)
         act.save()
@@ -273,14 +247,14 @@ class Post(models.Model):
     '''
     Forum posts.
     '''
-    title           = models.CharField(max_length = 256, blank = False)
-    content         = models.TextField(blank = False)
-    organization    = models.ForeignKey('Organization')
-    author         = models.ForeignKey('User')
-    activity        = models.ForeignKey('Activity')
-    create_time     = models.DateTimeField(auto_now_add = True)
-    update_time     = models.DateTimeField(auto_now = True)
-    visits          = models.PositiveIntegerField(default = 0)
+    title = models.CharField(max_length = 256, blank = False)
+    content = models.TextField(blank = False)
+    organization = models.ForeignKey('Organization')
+    author = models.ForeignKey('User')
+    activity = models.ForeignKey('Activity')
+    create_time = models.DateTimeField(auto_now_add = True)
+    update_time = models.DateTimeField(auto_now = True)
+    visits = models.PositiveIntegerField(default = 0)
     @classmethod
     def create(cls,title,content,author,organization,activity):
         '''
