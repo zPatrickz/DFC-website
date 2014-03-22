@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-03-02 23:56+0800\n"
+"POT-Creation-Date: 2014-03-22 23:15+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: dfc\n"
 "Language-Team: dfc\n"
@@ -17,29 +17,76 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
-#: templates/base.html:14
-msgid "Home"
+#: accounts/forms.py:28 templates/deprecated/base3.html:30
+#, fuzzy
+msgid "Sign Up"
+msgstr "注册"
+
+#: core/models.py:30
+msgid "The organization will live at Volunteer2Here"
+msgstr ""
+
+#: core/models.py:31
+msgid "Orgnization Name"
+msgstr "组织名"
+
+#: templates/base.html:26
+msgid "Index"
 msgstr "首页"
 
-#: templates/base.html:16 templates/accounts/profile.html:3
+#: templates/base.html:27
+msgid "Recruit"
+msgstr "招募"
+
+#: templates/base.html:28
+msgid "Story"
+msgstr ""
+
+#: templates/base.html:29 templates/deprecated/base3.html:23
+msgid "Organization"
+msgstr ""
+
+#: templates/base.html:30
+msgid "Award"
+msgstr ""
+
+#: templates/base.html:54
+msgid "Operation_Panel"
+msgstr ""
+
+#: templates/base.html:65
+msgid "Log out"
+msgstr "登出"
+
+#: templates/base.html:66 templates/accounts/profile.html:4
+#: templates/deprecated/base3.html:26
 msgid "Profile"
 msgstr "我的资料"
 
-#: templates/base.html:17
-msgid "Signout"
-msgstr "登出"
+#: templates/base.html:70
+msgid "Log in"
+msgstr "登陆"
 
-#: templates/base.html:19
-msgid "Signin"
-msgstr "登录"
+#: templates/base.html:71
+msgid "Register"
+msgstr "注册"
 
-#: templates/base.html:20 templates/accounts/register.html:3
+#: templates/accounts/login.html:8
+msgid "Sorry, that's not a valid username or password"
+msgstr "非法的用户名或密码!"
+
+#: templates/accounts/register.html:4
 msgid "Signup"
 msgstr "注册"
 
-#: templates/accounts/login.html:7
-msgid "Sorry, that's not a valid username or password"
-msgstr "非法的用户名或密码!"
+#: templates/activity/add_or_update_activity.html:4
+#: templates/activity/discarded/add_or_update.html:4
+msgid "New Activity"
+msgstr ""
+
+#: templates/activity/index.html:4 templates/activity/discarded/index.html:4
+msgid "Activities"
+msgstr ""
 
 #: templates/admin/base_site.html:4
 msgid "Design For Change Admin"
@@ -86,3 +133,35 @@ msgstr ""
 #: templates/admin/index.html:76
 msgid "Unknown content"
 msgstr "未知内容"
+
+#: templates/deprecated/base3.html:22
+msgid "Home"
+msgstr "首页"
+
+#: templates/deprecated/base3.html:24
+msgid "Activity"
+msgstr ""
+
+#: templates/deprecated/base3.html:27
+#, fuzzy
+msgid "Sign Out"
+msgstr "登出"
+
+#: templates/deprecated/base3.html:29
+#, fuzzy
+msgid "Sign In"
+msgstr "登录"
+
+#: templates/photo/add_or_update_album.html:4
+msgid "New Album"
+msgstr ""
+
+#: templates/photo/add_photo.html:4
+msgid "New Photo"
+msgstr ""
+
+#: templates/photo/index.html:4
+#: templates/photo/view_album_and_upload_photo.html:4
+#: templates/photo/view_photo.html:4
+msgid "Photo"
+msgstr ""

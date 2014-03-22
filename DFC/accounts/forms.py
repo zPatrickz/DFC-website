@@ -3,6 +3,7 @@ from core.models import Organization
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Layout, Fieldset, Submit
 from crispy_forms.bootstrap import FormActions
+from django.utils.translation import ugettext as _
 
 
 class OrganizationSignUpForm(forms.ModelForm):
@@ -24,10 +25,12 @@ class OrganizationSignUpForm(forms.ModelForm):
                 'email',
                 'password',
                 FormActions(
-                    Submit('sign up', 'Sign Up', css_class='btn col-sm-offset-2'),
+                    Submit('sign up', _('Sign Up'), css_class='btn col-sm-offset-2'),
                 )
             ),
         )
 
+
     class Meta:
         model = Organization
+

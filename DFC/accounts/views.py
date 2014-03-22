@@ -1,11 +1,12 @@
 from django.shortcuts import render_to_response
 from forms import OrganizationSignUpForm
 from django.contrib.auth.decorators import login_required
+from django.template import RequestContext
 
 
 def register(request):
     pass
-    #if request.method == 'POST':
+    # if request.method == 'POST':
     #     username = request.POST.get('username')
     #     password = request.POST.get('password1')
     #     form = UserCreationForm(request.POST)
@@ -23,16 +24,14 @@ def register(request):
     #         return HttpResponseRedirect('/accounts/profile')
     #     else:
     #         return HttpResponseRedirect('/accounts/login')
-    #
-    #form = UserCreationForm()
-    #return render_to_response("accounts/register.html", {
+    
+    # form = UserCreationForm()
+    # return render_to_response("accounts/register.html", {
     #     'form': form,
-    #}, context_instance=RequestContext(request))
+    # }, context_instance=RequestContext(request))
 
 
 def signup_organization(request):
-    form = OrganizationSignUpForm()
-
     if request.method == 'POST':
         form = OrganizationSignUpForm(request.POST)
         if form.is_valid():
@@ -41,9 +40,10 @@ def signup_organization(request):
             return render_to_response('render.html', {'result': 'no'})
             #organization = form.save()
     else:
-        return render_to_response('accounts/organization_signup.html', {
+        form = OrganizationSignUpForm()
+    return render_to_response('accounts/organization_signup.html', {
             'form': form,
-        })
+    }, context_instance=RequestContext(request))
 
 
 @login_required
