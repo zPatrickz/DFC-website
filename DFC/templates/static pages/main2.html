@@ -1,0 +1,381 @@
+<!doctype html>
+<!--Navigator Block-->
+<html>
+<head>
+<meta charset="utf-8">
+<title>I Can</title>
+<link href="css/bootstrap.min.css" rel="stylesheet">
+<link href="css/ican.css" rel="stylesheet">
+<script src="js/jquery.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script type="text/javascript" src="http://api.map.baidu.com/api?v=1.5&ak=2b866a6daac9014292432d81fe9b47e3"></script>
+<script src="js/setactivity.js"></script>
+<script type="text/javascript" src="js/bootstrap-datetimepicker.min.js"></script>
+<link rel="stylesheet" href="css/redactor.css" />
+<script src="js/redactor.js"></script>
+</head>
+<body style="background-color:#EEEEEE; background-size: cover;">
+<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+	    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+	        <span class="sr-only">Toggle navigation</span>
+	        <span class="icon-bar"></span>
+	        <span class="icon-bar"></span>
+	        <span class="icon-bar"></span>
+	    </button>
+    <a class="navbar-brand" href="#">I Can</a>
+    </div>
+
+  	<!-- Collect the nav links, forms, and other content for toggling -->
+  	<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+    	<ul class="nav navbar-nav" id="nav1-ul">
+      		<li class="active"><a href="#">首页</a></li>
+      		<li><a href="#">公益行动</a></li>
+	      	<li><a href="#">公益故事</a></li>
+	      	<li><a href="#">公益团队</a></li>
+	      	<li><a href="#">大奖赛</a></li>
+    	</ul>
+	    <ul class="nav navbar-nav navbar-right">
+	      	<li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" style="padding:15px;">
+                	<img class="avatar-small" src="img/icon/message.svg">
+              	</a>
+              	<ul class="dropdown-menu">
+                  	<li><a href="myact.html" target="content">推送（<span style="color: red">8</span>）</a></li>
+                  	<li><a href="myteam.html" target="content">站内信（<span style="color: red">8</span>）</a></li>
+                  	<li><a href="myteam.html" target="content">通知（0）</a></li>
+                  	<!--<li><a href="#">备忘</a></li>-->
+              	</ul>
+            </li>
+	      	<li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" style="padding:13px;">
+          		  	<img src="img/icon/avatar.svg" class="avatar-small">
+          		  	<span class="small-grey">个人面板</span>
+          		  	<b class="caret"></b>
+              	</a>
+              	<ul class="dropdown-menu">
+                  	<li><a href="myact.html" target="content">活动1</a></li>
+                  	<li><a href="myteam.html" target="content">活动2</a></li>
+                  	<!--<li><a href="#">备忘</a></li>-->
+                  	<li class="divider"></li>
+                  	<li><a href="myact.html" target="content">组织1</a></li>
+                  	<li><a href="myteam.html" target="content">组织2</a></li>
+                  	<li class="divider"></li>
+                  	<li><a href="#" id="logout">注销</a></li>
+                  	<li><a href="profile.html" target="content">修改个人资料</a></li>
+              	</ul>
+            </li>
+	    </ul>
+	    <form class="navbar-form navbar-right" role="search">
+	      	<div class="form-group">
+	        	<input type="text" class="form-control" placeholder="活动/组织/用户">
+	      	</div>
+	      	<button type="submit" class="btn btn-default" style="margin-right: 30px;">搜索</button>
+	    </form>
+  	</div><!-- /.navbar-collapse -->
+</nav>
+
+<script>
+	$('#nav1-ul li').click(function(){
+		$('#nav1-ul li').removeClass('active');
+		$(this).addClass('active');
+	});
+</script>
+  
+  
+<!--Content  e61610-->
+<div class="container">
+	<div class="row" style="height: 180px; margin-bottom: 30px;">
+		<div class="col-md-12" align="left" style="padding-top: 80px;">
+			<div style="margin-left: 70px;">
+				<h1 style="color:#B94A48;">I Can公益行动平台</h1>
+				<p style="font-size: 1.2em;">每个人内心都是浪漫的诗人，已经有500个人通过此平台参与过志愿者活动。<a href="#">了解更多</a></p>
+			</div>
+		</div>
+		<!--
+		<div class="col-md-6" align="right" style="padding-top: 80px;">
+			<div style=" padding-right: 20px;">
+				<div class="btn-group">
+					<button class="btn btn-inverse btn-large">登陆</button>
+					<button class="btn btn-info btn-large">注册</button>
+				</div>
+			</div>
+		</div>
+		-->
+	</div>
+	
+	<div class="row">
+		<div class="well col-md-6" style="background-color: rgba(200,200,200,0.2); height: 400px; margin-left: 15px; margin-bottom: 50px;">
+  	    	<legend style="margin-left:50px; width:90%;">
+  	    		<big>注册</big>
+				<button class="close">&times;</button>
+			</legend>
+			 <form role="form" style="color:#444; font-family: '微软雅黑'" class="form-horizontal">
+				<div class=" form-group">
+					<label for="register-name" class="col-sm-3 control-label">用户名</label>
+					<div class="col-sm-7">
+						<input class="form-control" type="text" placeholder="用户名" id="register-name" required>
+					</div>
+				</div>
+				<div class=" form-group">
+					<label for="register-password1" class="col-sm-3 control-label" required>密码</label>
+					<div class="col-sm-7">
+						<input class="form-control" id="register-password1" type="password" placeholder="密码" required>
+					</div>
+				</div>
+				<div class=" form-group">
+					<label for="register-password2" class="col-sm-3 control-label" required>再次输入密码</label>
+					<div class="col-sm-7">
+						<input class="form-control" id="register-password2" type="password" placeholder="重复密码">
+					</div>
+				</div>
+				<div class=" form-group">
+					<label for="register-mail" class="col-sm-3 control-label">邮箱</label>
+					<div class="col-sm-7">
+						<input class="form-control" type="email" placeholder="邮箱" id="register-mail" required>
+					</div>
+				</div>
+				<div class=" form-group">
+    				<div class=" col-sm-offset-3 col-sm-7">
+	    				<div class="checkbox">
+					        <label>
+					            <input type="checkbox"> 记住我&nbsp;&nbsp;<a href="#" style="font-size:0.8em;">已有帐号?登陆</a>
+					        </label>
+					    </div>
+				    </div>
+				</div>
+				<div class=" form-group">
+    				<div class=" col-sm-offset-3 col-sm-7">
+						<button type="submit" class="btn btn-default btn-lg">注册</button>
+					</div>
+				</div>
+    		</form>
+<!--			<div class="col-md-5 offset1">
+				 <form class="form-horizontal" style="color:#444; font-family: '微软雅黑'">
+  	    			<fieldset>
+  	    				<div class=" form-group">
+  	    					<label class="control-label" for="register-contact-select" title="">联系方式</label>
+  	    					<div class="controls">
+  	    						<select class="input-small" id="register-contact-select">
+  	    							<option>手机号码</option>
+  	    							<option>邮件</option>
+  	    							<option>站内信</option>
+  	    							<option>微信</option>
+  	    						</select>
+  	    						<input class="input-large" style="margin-top:5px;" type="text" placeholder="手机号码" title="">
+    							<p class="help-block">请选择最偏好的联系方式以便活动主办方通知您，如果选择微信，主办方将无法直接通过本站联系您。</p>
+  	    					</div>
+  	    				</div>
+  	    				
+  	    				<div class=" form-group">
+  	    					<label class="control-label" for="register-truename">真实姓名</label>
+  	    					<div class="controls">
+  	    						<input type="text" placeholder="真实姓名（非必填项）" id="register-truename" title="为了让大家更好的联系您。" data-toggle="tooltip" rel="tooltip">
+  	    					</div>
+  	    					<script>
+  	    						$('#register-truename').tooltip({'placement':'right'});
+  	    					</script>
+  	    				</div>
+  	    			</fieldset>
+  	    		</form>
+			</div>-->
+		</div>
+	</div>
+	
+	
+	<div class="row">
+		<div class="col-md-4">
+			<div class="well" style="background-color:rgba(200,200,200,0.2);">
+				<div align="center">
+					<a href="#"><img src="img/icon/profile.svg" class="avatar-middle" alt="志愿者招募" title="志愿者招募中"></a>
+					<p class="small-grey">志愿者招募</p>
+					<div class="simple-box-container">
+						<div class="well well-small simple-box">
+							<div class="padding">
+								<p style=" margin-bottom: 0">趁着年轻去“思奔”</p>
+								<div style="text-align: right;">
+									<a class="small-grey">赵健 </a><a href="#" class="small-grey">@嘤鸣读书会</a>
+								</div>
+							</div>
+							<div class="padding">
+								<p style=" margin-bottom: 0">趁着年轻去“思奔”</p>
+								<div style="text-align: right;">
+									<a class="small-grey">赵健 </a><a href="#" class="small-grey">@嘤鸣读书会</a>
+								</div>
+							</div>
+							<div class="padding">
+								<p style=" margin-bottom: 0">趁着年轻去“思奔”</p>
+								<div style="text-align: right;">
+									<a class="small-grey">赵健 </a><a href="#" class="small-grey">@嘤鸣读书会</a>
+								</div>
+							</div>
+							
+							<div class="simple-box-more">
+								<a href="#">更多招募信息</a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="col-md-4">
+			<div class="well" style="background-color:rgba(200,200,200,0.2);">
+				<div align="center">
+					<a href="#"><img src="img/icon/circle.svg" alt="活动进行中" class="avatar-middle" title="进行中的活动"></a>
+					<p class="small-grey">活动进行中</p>
+					<div class="simple-box-container">
+						<div class="well well-small simple-box">
+							<div class="padding">
+								<p style=" margin-bottom: 0">趁着年轻去“思奔”</p>
+								<div style="text-align: right;">
+									<a class="small-grey">赵健 </a><a href="#" class="small-grey">@嘤鸣读书会</a>
+								</div>
+							</div>
+							<div class="padding">
+								<p style=" margin-bottom: 0">趁着年轻去“思奔”</p>
+								<div style="text-align: right;">
+									<a class="small-grey">赵健 </a><a href="#" class="small-grey">@嘤鸣读书会</a>
+								</div>
+							</div>
+							<div class="padding">
+								<p style=" margin-bottom: 0">趁着年轻去“思奔”</p>
+								<div style="text-align: right;">
+									<a class="small-grey">赵健 </a><a href="#" class="small-grey">@嘤鸣读书会</a>
+								</div>
+							</div>
+							
+							<div class="simple-box-more">
+								<a href="#">更多进行中的行动</a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="col-md-4">
+			<div class="well" style="background-color:rgba(200,200,200,0.2);">
+				<div align="center">
+					<a href="#"><img src="img/icon/love-middle.svg" class="avatar-middle" alt="公益故事" title="做过的，最受欢迎的公益行动"></a>
+					<p class="small-grey">公益故事</p>
+					<div class="simple-box-container">
+						<div class="well well-small simple-box">
+							<div class="padding">
+								<p style=" margin-bottom: 0">趁着年轻去“思奔”
+									<img class="pull-right avatar-small" src="img/icon/love-red.svg" alt="本月最感动奖" title="本月最感动奖">
+								</p>
+								<div style="text-align: right;">
+									<a class="small-grey">赵健 </a><a href="#" class="small-grey">@嘤鸣读书会</a>
+								</div>
+							</div>
+							<div class="padding">
+								<p style=" margin-bottom: 0">趁着年轻去“思奔”</p>
+								<div style="text-align: right;">
+									<a class="small-grey">赵健 </a><a href="#" class="small-grey">@嘤鸣读书会</a>
+								</div>
+							</div>
+							<div class="padding">
+								<p style=" margin-bottom: 0">趁着年轻去“思奔”</p>
+								<div style="text-align: right;">
+									<a class="small-grey">赵健 </a><a href="#" class="small-grey">@嘤鸣读书会</a>
+								</div>
+							</div>
+							
+							<div class="simple-box-more">
+								<a href="#">更多公益故事</a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="row" style="margin-top: 100px;">
+		<h3 class="page-header" style="margin-left:20px; color: grey;">合作组织</h3>
+		<ul class="thumbnails" style="margin-left: 0px;">
+		    <li class="col-md-2">
+			    <a href="#" class="thumbnail">
+			        <img src="img/wall/bg4.jpg" alt="" class="image-middle thumbnail-img">
+			    </a>
+		    </li>
+		    <li class="col-md-2">
+			    <a href="#" class="thumbnail">
+			        <img src="img/wall/bg1.jpg" alt="" class="image-middle thumbnail-img">
+			    </a>
+		    </li>
+		    <li class="col-md-2">
+			    <a href="#" class="thumbnail">
+			        <img src="img/wall/bg3.jpg" alt="" class="image-middle thumbnail-img">
+			    </a>
+		    </li>
+		    <li class="col-md-2">
+			    <a href="#" class="thumbnail">
+			        <img src="img/wall/bg5.jpg" alt="" class="image-middle thumbnail-img">
+			    </a>
+		    </li>
+		    <li class="col-md-2">
+			    <a href="#" class="thumbnail">
+			        <img src="img/wall/bg3.jpg" alt="" class="image-middle thumbnail-img">
+			    </a>
+		    </li>
+		    <li class="col-md-2">
+			    <a href="#" class="thumbnail">
+			        <img src="img/wall/bg4.jpg" alt="" class="image-middle thumbnail-img">
+			    </a>
+		    </li>
+		</ul>
+	</div>
+</div>
+
+
+<!--Footer Block-->
+<div style="width: 100%; margin-top: 100px;">
+<div style="background-color: #777; padding:20px;">
+	<div class="container">
+
+		<div class="row">
+			<div class="col-md-3">
+				<ul class="list-unstyled">
+					<li>
+						<h5>关于I Can</h5>
+					</li>
+					<li>了解I Can</li>
+					<li>团队介绍</li>
+					<li>联系我们</li>
+				</ul>
+			</div>
+			<div class="col-md-3">
+				<ul class="list-unstyled">
+					<li>
+						<h5>帮助</h5>
+					</li>
+					<li>建议反馈</li>
+					<li>网站使用手册</li>
+					<li>网站管理条例</li>
+				</ul>
+			</div>
+			<div class="col-md-3">
+				<ul class="list-unstyled">
+					<li>
+						<h5>关注I Can</h5>
+					</li>
+					<li>新浪微博</li>
+					<li>人人网</li>
+					<li>豆瓣小组</li>
+				</ul>
+			</div>
+			
+			<div class="col-md-3">
+				<ul class="list-unstyled">
+					<li>
+						<h5>官方微信</h5>
+					</li>
+					<li><img src="img/wall/bg4.jpg" class="avatar-large" /></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+</div>
+</div>
+</body>
+</html>

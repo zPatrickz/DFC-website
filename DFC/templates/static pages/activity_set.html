@@ -1,0 +1,165 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>I Can</title>
+<link href="css/bootstrap.min.css" rel="stylesheet">
+<link href="css/ican.css" rel="stylesheet">
+<script src="js/jquery.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script type="text/javascript" src="http://api.map.baidu.com/api?v=1.5&ak=2b866a6daac9014292432d81fe9b47e3"></script>
+<script src="js/setactivity.js"></script>
+<script type="text/javascript" src="js/bootstrap-datetimepicker.min.js"></script>
+</head>
+<body style="background-color: silver;">
+<div class="col-md-7">
+	<div class="well">
+		<form class="form-horizontal" role="form">
+				<h3 class="page-header">活动基本信息</h3>
+				<div class="form-group">
+					<label class="control-label col-md-3" for="activity-title">活动名称</label>
+					<div class="col-md-7">
+						<input class="form-control" type="text" placeholder="" id="activity-title">
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="control-label col-md-3" for="activity-brief">活动简介</label>
+					<div class="col-md-7">
+						<textarea class=" form-control" placeholder="" id="activity-biref"></textarea>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="control-label col-md-3" for="activity-face">上传封面</label>
+					<div class="col-md-7">
+						<input type="file" class="form-control" placeholder="" id="activity-face">
+					</div>
+				</div>
+				<div class="form-group">
+					<label class=" control-label col-md-3" for="activity-time">活动时间</label>
+					<div class="col-md-7">
+					    <div id="datetimepicker" class="input-append date" style="display:inline-block;">
+					        <input type="text" id="activity-time" class="input-xlarge">
+					        <span class="add-on">
+					        	<i data-time-icon="icon-time" data-date-icon="glyphicon glyphicon-calendar"></i>
+					        </span>
+					    </div>
+					</div>
+				</div>
+				
+				<script type="text/javascript">
+				    $('#datetimepicker').datetimepicker({
+				        format: 'yyyy年MM月dd日',
+				        language: 'cn',
+				        pickDate: true,
+				        pickTime: false,
+				        hourStep: 1,
+				        minuteStep: 15,
+				        secondStep: 30,
+				        inputMask: true
+				    });
+				</script>
+
+				<div class="form-group">
+					<label class="control-label col-md-3" for="activity-place">活动地点</label>
+					<div class="col-md-7">
+						<input class="form-control" type="text" placeholder="" id="activity-place">
+					</div>
+				</div>
+				<div class="form-group">
+					<label class=" control-label col-md-3" for="activity-time">添加标签</label>
+					<div class="col-md-7">
+						<div>
+							<span class="label label-info">儿童<button class="close" style="height:15px;">&times;</button></span>
+							<span class="label label-info">教育<button class="close" style="height:15px;">&times;</button></span>
+						</div>
+						<div class="input-append" style="margin-top: 10px">
+							<input type="text" class="input-xlarge">
+							<div class="btn-group">
+							    <span class="add-on">添加</span>
+							</div>
+						</div>
+						<div class="well well-small" style="width:240px;">
+							<span class="label">儿童</span>
+							<span class="label">儿童</span>
+							<span class="label">儿童</span>
+							<span class="label">儿童</span>
+							<span class="label">儿童</span>
+						</div>
+					</div>
+				</div>
+				
+				<h3 class="page-header" style="margin-top: 50px;">志愿者招募信息</h3>
+				<div class="form-group">
+					<label class="control-label col-md-3" for="activity-num">人数</label>
+					<div class="col-md-7">
+						<input class="input-mini" type="number" placeholder="" id="activity-num">
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="control-label col-md-3" for="activity-talent">技能需求</label>
+					<div class="col-md-7">
+						<textarea class="form-control" placeholder="" id="activity-talent"></textarea>
+					</div>
+				</div>
+				
+				<div class="form-group hide" id="vol-confirm">
+					<label class="control-label col-md-3" for="activity-confirmtime">活动前</label>
+					<div class="col-md-7">
+						<input class="input-mini" placeholder="" id="activity-confirmtime" type="number" value=24>小时通知志愿者确认
+					</div>
+				</div>
+				<div class="form-group" id="inform-set">
+					<label class="control-label col-md-3" for="activity-inform">自动通知志愿者的方式</label>
+					<div class="col-md-7">
+						<select>
+							<option>按志愿者偏好</option>
+							<option>仅用短信</option>
+							<option>仅用邮件</option>
+							<option>仅用微信</option>
+						</select>
+					</div>
+				</div>
+				<div class="form-group hide" id="vol-stop">
+					<label class="control-label col-md-3" for="activity-max">报名人数到达</label>
+					<div class="col-md-7">
+						<input class="input-mini" placeholder="" id="activity-max" type="number" value=133>%时停止招募
+					</div>
+				</div>
+				
+				
+				<div>
+					<a href="javascript:void(0)" class="pull-right" onclick="$('#vol-stop,#vol-confirm,#inform-set').show();$(this).hide();">展开高级选项</a>
+				</div>
+				<h3 class="page-header" style="margin-top: 50px;">活动配置</h3>
+				
+				<div class="form-group">
+					<div class="col-md-offset-3 col-md-7">
+						<label class="checkbox" for="activity-autoconfirm">
+							<input type="checkbox" id="activity-publish">活动不对外招募（设为私密）
+						</label>
+					</div>
+				</div>
+				
+				<div class="form-group">
+					<label class="control-label col-md-3" for="activity-inform">聊天室设置</label>
+					<div class="col-md-7">
+						<select>
+							<option>非参与者不可见</option>
+							<option>非参与者仅可浏览信息</option>
+							<option>非参与者可见且参与讨论</option>
+						</select>
+					</div>
+				</div>
+				<div class="form-group" style="margin-top: 40px">
+					<div class="col-md-offset-3 col-md-7">
+						<button class="btn btn-info">确认修改</button>
+						<button class="btn btn-info">返回</button>
+					</div>
+				</div>
+		</form>
+	</div>
+    
+</div>
+
+</body>
+</html>
