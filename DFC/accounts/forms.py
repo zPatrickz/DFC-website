@@ -19,17 +19,16 @@ class UserSignUpForm(forms.ModelForm):
         self.helper.layout = Layout(
             Fieldset(
                 'Create your account',
-                'name', 
                 'email', 'password', 
                 FormActions(
                     Submit('sign up', _('Sign Up'), css_class='btn col-sm-offset-2'),
                 ),
             )
         )
+
     class Meta:
         model = User
 
-            
 
 class OrganizationSignUpForm(forms.ModelForm):
     password = forms.CharField(widget=forms.PasswordInput)
@@ -53,7 +52,6 @@ class OrganizationSignUpForm(forms.ModelForm):
                 )
             ),
         )
-
 
     class Meta:
         model = Organization

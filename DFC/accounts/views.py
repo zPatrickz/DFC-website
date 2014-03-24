@@ -1,9 +1,9 @@
 from django.shortcuts import render_to_response
-from forms import OrganizationSignUpForm, UserSignUpForm
 from django.contrib.auth.decorators import login_required
 from django.template import RequestContext
 from django.http import HttpResponseRedirect
 from django.core.urlresolvers import reverse
+from forms import OrganizationSignUpForm, UserSignUpForm
 
 
 def register(request):

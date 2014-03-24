@@ -1,8 +1,12 @@
 from django.db import models
+from django.utils import timezone
+from django.core.mail import send_mail
+from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin
 from django.utils.translation import ugettext as _
 from tagging.fields import *
 from core.fields import *
 from ckeditor.fields import RichTextField
+
 # Core classes for DFC Project
 
 # For general field usage, please refer to https://docs.djangoproject.com/en/1.6/ref/models/fields/
@@ -13,61 +17,7 @@ from ckeditor.fields import RichTextField
 # For tagging usage, please refer to https://github.com/brosner/django-tagging/blob/master/docs/overview.txt
 # Use PhotoField instead of ImageField, and GalleryField for galleries
 
-class User(models.Model):
-    # login name
-    name = models.CharField(max_length=256, blank=False)
-    email = models.EmailField(max_length=75, blank=False)
-    password = models.CharField(max_length=50, blank=False)
-    # name displayed on site
-    nick_name = models.CharField(max_length=256, blank=True)
-    birth = models.DateTimeField(blank=True, null=True, auto_now_add=False)
-    telephone = models.CharField(max_length=20, blank=True)
-    qq = models.IntegerField(blank=True, null=True)
-    descriptions = models.CharField(max_length=256, blank=True)
-    create_time = models.DateTimeField(auto_now_add=True, null=False)
-    credit = models.IntegerField(blank=True, null=True)
-    avatar = PhotoField(blank=True,null=True)
 
-    def __unicode__(self):
-        return self.name
-
-    
-
-class Organization(models.Model):
-    # login name
-    name = models.CharField(max_length=256, unique=True,
-        help_text=_('The organization will live at Volunteer2Here'), 
-        verbose_name=_('Orgnization Name'),)
-    email = models.EmailField(max_length=75)
-    password = models.CharField(max_length=50)
-
-    # name displayed on site
-    nick_name = models.CharField(max_length=256, blank=True)
-    birth = models.DateTimeField(blank=True, null=True, auto_now_add=False)
-    telephone = models.CharField(max_length=20, blank=True)
-    qq = models.PositiveIntegerField(blank=True, null=True)
-    descriptions = models.CharField(max_length=256, blank=True)
-    create_time = models.DateTimeField(blank=True, auto_now_add=True)
-    credit = models.IntegerField(blank=True, null=True)
-    organization_page = models.URLField( blank=True)
-    pay_link = models.URLField( blank=True)
-    members = models.ManyToManyField(User, blank=True, through='Membership')
-
-    def __unicode__(self):
-        return self.name
-
-    def assignUsersToRole(self, users, role):
-        """
-        assgin users to role of the organization
-        :param :users
-        QuerySet of users
-        :param :role ROLE_CHOICES(Founder, Manager, Member)
-
-        """
-        pass
-
-
-    
 class Place(models.Model):
     name = models.CharField(max_length = 256, blank = False)
     longitude = models.FloatField()
