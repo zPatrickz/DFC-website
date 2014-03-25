@@ -10,83 +10,89 @@
 	    <title>{% block title %} I Can {% endblock %}</title>
 		{% block stylesheets %}
 		<link rel="stylesheet" type="text/css" href="{% static 'css/ican.css' %}">
-		<link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.min.2.css' %}">
-		<link rel="stylesheet" href="{% static 'css/redactor.css' %}" />
+		<link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.min.css' %}">
 		{% endblock %}
 		{% block scripts %}
-		<script type="text/javascript" src="{% static 'css/redactor.css' %}"></script>
 		<script type="text/javascript" src="{% static 'js/jquery.min.js' %}"></script>
 		<script type="text/javascript" src="{% static 'js/bootstrap.min.js' %}"></script>
-		<script type="text/javascript" src="{% static 'js/setactivity.js' %}"></script>
-		<script type="text/javascript" src="{% static 'js/bootstrap-datetimepicker.min.js' %}"></script>
-		<script type="text/javascript" src="{% static 'js/redactor.js' %}"></script>
 		{% endblock %}
 	</head>
 	<body id="{% block body_id %}{% endblock %}" class="{% block body_class %}{% endblock %}" style="background-image: url({% block body_bg %}{%endblock%});font-size: 66%;">	    
  
-	    	<div class="navbar navbar-static" style="margin-bottom: 0px;">
-				{% block navigation %}
-		    	<div class="navbar-inner">
-		      		<div class="container">
-		        		<a class="brand" href="{% url 'home' %}">I Can</a>
-			            <ul class="nav" id="nav1-ul">
-			                <li class="active navitem" id="nav-index"><a href="{% url 'home' %}">{% trans 'Index' %}</a></li>
-			                <li class="navitem" id="nav-activity"><a href="{% url 'activity_home'%}">{% trans 'Recruit' %}</a></li>
-			                <li class="navitem" id="nav-story"><a href="#">{% trans 'Story' %}</a></li>
-			                <li class="navitem" id="nav-org"><a href="{% url 'signup_organization' %}">{% trans 'Organization' %}</a></li>
-			                <li class="navitem" id="nav-award"><a href="#">{% trans 'Award' %}</a></li>
-			            </ul>
-						<script>
-							$('#nav1-ul li').click(function(){
-								$('#nav1-ul li').removeClass('active');
-								$(this).addClass('active');
-							});
-						</script>
-			            
-			            <ul class="nav pull-right"> <!--Right hand side-->
-			          	    <li>  
-				          	    <form class="navbar-search pull-left">
-				  			        <input type="text" style="margin-bottom: 0;margin-right: 15px;" placeholder="搜索">
-							    </form>
-					  	    </li>
-						  	{% if user.is_authenticated %}
-							  	<li>
-					                <a href="message.html" target="content" style="padding:10px;">
-					                	<img class="avatar-small" src="{% static 'img/icon/message.svg' %}">
-					                </a>
-					            </li>
-					            <li class="dropdown">
-					                <a href="#" class="dropdown-toggle" data-toggle="dropdown" style="padding:8px;">
-					             		<img src="{% static 'img/icon/avatar.svg' %}" class="avatar-small">
-					              		<span class="small-grey">{% trans 'Operation_Panel' %}</span>
-					              		<b class="caret"></b>
-					                </a>
-					                <ul class="dropdown-menu">
-						                <li><a href="myact.html" target="content">Act 1</a></li>
-						                <li><a href="myteam.html" target="content">Act 2</a></li>
-						                <!--<li><a href="#">备忘</a></li>-->
-						                <li class="divider"></li>
-						                <li><a href="myact.html" target="content">Org 1</a></li>
-					  	                <li><a href="myteam.html" target="content">Org 2</a></li>
-				  		                <li class="divider"></li>
-						                <li><a href="{% url 'logout' %}" id="logout">{% trans 'Log out' %}</a></li>
-						                <li><a href="{% url 'profile' %}" target="content">{% trans 'Profile' %}</a></li>
-					                </ul>
-					            </li>
-						    {% else %}
-							    <li><a href="{% url 'login' %}"><span>{% trans 'Log in' %}</span></span></a></li>
-							    <li><a href="{% url 'register' %}"><span>{% trans 'Register' %}</span></span></a></li>
-						    {% endif %}
-						</ul>
-		        	</div>
-		        </div><!-- /navbar-inner-->
-				{% endblock %}
-		    </div><!-- /navbar-->
-		<!--Content  e61610-->
-		<div id="content-container" class="container">
-		    {% block content %}
-		    {% endblock %}
-		</div>
+ 
+{% block navigation %}
+ <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+	    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+	        <span class="sr-only">Toggle navigation</span>
+	        <span class="icon-bar"></span>
+	        <span class="icon-bar"></span>
+	        <span class="icon-bar"></span>
+	    </button>
+    <a class="navbar-brand" href="{% url 'home' %}">I Can</a>
+    </div>
+
+  	<!-- Collect the nav links, forms, and other content for toggling -->
+  	<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+    	<ul class="nav navbar-nav" id="nav1-ul">
+      		<li class="active"><a href="{% url 'home' %}">{% trans 'Index' %}</a></li>
+      		<li><a href="{% url 'activity_home'%}">{% trans 'Activity' %}</a></li>
+	      	<li><a href="#">{% trans 'Story' %}</a></li>
+	      	<li><a href="{% url 'signup_organization' %}">{% trans 'Organization' %}</a></li>
+	      	<li><a href="#">{% trans 'Award' %}</a></li>
+    	</ul>
+	    <ul class="nav navbar-nav navbar-right">
+		  	{% if user.is_authenticated %}
+			  	<li>
+	                <a href="message.html" target="content" style="padding:15px;">
+	                	<img class="avatar-small" src="{% static 'img/icon/message.svg' %}">
+	                </a>
+	            </li>
+	            <li class="dropdown">
+	                <a href="#" class="dropdown-toggle" data-toggle="dropdown" style="padding:13px;">
+	             		<img src="{% static 'img/icon/avatar.svg' %}" class="avatar-small">
+	              		<span class="small-grey">{% trans 'Operation_Panel' %}</span>
+	              		<b class="caret"></b>
+	                </a>
+	                <ul class="dropdown-menu">
+		                <li><a href="#">Act 1</a></li>
+		                <li><a href="#">Act 2</a></li>
+		                <!--<li><a href="#">备忘</a></li>-->
+		                <li class="divider"></li>
+		                <li><a href="#">Org 1</a></li>
+	  	                <li><a href="#">Org 2</a></li>
+  		                <li class="divider"></li>
+		                <li><a href="{% url 'logout' %}" id="logout">{% trans 'Log out' %}</a></li>
+		                <li><a href="{% url 'profile' %}" target="content">{% trans 'Profile' %}</a></li>
+	                </ul>
+	            </li>
+		    {% else %}
+			    <li><a href="{% url 'login' %}"><span>{% trans 'Log in' %}</span></span></a></li>
+			    <li><a href="{% url 'register' %}"><span>{% trans 'Register' %}</span></span></a></li>
+		    {% endif %}
+	    </ul>
+	    <form class="navbar-form navbar-right" role="search">
+	      	<div class="form-group">
+	        	<input type="text" class="form-control" placeholder="活动/组织/用户">
+	      	</div>
+	      	<button type="submit" class="btn btn-default" style="margin-right: 30px;">搜索</button>
+	    </form>
+  	</div><!-- /.navbar-collapse -->
+</nav>
+<script>
+	$('#nav1-ul li').click(function(){
+		$('#nav1-ul li').removeClass('active');
+		$(this).addClass('active');
+	});
+</script>
+{% endblock %}
+
+<!--Content  e61610-->
+<div id="content-container" class="container">
+    {% block content %}
+    {% endblock %}
+</div>
 		
   
 
