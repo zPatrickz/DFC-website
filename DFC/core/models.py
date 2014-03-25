@@ -1,5 +1,6 @@
 from django.db import models
 from django.utils.translation import ugettext as _
+from tagging.fields import *
 
 # Core classes for DFC Project
 
@@ -8,7 +9,7 @@ from django.utils.translation import ugettext as _
 # and
 # https://docs.djangoproject.com/en/1.6/topics/db/models/#intermediary-manytomany
 # For model instance usage, please refer to https://docs.djangoproject.com/en/1.6/ref/models/instances/#model-instance-methods
-
+# For tagging usage, please refer to https://github.com/brosner/django-tagging/blob/master/docs/overview.txt
 class User(models.Model):
     # login name
     name = models.CharField(max_length=256, blank=False)
@@ -106,22 +107,47 @@ class Activity(models.Model):
         ('FRZ','Frozen'),
         ('FIN','Finished'),
     )
+    CONTACT_METHOD_CHOICES = (
+        ('USR','User'),
+        ('MSG','MSG'),
+        ('EML','EMail'),
+        ('WCT','WeChat'),
+    )
+    
+    DEFAULT_OVERFLOW_RATE = 133
+    SHOW_ON_INDEXPAGE = 10
+    
     name            = models.CharField(max_length = 256, blank = False)
     organizations   = models.ManyToManyField('Organization')
     participants    = models.ManyToManyField('User', through = "Participation")
-    places           = models.ManyToManyField('Place')
+    places          = models.ManyToManyField('Place')
     desc            = models.TextField()
+    content         = models.TextField()
+    is_private      = models.BooleanField(default=False)
     #cover           = models.ForeignKey('Photo',null = True)#change to ImageField after MEDIA_ROOT in settings.py is specified
     #By using callable function as the upload_to path, one must override the save function as below
-    official_link = models.CharField(max_length=1024, blank=True)
-    create_time = models.DateTimeField(auto_now_add=True)
-    update_time = models.DateTimeField(auto_now=True)
-    status = models.CharField(max_length=3, choices=STATUS_CHOICES, default='PRP')
-    start_time = models.DateTimeField(null=True, blank=True)
-    end_time = models.DateTimeField(null=True, blank=True)
-    visits = models.PositiveIntegerField(default = 0)
     
-    SHOW_ON_INDEXPAGE = 10
+    required_participants = models.PositiveIntegerField(null = True, blank = True)
+    overflow_rate = models.PositiveIntegerField(default = DEFAULT_OVERFLOW_RATE, blank = True)
+    volunteer_requirements = models.TextField(blank = True)
+    volunteer_tasks = models.TextField(blank = True)
+    volunteer_obligation = models.TextField(blank = True)
+    volunteer_right = models.TextField(blank = True)
+    volunteer_hours = models.PositiveIntegerField(null = True, blank = True)
+    volunteer_auto_confirm = models.BooleanField(default=True)
+    volunteer_auto_confirm_hour_ahead = models.PositiveIntegerField(default = 24)
+    notification_method = models.CharField(max_length = 3,default = 'USR',choices = CONTACT_METHOD_CHOICES)
+    
+    tags = TagField()# Use tagging here. Should be a single line text in a form. Make sure you have installed 'django-tagging'
+    
+    official_link   = models.CharField(max_length=1024, blank=True)
+    create_time     = models.DateTimeField(auto_now_add=True)
+    update_time     = models.DateTimeField(auto_now=True)
+    status          = models.CharField(max_length=3, choices=STATUS_CHOICES, default='PRP')
+    start_time      = models.DateTimeField(null=True, blank=True)
+    end_time        = models.DateTimeField(null=True, blank=True)
+    visits          = models.PositiveIntegerField(default = 0)
+    
     
     @classmethod
     def create(cls,name,organizations):
@@ -164,9 +190,9 @@ class Activity(models.Model):
     def remove_place(self,place):
         self.places.remove(place)
         self.save()
-    def change_cover(self,cover):
+    '''def change_cover(self,cover):
         self.cover = cover
-        self.save()
+        self.save()'''
     def publish(self):
         self.status = 'ONG'
         self.save()
@@ -189,13 +215,13 @@ class Activity(models.Model):
         pass
     def get_config(self,name):
         pass
-    def save(self, *args, **kwargs):
+    '''def save(self, *args, **kwargs):
         if self.id is None:
             saved_cover = self.cover
             self.cover = None
             super(Activity, self).save(*args, **kwargs)
             self.cover = saved_cover
-        super(Activity, self).save(*args, **kwargs)
+        super(Activity, self).save(*args, **kwargs)'''
     def __unicode__(self):
         return self.name
     def __str__(self):
@@ -206,45 +232,6 @@ class Activity(models.Model):
         pass
         #unique_together = (("name","organization"))
         ##The reason not to use unique_together here and in other models:https://code.djangoproject.com/ticket/702
-
-'''class Album(models.Model):
-    OWNER_TYPE_CHOICES = (
-        ('ORG','Organization'),
-        ('USR','User'),
-        ('ACT','Activity'),
-    )
-    
-    SHOW_ON_INDEXPAGE = 10
-    
-    title = models.CharField(max_length=256, blank=False)
-    desc = models.TextField(blank=True)
-    owner_type = models.TextField(max_length=3, choices=OWNER_TYPE_CHOICES, default = 'ACT')
-    owner_organization = models.ForeignKey('Organization',null=True)
-    owner_user = models.ForeignKey('User',null=True)
-    owner_activity = models.ForeignKey('Activity',null=True)
-    create_time = models.DateTimeField(auto_now_add=True)
-    def __unicode__(self):
-        return self.title
-    def __str__(self):
-        return unicode(self).encode('utf-8')
-        
-class Photo(models.Model):
-    photo = models.ImageField(max_length = 1024, upload_to=get_photo_path)
-    desc = models.TextField(blank=True)
-    album = models.ForeignKey('Album')
-    create_time = models.DateTimeField(auto_now_add=True)
-    visits = models.PositiveIntegerField(default=0)
-    def save(self, *args, **kwargs):
-        if self.id is None:
-            saved_photo = self.photo
-            self.photo = None
-            super(Photo, self).save(*args, **kwargs)
-            self.photo = saved_photo
-        super(Photo, self).save(*args, **kwargs)
-    def __unicode__(self):
-        return 'Photo'+str(self.id)
-    def __str__(self):
-        return unicode(self).encode('utf-8')'''
         
 class Post(models.Model):
     '''

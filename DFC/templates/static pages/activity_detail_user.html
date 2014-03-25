@@ -1,0 +1,98 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>I Can</title>
+<link href="css/bootstrap.min.css" rel="stylesheet">
+<link href="css/ican.css" rel="stylesheet">
+<script src="js/jquery.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script type="text/javascript" src="http://api.map.baidu.com/api?v=1.5&ak=2b866a6daac9014292432d81fe9b47e3"></script>
+<script src="js/setactivity.js"></script>
+<script type="text/javascript" src="js/bootstrap-datetimepicker.min.js"></script>
+</head>
+<body style="background-color: silver;">
+<div class="span9">
+	<div class="well">
+		<h3 class="page-header">用户管理与用户通知</h3>
+
+		<table class="table table-striped">
+			<tr>
+				<th>用户</th>
+				<th>真实姓名</th>
+				<th>角色</th>
+				<th>偏好的联系方式</th>
+				<th><label class="checkbox"><input type="checkbox" />全选</label></th>
+			</tr>
+			<tr>
+				<td><a href="#">cacate</a></td>
+				<td>刘金国</td>
+				<td>管理员</td>
+				<td><span class="label">邮箱</span>cacate0129@gmail.com</td>
+				<td><input type="checkbox"></td>
+			</tr>
+			<tr>
+				<td><a href="#">cacate</a></td>
+				<td>刘金国</td>
+				<td>管理员</td>
+				<td><span class="label">邮箱</span>cacate0129@gmail.com</td>
+				<td><input type="checkbox"></td>
+			</tr>
+			<tr>
+				<td><a href="#">Chuang Xie</a></td>
+				<td>谢闯</td>
+				<td>志愿者</td>
+				<td><span class="label">邮箱</span>cacate0129@gmail.com</td>
+				<td><input type="checkbox"></td>
+			</tr>
+			<tr>
+				<td><a href="#">cacate</a></td>
+				<td>刘金国</td>
+				<td>管理员</td>
+				<td><span class="label">邮箱</span>cacate0129@gmail.com</td>
+				<td><input type="checkbox"></td>
+			</tr>
+		</table>
+		<div class="well well-small">
+			<button class="btn btn-info">发送消息</button>
+			<button class="btn btn-info">更改角色</button>
+			<button class="btn btn-info">踢出用户</button>
+		</div>
+		<div class="well well-small">
+			<form class="form-horizontal">
+				<fieldset>
+					<div class="control-group">
+					    <label class="control-label" for="noticement-text">通知方式</label>
+					    <div class="controls">
+					    	<select>
+					    		<option>仅站内</option>
+					    		<option>按用户偏好+站内</option>
+					    		<option>短信+站内</option>
+					    		<option>邮件+站内</option>
+					    		<option>微信+站内</option>
+					    	</select>
+					    </div>
+					</div>
+					<div class="control-group">
+					    <label class="control-label" for="noticement-text">内容</label>
+					    <div class="controls">
+							<textarea id="noticement-text" class="input-xlarge" title="输入要通知的内容，如果是短信，超出部分将会提醒用户阅读站内通知。" rel="tooltip">，收到通知请回复：15195955770</textarea>
+					    </div>
+					</div>
+					<div class="control-group">
+					    <div class="controls">
+					    	<button class="btn btn-info">发送</button>
+					    </div>
+					</div>
+				</fieldset>
+			</form>
+		</div>
+		
+		<script type="text/javascript">
+			$('#noticement-text').tooltip({'placement':'right'});
+		</script>
+	</div>
+</div>
+
+</body>
+</html>

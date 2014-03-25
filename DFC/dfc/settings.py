@@ -127,6 +127,7 @@ INSTALLED_APPS = (
     'crispy_forms',
     'photologue',
     'south',
+    'tagging',
 )
 
 CRISPY_TEMPLATE_PACK = 'bootstrap3'

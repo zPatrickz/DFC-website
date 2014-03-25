@@ -9,5 +9,4 @@ class ActivityForm(forms.ModelForm):
     #jcrop_cover = forms.Field(widget=JcropWidget(), label="", required=False)
     class Meta:
         model = Activity
-        fields = ('name','desc','official_link','start_time','end_time')
 
