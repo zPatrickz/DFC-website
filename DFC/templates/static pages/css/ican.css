@@ -1,0 +1,199 @@
+html,body{
+	height: 100%;
+}
+
+#body-container {
+  min-height: 100%;
+  height: auto;
+  /* Negative indent footer by its height */
+  margin: 0 auto -60px;
+  /* Pad bottom by footer height */
+  padding: 0 0 60px;
+}
+
+#footer {
+  height: 60px;
+  background-color: #f5f5f5;
+}
+.avatar-small{
+	height:18px;
+	width:18px;
+}
+.avatar-middle{
+	height:33px;
+	width:33px;
+}
+.avatar-large{
+	height:70px;
+	width:70px;
+}
+
+.brief{
+	height:75px;
+	overflow:hidden;
+	text-overflow:ellipsis;
+	font-size:0.8em;
+	font-family:"微软雅黑";
+	color: #414141;
+}
+
+.recruit-poster{
+	background-image: url(img/wall/default.jpg);
+	height:130px;
+	width:100%;
+	background-size:cover;
+	margin-bottom:10px;
+}
+.bottom-label{
+	margin:5px;
+}
+
+.overlap{
+	height:0px;
+	position:relative;
+	overflow:visible;
+	z-index: 10;
+}
+
+.small-grey{
+	color:#666666;
+	font-size:0.8em;
+}
+.padding-small{
+	padding:5px;
+}
+.padding-middle{
+	padding:12px;
+}
+.image-small{
+	height:110px;
+}
+.image-fullsize{
+	height:100%;
+	width:100%;
+}
+.img_des{
+	text-align:center;
+	font-size:0.8em;
+	color:#666666;
+}
+.image-large{
+	width:500px;
+}
+.image-middle{
+	width:350px;
+}
+
+/* this CSS is not part of the widget, it is here just as an example of the demo page styling.... Don't copy this one, roll your own. One
+ * of the key things about the widget is that it allows you to do your own styling!
+ */
+
+#editor {
+	max-height: 250px;
+	height: 250px;
+	background-color: white;
+	border-collapse: separate; 
+	border: 1px solid rgb(204, 204, 204); 
+	padding: 4px; 
+	box-sizing: content-box; 
+	-webkit-box-shadow: rgba(0, 0, 0, 0.0745098) 0px 1px 1px 0px inset; 
+	box-shadow: rgba(0, 0, 0, 0.0745098) 0px 1px 1px 0px inset;
+	border-top-right-radius: 3px; border-bottom-right-radius: 3px;
+	border-bottom-left-radius: 3px; border-top-left-radius: 3px;
+	overflow: scroll;
+	outline: none;
+}
+
+div[data-role="editor-toolbar"] {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.dropdown-menu a {
+  cursor: pointer;
+}
+
+.editor-container{
+	 border:silver 1px solid;
+	 height:500px;
+}
+
+.silverlink{
+	color:grey;
+	font-size:0.8em;
+}
+.simple-edit{
+	width:98%;
+	border:1px #DDDDDD solid;
+	resize:none;
+	height:115px;
+	margin-bottom:0;
+}
+.simple-box-blue{
+	height:50px;
+	background-color:rgba(20,20,40,0.2);
+	border-radius:15px;
+	padding:15px;
+	margin:5px;
+	text-align:left;
+}
+.simple-box-container{
+	width:250px;
+}
+.simple-box-green{
+	height:50px;
+	background-color:rgba(20,40,20,0.2);
+	border-radius:15px;
+	padding:15px;
+	margin:5px;
+	text-align:left;
+}
+.simple-box-red{
+	height:50px;
+	background-color:rgba(40,20,20,0.2);
+	border-radius:15px;
+	padding:15px;
+	margin:5px;
+	text-align:left;
+}
+.simple-box-more{
+	border-radius:15px;
+	padding-top:20px;
+	margin:5px;
+	text-align:center;
+}
+.simple-box-h4{
+	color:#444444;
+	position:relative;
+	height:0px;
+	margin:0px;
+	font-size:1.2em;
+}
+.simple-box-title{
+	color:#444444;
+	font-size:1.0em;
+}
+.simple-box{
+	border-radius:15px;
+	padding:15px;
+	margin:0px;
+	background-color: rgba(255,255,255,0.8);
+	text-align:left;
+}
+.padding{
+	padding-top:10px;
+	margin-bottom:5px;
+	border-bottom:silver solid 1px;
+}
+.thumbnail-img{
+	height:120px;
+	width:120px;
+}
+.body-mainpage{
+	background-color:#EEEEEE;
+	background-image: url(static/img/wall/bg7.jpg); 
+	background-size: cover;
+	font-size:66%;
+}

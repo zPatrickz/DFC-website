@@ -1,0 +1,84 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>I Can</title>
+<link href="css/bootstrap.min.css" rel="stylesheet">
+<link href="css/ican.css" rel="stylesheet">
+<link rel="stylesheet" href="css/redactor.css" />
+<script src="js/jquery.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/redactor.js"></script>
+<script type="text/javascript" src="js/bootstrap-datetimepicker.min.js"></script>
+<script type="text/javascript">
+    $(function()
+    {
+        $('#content').redactor({
+			imageGetJson: '/tests/images.json',
+			imageUpload: '/webUpload/redactor/uploadImage/',
+			clipboardUploadUrl: '/webUpload/redactor/clipboardUpload/',
+			fileUpload: '/webUpload/redactor/fileUpload/'
+		});
+    });
+</script>
+</head>
+<body style="background-color: silver;">
+<div class="col-md-8">
+	<div class="well">
+		<form class="form-horizontal" role="form">
+				<h3 class="page-header">3/3. 活动详细信息</h3>
+				<div class="form-group">
+					<label class=" control-label col-md-3" for="activity-time">添加标签</label>
+					<div class="col-md-8">
+						<p class="help-block">
+							<span class="label label-info">儿童<span class="btn" style="padding: 0">&times;</span></span>
+							<span class="label label-info">教育<span class="btn" style="padding: 0">&times;</span></span>
+							<span class="label label-info">创意<span class="btn" style="padding: 0">&times;</span></span>
+						</p>
+						<div class="input-group">
+							<input class="form-control" placeholder="" id="activity-confirmtime" type="number" value=24>
+							<span class="btn input-group-addon">添加</span>
+						</div>
+						<p class="help-block">
+							<a href="#">儿童</a>&nbsp;&nbsp;
+							<a href="#">青年</a>&nbsp;&nbsp;
+							<a href="#">敬老</a>&nbsp;&nbsp;
+							<a href="#">文艺</a>&nbsp;&nbsp;
+							<a href="#">支教</a>&nbsp;&nbsp;
+							<a href="#">创意</a>&nbsp;&nbsp;
+							<a href="#">儿童</a>&nbsp;&nbsp;
+						</p>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class=" control-label col-md-3" for="activity-time">从策划生产介绍</label>
+					<div class="col-md-8">
+						<input type="file" class="form-control" name="content" placeholder="上传策划"></input>
+					</div>
+				</div>
+				
+				<div class="form-group">
+					<label class=" control-label col-md-3" for="activity-time">撰写详细介绍</label>
+					<div class="col-md-8">
+						<div class="editor-container">
+							<textarea id="content" class="form-control" name="content"> </textarea>
+						</div>
+						<p class="help-block">Documentation about this richtext editor - "redactor" are available at <a href="http://imperavi.com/redactor/docs/">http://imperavi.com/redactor/docs/</a></p>
+
+					</div>
+				</div>
+				
+				
+				<div class="form-group" style="margin-top: 40px">
+					<div class="col-md-offset-9 col-md-3">
+						<button class="btn btn-info">上一步</button>
+						<button class="btn btn-info">完成</button>
+					</div>
+				</div>
+		</form>
+	</div>
+    
+</div>
+
+</body>
+</html>

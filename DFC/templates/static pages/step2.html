@@ -1,0 +1,110 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>I Can</title>
+<link href="css/bootstrap.min.css" rel="stylesheet">
+<link href="css/ican.css" rel="stylesheet">
+<script src="js/jquery.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script type="text/javascript" src="http://api.map.baidu.com/api?v=1.5&ak=2b866a6daac9014292432d81fe9b47e3"></script>
+<script src="js/setactivity.js"></script>
+<script type="text/javascript" src="js/bootstrap-datetimepicker.min.js"></script>
+</head>
+<body style="background-color: silver;">
+<div class="col-md-8">
+	<div class="well">
+		<form class="form-horizontal" role="form">
+			<h3 class="page-header">2/3. 志愿者招募信息</h3>
+			<div class="form-group">
+				<div class="col-md-offset-3 col-md-8">
+					<div class="checkbox">
+						<label>
+							<input type="checkbox" id="set_private">活动不对外招募（设为私密）
+						</label>
+					</div>
+				</div>
+			</div>
+			
+			<div class="form-group">
+				<label class="control-label col-md-3" for="activity-num">志愿者人数</label>
+				<div class="col-md-8">
+					<input class="form-control" type="number" placeholder="" id="activity-num" required>
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="control-label col-md-3" for="activity-talent">要求</label>
+				<div class="col-md-8">
+					<textarea class="form-control" placeholder="" id="activity-talent" style="height:100px;"></textarea>
+				</div>
+			</div>
+			
+			<div class="form-group" id="inform-set">
+				<label class="control-label col-md-3" for="activity-inform">通知志愿者的方式</label>
+				<div class="col-md-8">
+					<select class="form-control">
+						<option>按志愿者偏好</option>
+						<option>仅用短信</option>
+						<option>仅用邮件</option>
+						<option>仅用微信</option>
+					</select>
+				</div>
+			</div>
+			<div class="form-group" id="auto-confirm">
+				<div class="col-md-offset-3 col-md-8">
+					<div class="checkbox">
+						<label>
+							<input type="checkbox">自动确认志愿者
+						</label>
+					</div>
+					<p class="help-block">活动前<span id="confirm-span">24</span>小时，系统将会自动发送确认信息（短信或邮件）给志愿者询问是否参与。</p>
+				</div>
+			</div>
+			<div class="form-group hide" id="vol-confirm">
+				<label class="control-label col-md-3" for="activity-confirmtime">确认在活动前</label>
+				<div class="col-md-8">
+					<div class="input-group">
+						<input class="form-control" placeholder="" id="activity-confirmtime" type="number" value=24>
+						<span class="input-group-addon">小时</span>
+					</div>
+				</div>
+			</div>
+			<div class="form-group hide" id="vol-stop">
+				<label class="control-label col-md-3" for="activity-max">报名人数上限(%)</label>
+				<div class="col-md-8">
+					<div class="input-group">
+						<input class="form-control" placeholder="" id="activity-max" type="number" value=133>
+						<span class="input-group-addon">%</span>
+					</div>
+					<p class="help-block">当通过本站报名的志愿者人数达到需求的<span id="max-value">133</span>%时禁止报名。</p>
+				</div>					
+
+			</div>
+			
+			<div class="form-group hide" id="activity-chatroom">
+				<label class="control-label col-md-3" for="activity-inform">讨论区设置</label>
+				<div class="col-md-8">
+					<select class="form-control">
+						<option>非参与者不可见</option>
+						<option>非参与者仅可浏览信息</option>
+						<option>非参与者可见且参与讨论</option>
+					</select>
+				</div>
+			</div>
+			
+			<div>
+				<a href="javascript:void(0)" class="pull-right" onclick="$('#vol-stop,#vol-confirm,#inform-set,#activity-chatroom').removeClass('hide');$(this).hide();">展开高级选项</a>
+			</div>
+			<div class="form-group" style="margin-top: 40px">
+				<div class="col-md-offset-9 col-md-3">
+					<button class="btn btn-info">上一步</button>
+					<button class="btn btn-info">下一步</button>
+				</div>
+			</div>
+		</form>
+	</div>
+    
+</div>
+
+</body>
+</html>

@@ -1,5 +1,6 @@
 from django.db import models
-import random
+from django.utils.translation import ugettext as _
+
 # Core classes for DFC Project
 
 # For general field usage, please refer to https://docs.djangoproject.com/en/1.6/ref/models/fields/
@@ -9,15 +10,64 @@ import random
 # For model instance usage, please refer to https://docs.djangoproject.com/en/1.6/ref/models/instances/#model-instance-methods
 
 class User(models.Model):
-    pass
+    # login name
+    name = models.CharField(max_length=256, blank=False)
+    email = models.EmailField(max_length=75, blank=False)
+    password = models.CharField(max_length=50, blank=False)
+    # name displayed on site
+    nick_name = models.CharField(max_length=256, blank=True)
+    birth = models.DateTimeField(blank=True, null=True, auto_now_add=False)
+    telephone = models.CharField(max_length=20, blank=True)
+    qq = models.IntegerField(blank=True, null=True)
+    descriptions = models.CharField(max_length=256, blank=True)
+    create_time = models.DateTimeField(auto_now_add=True, null=False)
+    credit = models.IntegerField(blank=True, null=True)
+    avatar = models.ImageField(max_length=1024, blank=True, upload_to='/users/avatar/')
+
+    def __unicode__(self):
+        return self.name
+
     
+
 class Organization(models.Model):
-    pass
+    # login name
+    name = models.CharField(max_length=256, unique=True,
+        help_text=_('The organization will live at Volunteer2Here'), 
+        verbose_name=_('Orgnization Name'),)
+    email = models.EmailField(max_length=75)
+    password = models.CharField(max_length=50)
+
+    # name displayed on site
+    nick_name = models.CharField(max_length=256, blank=True)
+    birth = models.DateTimeField(blank=True, null=True, auto_now_add=False)
+    telephone = models.CharField(max_length=20, blank=True)
+    qq = models.PositiveIntegerField(blank=True, null=True)
+    descriptions = models.CharField(max_length=256, blank=True)
+    create_time = models.DateTimeField(blank=True, auto_now_add=True)
+    credit = models.IntegerField(blank=True, null=True)
+    organization_page = models.CharField(max_length=1024, blank=True)
+    pay_link = models.CharField(max_length=512, blank=True)
+    members = models.ManyToManyField(User, blank=True, through='Membership')
+
+    def __unicode__(self):
+        return self.name
+
+    def assignUsersToRole(self, users, role):
+        """
+        assgin users to role of the organization
+        :param :users
+        QuerySet of users
+        :param :role ROLE_CHOICES(Founder, Manager, Member)
+
+        """
+        pass
+
+
     
 class Place(models.Model):
-    name        = models.CharField(max_length = 256, blank = False)
-    longitude   = models.FloatField()
-    latitude    = models.FloatField()
+    name = models.CharField(max_length = 256, blank = False)
+    longitude = models.FloatField()
+    latitude = models.FloatField()
     create_time = models.DateTimeField(auto_now_add = True)
     @classmethod
     def create(cls,name,longitude,latitude):
@@ -63,13 +113,13 @@ class Activity(models.Model):
     desc            = models.TextField()
     #cover           = models.ForeignKey('Photo',null = True)#change to ImageField after MEDIA_ROOT in settings.py is specified
     #By using callable function as the upload_to path, one must override the save function as below
-    official_link   = models.CharField(max_length = 1024,blank = True)
-    create_time     = models.DateTimeField(auto_now_add = True)
-    update_time     = models.DateTimeField(auto_now = True)
-    status          = models.CharField(max_length = 3, choices = STATUS_CHOICES, default = 'PRP')
-    start_time      = models.DateTimeField(null = True,blank = True)
-    end_time        = models.DateTimeField(null = True,blank = True)
-    visits          = models.PositiveIntegerField(default = 0)
+    official_link = models.CharField(max_length=1024, blank=True)
+    create_time = models.DateTimeField(auto_now_add=True)
+    update_time = models.DateTimeField(auto_now=True)
+    status = models.CharField(max_length=3, choices=STATUS_CHOICES, default='PRP')
+    start_time = models.DateTimeField(null=True, blank=True)
+    end_time = models.DateTimeField(null=True, blank=True)
+    visits = models.PositiveIntegerField(default = 0)
     
     SHOW_ON_INDEXPAGE = 10
     
@@ -83,11 +133,11 @@ class Activity(models.Model):
                     null if error occurs
         '''
         if not name:
-            return null
+            return None
         act = cls(name=name)
         act.save()
         if not organizations:
-            return null
+            return None
         for org in organizations:
             act.organizations.add(org)
         act.save()
@@ -166,24 +216,24 @@ class Activity(models.Model):
     
     SHOW_ON_INDEXPAGE = 10
     
-    title = models.CharField(max_length = 256, blank = False)
-    desc = models.TextField(blank = True)
-    owner_type = models.TextField(max_length = 3,choices = OWNER_TYPE_CHOICES,default = 'ACT')
+    title = models.CharField(max_length=256, blank=False)
+    desc = models.TextField(blank=True)
+    owner_type = models.TextField(max_length=3, choices=OWNER_TYPE_CHOICES, default = 'ACT')
     owner_organization = models.ForeignKey('Organization',null=True)
     owner_user = models.ForeignKey('User',null=True)
     owner_activity = models.ForeignKey('Activity',null=True)
-    create_time = models.DateTimeField(auto_now_add = True)
+    create_time = models.DateTimeField(auto_now_add=True)
     def __unicode__(self):
         return self.title
     def __str__(self):
         return unicode(self).encode('utf-8')
         
 class Photo(models.Model):
-    photo = models.ImageField(max_length = 1024, upload_to = get_photo_path)
-    desc = models.TextField(blank = True)
+    photo = models.ImageField(max_length = 1024, upload_to=get_photo_path)
+    desc = models.TextField(blank=True)
     album = models.ForeignKey('Album')
-    create_time = models.DateTimeField(auto_now_add = True)
-    visits = models.PositiveIntegerField(default = 0)
+    create_time = models.DateTimeField(auto_now_add=True)
+    visits = models.PositiveIntegerField(default=0)
     def save(self, *args, **kwargs):
         if self.id is None:
             saved_photo = self.photo
@@ -200,14 +250,14 @@ class Post(models.Model):
     '''
     Forum posts.
     '''
-    title           = models.CharField(max_length = 256, blank = False)
-    content         = models.TextField(blank = False)
-    organization    = models.ForeignKey('Organization')
-    author         = models.ForeignKey('User')
-    activity        = models.ForeignKey('Activity')
-    create_time     = models.DateTimeField(auto_now_add = True)
-    update_time     = models.DateTimeField(auto_now = True)
-    visits          = models.PositiveIntegerField(default = 0)
+    title = models.CharField(max_length=256, blank=False)
+    content = models.TextField(blank=False)
+    organization = models.ForeignKey('Organization')
+    author = models.ForeignKey('User')
+    activity = models.ForeignKey('Activity')
+    create_time = models.DateTimeField(auto_now_add=True)
+    update_time = models.DateTimeField(auto_now=True)
+    visits = models.PositiveIntegerField(default=0)
     @classmethod
     def create(cls,title,content,author,organization,activity):
         '''
@@ -266,10 +316,10 @@ class Participation(models.Model):
     )
     user = models.ForeignKey('User')
     activity = models.ForeignKey('Activity')
-    role = models.CharField(max_length = 3, choices = ROLE_CHOICES)
-    stage = models.CharField(max_length = 3, choices = STAGE_CHOICES)
+    role = models.CharField(max_length=3, choices=ROLE_CHOICES)
+    stage = models.CharField(max_length=3, choices=STAGE_CHOICES)
     class Meta:
-        unique_together = (("user","activity"))
+        unique_together=(("user","activity"))
         
 class Membership(models.Model):
     '''
