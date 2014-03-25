@@ -65,6 +65,12 @@ html,body{
 .padding-middle{
 	padding:12px;
 }
+.margin-small{
+	margin:5px;
+}
+.margin-middle{
+	margin:12px;
+}
 .image-small{
 	height:110px;
 }
