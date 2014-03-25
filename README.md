@@ -15,7 +15,11 @@ It is highly recommended to use **virtualenv**.
 To install `xlutils`, please refer to http://pythonhosted.org/xlutils/installation.html, quick install:
 
 	`pip install xlutils`
-	
+
+`django-tagging` is an open django app for tagging
+To install `django-tagging`, please refer to http://code.google.com/p/django-tagging/, quick install:
+
+	`django-tagging`
 
 ### Configure
 
@@ -27,7 +31,7 @@ Notice that for Django 1.7, please specify STATIC_ROOT, and specify it to a fold
 
 
 
-To use `ImageField` and `openpyxl`, please make sure you have installed Pillow. Use:
+To use `ImageField`, please make sure you have installed Pillow. Use:
 	`sudo pip install Pillow`
 	
 To put yourself away from case sensitive issues, please make sure your git is case sensitive, quick settings:

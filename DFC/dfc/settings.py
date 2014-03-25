@@ -123,9 +123,10 @@ INSTALLED_APPS = (
     'django.contrib.admindocs',
     'core',
     'activity',
-    'photo',
     'intelliparser',
     'crispy_forms',
+    'photologue',
+    'south',
 )
 
 CRISPY_TEMPLATE_PACK = 'bootstrap3'

@@ -32,5 +32,5 @@ def add_or_update_activity(request,act_id=None):
     else:
         #Handle an empty form
         form = ActivityForm()
-    return render(request,'activity/add_or_update_activity.html',{'form':form,'update':update})
+    return render(request,'activity/test.html',{'form':form,'update':update})
     
