@@ -19,7 +19,7 @@ It is highly recommended to use **virtualenv**.
 `django-tagging` is an open django app for tagging
 To install `django-tagging`, please refer to http://code.google.com/p/django-tagging/, quick install:
 
-	django-tagging
+	pip install django-tagging
 
 ### Configure
 
