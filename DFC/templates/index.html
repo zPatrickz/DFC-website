@@ -1,21 +1,20 @@
 {% extends 'base.html' %}
 {% load i18n static %}
 
-{%block body_bg%}static/img/wall/bg7.jpg{%endblock%}
 
 {%block body_class%}body-mainpage{%endblock%}
 
 {% block content %}
 <div class="container">
-	<div class="row" style="height: 180px; padding-bottom: 20px;">
-		<div class="span12" align="left" style="padding-top: 80px;">
+	<div class="row" style="height: 180px; margin-bottom: 30px;">
+		<div class="col-md-12" align="left" style="padding-top: 80px;">
 			<div style="margin-left: 70px;">
 				<h1 style="color:#B94A48;">I Can公益行动平台</h1>
-				<p style="font-size: 1.2em;">宇宙第一公益行动平台，已经有500个人通过此平台参与过志愿者活动。<a href="#">了解更多</a></p>
+				<p style="font-size: 1.2em;">每个人内心都是浪漫的诗人，已经有500个人通过此平台参与过志愿者活动。<a href="#">了解更多</a></p>
 			</div>
 		</div>
 		<!--
-		<div class="span6" align="right" style="padding-top: 80px;">
+		<div class="col-md-6" align="right" style="padding-top: 80px;">
 			<div style=" padding-right: 20px;">
 				<div class="btn-group">
 					<button class="btn btn-inverse btn-large">登陆</button>
@@ -25,55 +24,58 @@
 		</div>
 		-->
 	</div>
-	<div class="row"><div class="span12">
-		<div class="well" style="background-color: rgba(255,255,255,0.5); height: 400px; border: none;">
-  	    	<legend style="margin-left:50px; width:95%;">
-  	    		<big>注册</big> <a href="#" style="font-size:0.8em;">已有帐号，登陆</a>
+	
+	<div class="row">
+		<div class="well col-md-6" style="background-color: rgba(200,200,200,0.2); height: 400px; margin-left: 15px; margin-bottom: 50px;">
+  	    	<legend style="margin-left:50px; width:90%;">
+  	    		<big>注册</big>
 				<button class="close">&times;</button>
 			</legend>
-			<div class="span4">
-				 <form class="form-horizontal" style="color:#444; font-family: '微软雅黑'">
-  	    			<fieldset>
-  	    				<div class="control-group">
-  	    					<label class="control-label" for="register-name">用户名</label>
-  	    					<div class="controls">
-  	    						<input type="text" placeholder="用户名" id="register-name" required>
-  	    					</div>
-  	    				</div>
-  	    				<div class="control-group">
-  	    					<label class="control-label" for="register-password1" required>密码</label>
-  	    					<div class="controls">
-  	    						<input id="register-password1" type="password" placeholder="密码" required>
-  	    					</div>
-  	    				</div>
-  	    				<div class="control-group">
-  	    					<label class="control-label" for="register-password2" required>再次输入密码</label>
-  	    					<div class="controls">
-  	    						<input id="register-password2" type="password" placeholder="重复密码">
-  	    					</div>
-  	    				</div>
-  	    				<div class="control-group">
-  	    					<label class="control-label" for="register-mail">邮箱</label>
-  	    					<div class="controls">
-  	    						<input type="email" placeholder="邮箱" id="register-mail" required>
-  	    					</div>
-  	    				</div>
-  	    				<div class="control-group">
-  	    					<div class="controls">
-						        <label class="checkbox">
-						            <input type="checkbox"> 记住我
-						        </label>
-						        <button type="submit" class="btn btn-info btn-large">注册</button>
-						    </div>
+			 <form role="form" style="color:#444; font-family: '微软雅黑'" class="form-horizontal">
+				<div class=" form-group">
+					<label for="register-name" class="col-sm-3 control-label">用户名</label>
+					<div class="col-sm-7">
+						<input class="form-control" type="text" placeholder="用户名" id="register-name" required>
+					</div>
+				</div>
+				<div class=" form-group">
+					<label for="register-password1" class="col-sm-3 control-label" required>密码</label>
+					<div class="col-sm-7">
+						<input class="form-control" id="register-password1" type="password" placeholder="密码" required>
+					</div>
+				</div>
+				<div class=" form-group">
+					<label for="register-password2" class="col-sm-3 control-label" required>再次输入密码</label>
+					<div class="col-sm-7">
+						<input class="form-control" id="register-password2" type="password" placeholder="重复密码">
+					</div>
+				</div>
+				<div class=" form-group">
+					<label for="register-mail" class="col-sm-3 control-label">邮箱</label>
+					<div class="col-sm-7">
+						<input class="form-control" type="email" placeholder="邮箱" id="register-mail" required>
+					</div>
+				</div>
+				<div class=" form-group">
+    				<div class=" col-sm-offset-3 col-sm-7">
+	    				<div class="checkbox">
+					        <label>
+					            <input type="checkbox"> 记住我&nbsp;&nbsp;<a href="#" style="font-size:0.8em;">已有帐号?登陆</a>
+					        </label>
 					    </div>
-  	    			</fieldset>
-  	    		</form>
-			</div>
-			<div class="span5 offset1">
+				    </div>
+				</div>
+				<div class=" form-group">
+    				<div class=" col-sm-offset-3 col-sm-7">
+						<button type="submit" class="btn btn-default btn-lg">注册</button>
+					</div>
+				</div>
+    		</form>
+<!--			<div class="col-md-5 offset1">
 				 <form class="form-horizontal" style="color:#444; font-family: '微软雅黑'">
   	    			<fieldset>
-  	    				<div class="control-group">
-  	    					<label class="control-label" for="register-contact-select" id="register-contact-label" title="请选择最偏好的联系方式以便活动主办方通知您。" rel="tooltip" data-toggle="tooltip">联系方式</label>
+  	    				<div class=" form-group">
+  	    					<label class="control-label" for="register-contact-select" title="">联系方式</label>
   	    					<div class="controls">
   	    						<select class="input-small" id="register-contact-select">
   	    							<option>手机号码</option>
@@ -81,15 +83,12 @@
   	    							<option>站内信</option>
   	    							<option>微信</option>
   	    						</select>
-  	    						<input class="input-large" style="margin-top:5px;" type="text" placeholder="手机号码" id="register-contact-input" title="如果选择微信，主办方将无法直接通过本站联系您。" rel="tooltip" data-toggle="tooltip">
+  	    						<input class="input-large" style="margin-top:5px;" type="text" placeholder="手机号码" title="">
+    							<p class="help-block">请选择最偏好的联系方式以便活动主办方通知您，如果选择微信，主办方将无法直接通过本站联系您。</p>
   	    					</div>
-  	    					<script>
-  	    						$('#register-contact-label').tooltip({'placement':'right'});
-  	    						$('#register-contact-input').tooltip({'placement':'right'});
-  	    					</script>
   	    				</div>
   	    				
-  	    				<div class="control-group">
+  	    				<div class=" form-group">
   	    					<label class="control-label" for="register-truename">真实姓名</label>
   	    					<div class="controls">
   	    						<input type="text" placeholder="真实姓名（非必填项）" id="register-truename" title="为了让大家更好的联系您。" data-toggle="tooltip" rel="tooltip">
@@ -100,15 +99,17 @@
   	    				</div>
   	    			</fieldset>
   	    		</form>
-			</div>
+			</div>-->
 		</div>
-	</div></div>
+	</div>
+	
+	
 	<div class="row">
-		<div class="span4">
+		<div class="col-md-4">
 			<div class="well" style="background-color:rgba(200,200,200,0.2);">
 				<div align="center">
-					<a href="activity"><img src="static/img/icon/profile.svg" class="avatar-middle" alt="志愿者招募" title="志愿者招募中"></a>
-					<label class="small-grey">志愿者招募</label>
+					<a href="#"><img src="img/icon/profile.svg" class="avatar-middle" alt="志愿者招募" title="志愿者招募中"></a>
+					<p class="small-grey">志愿者招募</p>
 					<div class="simple-box-container">
 						<div class="well well-small simple-box">
 							<div class="padding">
@@ -138,11 +139,11 @@
 				</div>
 			</div>
 		</div>
-		<div class="span4">
+		<div class="col-md-4">
 			<div class="well" style="background-color:rgba(200,200,200,0.2);">
 				<div align="center">
-					<a href="#"><img src="static/img/icon/circle.svg" alt="活动进行中" class="avatar-middle" title="进行中的活动"></a>
-					<label class="small-grey">活动进行中</label>
+					<a href="#"><img src="img/icon/circle.svg" alt="活动进行中" class="avatar-middle" title="进行中的活动"></a>
+					<p class="small-grey">活动进行中</p>
 					<div class="simple-box-container">
 						<div class="well well-small simple-box">
 							<div class="padding">
@@ -172,16 +173,16 @@
 				</div>
 			</div>
 		</div>
-		<div class="span4">
+		<div class="col-md-4">
 			<div class="well" style="background-color:rgba(200,200,200,0.2);">
 				<div align="center">
-					<a href="#"><img src="static/img/icon/love-middle.svg" class="avatar-middle" alt="公益故事" title="做过的，最受欢迎的公益行动"></a>
-					<label class="small-grey">公益故事</label>
+					<a href="#"><img src="img/icon/love-middle.svg" class="avatar-middle" alt="公益故事" title="做过的，最受欢迎的公益行动"></a>
+					<p class="small-grey">公益故事</p>
 					<div class="simple-box-container">
 						<div class="well well-small simple-box">
 							<div class="padding">
 								<p style=" margin-bottom: 0">趁着年轻去“思奔”
-									<img class="pull-right avatar-small" src="static/img/icon/love-red.svg" alt="本月最感动奖" title="本月最感动奖">
+									<img class="pull-right avatar-small" src="img/icon/love-red.svg" alt="本月最感动奖" title="本月最感动奖">
 								</p>
 								<div style="text-align: right;">
 									<a class="small-grey">赵健 </a><a href="#" class="small-grey">@嘤鸣读书会</a>
@@ -210,36 +211,36 @@
 		</div>
 	</div>
 	<div class="row" style="margin-top: 100px;">
-		<h3 class="page-header" style="margin-left:20px; color: #333333;">合作组织</h3>
+		<h3 class="page-header" style="margin-left:20px; color: grey;">合作组织</h3>
 		<ul class="thumbnails" style="margin-left: 0px;">
-		    <li class="span2">
+		    <li class="col-md-2">
 			    <a href="#" class="thumbnail">
-			        <img src="static/img/wall/bg4.jpg" alt="" class="image-middle thumbnail-img">
+			        <img src="img/wall/bg4.jpg" alt="" class="image-middle thumbnail-img">
 			    </a>
 		    </li>
-		    <li class="span2">
+		    <li class="col-md-2">
 			    <a href="#" class="thumbnail">
-			        <img src="{% static 'img/wall/bg4.jpg' %}" alt="" class="image-middle thumbnail-img">
+			        <img src="img/wall/bg1.jpg" alt="" class="image-middle thumbnail-img">
 			    </a>
 		    </li>
-		    <li class="span2">
+		    <li class="col-md-2">
 			    <a href="#" class="thumbnail">
-			        <img src="{% static 'img/wall/bg4.jpg' %}" alt="" class="image-middle thumbnail-img">
+			        <img src="img/wall/bg3.jpg" alt="" class="image-middle thumbnail-img">
 			    </a>
 		    </li>
-		    <li class="span2">
+		    <li class="col-md-2">
 			    <a href="#" class="thumbnail">
-			        <img src="{% static 'img/wall/bg4.jpg' %}" alt="" class="image-middle thumbnail-img">
+			        <img src="img/wall/bg5.jpg" alt="" class="image-middle thumbnail-img">
 			    </a>
 		    </li>
-		    <li class="span2">
+		    <li class="col-md-2">
 			    <a href="#" class="thumbnail">
-			        <img src="{% static 'img/wall/bg4.jpg' %}" alt="" class="image-middle thumbnail-img">
+			        <img src="img/wall/bg3.jpg" alt="" class="image-middle thumbnail-img">
 			    </a>
 		    </li>
-		    <li class="span2">
+		    <li class="col-md-2">
 			    <a href="#" class="thumbnail">
-			        <img src="{% static 'img/wall/bg4.jpg' %}" alt="" class="image-middle thumbnail-img">
+			        <img src="img/wall/bg4.jpg" alt="" class="image-middle thumbnail-img">
 			    </a>
 		    </li>
 		</ul>
