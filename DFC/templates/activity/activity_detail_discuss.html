@@ -1,0 +1,70 @@
+{% extends "activity/activity_detail_base.html" %}
+{% load i18n static%}
+{% block nav-discuss-active %}
+class='active'
+{% endblock %}
+{% block activity-content %}
+<!--A Simple Editor-->
+<div class="well 
+well-small" style="height: 142px;">
+	<textarea id="redactor" name="content" class="simple-edit" placeholder="试试'@'你的小伙伴哦"></textarea>
+	<div>
+		<div class="pull-right">
+			<a class="silverlink" href="#">添加附件</a>
+			<a class="silverlink" href="#">添加链接</a>
+			<a class="silverlink" href="#">添加图片</a>
+		</div>
+	</div>
+</div>
+
+<div class="well well-small">
+	<div class="">
+	<div>
+		<a href="#">仅看重要信息</a>
+	</div>
+	<!--Content-->
+	<!--A Message-->
+	<table style="margin-top: 15px; margin-bottom: 15px; width: 100%; border: silver 1px solid;">
+	<tr><td style="width: 50px;background-color:#DDDDDD;" valign="top" align="center" rowspan="3">
+		<a href="#" title="点击察看个人信息">
+			<img src="{% static 'img/avatar/1.jpg' %}" class="avatar-middle" style="margin-top: 10px;">
+		</a>
+		<label class="small-grey">Giggle Liu</label>
+	</td>
+	<td style="padding: 10px;">
+		<div>
+			<!--title-->
+			<span class="muted">回复</span> <a href="#">mzz(22#)</a>
+			<!--operation-->
+			<div class="pull-right">
+				<a href="#" style="margin-right: 10px;">回复</a>
+				<i class="icon-share" title="分享"></i>
+			</div>
+		</div>
+	</td></tr>
+	<tr><td style="padding-left: 10px; padding-right: 10px;">
+		<!--File Block-->
+		<div>
+			<img src="{% static 'img/wall/bg6.jpeg' %}" class="image-small" />
+			<img src="{% static 'img/wall/bg7.jpg' %}" class="image-small" />
+			<img src="{% static 'img/wall/bg8.jpg' %}" class="image-small" />
+		</div>
+		<!--Text Block-->
+		<div style="margin-top: 10px;">
+			<p>看我这张照片拍的怎么样？</p>
+		</div>
+	</td></tr>
+	<tr><td style=" padding-right: 10px;">
+		<div>
+			<div class="pull-right">
+				<span class="small-grey" style="margin-right: 10px;">6月7日 20:08</span>
+				<i class="icon-thumbs-up" title="顶"></i>
+			</div>
+		</div>
+	</td></tr>
+	</table>
+	<div align="center" style="padding: 10px; margin-top:10px;background-color: silver;">
+		<a href="#">显示更多</a>
+	</div>
+</div>
+{% endblock %}

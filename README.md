@@ -12,14 +12,14 @@ It is highly recommended to use **virtualenv**.
 ### Components
 
 `xlutils` is an open python library for excel related operations
-To install `xlutils`, please refer to http://pythonhosted.org/xlutils/installation.html, quick install:
+.To install `xlutils`, please refer to http://pythonhosted.org/xlutils/installation.html, quick install:
 
-	`pip install xlutils`
+	pip install xlutils
 
 `django-tagging` is an open django app for tagging
 To install `django-tagging`, please refer to http://code.google.com/p/django-tagging/, quick install:
 
-	`django-tagging`
+	django-tagging
 
 ### Configure
 
@@ -32,14 +32,18 @@ Notice that for Django 1.7, please specify STATIC_ROOT, and specify it to a fold
 
 
 To use `ImageField`, please make sure you have installed Pillow. Use:
-	`sudo pip install Pillow`
+	
+	sudo pip install Pillow
 	
 To put yourself away from case sensitive issues, please make sure your git is case sensitive, quick settings:
-	`git config --global core.ignorecase false`
+	
+	git config --global core.ignorecase false
 
 
 ### Database
 
 Development settings: 
+
 	User: dfc 
+	
 	Password:123456

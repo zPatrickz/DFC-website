@@ -1,0 +1,128 @@
+{% extends "base.html" %}
+{% load i18n static%}
+
+{% block title %}{% trans "Activities" %}{% endblock %}
+
+
+{% block stylesheets %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/ican.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.min.2.css' %}">
+<link rel="stylesheet" href="{% static 'css/redactor.css' %}" />
+{% endblock %}
+
+{% block scripts %}
+<script src="js/jquery.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script type="text/javascript" src="http://api.map.baidu.com/api?v=1.5&ak=2b866a6daac9014292432d81fe9b47e3"></script>
+<script src="js/setactivity.js"></script>
+<script type="text/javascript" src="js/bootstrap-datetimepicker.min.js"></script>
+<script src="js/redactor.js"></script>
+{% endblock %}
+
+
+{% block content %}
+<div class="container">
+	<div class="row">
+		<div class="span3">
+			{% block activity-info %}
+			<div class="well well-small">
+				<div class="overlap">
+					<span class="label">集合：{{activity.start_time}}（<a href="#">天气</a>）</span>
+					<iframe width="200" scrolling="no" height="25" frameborder="0" allowtransparency="true" src="http://i.tianqi.com/index.php?c=code&id=40&icon=1&num=3"></iframe>
+				-->
+				</div>
+				<div style="height:180px;" id="map-container">
+					<!--Here is the map-->
+				</div>
+			</div>
+			
+			<div>
+	  			<div class="well">
+	  				<!--Recruit Block-->
+	  				<div>
+	  					<div style="display: inline-block; margin-bottom: 10px;">
+	  						<button class="btn btn-mini btn-info" title="以志愿者或者组织者的身份参与活动。">加入</button>
+	  						<button class="btn btn-mini" title="关注后，您将会收到有关活动的推送信息。">关注</button>
+	  					</div>
+		  				<div class="pull-right" style="padding-right: 5px;">
+		  					<a href="#"><i class="icon-share" title="分享"></i></a>
+		  				</div>
+	  				</div>
+	  				<a href="#">
+	  					<div class="recruit-poster" style="background-image: url(activity/face.jpg);">
+	  				</div>
+	  				</a>
+	  				<div>
+	  					<h4 style="padding-bottom: 10px; height: 22px; overflow: hidden">{{activity.name}}</h4>
+	  					
+	  				</div>
+	  				<p class="brief">{{activity.desc}}</p>
+					<!--Organizations-->
+					<table>
+						{% for org in organizations %}
+						<tr>
+							<td width="60px">
+							<a href="#" title="点击察看{{org.name}}主页"><img src="{% static 'img/avatar/2.jpg' %}" class="avatar-large" alt="{{org.name}}"></a>
+							</td>
+							<td align="bottom" style="font-size: 0.8em;">
+							<a href="#">赵健(这是啥？)</a>
+							<label class="small-grey">Tel：15195955770</label>
+							<a href="#"><span class="label">{{org.name}}<span style="color: gold;">信用 {{org.credit}}</span></span></a>
+							</td>
+						</tr>
+						{% endfor %}
+					</table>
+					<!--Followers-->
+					<div style="margin-top: 10px;">
+						{% for follower in followers %}
+						<a href="#" title="点击了解{{follower.name}}的个人信息"><img class="avatar-middle" src="{% static 'img/avatar/2.jpg' %}"></a>
+						{% endfor %}
+					</div>
+	  			</div>
+			</div>
+			{% endblock %}
+		</div>
+		<div class="span9">
+			{% block activity-nav %}
+			<div style="display: inline-block">
+				<ul class="nav nav-pills" style="margin-bottom: 0" id="nav2-ul">
+				    <li {% block nav-discuss-active %}{% endblock %}><a href="{% url 'activity_detail' act_id %}">讨论板块</a></li>
+				    <li {% block nav-posts-active %}{% endblock %}><a href="#">活动动态</a></li>
+				    <li {% block nav-detail-active %}{% endblock %}><a href="{% url 'activity_detail_detail' act_id %}">活动详细</a></li>
+				    <li {% block nav-docs-active %}{% endblock %}><a href="#">活动文档</a></li>
+				    <li {% block nav-user-notification-active %}{% endblock %}><a href="#">用户与通知</a></li>
+				</ul>
+				<script>
+					$('#nav2-ul li').click(function(){
+						$('#nav2-ul li').removeClass('active');
+						$(this).addClass('active');
+					});
+				</script>
+			</div>
+			
+			<div class="pull-right">
+				<ul class="nav nav-pills" style="margin-bottom: 0">
+				    <li class="dropdown">
+				    	<a class="dropdown-toggle" data-toggle="dropdown" href="#">操作<b class="caret"></b></a>
+					    <ul class="dropdown-menu">
+							<li><a href="#">发表动态</a></li>
+					        <li><a href="editor.html" target="_new">
+					        	<span style="color: orange;">撰写故事 &nbsp;&nbsp;<i class="icon-pencil"></i></span>
+					        </a></li>
+					        <li class="divider"></li>
+					        <li><a href="#">修改活动</a></li>
+					        <li><a href="#">放弃活动</a></li>
+					        <li><a href="#">结束活动</a></li>
+					        <li><a href="#">举报</a></li>
+					        <li><a href="#">退出活动</a></li>
+					    </ul>
+				  	</li>
+			  	</ul>
+			</div>
+			{% endblock %}
+			{% block activity-content %}
+			{% endblock %}
+		</div>
+	</div>
+</div>
+{% endblock %}

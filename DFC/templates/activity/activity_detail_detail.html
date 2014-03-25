@@ -1,0 +1,42 @@
+{% extends "activity/activity_detail_base.html" %}
+{% load i18n static%}
+{% block nav-detail-active %}
+class='active'
+{% endblock %}
+{% block activity-content %}
+<div class="well">
+    <div>
+	    <div style="text-align:center">
+	    	<h2>{{activity.name}}<small><a href="#">修改</a></small></h2>
+	    </div>
+		<h3>活动简介</h3>
+	    <div class="row">
+		    <div class="span3">
+		        <p>该活动创建于<span class="muted">{{activity.create_time}}</span>创建组织为{% for org in organizations %}<a href="#" target="_new">{{org.name}}</a>{% endfor %}.
+		        </p>
+		        <p>{{activity.desc}}</p>
+		    </div>
+	    </div>
+		<div class="">
+			<h3>志愿者招募需求（{{activity.required_participants}}人）</h3>
+			<p>{{activity.volunteer_requirements}}</p>
+			<p>共计公益时间：{{activity.volunteer_hours}}小时</p>
+		</div>
+		<div>
+			<h3>集合信息</h3>
+			<p>集合地点：</p>
+			{% for place in places %}
+			{{place.name}}（<a href="#">察看地图</a>)
+			<div style="height:400px;border:1px solid gray" id="map-container">
+				<!--Here is the map-->
+			</div>
+			{% endfor %}
+			
+			<div style="margin-top: 20px;">
+				<p>集合时间：{{activity.start_time}}（今天是 <span class="muted">{% now "Y M d" %}</span>）</p>
+				<iframe name="weather_inc" src="http://i.tianqi.com/index.php?c=code&id=2&num=5" width="650" height="70" frameborder="0" marginwidth="0" marginheight="0" scrolling="no"></iframe>
+			</div>
+		</div>
+    </div>
+</div>
+{% endblock %}
