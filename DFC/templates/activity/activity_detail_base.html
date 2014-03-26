@@ -1,18 +1,16 @@
-{% extends "base.html" %}
+{% extends "activity/activity_base.html" %}
 {% load i18n static%}
 
 {% block title %}{% trans "Activities" %}{% endblock %}
 
 
 {% block stylesheets %}
-<link rel="stylesheet" type="text/css" href="{% static 'css/ican.css' %}">
-<link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.min.2.css' %}">
+{{block.super}}
 <link rel="stylesheet" href="{% static 'css/redactor.css' %}" />
 {% endblock %}
 
 {% block scripts %}
-<script src="js/jquery.min.js"></script>
-<script src="js/bootstrap.min.js"></script>
+{{block.super}}
 <script type="text/javascript" src="http://api.map.baidu.com/api?v=1.5&ak=2b866a6daac9014292432d81fe9b47e3"></script>
 <script src="js/setactivity.js"></script>
 <script type="text/javascript" src="js/bootstrap-datetimepicker.min.js"></script>
@@ -90,7 +88,7 @@
 				    <li {% block nav-posts-active %}{% endblock %}><a href="#">活动动态</a></li>
 				    <li {% block nav-detail-active %}{% endblock %}><a href="{% url 'activity_detail_detail' act_id %}">活动详细</a></li>
 				    <li {% block nav-docs-active %}{% endblock %}><a href="#">活动文档</a></li>
-				    <li {% block nav-user-notification-active %}{% endblock %}><a href="#">用户与通知</a></li>
+				    <li {% block nav-user-notification-active %}{% endblock %}><a href="{% url 'activity_detail_user' act_id %}">用户与通知</a></li>
 				</ul>
 				<script>
 					$('#nav2-ul li').click(function(){

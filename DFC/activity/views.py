@@ -5,14 +5,21 @@ from django.http import HttpResponseRedirect
 #Views for Activity
 
 def index(request):
-    act_list = Activity.objects.order_by('-create_time')[:Activity.SHOW_ON_INDEXPAGE]
-    return render(request,'activity/index.html',{'act_list':act_list})
+    activities = Activity.objects.order_by('-create_time')[:Activity.SHOW_ON_INDEXPAGE]
+    return render(request,'activity/activity_index.html',{'activities':activities})
     
 def detail_discuss(request,act_id=None):
     activity = get_object_or_404(Activity,id=act_id)
     organizations = activity.organizations.all()
     places = activity.places.all()
     return render(request,'activity/activity_detail_discuss.html',{'act_id':act_id,'activity':activity,'organizations':organizations,'places':places})
+
+def detail_user(request,act_id=None):
+    activity = get_object_or_404(Activity,id=act_id)
+    organizations = activity.organizations.all()
+    places = activity.places.all()
+    return render(request,'activity/activity_detail_user.html',{'act_id':act_id,'activity':activity,'organizations':organizations,'places':places})
+
 
 def detail_detail(request,act_id=None):
     activity = get_object_or_404(Activity,id=act_id)

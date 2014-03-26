@@ -11,15 +11,13 @@ It is highly recommended to use **virtualenv**.
 
 ### Components
 
-`xlutils` is an open python library for excel related operations
-.To install `xlutils`, please refer to http://pythonhosted.org/xlutils/installation.html, quick install:
+`xlutils` is an open python library for excel related operations. To install `xlutils`, please refer to http://pythonhosted.org/xlutils/installation.html, quick install:
 
-	pip install xlutils
+	sudo pip install xlutils
 
-`django-tagging` is an open django app for tagging
-To install `django-tagging`, please refer to http://code.google.com/p/django-tagging/, quick install:
+`django-tagging` is an open django app for tagging. To install `django-tagging`, please refer to http://code.google.com/p/django-tagging/, quick install:
 
-	pip install django-tagging
+	sudo pip install django-tagging
 
 ### Configure
 

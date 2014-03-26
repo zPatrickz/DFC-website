@@ -36,11 +36,11 @@
   	<!-- Collect the nav links, forms, and other content for toggling -->
   	<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
     	<ul class="nav navbar-nav" id="nav1-ul">
-      		<li class="active"><a href="{% url 'home' %}">{% trans 'Index' %}</a></li>
-      		<li><a href="{% url 'activity_home'%}">{% trans 'Activity' %}</a></li>
-	      	<li><a href="#">{% trans 'Story' %}</a></li>
-	      	<li><a href="{% url 'signup_organization' %}">{% trans 'Organization' %}</a></li>
-	      	<li><a href="#">{% trans 'Award' %}</a></li>
+      		<li {% block nav-home-active %}{% endblock %}><a href="{% url 'home' %}">{% trans 'Index' %}</a></li>
+      		<li {% block nav-activity-active %}{% endblock %}><a href="{% url 'activity_home'%}">{% trans 'Activity' %}</a></li>
+	      	<li {% block nav-story-active %}{% endblock %}><a href="#">{% trans 'Story' %}</a></li>
+	      	<li {% block nav-organization-active %}{% endblock %}><a href="{% url 'signup_organization' %}">{% trans 'Organization' %}</a></li>
+	      	<li {% block nav-award-active %}{% endblock %}><a href="#">{% trans 'Award' %}</a></li>
     	</ul>
 	    <ul class="nav navbar-nav navbar-right">
 		  	{% if user.is_authenticated %}
