@@ -110,7 +110,7 @@ class='active'
 		<div class="col-md-4">
 			<div class="well" style="background-color:rgba(200,200,200,0.2);">
 				<div align="center">
-					<a href="#"><img src="img/icon/profile.svg" class="avatar-middle" alt="志愿者招募" title="志愿者招募中"></a>
+					<a href="#"><img src="{% static 'img/icon/profile.svg' %}" class="avatar-middle" alt="志愿者招募" title="志愿者招募中"></a>
 					<p class="small-grey">志愿者招募</p>
 					<div class="simple-box-container">
 						<div class="well well-small simple-box">
@@ -144,7 +144,7 @@ class='active'
 		<div class="col-md-4">
 			<div class="well" style="background-color:rgba(200,200,200,0.2);">
 				<div align="center">
-					<a href="#"><img src="img/icon/circle.svg" alt="活动进行中" class="avatar-middle" title="进行中的活动"></a>
+					<a href="#"><img src="{% static 'img/icon/circle.svg' %}" alt="活动进行中" class="avatar-middle" title="进行中的活动"></a>
 					<p class="small-grey">活动进行中</p>
 					<div class="simple-box-container">
 						<div class="well well-small simple-box">
@@ -178,13 +178,13 @@ class='active'
 		<div class="col-md-4">
 			<div class="well" style="background-color:rgba(200,200,200,0.2);">
 				<div align="center">
-					<a href="#"><img src="img/icon/love-middle.svg" class="avatar-middle" alt="公益故事" title="做过的，最受欢迎的公益行动"></a>
+					<a href="#"><img src="{% static 'img/icon/love-middle.svg' %}" class="avatar-middle" alt="公益故事" title="做过的，最受欢迎的公益行动"></a>
 					<p class="small-grey">公益故事</p>
 					<div class="simple-box-container">
 						<div class="well well-small simple-box">
 							<div class="padding">
 								<p style=" margin-bottom: 0">趁着年轻去“思奔”
-									<img class="pull-right avatar-small" src="img/icon/love-red.svg" alt="本月最感动奖" title="本月最感动奖">
+									<img class="pull-right avatar-small" src="{% static 'img/icon/love-red.svg' %}" alt="本月最感动奖" title="本月最感动奖">
 								</p>
 								<div style="text-align: right;">
 									<a class="small-grey">赵健 </a><a href="#" class="small-grey">@嘤鸣读书会</a>
@@ -214,38 +214,38 @@ class='active'
 	</div>
 	<div class="row" style="margin-top: 100px;">
 		<h3 class="page-header" style="margin-left:20px; color: grey;">合作组织</h3>
-		<ul class="thumbnails" style="margin-left: 0px;">
-		    <li class="col-md-2">
-			    <a href="#" class="thumbnail">
-			        <img src="img/wall/bg4.jpg" alt="" class="image-middle thumbnail-img">
-			    </a>
-		    </li>
-		    <li class="col-md-2">
-			    <a href="#" class="thumbnail">
-			        <img src="img/wall/bg1.jpg" alt="" class="image-middle thumbnail-img">
-			    </a>
-		    </li>
-		    <li class="col-md-2">
-			    <a href="#" class="thumbnail">
-			        <img src="img/wall/bg3.jpg" alt="" class="image-middle thumbnail-img">
-			    </a>
-		    </li>
-		    <li class="col-md-2">
-			    <a href="#" class="thumbnail">
-			        <img src="img/wall/bg5.jpg" alt="" class="image-middle thumbnail-img">
-			    </a>
-		    </li>
-		    <li class="col-md-2">
-			    <a href="#" class="thumbnail">
-			        <img src="img/wall/bg3.jpg" alt="" class="image-middle thumbnail-img">
-			    </a>
-		    </li>
-		    <li class="col-md-2">
-			    <a href="#" class="thumbnail">
-			        <img src="img/wall/bg4.jpg" alt="" class="image-middle thumbnail-img">
-			    </a>
-		    </li>
-		</ul>
+		<div class="row">
+		    <div class="col-xs-4 col-md-2">
+		    	<a href="#" class="thumbnail">
+		      		<div class="thumbnail-img" style="background-color: grey;"></div>
+		    	</a>
+		    </div>
+		    <div class="col-xs-4 col-md-2">
+		    	<a href="#" class="thumbnail">
+		      		<div class="thumbnail-img" style="background-color: grey;"></div>
+		    	</a>
+		    </div>
+		    <div class="col-xs-4 col-md-2">
+		    	<a href="#" class="thumbnail">
+		      		<div class="thumbnail-img" style="background-color: grey;"></div>
+		    	</a>
+		    </div>
+		    <div class="col-xs-4 col-md-2">
+		    	<a href="#" class="thumbnail">
+		      		<div class="thumbnail-img" style="background-color: grey;"></div>
+		    	</a>
+		    </div>
+		    <div class="col-xs-4 col-md-2">
+		    	<a href="#" class="thumbnail">
+		      		<div class="thumbnail-img" style="background-color: grey;"></div>
+		    	</a>
+		    </div>
+		    <div class="col-xs-4 col-md-2">
+		    	<a href="#" class="thumbnail">
+		      		<div class="thumbnail-img" style="background-color: grey;"></div>
+		    	</a>
+		    </div>
+		</div>
 	</div>
 </div>
 {% endblock %}

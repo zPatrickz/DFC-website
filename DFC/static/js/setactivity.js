@@ -1,5 +1,35 @@
 $(document).ready(function(){
 	//Baidu Map
+	$('#richcontent').redactor({
+		imageGetJson: '/tests/images.json',
+		imageUpload: '/webUpload/redactor/uploadImage/',
+		clipboardUploadUrl: '/webUpload/redactor/clipboardUpload/',
+		fileUpload: '/webUpload/redactor/fileUpload/'
+	});
+	
+    $('#starttime').datetimepicker({
+        language:  'zh-CN',
+		format: 'yyyy年mm月dd日 hh:ii',
+        weekStart: 1,
+        todayBtn:  1,
+		autoclose: 1,
+		todayHighlight: 1,
+		startView: 2,
+		forceParse: 0,
+        showMeridian: 1
+    });
+	
+    $('#endtime').datetimepicker({
+        language:  'zh-CN',
+		format: 'yyyy年mm月dd日 hh:ii',
+        weekStart: 1,
+        todayBtn:  1,
+		autoclose: 1,
+		todayHighlight: 1,
+		startView: 2,
+		forceParse: 0,
+        showMeridian: 1
+    });
 	var map = new BMap.Map("map-container");
 	map.centerAndZoom(new BMap.Point(116.403884,39.914887), 13);
 	map.enableScrollWheelZoom();

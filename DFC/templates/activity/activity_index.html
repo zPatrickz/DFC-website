@@ -2,9 +2,8 @@
 {% load i18n %}
 
 {% block title %}{% trans "Activities" %}{% endblock %}
-
 {% block content %}
-	<h3 class="padding-small">招募中和进行中的公益行动</h3>
+	<h1 class="padding-small" style="margin-top: 70px;">{% trans 'Activity' %}</h1>
 	<div  class="row">
 		<div class="col-md-7">
 			<div class="padding-small">
@@ -42,7 +41,7 @@
 			<div class="row" style="margin-bottom: 20px;">
 				<div class="margin-middle" style="margin-right: 0">
 					<div class=" pull-right col-md-6">
-						<button class="btn btn-default disabled" style="background-color: silver;">招募中</button>
+						<button class="btn btn-default active" style="background-color: silver;">招募中</button>
 						<button class="btn btn-default">进行中</button>
 						<div class="col-md-6">
 							<select class="form-control">
@@ -65,7 +64,7 @@
 						<a href="javascript:void(0)"><i class="glyphicon glyphicon-share"></i></a>&nbsp;&nbsp;
 					</div>
 				</div>
-				<div><!--class="hide">-->
+				<div class="hide" id="{{activity.id}}_toggle_content">
 					<p class="text-muted">思奔，思考人生什么的最优意思。的拉萨解放军哦了思奔，思考人生什么的最优意思的拉
 						萨解放军，哦了思奔，思考人生什么的最优，意思的拉萨解放军哦了思奔，思考人生什么的最奔，思考人生什么的最优意思的拉
 						萨解放军，哦了思奔，思考人生什么的最优，意思的拉萨解放军哦了思奔，思考人生什么的最
@@ -77,7 +76,7 @@
 					</div>
 				</div>
 				<p>
-					<a href="javascript:void(0)">收起</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+					<a id="{{activity.id}}_toggle" href="javascript:void(0)" class="toggle-div">展开</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 					<span class="text-muted">标签：</span>
 					<a class="text-muted" href="javascript:void(0)">青年</a> &nbsp;&nbsp;
 					<a class="text-muted" href="javascript:void(0)">青春</a> &nbsp;&nbsp;
@@ -104,4 +103,17 @@
 					活动完成后你可以把活动内容整理成”故事档案“，并给志愿者打分。</p>
 			</div>
 		</div>
+		<script>
+		$(".toggle-div").click(function() {
+		   	if($("#"+this.id+'_content').hasClass("hide")){
+		   		$("#"+this.id+'_content').removeClass("hide");
+		    	$(this).text("关闭");
+		   	}
+		   	else{
+		   		$("#"+this.id+'_content').addClass("hide");
+		    	$(this).text("展开");
+		    
+		   	}
+		});
+		</script>
 {% endblock %}

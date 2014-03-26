@@ -3,13 +3,13 @@
 {% block stylesheets %}
 {{block.super}}
 <link href="{% static 'css/bootstrap-datetimepicker.min.css' %}" rel="stylesheet" media="screen">
+<link href="{% static 'css/redactor.css' %}" rel="stylesheet" media="screen">
 {% endblock %}
 {% block scripts %}
 {{block.super}}
-<script type="text/javascript" src="{% static 'js/jquery.min.js' %}"></script>
-<script type="text/javascript" src="{% static 'js/bootstrap.min.js' %}"></script>
 <script type="text/javascript" src="http://api.map.baidu.com/api?v=1.5&ak=2b866a6daac9014292432d81fe9b47e3"></script>
 <script type="text/javascript" src="{% static 'js/setactivity.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/redactor.js' %}"></script>
 <script type="text/javascript" src="{% static 'js/bootstrap-datetimepicker.min.js' %}"></script>
 <script type="text/javascript" src="{% static 'js/bootstrap-datetimepicker.zh-CN.js' %}"></script>
 {% endblock %}
@@ -39,49 +39,25 @@
 		<div class="form-group">
 			<label class=" control-label col-md-3" for="activity-time">活动时间</label>
 			<div class="col-md-8">
-			    <div id="datetimepicker" class="input-append date" style="display:inline-block;">
+			    <div id="datetimepicker1" class="input-append date" style="display:inline-block;">
 	                <div id="starttime" class="input-group date form_datetime col-md-9" data-date="2014-09-16T05:25:07Z" data-date-format="dd MM yyyy - HH:ii p" data-link-field="dtp_input1">
 	                    <input class="form-control" size="16" type="text" value="" readonly>
 	                    <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
-						<span class="input-group-addon"><span class="glyphicon glyphicon-th"></span></span>开始
+						<span class="input-group-addon"><span class="glyphicon glyphicon-th"></span></span>&emsp;开始
 	                </div>
-					<input type="hidden" id="activity-time" value="" name="start_time"/><br/>
+					<input type="hidden" id="activity-starttime" value="" name="start_time"/><br/>
 			    </div>
 		
-				<script type="text/javascript">
-				    $('#starttime').datetimepicker({
-				        language:  'zh-CN',
-						format: 'yyyy年mm月dd日 hh:ii',
-				        weekStart: 1,
-				        todayBtn:  1,
-						autoclose: 1,
-						todayHighlight: 1,
-						startView: 2,
-						forceParse: 0,
-				        showMeridian: 1
-				    });
-				</script>
-				<div id="datetimepicker" class="input-append date" style="display:inline-block;">
+				<div id="datetimepicker2" class="input-append date" style="display:inline-block;">
 	                <div id="endtime" class="input-group date form_datetime col-md-9" data-date="2014-09-16T05:25:07Z" data-date-format="dd MM yyyy - HH:ii p" data-link-field="dtp_input1">
 	                    <input class="form-control" size="16" type="text" value="" readonly>
 	                    <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
-						<span class="input-group-addon"><span class="glyphicon glyphicon-th"></span></span>结束
+						<span class="input-group-addon"><span class="glyphicon glyphicon-th"></span></span>&emsp;结束
 	                </div>
-					<input type="hidden" id="activity-time" value="" name="end_time"/><br/>
+					<input type="hidden" id="activity-endtime" value="" name="end_time"/><br/>
 				</div>
 			
 				<script type="text/javascript">
-				    $('#endtime').datetimepicker({
-				        language:  'zh-CN',
-    					format: 'yyyy年mm月dd日 hh:ii',
-				        weekStart: 1,
-				        todayBtn:  1,
-						autoclose: 1,
-						todayHighlight: 1,
-						startView: 2,
-						forceParse: 0,
-				        showMeridian: 1
-				    });
 				</script>    			
 				<p class="help-block">for more detail of datetimepicker configuration. check <a href="http://www.bootcss.com/p/bootstrap-datetimepicker/">http://www.bootcss.com/p/bootstrap-datetimepicker/</a></p>
 
@@ -229,7 +205,7 @@
 			<label class=" control-label col-md-3" for="activity-time">撰写详细介绍</label>
 			<div class="col-md-8">
 				<div class="editor-container">
-					<textarea id="content" class="form-control" name="content"> </textarea>
+					<textarea id="richcontent" class="form-control" name="richcontent"> </textarea>
 				</div>
 				<p class="help-block">Documentation about this richtext editor - "redactor" are available at <a href="http://imperavi.com/redactor/docs/">http://imperavi.com/redactor/docs/</a></p>
 
