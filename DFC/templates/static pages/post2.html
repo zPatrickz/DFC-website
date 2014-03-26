@@ -1,0 +1,310 @@
+<!doctype html>
+<!--Navigator Block-->
+<html>
+<head>
+<meta charset="utf-8">
+<title>I Can</title>
+<link href="css/bootstrap.min.css" rel="stylesheet">
+<link href="css/ican.css" rel="stylesheet">
+<script src="js/jquery.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script type="text/javascript" src="http://api.map.baidu.com/api?v=1.5&ak=2b866a6daac9014292432d81fe9b47e3"></script>
+<script src="js/setactivity.js"></script>
+<script type="text/javascript" src="js/bootstrap-datetimepicker.min.js"></script>
+<link rel="stylesheet" href="css/redactor.css" />
+<script src="js/redactor.js"></script>
+</head>
+<body style="background-color:#EEEEEE; background-size: cover;">
+<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+	    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+	        <span class="sr-only">Toggle navigation</span>
+	        <span class="icon-bar"></span>
+	        <span class="icon-bar"></span>
+	        <span class="icon-bar"></span>
+	    </button>
+    <a class="navbar-brand" href="#">I Can</a>
+    </div>
+
+  	<!-- Collect the nav links, forms, and other content for toggling -->
+  	<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+    	<ul class="nav navbar-nav" id="nav1-ul">
+      		<li class="active"><a href="#">首页</a></li>
+      		<li><a href="#">公益行动</a></li>
+	      	<li><a href="#">公益故事</a></li>
+	      	<li><a href="#">公益团队</a></li>
+	      	<li><a href="#">大奖赛</a></li>
+    	</ul>
+	    <ul class="nav navbar-nav navbar-right">
+	      	<li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" style="padding:15px;">
+                	<img class="avatar-small" src="img/icon/message.svg">
+              	</a>
+              	<ul class="dropdown-menu">
+                  	<li><a href="myact.html" target="content">推送（<span style="color: red">8</span>）</a></li>
+                  	<li><a href="myteam.html" target="content">站内信（<span style="color: red">8</span>）</a></li>
+                  	<li><a href="myteam.html" target="content">通知（0）</a></li>
+                  	<!--<li><a href="#">备忘</a></li>-->
+              	</ul>
+            </li>
+	      	<li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" style="padding:13px;">
+          		  	<img src="img/icon/avatar.svg" class="avatar-small">
+          		  	<span class="small-grey">个人面板</span>
+          		  	<b class="caret"></b>
+              	</a>
+              	<ul class="dropdown-menu">
+                  	<li><a href="myact.html" target="content">活动1</a></li>
+                  	<li><a href="myteam.html" target="content">活动2</a></li>
+                  	<!--<li><a href="#">备忘</a></li>-->
+                  	<li class="divider"></li>
+                  	<li><a href="myact.html" target="content">组织1</a></li>
+                  	<li><a href="myteam.html" target="content">组织2</a></li>
+                  	<li class="divider"></li>
+                  	<li><a href="#" id="logout">注销</a></li>
+                  	<li><a href="profile.html" target="content">修改个人资料</a></li>
+              	</ul>
+            </li>
+	    </ul>
+	    <form class="navbar-form navbar-right" role="search">
+	      	<div class="form-group">
+	        	<input type="text" class="form-control" placeholder="活动/组织/用户">
+	      	</div>
+	      	<button type="submit" class="btn btn-default" style="margin-right: 30px;">搜索</button>
+	    </form>
+  	</div><!-- /.navbar-collapse -->
+</nav>
+
+<script>
+	$('#nav1-ul li').click(function(){
+		$('#nav1-ul li').removeClass('active');
+		$(this).addClass('active');
+	});
+</script>
+  
+  
+<!--Content  e61610-->
+<div class="container">
+
+	<div class="row" style="height: 180px; margin-bottom: 30px;">
+		<div class="col-md-12" align="left" style="padding-top: 80px;display: inline-block;">
+			<div style="margin-left: 70px;">
+				<p style="float:right;"><span class="glyphicon glyphicon-share">&nbsp;</span>分享</p>
+				<h1 style="color:#B94A48;">趁着年轻去“思奔”</h1>
+			</div>
+		</div>
+	</div>
+	
+	<div class="row">
+		<div class="row">
+  			<div class="col-md-3" id="leftCol">
+              	<div class="list-group" id="sidebar" style="margin-left: 70px;">
+                  <a href="#sec1" class="list-group-item">活动详情</a>
+                  <a href="#sec2" class="list-group-item active">活动动态</a>
+                </div>
+                <div class="list-group" id="sidebar" style="margin-left: 70px;">
+                  <a href="#sec3" class="list-group-item">讨论区域</a>
+                  <a href="#sec4" class="list-group-item">通知发布</a>
+                </div>
+                <div class="list-group" id="sidebar" style="margin-left: 70px;">
+                  <a href="#sec3" class="list-group-item">活动相册</a>
+                  <a href="#sec4" class="list-group-item">共享文档</a>
+              	</div>
+      		</div>
+
+			<div class="col-md-9" id="rightCol"  style="display: inline-block;">
+				<div  style="margin-left: 70px;border-left: solid gray;">
+					<dl >
+					  <dt style="margin-top: 10px">
+					  	<p style="margin-left: 5px">9月2日 14:12</p>
+					  	<p style="margin-left: 5px; float:left;">孩子们正在热烈的讨论中</p>
+					  	<div style="float:right"><span class="glyphicon glyphicon-thumbs-up"></span>&nbsp;<span class="glyphicon glyphicon-share"></span></div>			  	
+					  </dt>
+					  <hr style="border-top: 1px solid gray; margin-top: 40px">
+					  <dd>
+					  	<div class="row" style="width: 700px; margin-left: 250px">
+						  <div class="col-xs-6 col-md-3">
+						    <a href="#" class="thumbnail">
+						      <img src="img/wall/bg1.jpg" alt="..." style="width: 80px; height: 80px;">
+						    </a>
+						  </div>
+						  <div class="col-xs-6 col-md-3">
+						    <a href="#" class="thumbnail">
+						      <img src="img/wall/bg1.jpg" alt="..." style="width: 80px; height: 80px;">
+						    </a>
+						  </div>
+						  <div class="col-xs-6 col-md-3">
+						    <a href="#" class="thumbnail">
+						      <img src="img/wall/bg1.jpg" alt="..." style="width: 80px; height: 80px;">
+						    </a>
+						  </div>
+						</div>
+						<div>
+							<div class="panel-group" id="accordion"  style="margin-left: 250px">
+							  <div class="panel panel-default">
+							    <div class="panel-heading">
+							      <h4 class="panel-title">
+							        <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
+							          闫新宇同学正在努力说服自己的小伙伴们。<strong>评论(3)</strong>
+							        </a>
+							      </h4>
+							    </div>
+							    <div id="collapseOne" class="panel-collapse collapse in">
+							      <div class="panel-body">
+							        <p>1# 小闫好帅啊~~~(by. 路人)</p>
+							        <p>2# 赞楼上（by. cacate）</p>
+							        <form>
+								        <input type="text" class="form-control" placeholder="发表评论">
+							        </form>
+							      </div>
+							    </div>
+							  </div>
+							</div>
+						</div>
+					  </dd>
+					  <dt style="margin-top: 10px">
+					  	<p style="margin-left: 5px">9月2日 14:12</p>
+					  	<p style="margin-left: 5px; float:left;">孩子们正在热烈的讨论中</p>
+					  	<div style="float:right"><span class="glyphicon glyphicon-thumbs-up"></span>&nbsp;<span class="glyphicon glyphicon-share"></span></div>			  	
+					  </dt>
+					  <hr style="border-top: 1px solid gray; margin-top: 40px">
+					  <dd>
+					  	<div class="row" style="width: 700px; margin-left: 250px">
+						  <div class="col-xs-6 col-md-3">
+						    <a href="#" class="thumbnail">
+						      <img src="img/wall/bg1.jpg" alt="..." style="width: 80px; height: 80px;">
+						    </a>
+						  </div>
+						  <div class="col-xs-6 col-md-3">
+						    <a href="#" class="thumbnail">
+						      <img src="img/wall/bg1.jpg" alt="..." style="width: 80px; height: 80px;">
+						    </a>
+						  </div>
+						  <div class="col-xs-6 col-md-3">
+						    <a href="#" class="thumbnail">
+						      <img src="img/wall/bg1.jpg" alt="..." style="width: 80px; height: 80px;">
+						    </a>
+						  </div>
+						</div>
+						<div>
+							<div class="panel-group" id="accordion1"  style="margin-left: 250px">
+							  <div class="panel panel-default">
+							    <div class="panel-heading">
+							      <h4 class="panel-title">
+							        <a data-toggle="collapse" data-parent="#accordion1" href="#collapseTwo">
+							          闫新宇同学正在努力说服自己的小伙伴们。<strong>评论(3)</strong>
+							        </a>
+							      </h4>
+							    </div>
+							    <div id="collapseTwo" class="panel-collapse collapse">
+							      <div class="panel-body">
+							        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+							      </div>
+							    </div>
+							  </div>
+							</div>
+						</div>
+					  </dd>
+					  <dt style="margin-top: 10px">
+					  	<p style="margin-left: 5px">9月2日 14:12</p>
+					  	<p style="margin-left: 5px; float:left;">孩子们正在热烈的讨论中</p>
+					  	<div style="float:right"><span class="glyphicon glyphicon-thumbs-up"></span>&nbsp;<span class="glyphicon glyphicon-share"></span></div>			  	
+					  </dt>
+					  <hr style="border-top: 1px solid gray; margin-top: 40px">
+					  <dd>
+					  	<div class="row" style="width: 700px; margin-left: 250px">
+						  <div class="col-xs-6 col-md-3">
+						    <a href="#" class="thumbnail">
+						      <img src="img/wall/bg1.jpg" alt="..." style="width: 80px; height: 80px;">
+						    </a>
+						  </div>
+						  <div class="col-xs-6 col-md-3">
+						    <a href="#" class="thumbnail">
+						      <img src="img/wall/bg1.jpg" alt="..." style="width: 80px; height: 80px;">
+						    </a>
+						  </div>
+						  <div class="col-xs-6 col-md-3">
+						    <a href="#" class="thumbnail">
+						      <img src="img/wall/bg1.jpg" alt="..." style="width: 80px; height: 80px;">
+						    </a>
+						  </div>
+						</div>
+						<div>
+							<div class="panel-group" id="accordion2"  style="margin-left: 250px">
+							  <div class="panel panel-default">
+							    <div class="panel-heading">
+							      <h4 class="panel-title">
+							        <a data-toggle="collapse" data-parent="#accordion2" href="#collapseThree">
+							          闫新宇同学正在努力说服自己的小伙伴们。<strong>评论(3)</strong>
+							        </a>
+							      </h4>
+							    </div>
+							    <div id="collapseThree" class="panel-collapse collapse">
+							      <div class="panel-body">
+							        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+							      </div>
+							    </div>
+							  </div>
+							</div>
+						</div>
+					  </dd>
+					</dl>
+					<p class="text-right"><a href="#">显示更早</a></p>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<!--Footer Block-->
+<div style="width: 100%; margin-top: 100px;">
+<div style="background-color: #777; padding:20px;">
+	<div class="container">
+
+		<div class="row">
+			<div class="col-md-3">
+				<ul class="list-unstyled">
+					<li>
+						<h5>关于I Can</h5>
+					</li>
+					<li>了解I Can</li>
+					<li>团队介绍</li>
+					<li>联系我们</li>
+				</ul>
+			</div>
+			<div class="col-md-3">
+				<ul class="list-unstyled">
+					<li>
+						<h5>帮助</h5>
+					</li>
+					<li>建议反馈</li>
+					<li>网站使用手册</li>
+					<li>网站管理条例</li>
+				</ul>
+			</div>
+			<div class="col-md-3">
+				<ul class="list-unstyled">
+					<li>
+						<h5>关注I Can</h5>
+					</li>
+					<li>新浪微博</li>
+					<li>人人网</li>
+					<li>豆瓣小组</li>
+				</ul>
+			</div>
+			
+			<div class="col-md-3">
+				<ul class="list-unstyled">
+					<li>
+						<h5>官方微信</h5>
+					</li>
+					<li><img src="img/wall/bg4.jpg" class="avatar-large" /></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+</div>
+</div>
+</body>
+</html>
