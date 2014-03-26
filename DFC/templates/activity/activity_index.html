@@ -3,7 +3,7 @@
 
 {% block title %}{% trans "Activities" %}{% endblock %}
 {% block content %}
-	<h1 class="padding-small" style="margin-top: 70px;">{% trans 'Activity' %}</h1>
+	<h1 class="padding-small">{% trans 'Activity' %}</h1>
 	<div  class="row">
 		<div class="col-md-7">
 			<div class="padding-small">
@@ -41,7 +41,7 @@
 			<div class="row" style="margin-bottom: 20px;">
 				<div class="margin-middle" style="margin-right: 0">
 					<div class=" pull-right col-md-6">
-						<button class="btn btn-default active" style="background-color: silver;">招募中</button>
+						<button class="btn btn-default active">招募中</button>
 						<button class="btn btn-default">进行中</button>
 						<div class="col-md-6">
 							<select class="form-control">
@@ -95,8 +95,6 @@
 			<div align="center">
 				<a class="btn btn-lg btn-warning" href="{% url 'activity_new' %}">创建活动</a>
 			</div>
-		</div>
-		<div class="col-md-5">
 			<div class="padding-middle text-muted">
 				<p style="font-size:2.3em; line-height: 2.3em;">&emsp;&emsp;创建一个活动，填写完简单的活动和招募信息后，
 					您可以通过此平台与参与活动的志愿者在线沟通，给志愿者们发送短信通知，和志愿者一起撰写活动动态，
@@ -116,4 +114,5 @@
 		   	}
 		});
 		</script>
+	</div>
 {% endblock %}

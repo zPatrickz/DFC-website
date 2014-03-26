@@ -5,43 +5,50 @@
 <title>I Can</title>
 <link href="css/bootstrap.min.css" rel="stylesheet">
 <link href="css/ican.css" rel="stylesheet">
+<link href="css/bootstrap-datetimepicker.min.css" rel="stylesheet">
 <script src="js/jquery.min.js"></script>
 <script src="js/bootstrap.min.js"></script>
 <script type="text/javascript" src="http://api.map.baidu.com/api?v=1.5&ak=2b866a6daac9014292432d81fe9b47e3"></script>
 <script src="js/setactivity.js"></script>
 <script type="text/javascript" src="js/bootstrap-datetimepicker.min.js"></script>
+<script type="text/javascript" src="js/bootstrap-datetimepicker.zh-CN.js"></script>
 </head>
 <body style="background-color: silver;">
-	<div class="span9">
+	<div class="container">
 		<div class="well">
 			<h3 class="page-header">完善个人资料</h3>
 		    <form class="form-horizontal">
 		    	<fieldset>
 			
-					<div class="control-group">
-					    <label class="control-label" for="truename">头像</label>
-					    <div class="controls">
-					    <input type="file" class="input-xlarge" id="avatar" placeholder="上传投降">
+					<div class="form-group">
+					    <label class=" control-label col-md-3" for="avatar">头像</label>
+					    <div class="col-md-8">
+					    <input type="file" class="form-control" id="avatar" placeholder="上传头像">
 					    </div>
 					</div>
 			
-					<div class="control-group">
-					    <label class="control-label" for="truename">真实姓名</label>
-					    <div class="controls">
-					    	<input type="text" class="input-xlarge" id="truename" title="真实姓名可以帮助大家更好的组织活动" rel="tooltip" placeholder="真实姓名">
+					<div class="form-group">
+					    <label class=" control-label col-md-3" for="truename">真实姓名</label>
+					    <div class="col-md-8">
+					    	<input type="text" class="form-control" id="truename" title="真实姓名可以帮助大家更好的组织活动" rel="tooltip" placeholder="真实姓名">
 					    </div>
 					</div>
+								
 					
-					<div class="control-group">
-					    <div class="controls">
-					    	<label class="checkbox"><input type="checkbox" /> 对一起参与活动的志愿者公开真实姓名。</label>
-					    </div>
+					<div class="form-group">
+						<div class="col-md-offset-3 col-md-8">
+							<div class="checkbox">
+								<label>
+									<input type="checkbox" id="">对一起参与活动的志愿者公开真实姓名。</a>
+								</label>
+							</div>
+						</div>
 					</div>
 			
-					<div class="control-group">
-					    <label class="control-label" for="gender">性别</label>
-					    <div class="controls">
-					    <select class="input-small" id="gender">
+					<div class="form-group">
+					    <label class=" control-label col-md-3" for="gender">性别</label>
+					    <div class="col-md-8">
+					    <select class="form-control" id="gender">
 					    <option>选择</option>
 					    <option>男</option>
 					    <option>女</option>
@@ -49,132 +56,131 @@
 					    </div>
 					</div>
 					
-					<div class="control-group">
-					    <label class="control-label" for="college">学校</label>
-					    <div class="controls">
-					    	<input type="text" class="input-xlarge" id="college" placeholder="所在学校">
+					<div class="form-group">
+					    <label class=" control-label col-md-3" for="college">学校</label>
+					    <div class="col-md-8">
+					    	<input type="text" class="form-control" id="college" placeholder="所在学校">
 					    </div>
 					</div>
 					
 					
-					<div class="control-group">
-						<label class=" control-label" for="birthday">生日</label>
-						<div class="controls">
-						    <div id="datetimepicker" class="input-append date" style="display:inline-block;">
-						        <input type="text" id="birthday" class="input-xlarge"></input>
-						        <span class="add-on">
-						            <i data-time-icon="icon-time" data-date-icon="icon-calendar"></i>
-						        </span>
-						    </div>
+				    <div id="birthday_div" class="input-append date" style="display:inline-block;">
+					    <label class=" control-label col-md-3" for="birthday-data">生日</label>
+					    <div class="col-md-8">
+			                <div id="birthday" class="input-group date form_datetime" data-date="2014-09-16T05:25:07Z" data-date-format="dd MM yyyy - HH:ii p" data-link-field="dtp_input1">
+			                    <input id="birthday-data" class="form-control" size="16" type="text" value="" readonly>
+			                    <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
+								<span class="input-group-addon"><span class="glyphicon glyphicon-th"></span></span>
+			                </div>
+							<input type="hidden" value="" name="start_time"/><br/>
 						</div>
-					</div>
-					
+				    </div>
+						
 					<script type="text/javascript">
-					    $('#datetimepicker').datetimepicker({
-					        format: 'yyyy年MM月dd日',
-					        language: 'cn',
-					        pickDate: true,
-					        pickTime: false,
-					        hourStep: 1,
-					        minuteStep: 15,
-					        secondStep: 30,
-					        inputMask: true
+					    $('#birthday').datetimepicker({
+					        language:  'zh-CN',
+							format: 'yyyy年mm月dd日 hh:ii',
+					        weekStart: 1,
+					        todayBtn:  1,
+							autoclose: 1,
+							todayHighlight: 1,
+							startView: 2,
+							forceParse: 0,
+					        showMeridian: 1
 					    });
 					</script>
 					
 					
-			        <div class="control-group">
-			            <label class="control-label" for="talent">您的特长</label>
-			            <div class="controls">
-			                <input type="text" placeholder="您的特长" class="input-xlarge" id="talent" title="认真填写您的特长可以让大家更好的了解你，尤其当你有加入公益团队的打算时。" rel="tooltip">
+			        <div class="form-group">
+			            <label class=" control-label col-md-3" for="talent">您的特长</label>
+			            <div class="col-md-8">
+			                <input type="text" placeholder="您的特长" class="form-control" id="talent" >
 			            </div>
 			        </div>
 			        
-			        <div class="control-group">
-			        	<div class="control-group">
-			                <label class="control-label" for="signature">个人介绍</label>
-				            <div class="controls">
-				                <textarea placeholder="个性签名" class="input-xlarge" id="signature" title=""></textarea>
+			        <div class="form-group">
+			        	<div class="form-group">
+			                <label class=" control-label col-md-3" for="signature">个人介绍</label>
+				            <div class="col-md-8">
+				                <textarea placeholder="个人介绍" class="form-control" id="signature" title=""></textarea>
+			                	<p class="help-block">认真填写您的特长和你的个人介绍，可以让大家更好的了解你，尤其当你有加入公益团队的打算时。</p>
 				            </div>
 				        </div>
 			        </div>
-			        <div class="control-group" style="margin-top: 50px;">
-			            <label class="control-label" for="phone" rel="tooltip">手机号码</label>
-			            <div class="controls">
-				            <input type="text" class="input-xlarge" placeholder="手机号码" id="phone" title="手机号码" rel="tooltip">
+			        <div class="form-group" style="margin-top: 50px;">
+			            <label class=" control-label col-md-3" for="phone">手机号码</label>
+			            <div class="col-md-8">
+				            <input type="text" class="form-control" placeholder="手机号码" id="phone" title="手机号码">
 			        	</div>
 			        </div>
 			        
-			        <div class="control-group">
-			            <label class="control-label" for="qq" rel="tooltip">QQ号码</label>
-			            <div class="controls">
-				            <input type="text" class="input-xlarge" placeholder="QQ" id="qq" title="QQ" rel="tooltip">
+			        <div class="form-group">
+			            <label class=" control-label col-md-3" for="qq">QQ号码</label>
+			            <div class="col-md-8">
+				            <input type="text" class="form-control" placeholder="活动组织方并不能直接通过此平台发送QQ联系您" id="qq" title="QQ">
 			        	</div>
 			        </div>
 			        
-			        <div class="control-group">
-			            <label class="control-label" for="weixin" rel="tooltip">微信</label>
-			            <div class="controls">
-				            <input type="text" class="input-xlarge" placeholder="微信" id="weixin" title="微信">
+			        <div class="form-group">
+			            <label class=" control-label col-md-3" for="weixin">微信</label>
+			            <div class="col-md-8">
+				            <input type="text" class="form-control" placeholder="活动组织方并不能直接通过此平台发送微信联系您" id="weixin" title="微信">
 			        	</div>
 			        </div>
 			        
-			        <div class="control-group">
-			            <label class="control-label" for="qq" title="必须至少要留一个有效的联系方式以便活动组织方联系。" rel="tooltip">偏好的联系方式</label>
-			            <div class="controls">
-				            <select>
+			        <div class="form-group">
+			            <label class=" control-label col-md-3" for="contact-method">偏好的联系方式</label>
+			            <div class="col-md-8">
+				            <select class="form-control" id="contact-method">
 				            	<option>站内联系</option>
 				            	<option>短信</option>
 				            	<option>注册邮箱</option>
 				            	<option>微信</option>
+				            	<option>QQ</option>
 				            </select>
+				            <p class="help-block">必须至少要留一个有效的常用联系方式以便活动组织方联系。</p>
 			        	</div>
 			        </div>
 			
-			        <div class="control-group">
+			        <div class="form-group">
 			          <!-- Button -->
-			        	<div class="controls">
+			        	<div class="col-md-offset-3 col-md-8">
 			            	<button class="btn btn-info">保存更改</button>
-			            	<button class="btn btn-info">返回</button>
+			            	<button class="btn btn-info">放弃修改</button>
 			            </div>
 			        </div>
 			        
 				</fieldset>
 			</form>
-			<script type="text/javascript">
-				$('#truename').tooltip({'placement':'right'});
-				$('#talent').tooltip({'placement':'right'});
-			</script>
-		
 		
 			<!--Begin of Basic Informatoin-->
 			<h3 class="page-header">更改密码</h3>
 			<form class="form-horizontal">
 				<fieldset>
 					
-					<div class="control-group">
-					    <label class="control-label" for="old-passwd1">原密码</label>
-					    <div class="controls">
-					    	<input type="password" class="input-xlarge" id="old-passwd1" placeholder="密码" required>
+					<div class="form-group">
+					    <label class=" control-label col-md-3" for="old-passwd1">原密码</label>
+					    <div class="col-md-8">
+					    	<input type="password" class="form-control" id="old-passwd1" placeholder="密码" required>
 					    </div>
 					</div>
-					<div class="control-group">
-					    <label class="control-label" for="passwd1">新密码</label>
-					    <div class="controls">
-					    	<input type="password" class="input-xlarge" id="passwd1" placeholder="密码" required>
-					    </div>
-					</div>
-					
-					<div class="control-group">
-					    <label class="control-label" for="passwd2">重复密码</label>
-					    <div class="controls">
-					    	<input type="password" class="input-xlarge" id="passwd2" placeholder="重复密码" required>
+					<div class="form-group">
+					    <label class=" control-label col-md-3" for="passwd1">新密码</label>
+					    <div class="col-md-8">
+					    	<input type="password" class="form-control" id="passwd1" placeholder="密码" required>
 					    </div>
 					</div>
 					
-					<div class="control-group">
-					    <div class="controls input-preappend">
-							<span class="btn add-on">发送邮箱验证</span>
+					<div class="form-group">
+					    <label class=" control-label col-md-3" for="passwd2">重复密码</label>
+					    <div class="col-md-8">
+					    	<input type="password" class="form-control" id="passwd2" placeholder="重复密码" required>
+					    </div>
+					</div>
+					
+					<div class="form-group">
+					    <div class="col-md-offset-3 col-md-8">
+							<button class="btn btn-default">发送邮箱验证</button>
 					    </div>
 					</div>
 				</fieldset>
