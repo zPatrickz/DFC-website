@@ -4,95 +4,165 @@
 <meta charset="utf-8">
 <title>I Can</title>
 <link href="css/bootstrap.min.css" rel="stylesheet">
+<link href="css/bootstrap-datetimepicker.min.css" rel="stylesheet">
 <link href="css/ican.css" rel="stylesheet">
 <script src="js/jquery.min.js"></script>
 <script src="js/bootstrap.min.js"></script>
 <script type="text/javascript" src="http://api.map.baidu.com/api?v=1.5&ak=2b866a6daac9014292432d81fe9b47e3"></script>
 <script src="js/setactivity.js"></script>
 <script type="text/javascript" src="js/bootstrap-datetimepicker.min.js"></script>
+<script type="text/javascript" src="js/bootstrap-datetimepicker.zh-CN.js"></script>
 </head>
 <body style="background-color: silver;">
-<div class="span9">
-	<div class="well">
+	<div class="well col-md-9">
 		<h3 class="page-header">用户管理与用户通知</h3>
 
-		<table class="table table-striped">
+		<table class="table table-striped user-table">
 			<tr>
-				<th>用户</th>
+				<th class="col-md-6">
+					<div class="col-md-5" id="">
+						<div class="checkbox" style="margin: 0;">
+							<label>
+								<input type="checkbox"><strong>用户昵称</strong>
+							</label>
+						</div>
+					</div>
+					<div class="col-md-7" id="">
+						<a class="col-md-4 send-notice" href="javascript:void(0)"><span class="glyphicon glyphicon-comment"></span>&nbsp;通知</a>
+						<div class="col-md-4 ">
+							<a class="dropdown-toggle" data-toggle="dropdown" href="javascript:void(0)"><span class="glyphicon glyphicon-retweet"></span>&nbsp;角色</a>
+							<ul class="dropdown-menu">
+								<li><a href="javascript:void(0)">志愿者</a></li>
+								<li><a href="javascript:void(0)">引导员</a></li>
+							</ul>
+						</div>
+						<a class="col-md-4" href="javascript:void(0)"><span class="glyphicon glyphicon-remove"></span>&nbsp;移除</a>
+					</div>
+				</th>
 				<th>真实姓名</th>
 				<th>角色</th>
 				<th>偏好的联系方式</th>
-				<th><label class="checkbox"><input type="checkbox" />全选</label></th>
+				<th>加入时间</th>
 			</tr>
 			<tr>
-				<td><a href="#">cacate</a></td>
+				<td id="user1" class="hover-toggle">
+					<div class="col-md-5">
+						<div class="checkbox" style="margin: 0">
+							<label>
+								<input type="checkbox"><a href="javascript:void(0)">cacate</a>
+							</label>
+						</div>
+					</div>
+					<div class="col-md-7 hide" id="user1-toggle">
+						<a class="col-md-4 send-notice" href="javascript:void(0)"><span class="glyphicon glyphicon-comment"></span>&nbsp;通知</a>
+						<div class="col-md-4 ">
+							<a class="dropdown-toggle" data-toggle="dropdown" href="javascript:void(0)"><span class="glyphicon glyphicon-retweet"></span>&nbsp;角色</a>
+							<ul class="dropdown-menu">
+								<li><a href="javascript:void(0)">志愿者</a></li>
+								<li><a href="javascript:void(0)">引导员</a></li>
+							</ul>
+						</div>
+						<a class="col-md-4" href="javascript:void(0)"><span class="glyphicon glyphicon-remove"></span>&nbsp;移除</a>
+					</div>
+				</td>
 				<td>刘金国</td>
 				<td>管理员</td>
-				<td><span class="label">邮箱</span>cacate0129@gmail.com</td>
-				<td><input type="checkbox"></td>
-			</tr>
-			<tr>
-				<td><a href="#">cacate</a></td>
-				<td>刘金国</td>
-				<td>管理员</td>
-				<td><span class="label">邮箱</span>cacate0129@gmail.com</td>
-				<td><input type="checkbox"></td>
-			</tr>
-			<tr>
-				<td><a href="#">Chuang Xie</a></td>
-				<td>谢闯</td>
-				<td>志愿者</td>
-				<td><span class="label">邮箱</span>cacate0129@gmail.com</td>
-				<td><input type="checkbox"></td>
-			</tr>
-			<tr>
-				<td><a href="#">cacate</a></td>
-				<td>刘金国</td>
-				<td>管理员</td>
-				<td><span class="label">邮箱</span>cacate0129@gmail.com</td>
-				<td><input type="checkbox"></td>
+				<td>手机: <a href="javascript:void(0)">15195955770</a></td>
+				<td>7月23日 08:23</td>
 			</tr>
 		</table>
-		<div class="well well-small">
-			<button class="btn btn-info">发送消息</button>
-			<button class="btn btn-info">更改角色</button>
-			<button class="btn btn-info">踢出用户</button>
-		</div>
-		<div class="well well-small">
-			<form class="form-horizontal">
-				<fieldset>
-					<div class="control-group">
-					    <label class="control-label" for="noticement-text">通知方式</label>
-					    <div class="controls">
-					    	<select>
-					    		<option>仅站内</option>
-					    		<option>按用户偏好+站内</option>
-					    		<option>短信+站内</option>
-					    		<option>邮件+站内</option>
-					    		<option>微信+站内</option>
-					    	</select>
-					    </div>
+		<div class="modal" id="notice-block">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+						<h4 class="modal-title">发送通知</h4>
 					</div>
-					<div class="control-group">
-					    <label class="control-label" for="noticement-text">内容</label>
-					    <div class="controls">
-							<textarea id="noticement-text" class="input-xlarge" title="输入要通知的内容，如果是短信，超出部分将会提醒用户阅读站内通知。" rel="tooltip">，收到通知请回复：15195955770</textarea>
-					    </div>
-					</div>
-					<div class="control-group">
-					    <div class="controls">
-					    	<button class="btn btn-info">发送</button>
-					    </div>
-					</div>
-				</fieldset>
-			</form>
+					<div class="modal-body">
+						<form class="modal-form form-horizontal">
+						<fieldset>
+							<div class="form-group">
+							    <label class="control-label col-md-2" for="sendto">发送给</label>
+							    <div class="col-md-8">
+									<input id="sendto" class="form-control" title="" value="" placeholder="" disabled="">
+							    	<p class="help-block">输入要通知的内容，如果是短信，超出部分将会提醒用户阅读站内通知。</p>
+							    </div>
+							</div>
+							<div class="form-group">
+							    <label class="control-label col-md-2" for="notice-method">通知方式</label>
+							    <div class="col-md-8">
+							    	<select class="form-control" id="notice-method">
+							    		<option>仅站内</option>
+							    		<option>按用户偏好+站内</option>
+							    		<option>短信+站内</option>
+							    		<option>邮件+站内</option>
+							    		<option>微信+站内</option>
+							    	</select>
+							    </div>
+							</div>
+							<div class="form-group">
+								<div class="col-md-offset-2 col-md-8">
+									<div class="checkbox col-md-3">
+										<label>
+											<input type="checkbox"><strong>定时</strong>
+										</label>
+									</div>
+									<div class="col-md-9">
+									    <div id="datetimepicker1" class="input-append date" style="display:inline-block;">
+							                <div id="send-time" class="col-md-12 input-group date form_datetime" data-date="2014-09-16T05:25:07Z" data-date-format="dd MM yyyy - HH:ii p" data-link-field="dtp_input1">
+							                    <input class="form-control" size="16" type="text" value="" readonly>
+												<span class="input-group-addon"><span class="glyphicon glyphicon-th"></span></span>
+							                </div>
+											<input type="hidden" id="activity-starttime" value="" name="start_time"/><br/>
+									    </div>
+								    </div>
+								    <script>
+									    $('#send-time').datetimepicker({
+									        language:  'zh-CN',
+											format: 'yyyy年mm月dd日 hh:ii',
+									        weekStart: 1,
+									        todayBtn:  1,
+											autoclose: 1,
+											todayHighlight: 1,
+											startView: 2,
+											forceParse: 0,
+									        showMeridian: 1
+									    });
+								    </script>
+								 
+							    </div>
+							</div>
+							<div class="form-group">
+							    <label class="control-label col-md-2" for="noticement-text">内容</label>
+							    <div class="col-md-8">
+									<textarea id="noticement-text" class="form-control" title="">，收到通知请回复短信“收到”至15195955770</textarea>
+							    	<p class="help-block">输入要通知的内容，如果是短信，超出部分内容，图片和附件内容将会提醒用户阅读站内通知。【this editor is not quite accomplished.】</p>
+							    </div>
+							</div>
+							<div class="form-group">
+							    <div class="col-md-offset-2 col-md-8">
+							    	<button class="btn btn-info">发送</button>
+							    </div>
+							</div>
+						</fieldset>
+					</form>
+				</div>
+			</div>
 		</div>
 		
-		<script type="text/javascript">
-			$('#noticement-text').tooltip({'placement':'right'});
-		</script>
 	</div>
-</div>
+	<script>
+		$('.hover-toggle').hover(function(){
+			$('#'+this.id+'-toggle').removeClass('hide');
+		},
+		function(){
+			$('#'+this.id+'-toggle').addClass('hide');
+		});
+		
+		$('.send-notice').click(function(){
+			$('#notice-block').modal();
+		});
+	</script>
 
 </body>
 </html>
