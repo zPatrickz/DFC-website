@@ -1,129 +1,264 @@
 <!doctype html>
+<!--Navigator Block-->
 <html>
 <head>
 <meta charset="utf-8">
 <title>I Can</title>
 <link href="css/bootstrap.min.css" rel="stylesheet">
 <link href="css/ican.css" rel="stylesheet">
-<link href="css/bootstrap-datetimepicker.min.css" rel="stylesheet" media="screen">
 <script src="js/jquery.min.js"></script>
 <script src="js/bootstrap.min.js"></script>
 <script type="text/javascript" src="http://api.map.baidu.com/api?v=1.5&ak=2b866a6daac9014292432d81fe9b47e3"></script>
 <script src="js/setactivity.js"></script>
 <script type="text/javascript" src="js/bootstrap-datetimepicker.min.js"></script>
-<script type="text/javascript" src="js/bootstrap-datetimepicker.zh-CN.js"></script>
+<link rel="stylesheet" href="css/redactor.css" />
+<script src="js/redactor.js"></script>
 </head>
-<body style="background-color: silver;">
-<div class="col-md-8">
-	<div class="well">
-		<form class="form-horizontal" role="form">
-			<h3 class="page-header">1/3. 活动基本信息</h3>
-			<div class="form-group">
-				<label class="control-label col-md-3" for="activity-title">活动名称</label>
-				<div class="col-md-8">
-					<input class="form-control" type="text" placeholder="" id="activity-title">
+<body style="background-color:#EEEEEE; background-size: cover;">
+<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+	    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+	        <span class="sr-only">Toggle navigation</span>
+	        <span class="icon-bar"></span>
+	        <span class="icon-bar"></span>
+	        <span class="icon-bar"></span>
+	    </button>
+    <a class="navbar-brand" href="#">I Can</a>
+    </div>
+
+  	<!-- Collect the nav links, forms, and other content for toggling -->
+  	<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+    	<ul class="nav navbar-nav" id="nav1-ul">
+      		<li class="active"><a href="#">首页</a></li>
+      		<li><a href="#">公益行动</a></li>
+	      	<li><a href="#">公益故事</a></li>
+	      	<li><a href="#">公益团队</a></li>
+	      	<li><a href="#">大奖赛</a></li>
+    	</ul>
+	    <ul class="nav navbar-nav navbar-right">
+	      	<li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" style="padding:15px;">
+                	<img class="avatar-small" src="img/icon/message.svg">
+              	</a>
+              	<ul class="dropdown-menu">
+                  	<li><a href="myact.html" target="content">推送（<span style="color: red">8</span>）</a></li>
+                  	<li><a href="myteam.html" target="content">站内信（<span style="color: red">8</span>）</a></li>
+                  	<li><a href="myteam.html" target="content">通知（0）</a></li>
+                  	<!--<li><a href="#">备忘</a></li>-->
+              	</ul>
+            </li>
+	      	<li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" style="padding:13px;">
+          		  	<img src="img/icon/avatar.svg" class="avatar-small">
+          		  	<span class="small-grey">个人面板</span>
+          		  	<b class="caret"></b>
+              	</a>
+              	<ul class="dropdown-menu">
+                  	<li><a href="myact.html" target="content">活动1</a></li>
+                  	<li><a href="myteam.html" target="content">活动2</a></li>
+                  	<!--<li><a href="#">备忘</a></li>-->
+                  	<li class="divider"></li>
+                  	<li><a href="myact.html" target="content">组织1</a></li>
+                  	<li><a href="myteam.html" target="content">组织2</a></li>
+                  	<li class="divider"></li>
+                  	<li><a href="#" id="logout">注销</a></li>
+                  	<li><a href="profile.html" target="content">修改个人资料</a></li>
+              	</ul>
+            </li>
+	    </ul>
+	    <form class="navbar-form navbar-right" role="search">
+	      	<div class="form-group">
+	        	<input type="text" class="form-control" placeholder="活动/组织/用户">
+	      	</div>
+	      	<button type="submit" class="btn btn-default" style="margin-right: 30px;">搜索</button>
+	    </form>
+  	</div><!-- /.navbar-collapse -->
+</nav>
+
+<script>
+	$('#nav1-ul li').click(function(){
+		$('#nav1-ul li').removeClass('active');
+		$(this).addClass('active');
+	});
+</script>
+  
+  
+<!--Content  e61610-->
+<div class="container">
+
+	<div class="row" style="height: 180px; margin-bottom: 30px;">
+		<div class="col-md-12" align="left" style="padding-top: 80px;display: inline-block;">
+			<div style="margin-left: 70px;">
+				<div style="float:right;">
+					<button type="submit" class="btn btn-default btn-sm">举报</button>
+					<button type="submit" class="btn btn-default btn-sm">加入(6/8)</button>
+					<button type="submit" class="btn btn-default btn-sm">关注(8)</button>
+					<span class="glyphicon glyphicon-share">&nbsp;分享</span>
+
 				</div>
-			</div>
-			<div class="form-group">
-				<label class="control-label col-md-3" for="activity-brief">活动简介</label>
-				<div class="col-md-8">
-					<textarea class=" form-control" placeholder="240字以内" id="activity-biref" style="height:100px;"></textarea>
-				</div>
-			</div>
-			<div class="form-group">
-				<label class="control-label col-md-3" for="activity-face">上传封面</label>
-				<div class="col-md-8">
-					<input type="file" class="form-control" placeholder="" id="activity-face">
-				</div>
-			</div>
-			<div class="form-group">
-				<label class=" control-label col-md-3" for="activity-time">活动时间</label>
-				<div class="col-md-8">
-				    <div id="datetimepicker" class="input-append date" style="display:inline-block;">
-		                <div id="starttime" class="input-group date form_datetime col-md-9" data-date="2014-09-16T05:25:07Z" data-date-format="dd MM yyyy - HH:ii p" data-link-field="dtp_input1">
-		                    <input class="form-control" size="16" type="text" value="" readonly>
-		                    <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
-							<span class="input-group-addon"><span class="glyphicon glyphicon-th"></span></span>开始
-		                </div>
-						<input type="hidden" id="activity-time" value="" /><br/>
-				    </div>
-			
-					<script type="text/javascript">
-					    $('#starttime').datetimepicker({
-					        language:  'zh-CN',
-							format: 'yyyy年mm月dd日 hh:ii',
-					        weekStart: 1,
-					        todayBtn:  1,
-							autoclose: 1,
-							todayHighlight: 1,
-							startView: 2,
-							forceParse: 0,
-					        showMeridian: 1
-					    });
-					</script>
-					<div id="datetimepicker" class="input-append date" style="display:inline-block;">
-		                <div id="endtime" class="input-group date form_datetime col-md-9" data-date="2014-09-16T05:25:07Z" data-date-format="dd MM yyyy - HH:ii p" data-link-field="dtp_input1">
-		                    <input class="form-control" size="16" type="text" value="" readonly>
-		                    <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
-							<span class="input-group-addon"><span class="glyphicon glyphicon-th"></span></span>结束
-		                </div>
-						<input type="hidden" id="activity-time" value="" /><br/>
-					</div>
 				
-					<script type="text/javascript">
-					    $('#endtime').datetimepicker({
-					        language:  'zh-CN',
-	    					format: 'yyyy年mm月dd日 hh:ii',
-					        weekStart: 1,
-					        todayBtn:  1,
-							autoclose: 1,
-							todayHighlight: 1,
-							startView: 2,
-							forceParse: 0,
-					        showMeridian: 1
-					    });
-					</script>    			
-					<p class="help-block">for more detail of datetimepicker configuration. check <a href="http://www.bootcss.com/p/bootstrap-datetimepicker/">http://www.bootcss.com/p/bootstrap-datetimepicker/</a></p>
-
-				</div>
+				<h1 style="color:#B94A48;">趁着年轻去“思奔”</h1>
 			</div>
+		</div>
+	</div>
+	
+	<div class="row">
+			<div class="col-md-3" id="leftCol">
+          	<div class="list-group" id="sidebar" style="margin-left: 70px;">
+              <a href="#sec1" class="list-group-item">活动详情</a>
+              <a href="#sec2" class="list-group-item">活动动态</a>
+            </div>
+            <div class="list-group" id="sidebar" style="margin-left: 70px;">
+              <a href="#sec3" class="list-group-item">讨论区域</a>
+              <a href="#sec4" class="list-group-item">通知发布</a>
+            </div>
+            <div class="list-group" id="sidebar" style="margin-left: 70px;">
+              <a href="#sec3" class="list-group-item active">活动相册</a>
+              <a href="#sec4" class="list-group-item">共享文档</a>
+          	</div>
+  		</div>
 
-
-			<div class="form-group">
-				<label class="control-label col-md-3" for="activity-place">活动地点</label>
-				<div class="col-md-8">
-					<input class="form-control" type="text" placeholder="baidu map API， not implemented！" id="activity-place">
-					<p class="help-block">for the place suggestion API. check <a href="http://developer.baidu.com/map/place-suggestion-api.htm">http://developer.baidu.com/map/place-suggestion-api.htm</a></p>
+		<div class="col-md-9" id="rightCol">
+			<div  style="margin-left: 70px;">
+				<p class="text-right"><a href="#">上传</a></p>
+				<div class="row">
+					<div class="col-md-8">
+						<a href="#" style="float: right"><span class="glyphicon glyphicon-share"></span></a>
+						<a href="#" class="thumbnail">								
+							<img src="img/wall/bg1.jpg" alt="...">
+						</a>							
+					</div>
+					<div class="col-md-4">
+						<div class="row">
+							<div class="col-md-6">
+								<a href="#" class="thumbnail">
+									<img src="img/wall/bg1.jpg" alt="...">
+								</a>
+							</div>
+							<div class="col-md-6">
+								<a href="#" class="thumbnail">
+									<img src="img/wall/bg1.jpg" alt="...">
+								</a>
+							</div>
+							<div class="col-md-6">
+								<a href="#" class="thumbnail">
+									<img src="img/wall/bg1.jpg" alt="...">
+								</a>
+							</div>
+							<div class="col-md-6">
+								<a href="#" class="thumbnail">
+									<img src="img/wall/bg1.jpg" alt="...">
+								</a>
+							</div>
+							<div class="col-md-6">
+								<a href="#" class="thumbnail">
+									<img src="img/wall/bg1.jpg" alt="...">
+								</a>
+							</div>
+							<div class="col-md-6">
+								<a href="#" class="thumbnail">
+									<img src="img/wall/bg1.jpg" alt="...">
+								</a>
+							</div>
+							<div class="col-md-6">
+								<a href="#" class="thumbnail">
+									<img src="img/wall/bg1.jpg" alt="...">
+								</a>
+							</div>
+							<div class="col-md-6">
+								<a href="#" class="thumbnail">
+									<img src="img/wall/bg1.jpg" alt="...">
+								</a>
+							</div>
+						</div>
+					</div>
 				</div>
-			</div>
-			
-			<div class="form-group">
-				<label class="control-label col-md-3" for="activity-link">活动链接（如果有）</label>
-				<div class="col-md-8">
-					<input class="form-control" type="text" placeholder="" id="activity-link">
-				</div>
-			</div>
-			
-			<div class="form-group">
-				<div class="col-md-offset-3 col-md-8">
-					<div class="checkbox">
-						<label>
-							<input type="checkbox" id="activity-publish">我同意网站的<a href="#">使用协议</a>
-						</label>
+				<div class="row">
+					<div class="col-md-2">
+						<a href="#" class="thumbnail">
+							<img src="img/wall/bg1.jpg" alt="...">
+						</a>
+					</div>
+					<div class="col-md-2">
+						<a href="#" class="thumbnail">
+							<img src="img/wall/bg1.jpg" alt="...">
+						</a>
+					</div>
+					<div class="col-md-2">
+						<a href="#" class="thumbnail">
+							<img src="img/wall/bg1.jpg" alt="...">
+						</a>
+					</div>
+					<div class="col-md-2">
+						<a href="#" class="thumbnail">
+							<img src="img/wall/bg1.jpg" alt="...">
+						</a>
+					</div>
+					<div class="col-md-2">
+						<a href="#" class="thumbnail">
+							<img src="img/wall/bg1.jpg" alt="...">
+						</a>
+					</div>
+					<div class="col-md-2">
+						<a href="#" class="thumbnail">
+							<img src="img/wall/bg1.jpg" alt="...">
+						</a>
 					</div>
 				</div>
 			</div>
-			
-			<div class="form-group" style="margin-top: 40px">
-				<div class="col-md-offset-9 col-md-3">
-					<button class="btn btn-info">取消</button>
-					<button class="btn btn-info">下一步</button>
-				</div>
-			</div>
-		</form>
+		</div>
 	</div>
-    
 </div>
 
+<!--Footer Block-->
+<div style="width: 100%; margin-top: 100px;">
+<div style="background-color: #777; padding:20px;">
+	<div class="container">
+
+		<div class="row">
+			<div class="col-md-3">
+				<ul class="list-unstyled">
+					<li>
+						<h5>关于I Can</h5>
+					</li>
+					<li>了解I Can</li>
+					<li>团队介绍</li>
+					<li>联系我们</li>
+				</ul>
+			</div>
+			<div class="col-md-3">
+				<ul class="list-unstyled">
+					<li>
+						<h5>帮助</h5>
+					</li>
+					<li>建议反馈</li>
+					<li>网站使用手册</li>
+					<li>网站管理条例</li>
+				</ul>
+			</div>
+			<div class="col-md-3">
+				<ul class="list-unstyled">
+					<li>
+						<h5>关注I Can</h5>
+					</li>
+					<li>新浪微博</li>
+					<li>人人网</li>
+					<li>豆瓣小组</li>
+				</ul>
+			</div>
+			
+			<div class="col-md-3">
+				<ul class="list-unstyled">
+					<li>
+						<h5>官方微信</h5>
+					</li>
+					<li><img src="img/wall/bg4.jpg" class="avatar-large" /></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+</div>
+</div>
 </body>
 </html>

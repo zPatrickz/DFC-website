@@ -1,0 +1,293 @@
+<!doctype html>
+<!--Navigator Block-->
+<html>
+<head>
+<meta charset="utf-8">
+<title>I Can</title>
+<link href="css/bootstrap.min.css" rel="stylesheet">
+<link href="css/ican.css" rel="stylesheet">
+<script src="js/jquery.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script type="text/javascript" src="http://api.map.baidu.com/api?v=1.5&ak=2b866a6daac9014292432d81fe9b47e3"></script>
+<script src="js/setactivity.js"></script>
+<script type="text/javascript" src="js/bootstrap-datetimepicker.min.js"></script>
+<link rel="stylesheet" href="css/redactor.css" />
+<script src="js/redactor.js"></script>
+<script type="text/javascript">
+    $(function()
+    {
+        $('#content').redactor({
+			imageGetJson: '/tests/images.json',
+			imageUpload: '/webUpload/redactor/uploadImage/',
+			clipboardUploadUrl: '/webUpload/redactor/clipboardUpload/',
+			fileUpload: '/webUpload/redactor/fileUpload/'
+		});
+    });
+</script>
+</head>
+<body style="background-color:#EEEEEE; background-size: cover;">
+<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+	    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+	        <span class="sr-only">Toggle navigation</span>
+	        <span class="icon-bar"></span>
+	        <span class="icon-bar"></span>
+	        <span class="icon-bar"></span>
+	    </button>
+    <a class="navbar-brand" href="#">I Can</a>
+    </div>
+
+  	<!-- Collect the nav links, forms, and other content for toggling -->
+  	<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+    	<ul class="nav navbar-nav" id="nav1-ul">
+      		<li class="active"><a href="#">首页</a></li>
+      		<li><a href="#">公益行动</a></li>
+	      	<li><a href="#">公益故事</a></li>
+	      	<li><a href="#">公益团队</a></li>
+	      	<li><a href="#">大奖赛</a></li>
+    	</ul>
+	    <ul class="nav navbar-nav navbar-right">
+	      	<li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" style="padding:15px;">
+                	<img class="avatar-small" src="img/icon/message.svg">
+              	</a>
+              	<ul class="dropdown-menu">
+                  	<li><a href="myact.html" target="content">推送（<span style="color: red">8</span>）</a></li>
+                  	<li><a href="myteam.html" target="content">站内信（<span style="color: red">8</span>）</a></li>
+                  	<li><a href="myteam.html" target="content">通知（0）</a></li>
+                  	<!--<li><a href="#">备忘</a></li>-->
+              	</ul>
+            </li>
+	      	<li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" style="padding:13px;">
+          		  	<img src="img/icon/avatar.svg" class="avatar-small">
+          		  	<span class="small-grey">个人面板</span>
+          		  	<b class="caret"></b>
+              	</a>
+              	<ul class="dropdown-menu">
+                  	<li><a href="myact.html" target="content">活动1</a></li>
+                  	<li><a href="myteam.html" target="content">活动2</a></li>
+                  	<!--<li><a href="#">备忘</a></li>-->
+                  	<li class="divider"></li>
+                  	<li><a href="myact.html" target="content">组织1</a></li>
+                  	<li><a href="myteam.html" target="content">组织2</a></li>
+                  	<li class="divider"></li>
+                  	<li><a href="#" id="logout">注销</a></li>
+                  	<li><a href="profile.html" target="content">修改个人资料</a></li>
+              	</ul>
+            </li>
+	    </ul>
+	    <form class="navbar-form navbar-right" role="search">
+	      	<div class="form-group">
+	        	<input type="text" class="form-control" placeholder="活动/组织/用户">
+	      	</div>
+	      	<button type="submit" class="btn btn-default" style="margin-right: 30px;">搜索</button>
+	    </form>
+  	</div><!-- /.navbar-collapse -->
+</nav>
+
+<script>
+	$('#nav1-ul li').click(function(){
+		$('#nav1-ul li').removeClass('active');
+		$(this).addClass('active');
+	});
+</script>
+  
+  
+<!--Content  e61610-->
+<div class="container">
+
+	<div class="row" style="height: 180px; margin-bottom: 30px;">
+		<div class="col-md-12" align="left" style="padding-top: 80px;display: inline-block;">
+			<div style="margin-left: 70px;">
+				<div style="float:right;">
+					<button type="submit" class="btn btn-default btn-sm">举报</button>
+					<button type="submit" class="btn btn-default btn-sm">加入(6/8)</button>
+					<button type="submit" class="btn btn-default btn-sm">关注(8)</button>
+					<span class="glyphicon glyphicon-share">&nbsp;分享</span>
+				</div>
+				
+				<h1 style="color:#B94A48;">趁着年轻去“思奔”<small>随园大厦 安仁会馆 3月29日 12:20</small></h1>
+			</div>
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="col-md-3" id="leftCol">
+          	<div class="list-group" id="sidebar" style="margin-left: 70px;">
+              <a href="#sec1" class="list-group-item active">活动详情</a>
+              <a href="#sec2" class="list-group-item">活动动态</a>
+            </div>
+            <div class="list-group" id="sidebar" style="margin-left: 70px;">
+              <a href="#sec3" class="list-group-item">讨论区域</a>
+              <a href="#sec4" class="list-group-item">通知发布</a>
+            </div>
+            <div class="list-group" id="sidebar" style="margin-left: 70px;">
+              <a href="#sec3" class="list-group-item">活动相册</a>
+              <a href="#sec4" class="list-group-item">共享文档</a>
+          	</div>
+  		</div>
+
+		<div class="col-md-9" id="rightCol">
+			<div  style="margin-left: 70px; border: 1px solid gray; padding-left: 15px; padding-right: 15px;">
+				<h2>趁着年轻去“思奔”<small><a href="#">修改活动设置</a></small></h2>
+				<div class="row">
+					<div class="col-md-6">
+						<p>志愿者要求：接受过DFC引导员培训  </p>
+						<p>活动地点：随园大厦<a href="#">地图</a></p>
+						<p>活动时间：2013年7月4日 12:30<a href="#">天气</a></p>
+						<img src="img/wall/bg1.jpg" style="width: 300px">
+					</div>
+					<div class="col-md-6">
+						<strong>这是简介</strong>
+						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla quam velit, vulputate eu pharetra nec, mattis ac neque. Duis vulputate commodo lectus, ac blandit elit tincidunt id. Sed rhoncus, tortor sed eleifend tristique, tortor mauris molestie elit, et lacinia ipsum quam nec dui. Quisque nec mauris sit amet elit iaculis pretium sit amet quis magna. Aenean velit odio, elementum in tempus ut, vehicula eu diam. Pellentesque rhoncus aliquam mattis. Ut vulputate eros sed felis sodales nec vulputate justo hendrerit. Vivamus varius pretium ligula, a aliquam odio euismod sit amet. Quisque laoreet sem sit amet orci ullamcorper at ultricies metus viverra. Pellentesque arcu mauris, malesuada quis ornare accumsan, blandit sed diam.
+						</p>
+						<div class="pull-right">
+							<img src="img/avatar/1.jpg" style="height: 14px;">
+							<span>赵健 （嘤鸣读书会 Cr. 75）</span>
+							<p>Tel：15195955770</p>
+						</div>
+					</div>
+				</div>
+				<hr style="border-top: 1px solid gray"> 
+				<div class="description">
+					<p class="text-right">
+						<a href="#">修改描述</a>
+					</p>
+					<h2>这是详细的活动介绍</h2>
+					<p> 
+						adipiscing elit. Nulla quam velit, vulputate eu pharetra nec, mattis ac neque. Duis vulputate commodo lectus, ac blandit elit tincidunt id. Sed rhoncus, tortor sed eleifend tristique, tortor mauris molestie elit, et lacinia ipsum quam nec dui. Quisque nec mauris sit amet elit iaculis pretium sit amet quis magna. Aenean velit odio, elementum in tempus ut, vehicula eu diam. Pellentesque rhoncus aliquam mattis. Ut vulputate eros sed felis sodales nec vulputate justo hendrerit. Vivamus varius pretium ligula, a aliquam odio euismod sit amet. Quisque laoreet sem sit amet orci ullamcorper at ultricies metus viverra. Pellentesque arcu mauris, malesuada quis ornare accumsan, blandit seiaculis pretium sit amet quis magna. Aenean velit odio, elementum in tempus ut, vehicula eu diam. Pellentesque rhoncus aliquam mattis. Ut vulputate eros 
+					</p>
+				</div>
+				<!-- end of description -->
+				<!-- begin of the memebers -->
+				<div class="memeber">
+					<p>参与者</p>
+					<hr style="border-top: 1px solid gray; margin-top: 0px"> 
+					<ul style="list-style: none; padding-left: 0px;">
+						<li style="display: inline;">
+							<a href="#"><img src="img/avatar/1.jpg" style="width: 40px; height: 40px"></a>
+						</li>
+						<li style="display: inline;">
+							<a href="#"><img src="img/avatar/1.jpg" style="width: 40px; height: 40px"></a>
+						</li>
+						<li style="display: inline;">
+							<a href="#"><img src="img/avatar/1.jpg" style="width: 40px; height: 40px"></a>
+						</li>
+						<li style="display: inline;">
+							<a href="#"><img src="img/avatar/1.jpg" style="width: 40px; height: 40px"></a>
+						</li>
+						<li style="display: inline;">
+							<a href="#"><img src="img/avatar/1.jpg" style="width: 40px; height: 40px"></a>
+						</li>
+						<li style="display: inline;">
+							<a href="#"><img src="img/avatar/1.jpg" style="width: 40px; height: 40px"></a>
+						</li>
+						<li style="display: inline;">
+							<a href="#"><img src="img/avatar/1.jpg" style="width: 40px; height: 40px"></a>
+						</li>
+						<li style="display: inline;">
+							<a href="#"><img src="img/avatar/1.jpg" style="width: 40px; height: 40px"></a>
+						</li>
+						<li style="display: inline;">
+							<a href="#"><img src="img/avatar/1.jpg" style="width: 40px; height: 40px"></a>
+						</li>
+						<li style="display: inline;">
+							<a href="#"><img src="img/avatar/1.jpg" style="width: 40px; height: 40px"></a>
+						</li>
+						<li style="display: inline;">
+							<a href="#"><img src="img/avatar/1.jpg" style="width: 40px; height: 40px"></a>
+						</li>
+						<li style="display: inline;">
+							<a href="#"><img src="img/avatar/1.jpg" style="width: 40px; height: 40px"></a>
+						</li>
+						<li style="display: inline;">
+							<a href="#"><img src="img/avatar/1.jpg" style="width: 40px; height: 40px"></a>
+						</li>
+						<li style="display: inline;">
+							<a href="#"><img src="img/avatar/1.jpg" style="width: 40px; height: 40px"></a>
+						</li>
+						<li style="display: inline;">
+							<a href="#"><img src="img/avatar/1.jpg" style="width: 40px; height: 40px"></a>
+						</li>
+						<li style="display: inline;">
+							<a href="#"><img src="img/avatar/1.jpg" style="width: 40px; height: 40px"></a>
+						</li>
+						<li style="display: inline;">
+							<a href="#"><img src="img/avatar/1.jpg" style="width: 40px; height: 40px"></a>
+						</li>
+						<li style="display: inline;">
+							<a href="#"><img src="img/avatar/1.jpg" style="width: 40px; height: 40px"></a>
+						</li>
+						<li style="display: inline;">
+							<a href="#"><img src="img/avatar/1.jpg" style="width: 40px; height: 40px"></a>
+						</li>
+						<li style="display: inline;">
+							<a href="#"><img src="img/avatar/1.jpg" style="width: 40px; height: 40px"></a>
+						</li>
+						<li style="display: inline;">
+							<a href="#"><img src="img/avatar/1.jpg" style="width: 40px; height: 40px"></a>
+						</li>
+					</ul>
+					<p class="text-right">
+						<a href="#">查看详细</a>
+					</p>
+				</div>
+				<!-- end of the memebers -->
+			</div>
+		</div>
+	</div>
+</div>
+
+<!--Footer Block-->
+<div style="width: 100%; margin-top: 100px;">
+<div style="background-color: #777; padding:20px;">
+	<div class="container">
+
+		<div class="row">
+			<div class="col-md-3">
+				<ul class="list-unstyled">
+					<li>
+						<h5>关于I Can</h5>
+					</li>
+					<li>了解I Can</li>
+					<li>团队介绍</li>
+					<li>联系我们</li>
+				</ul>
+			</div>
+			<div class="col-md-3">
+				<ul class="list-unstyled">
+					<li>
+						<h5>帮助</h5>
+					</li>
+					<li>建议反馈</li>
+					<li>网站使用手册</li>
+					<li>网站管理条例</li>
+				</ul>
+			</div>
+			<div class="col-md-3">
+				<ul class="list-unstyled">
+					<li>
+						<h5>关注I Can</h5>
+					</li>
+					<li>新浪微博</li>
+					<li>人人网</li>
+					<li>豆瓣小组</li>
+				</ul>
+			</div>
+			
+			<div class="col-md-3">
+				<ul class="list-unstyled">
+					<li>
+						<h5>官方微信</h5>
+					</li>
+					<li><img src="img/wall/bg4.jpg" class="avatar-large" /></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+</div>
+</div>
+</body>
+</html>
