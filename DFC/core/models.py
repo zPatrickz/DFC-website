@@ -25,7 +25,7 @@ class User(models.Model):
     descriptions = models.CharField(max_length=256, blank=True)
     create_time = models.DateTimeField(auto_now_add=True, null=False)
     credit = models.IntegerField(blank=True, null=True)
-    avatar = models.PhotoField()
+    avatar = PhotoField(blank=True,null=True)
 
     def __unicode__(self):
         return self.name
@@ -126,18 +126,18 @@ class Activity(models.Model):
     desc            = models.TextField()
     content         = models.TextField()
     is_private      = models.BooleanField(default=False)
-    cover           = PhotoField()# Always use PhotoField instead of ImageField
+    cover           = PhotoField(blank=True,null=True)# Always use PhotoField instead of ImageField
     
-    required_participants = models.PositiveIntegerField(null = True, blank = True)
-    overflow_rate = models.PositiveIntegerField(default = DEFAULT_OVERFLOW_RATE, blank = True)
-    volunteer_requirements = models.TextField(blank = True)
-    volunteer_tasks = models.TextField(blank = True)
-    volunteer_obligation = models.TextField(blank = True)
-    volunteer_right = models.TextField(blank = True)
-    volunteer_hours = models.PositiveIntegerField(null = True, blank = True)
-    volunteer_auto_confirm = models.BooleanField(default=True)
+    required_participants   = models.PositiveIntegerField(null = True, blank = True)
+    overflow_rate           = models.PositiveIntegerField(default = DEFAULT_OVERFLOW_RATE, blank = True)
+    volunteer_requirements  = models.TextField(blank = True)
+    volunteer_tasks         = models.TextField(blank = True)
+    volunteer_obligation    = models.TextField(blank = True)
+    volunteer_right         = models.TextField(blank = True)
+    volunteer_hours         = models.PositiveIntegerField(null = True, blank = True)
+    volunteer_auto_confirm  = models.BooleanField(default=True)
     volunteer_auto_confirm_hour_ahead = models.PositiveIntegerField(default = 24)
-    notification_method = models.CharField(max_length = 3,default = 'USR',choices = CONTACT_METHOD_CHOICES)
+    notification_method     = models.CharField(max_length = 3,default = 'USR',choices = CONTACT_METHOD_CHOICES)
     
     tags = TagField()# Use tagging here. Should be a single line text in a form. Make sure you have installed 'django-tagging'
     

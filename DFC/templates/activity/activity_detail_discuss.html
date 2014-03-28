@@ -1,70 +1,119 @@
 {% extends "activity/activity_detail_base.html" %}
 {% load i18n static%}
-{% block nav-discuss-active %}
-class='active'
+{% block activity-discuss-active %}
+active
 {% endblock %}
 {% block activity-content %}
-<!--A Simple Editor-->
-<div class="well 
-well-small" style="height: 142px;">
-	<textarea id="redactor" name="content" class="simple-edit" placeholder="试试'@'你的小伙伴哦"></textarea>
-	<div>
-		<div class="pull-right">
-			<a class="silverlink" href="#">添加附件</a>
-			<a class="silverlink" href="#">添加链接</a>
-			<a class="silverlink" href="#">添加图片</a>
-		</div>
-	</div>
-</div>
-
-<div class="well well-small">
-	<div class="">
-	<div>
-		<a href="#">仅看重要信息</a>
-	</div>
-	<!--Content-->
-	<!--A Message-->
-	<table style="margin-top: 15px; margin-bottom: 15px; width: 100%; border: silver 1px solid;">
-	<tr><td style="width: 50px;background-color:#DDDDDD;" valign="top" align="center" rowspan="3">
-		<a href="#" title="点击察看个人信息">
-			<img src="{% static 'img/avatar/1.jpg' %}" class="avatar-middle" style="margin-top: 10px;">
-		</a>
-		<label class="small-grey">Giggle Liu</label>
-	</td>
-	<td style="padding: 10px;">
-		<div>
-			<!--title-->
-			<span class="muted">回复</span> <a href="#">mzz(22#)</a>
-			<!--operation-->
-			<div class="pull-right">
-				<a href="#" style="margin-right: 10px;">回复</a>
-				<i class="icon-share" title="分享"></i>
+<div class="col-md-9" id="rightCol">
+	<div  style="margin-left: 70px;">
+		<div class="well">
+			<h3>Title:&nbsp;<u>写属于你们的故事</u></h3>
+			<div class="editor-container" style="height: 100px">
+				<textarea id="content" name="content"></textarea>
+			</div>
+			<div class="row" style=" margin-top: 20px;">
+				<div class="pull-right">
+					<button class="btn btn-info" style="margin-right: 50px;">放弃</button>
+					<button class="btn btn-info">保存</button>
+					<button class="btn btn-info">完成</button>
+				</div>
 			</div>
 		</div>
-	</td></tr>
-	<tr><td style="padding-left: 10px; padding-right: 10px;">
-		<!--File Block-->
-		<div>
-			<img src="{% static 'img/wall/bg6.jpeg' %}" class="image-small" />
-			<img src="{% static 'img/wall/bg7.jpg' %}" class="image-small" />
-			<img src="{% static 'img/wall/bg8.jpg' %}" class="image-small" />
-		</div>
-		<!--Text Block-->
-		<div style="margin-top: 10px;">
-			<p>看我这张照片拍的怎么样？</p>
-		</div>
-	</td></tr>
-	<tr><td style=" padding-right: 10px;">
-		<div>
-			<div class="pull-right">
-				<span class="small-grey" style="margin-right: 10px;">6月7日 20:08</span>
-				<i class="icon-thumbs-up" title="顶"></i>
-			</div>
-		</div>
-	</td></tr>
-	</table>
-	<div align="center" style="padding: 10px; margin-top:10px;background-color: silver;">
-		<a href="#">显示更多</a>
+		<a href="#">仅看最热门</a>
+		<p class="text-right">
+			<ul class="list-unstyled">
+				<li style="border:1px solid gray; margin-top: 10px;">
+					<div class="row" style="margin-left: 1px">
+						<div class="col-md-1" style="background-color: #d6d6d6">
+							<img src="img/icon/profile.svg">
+							<p class="text-center">曾明陟</p>
+						</div>
+						<div class="col-md-11">
+							<div>
+								<div class="pull-left">
+									<p>
+										回复&nbsp;<a href="#">曾明陟</a>
+									</p>
+								</div>
+								<div class="pull-right">
+									<p>
+										<a href="#">回复</a>&nbsp;<span class="glyphicon glyphicon-share"></span>
+									</p>
+								</div>
+							</div>
+							<hr>
+							<div>
+								<p><strong>滚粗。。。</strong></p>	
+							</div>
+							<div class="pull-right">
+								<p>9月2日 13:22&nbsp;<span class="glyphicon glyphicon-thumbs-up"></span></p>
+							</div>
+						</div>
+					</div>
+				</li>
+				<li style="border:1px solid gray; margin-top: 10px;">
+					<div class="row" style="margin-left: 1px">
+						<div class="col-md-1" style="background-color: #d6d6d6">
+							<img src="img/icon/profile.svg">
+							<p class="text-center">曾明陟</p>
+						</div>
+						<div class="col-md-11">
+							<div>
+								<div class="pull-left">
+									<p>
+										回复&nbsp;<a href="#">谢闯</a>
+									</p>
+								</div>
+								<div class="pull-right">
+									<p>
+										<a href="#">回复</a>&nbsp;<span class="glyphicon glyphicon-share"></span>
+									</p>
+								</div>
+							</div>
+							<hr>
+							<div>
+								<p><strong>我能说丑吗？</strong></p>	
+							</div>
+							<div class="pull-right">
+								<p>9月2日 13:22&nbsp;<span class="glyphicon glyphicon-thumbs-up"></span></p>
+							</div>
+						</div>
+					</div>
+				</li>
+				<li style="border:1px solid gray; margin-top: 10px;">
+					<div class="row" style="margin-left: 1px">
+						<div class="col-md-1" style="background-color: #d6d6d6">
+							<img src="img/icon/profile.svg">
+							<p class="text-center">曾明陟</p>
+						</div>
+						<div class="col-md-11">
+							<div>
+								<div class="pull-left">
+									<p>
+										我拍的照片
+									</p>
+								</div>
+								<div class="pull-right">
+									<p>
+										<a href="#">回复</a>&nbsp;<span class="glyphicon glyphicon-share"></span>
+									</p>
+								</div>
+							</div>
+							<hr>
+							<div>
+								<a href="#"><img src="img/wall/bg1.jpg" style="height:80px"></a>
+								<img src="img/wall/bg2.gif" style="height:80px">
+								<img src="img/wall/bg3.jpg" style="height:80px">
+								<p><strong>快看快看，我拍的照片怎么样？</strong></p>	
+							</div>
+							<div class="pull-right">
+								<p>9月2日 13:22&nbsp;<span class="glyphicon glyphicon-thumbs-up"></span></p>
+							</div>
+						</div>
+					</div>
+				</li>
+			</ul>
+		</p>
 	</div>
 </div>
 {% endblock %}

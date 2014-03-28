@@ -7,25 +7,45 @@ from django.http import HttpResponseRedirect
 def index(request):
     activities = Activity.objects.order_by('-create_time')[:Activity.SHOW_ON_INDEXPAGE]
     return render(request,'activity/activity_index.html',{'activities':activities})
+
+def detail_album(request,act_id=None):
+    activity = get_object_or_404(Activity,id=act_id)
+    organizations = activity.organizations.all()
+    places = activity.places.all()
+    return render(request,'activity/activity_detail_album.html',{'act_id':act_id,'activity':activity,'organizations':organizations,'places':places})
+    
+def detail_detail(request,act_id=None):
+    activity = get_object_or_404(Activity,id=act_id)
+    organizations = activity.organizations.all()
+    places = activity.places.all()
+    return render(request,'activity/activity_detail_detail.html',{'act_id':act_id,'activity':activity,'organizations':organizations,'places':places})
     
 def detail_discuss(request,act_id=None):
     activity = get_object_or_404(Activity,id=act_id)
     organizations = activity.organizations.all()
     places = activity.places.all()
     return render(request,'activity/activity_detail_discuss.html',{'act_id':act_id,'activity':activity,'organizations':organizations,'places':places})
-
-def detail_user(request,act_id=None):
+    
+def detail_doc(request,act_id=None):
     activity = get_object_or_404(Activity,id=act_id)
     organizations = activity.organizations.all()
     places = activity.places.all()
-    return render(request,'activity/activity_detail_user.html',{'act_id':act_id,'activity':activity,'organizations':organizations,'places':places})
+    return render(request,'activity/activity_detail_doc.html',{'act_id':act_id,'activity':activity,'organizations':organizations,'places':places})
 
-
-def detail_detail(request,act_id=None):
+def detail_notice(request,act_id=None):
     activity = get_object_or_404(Activity,id=act_id)
     organizations = activity.organizations.all()
     places = activity.places.all()
-    return render(request,'activity/activity_detail_detail.html',{'act_id':act_id,'activity':activity,'organizations':organizations,'places':places})
+    return render(request,'activity/activity_detail_notice.html',{'act_id':act_id,'activity':activity,'organizations':organizations,'places':places})
+
+def detail_post(request,act_id=None):
+    activity = get_object_or_404(Activity,id=act_id)
+    organizations = activity.organizations.all()
+    places = activity.places.all()
+    return render(request,'activity/activity_detail_post.html',{'act_id':act_id,'activity':activity,'organizations':organizations,'places':places})
+
+
+
     
 def new_or_update_activity(request,act_id=None,step='general'):
     update = False
