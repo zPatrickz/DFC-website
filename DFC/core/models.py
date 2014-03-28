@@ -1,7 +1,7 @@
 from django.db import models
 from django.utils.translation import ugettext as _
 from tagging.fields import *
-
+from core.fields import *
 # Core classes for DFC Project
 
 # For general field usage, please refer to https://docs.djangoproject.com/en/1.6/ref/models/fields/
@@ -10,6 +10,8 @@ from tagging.fields import *
 # https://docs.djangoproject.com/en/1.6/topics/db/models/#intermediary-manytomany
 # For model instance usage, please refer to https://docs.djangoproject.com/en/1.6/ref/models/instances/#model-instance-methods
 # For tagging usage, please refer to https://github.com/brosner/django-tagging/blob/master/docs/overview.txt
+# Use PhotoField instead of ImageField, and GalleryField for galleries
+
 class User(models.Model):
     # login name
     name = models.CharField(max_length=256, blank=False)
@@ -23,7 +25,7 @@ class User(models.Model):
     descriptions = models.CharField(max_length=256, blank=True)
     create_time = models.DateTimeField(auto_now_add=True, null=False)
     credit = models.IntegerField(blank=True, null=True)
-    avatar = models.ImageField(max_length=1024, blank=True, upload_to='/users/avatar/')
+    avatar = models.PhotoField()
 
     def __unicode__(self):
         return self.name
@@ -46,8 +48,8 @@ class Organization(models.Model):
     descriptions = models.CharField(max_length=256, blank=True)
     create_time = models.DateTimeField(blank=True, auto_now_add=True)
     credit = models.IntegerField(blank=True, null=True)
-    organization_page = models.CharField(max_length=1024, blank=True)
-    pay_link = models.CharField(max_length=512, blank=True)
+    organization_page = models.URLField( blank=True)
+    pay_link = models.URLField( blank=True)
     members = models.ManyToManyField(User, blank=True, through='Membership')
 
     def __unicode__(self):
@@ -124,8 +126,7 @@ class Activity(models.Model):
     desc            = models.TextField()
     content         = models.TextField()
     is_private      = models.BooleanField(default=False)
-    #cover           = models.ForeignKey('Photo',null = True)#change to ImageField after MEDIA_ROOT in settings.py is specified
-    #By using callable function as the upload_to path, one must override the save function as below
+    cover           = PhotoField()# Always use PhotoField instead of ImageField
     
     required_participants = models.PositiveIntegerField(null = True, blank = True)
     overflow_rate = models.PositiveIntegerField(default = DEFAULT_OVERFLOW_RATE, blank = True)
@@ -140,7 +141,7 @@ class Activity(models.Model):
     
     tags = TagField()# Use tagging here. Should be a single line text in a form. Make sure you have installed 'django-tagging'
     
-    official_link   = models.CharField(max_length=1024, blank=True)
+    official_link   = models.URLField( blank=True)
     create_time     = models.DateTimeField(auto_now_add=True)
     update_time     = models.DateTimeField(auto_now=True)
     status          = models.CharField(max_length=3, choices=STATUS_CHOICES, default='PRP')
