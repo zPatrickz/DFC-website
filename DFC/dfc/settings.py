@@ -136,8 +136,13 @@ CRISPY_TEMPLATE_PACK = 'bootstrap3'
 CKEDITOR_UPLOAD_PATH = "ck-uploads/"
 CKEDITOR_CONFIGS = {
     'default': {
-        'toolbar': 'Basic',
-    },
+        'toolbar': [
+        ['Styles', 'Format', 'Bold', 'Italic', 'Underline', 'Strike', 'SpellChecker', 'Undo', 'Redo'],
+        ['Table', 'HorizontalRule'],
+        ['TextColor', 'BGColor'],
+        ['Smiley', 'SpecialChar'],
+    ]
+	}
 }
 # A sample logging configuration. The only tangible logging
 # performed by this configuration is to send an email to
