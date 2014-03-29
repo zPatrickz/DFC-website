@@ -31,6 +31,12 @@ def detail_doc(request,act_id=None):
     organizations = activity.organizations.all()
     places = activity.places.all()
     return render(request,'activity/activity_detail_doc.html',{'act_id':act_id,'activity':activity,'organizations':organizations,'places':places})
+    
+def detail_member(request,act_id=None):
+    activity = get_object_or_404(Activity,id=act_id)
+    organizations = activity.organizations.all()
+    places = activity.places.all()
+    return render(request,'activity/activity_detail_member.html',{'act_id':act_id,'activity':activity,'organizations':organizations,'places':places})
 
 def detail_notice(request,act_id=None):
     activity = get_object_or_404(Activity,id=act_id)
@@ -43,30 +49,35 @@ def detail_post(request,act_id=None):
     organizations = activity.organizations.all()
     places = activity.places.all()
     return render(request,'activity/activity_detail_post.html',{'act_id':act_id,'activity':activity,'organizations':organizations,'places':places})
-
-
-
     
-def new_or_update_activity(request,act_id=None,step='general'):
-    update = False
-    if act_id:
-        update = True
+def detail_settings(request,act_id=None,category='general'):
+    if category == '':
+        category = 'general'
     if request.method == 'POST': # If the form has been submitted
         # Handle a submitted form
-        if act_id:
-            form = ActivityForm(request.POST, request.FILES,instance = get_object_or_404(Activity,id=act_id))
-            if form.is_valid():
-                # FAKE SAVE HERE, NEED MORE MODELS!!!
-                form.save()
-                return HttpResponseRedirect('')
-        else:
-            form = ActivityForm(request.POST, request.FILES)
-            if form.is_valid():
-                # FAKE SAVE HERE, NEED MORE MODELS!!!
-                form.save()
-                return HttpResponseRedirect('..')
-    elif act_id:
+        form = ActivityForm(request.POST, request.FILES,instance = get_object_or_404(Activity,id=act_id))
+        if form.is_valid():
+            # FAKE SAVE HERE, NEED MORE MODELS!!!
+            form.save()
+            return HttpResponseRedirect('')
+    else:
         #Handle an update form
-        form = ActivityForm(instance = Activity.objects.get(id=act_id))
-    return render(request,'activity/activity_new_or_update.html',{'act_id':act_id,'update':update,'step':step})
+        form = ActivityForm(instance = get_object_or_404(Activity,id=act_id))
+    return render(request,'activity/activity_detail_settings.html',{'form':form,'act_id':act_id,'category':category})
+    
+def new(request):
+    if request.method == 'POST': # If the form has been submitted
+        form = ActivityForm(request.POST, request.FILES)
+        if form.is_valid():
+            act = form.save()
+            from django.shortcuts import redirect
+            return redirect('activity_complete_or_view',act.id)
+        else:
+            pass
+    else:
+        form = ActivityForm()
+    return render(request,'activity/activity_new.html',{'form':form})
+    
+def complete_or_view(request,act_id=None):
+    return render(request,'activity/activity_complete_or_view.html',{'act_id':act_id})
     

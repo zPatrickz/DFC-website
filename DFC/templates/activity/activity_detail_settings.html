@@ -1,0 +1,16 @@
+{% extends "activity/activity_detail_base.html" %}
+{% load i18n static%}
+{% block activity-settings-active %}
+active
+{% endblock %}
+{% block activity-content %}
+<div class="col-md-9">
+	<h1 id="page-title">活动设定</h1>
+	<ul class="nav nav-tabs">
+	  <li {% if category == 'general' %}class="active"{% endif %}><a href="{% url 'activity_detail_settings' act_id '' %}">基本设定</a></li>
+	  <li {% if category == 'recruit' %}class="active"{% endif %}><a href="{% url 'activity_detail_settings' act_id 'recruit' %}">人员招募</a></li>
+	  <li {% if category == 'detail' %}class="active"{% endif %}><a href="{% url 'activity_detail_settings' act_id 'detail' %}">活动详情</a></li>
+	</ul>
+	{% include 'activity/activity_form.html' with category=category form=form update=True %}
+</div>
+{% endblock %}

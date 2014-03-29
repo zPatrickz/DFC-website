@@ -65,6 +65,10 @@
           <a href="{% url 'activity_detail_album' act_id %}" class="list-group-item {% block activity-album-active %}{% endblock %}">活动相册</a>
           <a href="{% url 'activity_detail_doc' act_id %}" class="list-group-item {% block activity-doc-active %}{% endblock %}">共享文档</a>
       	</div>
+        <div class="list-group" id="sidebar" style="margin-left: 70px;">
+          <a href="{% url 'activity_detail_settings' act_id '' %}" class="list-group-item {% block activity-settings-active %}{% endblock %}">活动设置</a>
+          <a href="{% url 'activity_detail_member' act_id %}" class="list-group-item {% block activity-member-active %}{% endblock %}">组员管理</a>
+      	</div>
 	</div>
 	{% endblock %}
 	{% block activity-content %}

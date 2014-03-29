@@ -121,10 +121,11 @@ class Activity(models.Model):
     
     name            = models.CharField(max_length = 256, blank = False)
     organizations   = models.ManyToManyField('Organization')
-    participants    = models.ManyToManyField('User', through = "Participation")
-    places          = models.ManyToManyField('Place')
-    desc            = models.TextField()
-    content         = models.TextField()
+    participants    = models.ManyToManyField('User', through = "Participation",blank=True)
+    places          = models.ManyToManyField('Place',blank=True)
+    desc            = models.TextField(blank=True)
+    content         = models.TextField(blank=True)
+    content_file    = models.FileField(blank=True, null=True,upload_to='doc')
     is_private      = models.BooleanField(default=False)
     cover           = PhotoField(blank=True,null=True)# Always use PhotoField instead of ImageField
     
@@ -135,16 +136,16 @@ class Activity(models.Model):
     volunteer_obligation    = models.TextField(blank = True)
     volunteer_right         = models.TextField(blank = True)
     volunteer_hours         = models.PositiveIntegerField(null = True, blank = True)
-    volunteer_auto_confirm  = models.BooleanField(default=True)
-    volunteer_auto_confirm_hour_ahead = models.PositiveIntegerField(default = 24)
-    notification_method     = models.CharField(max_length = 3,default = 'USR',choices = CONTACT_METHOD_CHOICES)
+    volunteer_auto_confirm  = models.BooleanField(default=True,blank=True)
+    volunteer_auto_confirm_hour_ahead = models.PositiveIntegerField(default = 24,blank=True)
+    notification_method     = models.CharField(max_length = 3,default = 'USR',choices = CONTACT_METHOD_CHOICES,blank=True)
     
     tags = TagField()# Use tagging here. Should be a single line text in a form. Make sure you have installed 'django-tagging'
     
     official_link   = models.URLField( blank=True)
     create_time     = models.DateTimeField(auto_now_add=True)
     update_time     = models.DateTimeField(auto_now=True)
-    status          = models.CharField(max_length=3, choices=STATUS_CHOICES, default='PRP')
+    status          = models.CharField(max_length=3, choices=STATUS_CHOICES, default='PRP',blank=True)
     start_time      = models.DateTimeField(null=True, blank=True)
     end_time        = models.DateTimeField(null=True, blank=True)
     visits          = models.PositiveIntegerField(default = 0)

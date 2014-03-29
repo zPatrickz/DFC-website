@@ -1,0 +1,79 @@
+{% load crispy_forms_tags %}
+{% if form.is_multipart %}
+    <form enctype="multipart/form-data" class="form-horizontal" role="form" method="post" action="">
+{% else %}
+    <form class="form-horizontal" role="form" method="post" action="">
+{% endif %}
+	<input type="hidden" name="organizations" value="1">
+	{% csrf_token %}
+	<div class="{% if category and not category == 'general' %}hidden{% endif %}">
+        {{ form.name|as_crispy_field }}
+	
+        {{ form.desc|as_crispy_field }}
+	
+        {{ form.start_time|as_crispy_field }}
+
+        {{ form.end_time|as_crispy_field }}
+	
+        {{ form.official_link|as_crispy_field }}
+	<!--
+		<label class="control-label col-md-3" for="activity-face">上传封面</label>
+		<div class="col-md-8">
+			<input type="file" class="form-control" placeholder="" id="activity-face" name="cover">
+		</div>
+	</div>-->
+
+
+	<!--
+		{{ form.places.errors }}
+		<label class="control-label col-md-3" for="activity-place">活动地点</label>
+		<div class="col-md-8">
+			<input class="form-control" type="text" placeholder="baidu map API， not implemented！" id="activity-place" required>
+			<p class="help-block">for the place suggestion API. check <a href="http://developer.baidu.com/map/place-suggestion-api.htm">http://developer.baidu.com/map/place-suggestion-api.htm</a></p>
+		</div>
+	</div>-->
+	
+		{% if not update %}
+		<input type="checkbox" id="activity-publish">我同意网站的<a href="#">使用协议</a>
+		{% endif %}
+	</div>
+	<div class="{% if category and not category == 'recruit' %}hidden{% endif %}">
+	
+
+        {{ form.is_private|as_crispy_field }}
+	
+
+        {{ form.required_participants|as_crispy_field }}
+		
+		{{ form.overflow_rate|as_crispy_field }}
+	
+
+        {{ form.volunteer_requirements|as_crispy_field }}
+	
+
+        {{ form.volunteer_tasks|as_crispy_field }}
+	
+
+        {{ form.volunteer_obligation|as_crispy_field }}
+	
+        {{ form.volunteer_right|as_crispy_field }}
+	
+        {{ form.volunteer_hours|as_crispy_field }}
+	
+        {{ form.notification_method|as_crispy_field }}
+	
+        {{ form.volunteer_auto_confirm|as_crispy_field }}
+		
+		{{ form.volunteer_auto_confirm_hour_ahead|as_crispy_field }}
+	</div>
+	<div class="{% if category and not category == 'detail' %}hidden{% endif %}">
+        {{ form.tags|as_crispy_field }}
+	
+        {{ form.content_file|as_crispy_field }}
+	
+
+        {{ form.content|as_crispy_field }}
+	</div>
+
+	<input class="btn btn-info" type="submit" value="{% if update %}Save{% else %}Create{% endif %}">
+</form>
