@@ -1,3 +1,5 @@
+{% load static %}
+<script src="{% static 'ckeditor/ckeditor/ckeditor.js' %}"></script>
 {% load crispy_forms_tags %}
 {% if form.is_multipart %}
     <form enctype="multipart/form-data" class="form-horizontal" role="form" method="post" action="">

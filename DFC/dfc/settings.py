@@ -129,10 +129,16 @@ INSTALLED_APPS = (
     'photologue',
     'south',
     'tagging',
+    'ckeditor'
 )
 
 CRISPY_TEMPLATE_PACK = 'bootstrap3'
-
+CKEDITOR_UPLOAD_PATH = "ck-uploads/"
+CKEDITOR_CONFIGS = {
+    'default': {
+        'toolbar': 'Basic',
+    },
+}
 # A sample logging configuration. The only tangible logging
 # performed by this configuration is to send an email to
 # the site admins on every HTTP 500 error when DEBUG=False.

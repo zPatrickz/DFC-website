@@ -2,6 +2,7 @@ from django.db import models
 from django.utils.translation import ugettext as _
 from tagging.fields import *
 from core.fields import *
+from ckeditor.fields import RichTextField
 # Core classes for DFC Project
 
 # For general field usage, please refer to https://docs.djangoproject.com/en/1.6/ref/models/fields/
@@ -124,7 +125,7 @@ class Activity(models.Model):
     participants    = models.ManyToManyField('User', through = "Participation",blank=True)
     places          = models.ManyToManyField('Place',blank=True)
     desc            = models.TextField(blank=True)
-    content         = models.TextField(blank=True)
+    content         = RichTextField(blank=True)
     content_file    = models.FileField(blank=True, null=True,upload_to='doc')
     is_private      = models.BooleanField(default=False)
     cover           = PhotoField(blank=True,null=True)# Always use PhotoField instead of ImageField

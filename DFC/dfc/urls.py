@@ -12,6 +12,7 @@ urlpatterns = patterns('',
 	url(r'^admin/', include(admin.site.urls)),
    	url(r'^accounts/', include('accounts.urls')),
     url(r'^activity/', include('activity.urls')),
+    url(r'^ckeditor/', include('ckeditor.urls')),
 )
 urlpatterns += staticfiles_urlpatterns()
 urlpatterns += patterns('',
