@@ -130,7 +130,7 @@ INSTALLED_APPS = (
     'ckeditor'
 )
 
-AUTH_USER_MODEL = 'core.User'
+AUTH_USER_MODEL = 'core.BaseEmailUser'
 
 CRISPY_TEMPLATE_PACK = 'bootstrap3'
 CKEDITOR_UPLOAD_PATH = "ck-uploads/"

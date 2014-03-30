@@ -1,7 +1,7 @@
 from django.contrib.auth.models import BaseUserManager
 from django.utils import timezone
 
-class DFCUserManager(BaseUserManager):
+class EmailUserManager(BaseUserManager):
 
 	def _create_user(self, email, password, is_staff, is_superuser, **extra_fields):
 		"""
@@ -25,5 +25,4 @@ class DFCUserManager(BaseUserManager):
 
 	def create_superuser(self, email, password, **extra_fields):
 		return self._create_user(email, password, True, True, **extra_fields)
-
 
