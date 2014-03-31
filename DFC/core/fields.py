@@ -1,5 +1,5 @@
-from django.db.models.fields.related import ForeignKey,ManyToOneRel
-from photologue.models import Photo,Gallery
+from django.db.models.fields.related import ForeignKey, ManyToOneRel
+from photologue.models import Photo, Gallery
 from south.modelsinspector import add_introspection_rules
 
 class PhotoField(ForeignKey):
