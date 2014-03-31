@@ -9,6 +9,7 @@ from tagging.fields import *
 from core.fields import *
 from ckeditor.fields import RichTextField
 from core.managers import EmailUserManager
+from core.managers import EmailUserManager, EmailOrganizationManager
 
 # Core classes for DFC Project
 
@@ -31,6 +32,8 @@ class BaseEmailUser(AbstractBaseUser, PermissionsMixin):
         help_text=_('Designates whether the user can log into the admin site'))
     is_active = models.BooleanField(_('active'), default=True, 
         help_text=_('Designates whether this user should be treated as active'))
+    is_organization = models.BooleanField(_('is organization'), default=False, 
+        help_text=_('Designates whether this user is organization or normal user'))
     date_joined = models.DateTimeField(_('date joined'), default=timezone.now)
     
     USERNAME_FIELD = 'email'
@@ -81,8 +84,24 @@ class User(BaseEmailUser):
     descriptions = models.CharField(_('descriptions'), max_length=512, blank=True)
     credit = models.IntegerField(_('credit value'), blank=True, default=0)
     
+    objects = EmailUserManager()
+    
     def __unicode__(self):
         return self.email
+        
+    def add_organization(self, organization):
+        try:
+            membership = Membership.objects.get(organization=organization, user=self)
+        except Membership.DoesNotExist:
+            member = Membership(organization=organization, user=self, is_follower=True, is_member=True)
+        else:
+            member.is_member = True
+        finally:
+            member.save()
+            
+    @property
+    def organizations(self):
+        return Membership.objects.all().filter(user=self, is_member=True)
 
 
 class Organization(BaseEmailUser):
@@ -93,17 +112,53 @@ class Organization(BaseEmailUser):
     username = models.CharField(_('orgnization name'), max_length=30, 
         validators=[
             validators.RegexValidator(re.compile('^[\w.@+-]+$'), _('Enter a valid orgnization name'), 'invalid')
-        ]) 
+        ])
     organization_page = models.CharField(_('organization page link'), max_length=512, blank=True)
     pay_link = models.CharField(_('organization pay link'), max_length=512, blank=True)
     birthday = models.DateTimeField(_('birthday'), blank=True, null=True, auto_now_add=False)
     telephone = models.CharField(_('telephone number'), max_length=20, blank=True)
     descriptions = models.CharField(_('descriptions'), max_length=512, blank=True)
     credit = models.IntegerField(_('credit value'), blank=True, default=0)
-    # members = models.ManyToManyField(settings.AUTH_USER_MODEL, blank=True, null=True, through='Membership')
+    users = models.ManyToManyField(User, null=True, through='Membership')
+    
+    objects = EmailOrganizationManager()
 
     def __unicode__(self):
         return self.username
+    
+    def is_member(self, user):
+        return True if user in self.users.all() else False
+    
+    def get_users(self):
+        return self.users.all()
+        
+    def add_member(self, user):
+        try:
+            member = Membership.objects.get(organization=self, user=user)
+        except Membership.DoesNotExist:
+            member = Membership(organization=self, user=user, is_follower=True, is_member=True)
+        else:
+            member.is_member = True
+        finally:
+            member.save()
+    
+    def add_follower(self, user):
+        try:
+            member = Membership.objects.get(organization=self, user=user)
+        except Membership.DoesNotExist:
+            member = Membership(organization=self, user=user, is_follower=True, is_member=False)
+        else:
+            member.is_follower = True
+        finally:
+            member.save()
+            
+    @property
+    def followers(self):
+        return Membership.objects.all().filter(organization=self, is_follower=True)
+        
+    @property
+    def members(self):
+        return Membership.objects.all().filter(organization=self, is_member=True)
 
 
 class Place(models.Model):
@@ -386,17 +441,29 @@ class Participation(models.Model):
     role = models.CharField(max_length=3, choices=ROLE_CHOICES)
     stage = models.CharField(max_length=3, choices=STAGE_CHOICES)
     class Meta:
-        unique_together=(("user","activity"))
-        
+        unique_together = (("user","activity"))
+
 
 class Membership(models.Model):
     '''
     Membership describes the relationship between users and organizations
     '''
     
-    user = models.ForeignKey('User')
-    organization = models.ForeignKey('Organization')
-    join_time = models.DateTimeField(auto_now_add = True)
-    class Meta:
-        unique_together = (("user","organization"))
+    user = models.ForeignKey(User, related_name='organization_user')
+    organization = models.ForeignKey(Organization, related_name='organization_user')
+    is_member = models.BooleanField(default=False)
+    is_follower = models.BooleanField(default=False)
     
+    class Meta:
+        ordering = ['organization', 'user']
+        unique_together = ('user', 'organization')
+       
+    def __unicode__(self):
+        return u"{0} ({1})".format(self.name if self.user.is_active else self.user.email, self.organization.username)
+    
+    @property
+    def name(self):
+        if hasattr(self.user, 'get_full_name'):
+            return self.user.get_full_name()
+        return "{0}".format(self.user)
+

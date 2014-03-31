@@ -5,6 +5,34 @@ from django.test import TestCase
 
 from core.models import *
 
+class OrganizationMethodTests(TestCase):
+    
+    def setUp(self):
+        User.objects.create_user('chuangxie@gmail.com', '12')
+        User.objects.create_user('xie@gmail.com', '12')
+        Organization.objects.create_user('dfc@gmail.com', '12')
+        
+    def test_user_create(self):
+        self.assertEqual(Organization.objects.count(), 1)
+        self.assertEqual(User.objects.count(), 2)
+        
+    def test_add_follower(self):
+        organization = Organization.objects.get(email='dfc@gmail.com')
+        user = User.objects.get(email='xie@gmail.com')
+        self.assertEqual(organization.get_users().count(), 0)
+        organization.add_follower(user)
+        self.assertEqual(organization.followers.count(), 1)
+        organization.add_member(user)
+        self.assertEqual(organization.members.count(), 1)
+        
+    def test_add_organization(self):
+        organization = Organization.objects.get(email='dfc@gmail.com')
+        user = User.objects.get(email='xie@gmail.com')
+        self.assertEqual(organization.members.count(), 0)
+        user.add_organization(organization)
+        self.assertEqual(user.organizations.count(), 1)
+
+
 class PostMethodTests(TestCase):
 
     def setUp(self):

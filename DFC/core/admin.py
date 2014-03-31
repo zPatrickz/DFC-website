@@ -8,6 +8,11 @@ from accounts.forms import UserCreationForm, UserChangeForm, OrganizationCreatio
 admin.site.unregister(Group)
 
 
+class MembershipInline(admin.TabularInline):
+	model = Membership
+	extra = 1
+
+
 class EmailUserAdmin(UserAdmin):
 	fieldsets = (
 		(None, {'fields': ('first_name', 'last_name', 'email', 'password')}),
@@ -45,7 +50,7 @@ class OrganizationAdmin(UserAdmin):
 			'fields': ('username', 'email', 'password', 'password2')
 		}),
 	)
-	
+	inlines = (MembershipInline, )
 	add_form = OrganizationCreationForm
 
 	list_display = ('email', 'username', 'is_staff', 'is_active')
