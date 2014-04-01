@@ -11,7 +11,7 @@ from tinymce.models import HTMLField
 from core.managers import EmailUserManager
 from core.managers import EmailUserManager, EmailOrganizationManager
 
-# Core classes for DFC Project
+# Core model classes for DFC Project
 
 # For general field usage, please refer to https://docs.djangoproject.com/en/1.6/ref/models/fields/
 # For ManyToManyField usage, please refer to https://docs.djangoproject.com/en/dev/topics/db/examples/many_to_many/
@@ -151,7 +151,7 @@ class Organization(BaseEmailUser):
             member.is_follower = True
         finally:
             member.save()
-            
+           
     @property
     def followers(self):
         return Membership.objects.all().filter(organization=self, is_follower=True)
@@ -356,12 +356,13 @@ class Post(models.Model):
     '''
     title = models.CharField(max_length=256, blank=False)
     content = models.TextField(blank=False)
-    # organization = models.ForeignKey(settings.AUTH_USER_MODEL)
+    organization = models.ForeignKey('Organization')
     author = models.ForeignKey('User')
     activity = models.ForeignKey('Activity')
     create_time = models.DateTimeField(auto_now_add=True)
     update_time = models.DateTimeField(auto_now=True)
     visits = models.PositiveIntegerField(default=0)
+    
     @classmethod
     def create(cls,title,content,author,organization,activity):
         '''
@@ -374,6 +375,7 @@ class Post(models.Model):
         pst.save()
         pst.authors.add(author)
         return pst
+    
     def update_title(self,val):
         '''
         Edit the content of the post.
@@ -386,6 +388,7 @@ class Post(models.Model):
         '''
         self.title = val
         self.save()
+    
     def update_content(self,val):
         '''
         Edit the content of the post.
@@ -398,10 +401,13 @@ class Post(models.Model):
         '''
         self.content = val
         self.save()
+    
     def __unicode__(self):
         return self.title
+    
     def __str__(self):
         return unicode(self).encode('utf-8')
+    
     def __eq__(self, other):
         return self.organization == other.organization and self.activity == other.activity and self.title == other.title
         
@@ -423,6 +429,7 @@ class Participation(models.Model):
     activity = models.ForeignKey('Activity')
     role = models.CharField(max_length=3, choices=ROLE_CHOICES)
     stage = models.CharField(max_length=3, choices=STAGE_CHOICES)
+    
     class Meta:
         unique_together = (("user","activity"))
 
