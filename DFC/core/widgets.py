@@ -201,7 +201,6 @@ class PhotoWidget(Select):
             current_image = Photo.objects.get(id=value)
             if current_image:
                 current_image = format_html('<img id="img-{0}" src="{1}">',name,current_image.get_thumbnail_url())
-        from dfc.settings import STATIC_URL
         js = '<script type="text/javascript">'\
                          'load_gallery_list("'+name+'",'+(str(value) if value else 'undefined')+');\n'\
                          '$("#ip-gallery-'+name+'" ).change(function() {\n'\
