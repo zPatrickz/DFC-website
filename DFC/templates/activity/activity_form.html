@@ -6,7 +6,7 @@
 {% else %}
     <form class="form-horizontal" role="form" method="post" action="">
 {% endif %}
-	<input type="hidden" name="organizations" value="1">
+	<input type="hidden" name="organizations" value="2">
 	{% csrf_token %}
 	{{ form.media }}
 	<div class="{% if category and not category == 'general' %}hidden{% endif %}">

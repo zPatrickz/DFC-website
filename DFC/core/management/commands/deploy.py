@@ -42,8 +42,14 @@ class Command(BaseCommand):
                  print err
                  return
             print 'removing existing photo files...'
+            
             p5=subprocess.Popen(["rm -r -f "+photo_file_path],stdin=subprocess.PIPE,stderr=subprocess.PIPE,shell=True)
             (out,err) = p5.communicate()
+            if err != '':
+                 print err
+                 return
+            p6=subprocess.Popen(["git rm -r -f "+photo_file_path],stdin=subprocess.PIPE,stderr=subprocess.PIPE,shell=True)
+            (out,err) = p6.communicate()
             if err != '':
                  print err
                  return

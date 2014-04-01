@@ -200,7 +200,7 @@ class PhotoWidget(Select):
         if value:
             current_image = Photo.objects.get(id=value)
             if current_image:
-                current_image = format_html('<img id="img-{0}" src="{1}">',name,current_image.get_thumbnail_url())
+                current_image = format_html('<img id="img-{0}" src="{1}">',name,current_image.get_photo_small_url())
         js = '<script type="text/javascript">'\
                          'load_gallery_list("'+name+'",'+(str(value) if value else 'undefined')+');\n'\
                          '$("#ip-gallery-'+name+'" ).change(function() {\n'\

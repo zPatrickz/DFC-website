@@ -4,7 +4,7 @@
 active
 {% endblock %}
 {% block activity-content %}
-<div class="col-md-9">
+<div class="col-md-9" style="font-size: 80%;">
 	<h1 id="page-title">活动设定</h1>
 	<ul class="nav nav-tabs">
 	  <li {% if category == 'general' %}class="active"{% endif %}><a href="{% url 'activity_detail_settings' act_id '' %}">基本设定</a></li>
