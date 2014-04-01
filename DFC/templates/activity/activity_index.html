@@ -3,6 +3,7 @@
 
 {% block title %}{% trans "Activities" %}{% endblock %}
 {% block content %}
+<div style="">
 	<h1 class="padding-small">{% trans 'Activity' %}</h1>
 	<div  class="row">
 		<div class="col-md-7">
@@ -96,7 +97,7 @@
 				<a class="btn btn-lg btn-warning" href="{% url 'activity_new' %}">创建活动</a>
 			</div>
 			<div class="padding-middle text-muted">
-				<p style="font-size:2.3em; line-height: 2.3em;">&emsp;&emsp;创建一个活动，填写完简单的活动和招募信息后，
+				<p style="font-size:1.5em; line-height: 1.8em;">&emsp;&emsp;创建一个活动，填写完简单的活动和招募信息后，
 					您可以通过此平台与参与活动的志愿者在线沟通，给志愿者们发送短信通知，和志愿者一起撰写活动动态，
 					活动完成后你可以把活动内容整理成”故事档案“，并给志愿者打分。</p>
 			</div>
@@ -115,4 +116,5 @@
 		});
 		</script>
 	</div>
+</div>
 {% endblock %}
