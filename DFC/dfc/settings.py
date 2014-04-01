@@ -129,6 +129,7 @@ INSTALLED_APPS = (
     'tagging',
     'ckeditor'
 )
+PHOTOLOGUE_DIR = 'photo'
 
 AUTH_USER_MODEL = 'core.BaseEmailUser'
 

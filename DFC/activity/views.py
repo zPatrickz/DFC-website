@@ -70,11 +70,10 @@ def new(request):
         form = ActivityForm(request.POST, request.FILES)
         if form.is_valid():
             act = form.save()
-            print act.cover
             from django.shortcuts import redirect
             return redirect('activity_complete_or_view',act.id)
         else:
-            pass
+            print form.errors
     else:
         form = ActivityForm()
     return render(request,'activity/activity_new.html',{'form':form})

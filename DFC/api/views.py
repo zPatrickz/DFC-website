@@ -19,5 +19,5 @@ def gallery_photo_list(request,gal_id=None):
     photos = gal.photos.all()
     lst = []
     for photo in photos:
-        lst.append({"id":photo.id,"thumbnail":photo.get_thumbnail_url(),"url":photo.image.url,"title":photo.title})
+        lst.append({"id":photo.id,"thumbnail":photo.get_photo_small_url(),"url":photo.image.url,"title":photo.title})
     return HttpResponse(json.dumps(lst), content_type="application/json")
