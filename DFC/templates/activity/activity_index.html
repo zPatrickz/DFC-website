@@ -3,7 +3,7 @@
 
 {% block title %}{% trans "Activities" %}{% endblock %}
 {% block content %}
-<div style="">
+<div style="font-size:80%;">
 	<h1 class="padding-small">{% trans 'Activity' %}</h1>
 	<div  class="row">
 		<div class="col-md-7">
@@ -56,13 +56,31 @@
 				</div>
 			</div>
 			{% for activity in activities %}
-			<div class="padding-middle" style=" background-color: #EEEEEE; margin-bottom: 20px;">
+			<div class="padding-middle hover-div" style=" background-color: #EEEEEE; margin-bottom: 20px;" id="{{ activity.id }}">
 				<div>
 					<a href="{% url 'activity_detail' activity.id %}"><h5 style="display: inline-block;color:#333333">{{ activity.name }}</h5></a>
 					<div class=" pull-right" style="margin-top: 7px;">
-						<a href="javascript:void(0)">参与(5/8)</a>&nbsp;&nbsp;&nbsp;
-						<a href="javascript:void(0)">关注(12)</a>&nbsp;&nbsp;&nbsp;
-						<a href="javascript:void(0)"><i class="glyphicon glyphicon-share"></i></a>&nbsp;&nbsp;
+						<table ><tr>
+							<td>
+								<div id="{{ activity.id }}_content" class="hide" style="display: inline-block;">
+									<div class="bdsharebuttonbox" data-tag="share_1" style="height:22px; overflow: hidden; margin-top: -7px; margin-bottom: -3px;">
+										<!--<a class="bds_mshare" data-cmd="mshare"></a>-->
+										<a class="bds_qzone" data-cmd="qzone" href="#"></a>
+										<a class="bds_tsina" data-cmd="tsina"></a>
+										<a class="bds_renren" data-cmd="renren"></a>
+										<a class="bds_weixin" data-cmd="weixin"></a>
+										<a class="" data-cmd="more">更多</a>
+										<a class="bds_count" data-cmd="count"></a>
+									</div>
+								</div>&emsp;
+							</td>
+							<td height="20px">
+								<a href="javascript:void(0)">参与(5/8)</a>&emsp;
+							</td>
+							<td>
+								<a href="javascript:void(0)">关注(12)</a>
+							</td>
+						</tr></table>
 					</div>
 				</div>
 				<div class="hide" id="{{activity.id}}_toggle_content">
@@ -102,19 +120,6 @@
 					活动完成后你可以把活动内容整理成”故事档案“，并给志愿者打分。</p>
 			</div>
 		</div>
-		<script>
-		$(".toggle-div").click(function() {
-		   	if($("#"+this.id+'_content').hasClass("hide")){
-		   		$("#"+this.id+'_content').removeClass("hide");
-		    	$(this).text("关闭");
-		   	}
-		   	else{
-		   		$("#"+this.id+'_content').addClass("hide");
-		    	$(this).text("展开");
-		    
-		   	}
-		});
-		</script>
 	</div>
 </div>
 {% endblock %}

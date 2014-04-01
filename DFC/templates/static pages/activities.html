@@ -8,7 +8,7 @@
 <link href="css/ican.css" rel="stylesheet">
 <script src="js/jquery.min.js"></script>
 <script src="js/bootstrap.min.js"></script>
-<script src="js/setactivity.js"></script>
+<script src="js/global.js"></script>
 </head>
 <body style="background-color:#E4E4E4;background-size: cover; font-size: 80%;">
   
@@ -65,13 +65,33 @@
 					</div>
 				</div>
 			</div>
-			<div class="padding-middle" style=" background-color: #EEEEEE; margin-bottom: 20px;">
+			<div class="padding-middle hover-div" style=" background-color: #EEEEEE; margin-bottom: 20px;" id="act1">
+				
 				<div>
 					<a href="活动页面"><h5 style="display: inline-block;color:#333333">趁着年轻去“思奔”</h5></a>
 					<div class=" pull-right" style="margin-top: 7px;">
-						<a href="javascript:void(0)">参与(5/8)</a>&nbsp;&nbsp;&nbsp;
-						<a href="javascript:void(0)">关注(12)</a>&nbsp;&nbsp;&nbsp;
-						<a href="javascript:void(0)"><i class="glyphicon glyphicon-share"></i></a>&nbsp;&nbsp;
+						<table ><tr>
+							<td>
+								<div id="act1_content" class="hide" style="display: inline-block;">
+									<div class="bdsharebuttonbox" data-tag="share_1" style="height:22px; overflow: hidden; margin-top: -7px; margin-bottom: -3px;">
+										<!--<a class="bds_mshare" data-cmd="mshare"></a>-->
+										<a class="bds_qzone" data-cmd="qzone" href="#"></a>
+										<a class="bds_tsina" data-cmd="tsina"></a>
+										<a class="bds_renren" data-cmd="renren"></a>
+										<a class="bds_weixin" data-cmd="weixin"></a>
+										<a class="" data-cmd="more">更多</a>
+										<a class="bds_count" data-cmd="count"></a>
+									</div>
+								</div>&emsp;
+							</td>
+							<td height="20px">
+								<a href="javascript:void(0)">参与(5/8)</a>&emsp;
+							</td>
+							<td>
+								<a href="javascript:void(0)">关注(12)</a>
+							</td>
+						</tr></table>
+						
 					</div>
 				</div>
 				<div><!--class="hide">-->
@@ -97,6 +117,7 @@
 						<a href="信用度说明" style="color: orange">Cr.78</a>）&nbsp;&nbsp;
 					</span>
 				</p>
+				
 			</div>
 			
 			<div class="padding-middle" style=" background-color: #EEEEEE; margin-bottom: 20px;">
@@ -230,5 +251,6 @@
 	</div>
 </div>
 </div>
+
 </body>
 </html>
