@@ -1,15 +1,63 @@
 from django import forms
-from core.models import Organization, User
+from django.utils import timezone
+from django.utils.translation import ugettext as _
+from django.contrib.auth import get_user_model
+from django.contrib.auth.forms import ReadOnlyPasswordHashField
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Layout, Fieldset, Submit
 from crispy_forms.bootstrap import FormActions
-from django.utils.translation import ugettext as _
+from core.models import Organization, User
 
-class UserSignUpForm(forms.ModelForm):
-    password = forms.CharField(widget=forms.PasswordInput)
 
+class BaseCreationForm(forms.ModelForm):
+    """
+    A form for creating new users. Includes all the required fields, plus a repeated password.
+    """
+    error_messages = {
+        'duplicate_email': _("A user with that email already exists"),
+        'password_mismatch':_("The two password fields didn't match"),
+    }
+    password = forms.CharField(label=_("Password"), 
+        widget=forms.PasswordInput)
+    password2 = forms.CharField(label=_("Password confirmation"), 
+        widget=forms.PasswordInput, 
+        help_text=_("Enter the same password as above, for verification")
+    )
     def __init__(self, *args, **kwargs):
-        super(UserSignUpForm, self).__init__(*args, **kwargs)
+        super(BaseCreationForm, self).__init__(*args, **kwargs)
+        
+    class Meta:
+        abstract = True
+        
+    def clean_password2(self):
+        password1 = self.cleaned_data["password"]
+        password2 = self.cleaned_data["password2"]
+        if password1 and password2 and password1 != password2:
+            raise forms.ValidationError(
+                self.error_messages['password_mismatch'], 
+                code='password_mismatch'
+            )
+        return password2
+    
+    def clean_email(self):
+        email = self.cleaned_data["email"]
+        try:
+            get_user_model()._default_manager.get(email=email)
+        except get_user_model().DoesNotExist:
+            return email
+        raise forms.ValidationError(
+            self.error_messages['duplicate_email'],
+            code='duplicate_email'
+        )
+
+
+class UserCreationForm(BaseCreationForm):
+    """
+    A form for creating new users. Includes all the required fields, plus a repeated password.
+    """
+    
+    def __init__(self, *args, **kwargs):
+        super(UserCreationForm, self).__init__(*args, **kwargs)
         self.helper = FormHelper()
         self.helper.form_action = 'register'
         self.helper.form_method = 'POST'
@@ -19,23 +67,56 @@ class UserSignUpForm(forms.ModelForm):
         self.helper.layout = Layout(
             Fieldset(
                 'Create your account',
-                'name', 
-                'email', 'password', 
+                'first_name', 'last_name', 'email', 'password', 'password2', 
                 FormActions(
                     Submit('sign up', _('Sign Up'), css_class='btn col-sm-offset-2'),
                 ),
             )
         )
+
     class Meta:
-        model = User
+        model = get_user_model()
+        exclude = ['last_login', 'date_joined', 'user_type']
 
-            
+    def save(self, commit=True):
+        user = super(UserCreationForm, self).save(commit=False)
+        user.set_password(self.cleaned_data["password"])
+        if commit:
+            user.save()
+        return user
 
-class OrganizationSignUpForm(forms.ModelForm):
-    password = forms.CharField(widget=forms.PasswordInput)
+
+class UserChangeForm(forms.ModelForm):
+    """
+    A form for updating users. Includes all the fields on the user, but replaces the password field 
+    with admin's password has display field.
+    """
+
+    password = ReadOnlyPasswordHashField(label=_("Password"), 
+        help_text=_("Raw password are not stored, so there is no way to see " 
+            "this user's password, but you can change the password using " 
+            "<a href=\"password/\">this form</a>"))
+
+    class Meta:
+        model = get_user_model()
 
     def __init__(self, *args, **kwargs):
-        super(OrganizationSignUpForm, self).__init__(*args, **kwargs)
+        super(UserChangeForm, self).__init__(*args, **kwargs)
+        f = self.fields.get('user_permissions', None)
+        if f is not None:
+            f.queryset = f.queryset.select_related('content_type')
+
+    def clean_password(self):
+        return self.initial["password"]
+
+
+class OrganizationCreationForm(BaseCreationForm):
+    """
+    A form for creating a new organization
+    """
+    
+    def __init__(self, *args, **kwargs):
+        super(OrganizationCreationForm, self).__init__(*args, **kwargs)
         self.helper = FormHelper()
         self.helper.form_action = 'signup_organization'
         self.helper.form_method = 'POST'
@@ -45,17 +126,21 @@ class OrganizationSignUpForm(forms.ModelForm):
         self.helper.layout = Layout(
             Fieldset(
                 'Join Volunteer Organization',
-                'name',
-                'email',
-                'password',
+                'username', 'email', 'password', 'password2', 
                 FormActions(
                     Submit('sign up', _('Sign Up'), css_class='btn col-sm-offset-2'),
                 )
             ),
         )
-
-
+    
     class Meta:
         model = Organization
-        exclude = ['members']
+        exclude = ['last_login', 'date_joined', 'credit']
+    
+    def save(self, commit=True):
+        user = super(OrganizationCreationForm, self).save(commit=False)
+        user.set_password(self.cleaned_data["password"])
+        if commit:
+            user.save()
+        return user
 

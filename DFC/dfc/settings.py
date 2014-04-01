@@ -117,11 +117,9 @@ INSTALLED_APPS = (
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
-    'django.contrib.sites',
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.admin',
-    'django.contrib.admindocs',
     'core',
     'activity',
     'intelliparser',
@@ -131,6 +129,8 @@ INSTALLED_APPS = (
     'tagging',
     'ckeditor'
 )
+
+AUTH_USER_MODEL = 'core.BaseEmailUser'
 
 CRISPY_TEMPLATE_PACK = 'bootstrap3'
 CKEDITOR_UPLOAD_PATH = "ck-uploads/"

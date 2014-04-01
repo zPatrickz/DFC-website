@@ -5,5 +5,6 @@
 {% block title %}{% trans "Signup" %}{% endblock %}
 
 {% block content %}
+	{{ form.errors }}
 	{% crispy form %}
 {% endblock %}
