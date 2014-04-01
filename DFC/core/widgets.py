@@ -4,9 +4,14 @@ __author__ = 'Alfredo Saglimbeni'
 import re
 import uuid
 
-from django.forms.widgets import  MultiWidget , to_current_timezone, DateTimeInput
+from django.forms.widgets import  MultiWidget , to_current_timezone, DateTimeInput, Select
 from datetime import datetime
 from django.utils.formats import get_format, get_language
+from django.utils.html import format_html,escapejs
+from django.utils.safestring import mark_safe
+from photologue.models import Photo
+
+
 I18N = """
 $.fn.datetimepicker.dates['en'] = {
     days: %s,
@@ -181,4 +186,50 @@ class DateTimeWidget(MultiWidget):
             },
             js=js
         )
+    media = property(_media)
+    
+class PhotoWidget(Select):
+    PHOTOS_PER_PAGE = 10
+    def __init__(self, attrs=None):
+        super(PhotoWidget, self).__init__(attrs)
+
+    def render(self, name, value, attrs=None):
+        images_html = ''
+        images = Photo.objects.all()
+        current_image = format_html('<img id="img-{0}">',name)
+        if value:
+            current_image = Photo.objects.get(id=value)
+            if current_image:
+                current_image = format_html('<img id="img-{0}" src="{1}">',name,current_image.get_thumbnail_url())
+        from dfc.settings import STATIC_URL
+        js = '<script type="text/javascript">'\
+                         'load_gallery_list("'+name+'",'+(str(value) if value else 'undefined')+');\n'\
+                         '$("#ip-gallery-'+name+'" ).change(function() {\n'\
+                         '    load_gallery_photo_list("'+name+'",this.value,'+(str(value) if value else 'undefined')+');\n '\
+                         '});\n'\
+                         '</script>'
+        current = current_image
+        from django.core.urlresolvers import reverse
+        btns = '<button class="btn btn-primary" data-toggle="modal" data-target="#select-modal-'+name+'">Pick a Photo</button>\n'\
+                '<a class="btn btn-primary" href="javascript:popup_page(\''+reverse('photologue.views.photo_new')+'?popup=true\')">Upload a Photo</a>'
+        select_modal = '<div class="modal fade" id="select-modal-'+name+'" tabindex="-1" role="dialog" aria-labelledby="select-modal-'+name+'Label" aria-hidden="true">\n'\
+                  '<div class="modal-dialog">\n'\
+                    '<div class="modal-content">\n'\
+                      '<div class="modal-header">\n'\
+                        '<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>\n'\
+                        '<h4 class="modal-title" id="select-modal-'+name+'Label">Select Photo</h4>\n'\
+                      '</div>\n'\
+                      '<div class="modal-body">\n'\
+                      '<strong>Gallery:   </strong><select id="ip-gallery-'+name+'"></select>\n'\
+                      '<hr/>\n'\
+                      '<select class="image-picker" id="'+name+'" name="'+name+'"></select>\n'\
+                      '</div>\n'\
+                    '</div>\n'\
+                  '</div>\n'\
+                '</div>';
+        return format_html(current+btns+select_modal)+mark_safe(js)
+        
+    def _media(self):
+        return widgets.Media(css={'all': ('css/image-picker.css',)},
+                               js=('js/image-picker.min.js','js/image-picker-widget.js'))
     media = property(_media)

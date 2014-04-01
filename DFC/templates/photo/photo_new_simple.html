@@ -1,10 +1,15 @@
-{% extends "base.html" %}
+{% extends "photo/photo_base.html" %}
 {% load i18n %}
 
-{% block title %}{% trans "New Album" %}{% endblock %}
+{% block title %}{% trans "New Photo" %}{% endblock %}
+
+{% block navigation %}
+{% endblock %}
+
+{% block footer %}
+{% endblock %}
 
 {% block content %}
-  <h1>New Album</h1>
   {% if errors %}
       {% for error in errors %}
           <li>{{ error }}</li>
@@ -15,13 +20,9 @@
   {% else %}
       <form method="post" action="">
   {% endif %}
+  {% load crispy_forms_tags %}
   {% csrf_token %}
-      {{ form.as_p }}
-  {% if update %}
-      <input type="submit" value="Update album">
-	  <input type="button" value="Delete album">
-  {% else %}
-      <input type="submit" value="Create album">
-  {% endif %}
+  {% crispy form %}
+
   </form>
 {% endblock %}

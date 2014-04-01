@@ -8,6 +8,7 @@
 {% endif %}
 	<input type="hidden" name="organizations" value="1">
 	{% csrf_token %}
+	{{ form.media }}
 	<div class="{% if category and not category == 'general' %}hidden{% endif %}">
         {{ form.name|as_crispy_field }}
 	
@@ -75,6 +76,7 @@
 	
 
         {{ form.content|as_crispy_field }}
+		{{ form.cover|as_crispy_field }}
 	</div>
 
 	<input class="btn btn-info" type="submit" value="{% if update %}Save{% else %}Create{% endif %}">

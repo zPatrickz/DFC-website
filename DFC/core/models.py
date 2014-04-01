@@ -128,7 +128,7 @@ class Activity(models.Model):
     content         = RichTextField(blank=True)
     content_file    = models.FileField(blank=True, null=True,upload_to='doc')
     is_private      = models.BooleanField(default=False)
-    cover           = PhotoField(blank=True,null=True)# Always use PhotoField instead of ImageField
+    cover           = PhotoField(default=None,blank=True,null=True)# Always use PhotoField instead of ImageField
     
     required_participants   = models.PositiveIntegerField(null = True, blank = True)
     overflow_rate           = models.PositiveIntegerField(default = DEFAULT_OVERFLOW_RATE, blank = True)

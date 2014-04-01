@@ -171,9 +171,14 @@ class Gallery(models.Model):
 
     def __unicode__(self):
         return self.title
-
+        
+    def save(self, *args, **kwargs):
+        if self.title_slug is None or self.title_slug == '':
+            self.title_slug = slugify(self.title)
+        super(Gallery, self).save(*args, **kwargs)
+        
     def get_absolute_url(self):
-        return reverse('pl-gallery', args=[self.title_slug])
+        return reverse('pl-gallery', args=[self.id])
 
     def latest(self, limit=LATEST_LIMIT, public=True):
         if not limit:
@@ -584,12 +589,12 @@ class Photo(ImageModel):
         return self.title
 
     def save(self, *args, **kwargs):
-        if self.title_slug is None:
+        if self.title_slug is None or self.title_slug == '':
             self.title_slug = slugify(self.title)
         super(Photo, self).save(*args, **kwargs)
 
     def get_absolute_url(self):
-        return reverse('pl-photo', args=[self.title_slug])
+        return reverse('pl-photo', args=[self.id])
 
     def public_galleries(self):
         """Return the public galleries to which this photo belongs."""
