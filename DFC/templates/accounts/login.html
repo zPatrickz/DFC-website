@@ -1,33 +1,6 @@
 {% extends "base.html" %}
-{% load i18n %}
+{% load crispy_forms_tags %}
 
-{% block title %}{% endblock %}
 {% block content %}
-
-  {% if form.errors %}
-    <p class="error">{% trans "Sorry, that's not a valid username or password" %}</p>
-  {% endif %}
-
-  <form action="" method="post" class="form-horizontal" role="form">
-  {% csrf_token %}
-    <div class="form-group">
-      <label for="username" class="col-sm-2 control-label">Username:</label>
-      <div class="col-sm-3">
-        <input type="text" class="form-control" placeholder="username" name="username" id="username">
-      </div>
-    </div>
-    <div class="form-group">
-      <label for="password" class="col-sm-2 control-label">Password:</label>
-      <div class="col-sm-3">
-        <input type="password" class="form-control" placeholder="password" name="password" id="password">
-      </div>
-    </div>
-    <div class="form-group">
-      <div class="col-sm-offset-2 col-sm-3">
-        <button type="submit" value="login" class="btn btn-default">Signin</button>
-      </div>
-    </div>
-    <input type="hidden" name="next" value="{{ next|escape }}" />
-  </form>
-
+  {% crispy form %}
 {% endblock %}
