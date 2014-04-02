@@ -53,15 +53,6 @@
 
         {{ form.volunteer_requirements|as_crispy_field }}
 	
-
-        {{ form.volunteer_tasks|as_crispy_field }}
-	
-
-        {{ form.volunteer_obligation|as_crispy_field }}
-	
-        {{ form.volunteer_right|as_crispy_field }}
-	
-        {{ form.volunteer_hours|as_crispy_field }}
 	
         {{ form.notification_method|as_crispy_field }}
 	
@@ -81,3 +72,30 @@
 
 	<input class="btn btn-info" type="submit" value="{% if update %}Save{% else %}Create{% endif %}">
 </form>
+
+<!--templates-->
+<div class="modal fade">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title">志愿者要求模版</h4>
+      </div>
+      <div class="modal-body">
+	    {{ form.volunteer_tasks|as_crispy_field }}
+	
+
+        {{ form.volunteer_obligation|as_crispy_field }}
+	
+        {{ form.volunteer_right|as_crispy_field }}
+	
+        {{ form.volunteer_hours|as_crispy_field }}
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary">保存</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
