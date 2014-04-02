@@ -13,7 +13,7 @@ from core.managers import EmailUserManager, EmailOrganizationManager
 from django.contrib.contenttypes.models import ContentType
 from django.contrib.contenttypes import generic
 
-# Core classes for DFC Project
+# Core model classes for DFC Project
 
 # For general field usage, please refer to https://docs.djangoproject.com/en/1.6/ref/models/fields/
 # For ManyToManyField usage, please refer to https://docs.djangoproject.com/en/dev/topics/db/examples/many_to_many/
@@ -153,7 +153,7 @@ class Organization(BaseEmailUser):
             member.is_follower = True
         finally:
             member.save()
-            
+           
     @property
     def followers(self):
         return Membership.objects.all().filter(organization=self, is_follower=True)
@@ -379,7 +379,20 @@ class Post(models.Model):
     create_time = models.DateTimeField(auto_now_add=True)
     update_time = models.DateTimeField(auto_now=True)
     visits = models.PositiveIntegerField(default=0)
-
+    
+    @classmethod
+    def create(cls,title,content,author,organization,activity):
+        '''
+        Create a post.
+        # parameter title - title of the post
+        # parameter content,author,organization,activity
+        # return a new Place instance that has been saved in the database.
+        '''
+        pst = cls(title=title,content=content,organization=organization,activity=activity)
+        pst.save()
+        pst.authors.add(author)
+        return pst
+    
     def update_title(self,val):
         '''
         Edit the content of the post.
@@ -392,6 +405,7 @@ class Post(models.Model):
         '''
         self.title = val
         self.save()
+    
     def update_content(self,val):
         '''
         Edit the content of the post.
@@ -411,8 +425,10 @@ class Post(models.Model):
         
     def __unicode__(self):
         return self.title
+    
     def __str__(self):
         return unicode(self).encode('utf-8')
+    
     def __eq__(self, other):
         return self.title == other.title
 
@@ -441,6 +457,7 @@ class Participation(models.Model):
     activity = models.ForeignKey('Activity')
     role = models.CharField(max_length=3, choices=ROLE_CHOICES)
     stage = models.CharField(max_length=3, choices=STAGE_CHOICES)
+    
     class Meta:
         unique_together = (("user","activity"))
 

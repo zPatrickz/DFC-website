@@ -1,7 +1,7 @@
 from django import forms
 from django.utils import timezone
 from django.utils.translation import ugettext as _
-from django.contrib.auth import get_user_model
+from django.contrib.auth import get_user_model, authenticate
 from django.contrib.auth.forms import ReadOnlyPasswordHashField
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Layout, Fieldset, Submit
@@ -143,4 +143,46 @@ class OrganizationCreationForm(BaseCreationForm):
         if commit:
             user.save()
         return user
+
+
+class SignInForm(forms.Form):
+    """
+    Sign in form
+    """
+    email = forms.EmailField(label=_("Email Address"))
+    password = forms.CharField(label=_("Password"), max_length=128, 
+        widget=forms.PasswordInput())
+    remember_me = forms.BooleanField(widget=forms.CheckboxInput(), required=False, 
+        label=_("Remember me"))
+    
+    def __init__(self, *args, **kwargs):
+        super(SignInForm, self).__init__(*args, **kwargs)
+        self.helper = FormHelper()
+        self.helper.form_action = 'login'
+        self.helper.form_method = 'POST'
+        self.helper.form_class = 'form-horizontal'
+        self.helper.label_class = 'col-sm-2'
+        self.helper.field_class = 'col-sm-4'
+        self.helper.layout = Layout(
+            Fieldset(
+                'Sign In', 
+                'email', 'password', 'remember_me', 
+                FormActions(
+                    Submit('sign in', _('Sign In'), css_class='btn col-sm-offset-2'),
+                )
+            ),
+        )
+        
+    def clean(self):
+        """
+        Checks for the email and password.
+        """
+        email = self.cleaned_data.get('email')
+        password = self.cleaned_data.get('password')
+        
+        if email and password:
+            user = authenticate(email=email, password=password)
+            if user is None:
+                raise forms.ValidationError(_('Invalid email or password'))
+        return self.cleaned_data
 
