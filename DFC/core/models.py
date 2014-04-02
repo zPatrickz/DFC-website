@@ -7,7 +7,7 @@ from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin
 from django.utils.translation import ugettext as _
 from tagging.fields import *
 from core.fields import *
-from ckeditor.fields import RichTextField
+from tinymce.models import HTMLField
 from core.managers import EmailUserManager
 from core.managers import EmailUserManager, EmailOrganizationManager
 
@@ -222,10 +222,10 @@ class Activity(models.Model):
     participants    = models.ManyToManyField('User', through = "Participation",blank=True)
     places          = models.ManyToManyField('Place',blank=True)
     desc            = models.TextField(blank=True)
-    content         = RichTextField(blank=True)
+    content         = HTMLField(blank=True)
     content_file    = models.FileField(blank=True, null=True,upload_to='doc')
     is_private      = models.BooleanField(default=False)
-    cover           = PhotoField(default=None,blank=True,null=True)# Always use PhotoField instead of ImageField
+    cover           = PhotoField(category='activity_cover',default=None,blank=True,null=True)# Always use PhotoField instead of ImageField
     
     required_participants   = models.PositiveIntegerField(null = True, blank = True)
     overflow_rate           = models.PositiveIntegerField(default = DEFAULT_OVERFLOW_RATE, blank = True)

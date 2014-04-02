@@ -127,24 +127,26 @@ INSTALLED_APPS = (
     'photologue',
     'south',
     'tagging',
-    'ckeditor'
+    'tinymce'
 )
 PHOTOLOGUE_DIR = 'photo'
 
 AUTH_USER_MODEL = 'core.BaseEmailUser'
 
 CRISPY_TEMPLATE_PACK = 'bootstrap3'
-CKEDITOR_UPLOAD_PATH = "ck-uploads/"
-CKEDITOR_CONFIGS = {
-    'default': {
-        'toolbar': [
-        ['Styles', 'Format', 'Bold', 'Italic', 'Underline', 'Strike', 'SpellChecker', 'Undo', 'Redo'],
-        ['Table', 'HorizontalRule'],
-        ['TextColor', 'BGColor'],
-        ['Smiley', 'SpecialChar'],
-    ]
-	}
+TINYMCE_JS_URL = STATIC_URL+'tinymce/tinymce.min.js'
+TINYMCE_JS_ROOT = os.path.join(STATIC_ROOT, "tinymce")
+TINYMCE_DEFAULT_CONFIG = {
+    'plugins': "hr,link,paste,preview,pagebreak,searchreplace,nonbreaking,table,textcolor,image",
+    'theme': "modern",
+    'cleanup_on_startup': True,
+    'custom_undo_redo_levels': 10,
+    'menubar':False,
+    'toolbar':"undo redo pastetext | styleselect | bold italic forecolor backcolor | image table link | preview",
+    'statusbar': False,
 }
+TINYMCE_SPELLCHECKER = True
+TINYMCE_COMPRESSOR = False
 # A sample logging configuration. The only tangible logging
 # performed by this configuration is to send an email to
 # the site admins on every HTTP 500 error when DEBUG=False.

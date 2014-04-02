@@ -47,7 +47,7 @@ def photo_new(request):
             pass
     else:
         form = PhotoForm()
-    if request.GET['popup'] :
+    if request.GET.get('popup') and request.GET['popup'].lower()=='true' :
         return render(request,'photo/photo_new_simple.html',{'form':form})
     else:
         return render(request,'photo/photo_new.html',{'form':form})

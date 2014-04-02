@@ -59,7 +59,7 @@ def detail_settings(request,act_id=None,category='general'):
         if form.is_valid():
             # FAKE SAVE HERE, NEED MORE MODELS!!!
             form.save()
-            #return HttpResponseRedirect('')
+            return HttpResponseRedirect('')
     else:
         #Handle an update form
         form = ActivityForm(instance = get_object_or_404(Activity,id=act_id))

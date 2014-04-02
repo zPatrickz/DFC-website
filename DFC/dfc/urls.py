@@ -13,7 +13,7 @@ urlpatterns = patterns('',
 	url(r'^admin/', include(admin.site.urls)),
    	url(r'^accounts/', include('accounts.urls')),
     url(r'^activity/', include('activity.urls')),
-    url(r'^ckeditor/', include('ckeditor.urls')),
+    url(r'^tinymce/', include('tinymce.urls')),
     url(r'^api/', include('api.urls')),
 )
 urlpatterns += staticfiles_urlpatterns()

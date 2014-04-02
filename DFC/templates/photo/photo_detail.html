@@ -11,13 +11,13 @@
     <a href="{{ object.image.url }}"><img src="{{ object.get_photo_large_url }}" class="{% block gallery-photo-class %}{% endblock %}" alt="{{ object.title }}"/></a>
     {% if object.caption %}<p>{{ object.caption }}</p>{% endif %}
 </div>
-{% if object.public_galleries %}
-<h2>This photo is found in the following galleries:</h2>
+
+<h2>This photo belongs to gallery:</h2>
 <ol>
-{% for gallery in object.public_galleries %}
-    <li>{%previous_in_gallery object gallery%} <a href="{{ gallery.get_absolute_url }}">{{ gallery.title }}</a> {%next_in_gallery object gallery%}</li>
-{% endfor %}
+
+<a href="{{ object.gallery.get_absolute_url }}">{{ object.gallery.title }}</a>
+
 </ol>
-{% endif %}
+
 
 {% endblock %}

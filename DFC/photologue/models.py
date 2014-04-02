@@ -156,11 +156,11 @@ class Gallery(models.Model):
                                     default=True,
                                     help_text=_('Public galleries will be displayed '
                                     'in the default views.'))
-    photos = models.ManyToManyField('Photo',
+    '''photos = models.ManyToManyField('Photo',
                                     related_name='galleries',
                                     verbose_name=_('photos'),
                                     null=True,
-                                    blank=True)
+                                    blank=True)'''
     tags = TagField(help_text=tagfield_help_text, verbose_name=_('tags'))
 
     class Meta:
@@ -176,6 +176,12 @@ class Gallery(models.Model):
         if self.title_slug is None or self.title_slug == '':
             self.title_slug = slugify(self.title)
         super(Gallery, self).save(*args, **kwargs)
+    
+    @property
+    def photos(self):
+        if not self.id:
+            return None
+        return Photo.objects.filter(gallery__exact=self)
         
     def get_absolute_url(self):
         return reverse('pl-gallery', args=[self.id])
@@ -202,7 +208,8 @@ class Gallery(models.Model):
         else:
             photo_set = self.photos.all()
         return random.sample(set(photo_set), count)
-
+    
+        
     def photo_count(self, public=True):
         """Return a count of all the photos in this gallery."""
         if public:
@@ -213,10 +220,10 @@ class Gallery(models.Model):
 
     def public(self):
         """Return a queryset of all the public photos in this gallery."""
-        return self.photos.filter(is_public=True)
+        return Photo.objects.filter(gallery__exact=self,is_public=True)
 
 
-class GalleryUpload(models.Model):
+'''class GalleryUpload(models.Model):
     zip_file = models.FileField(_('images file (.zip)'),
                                 upload_to=PHOTOLOGUE_DIR + "/temp",
                                 help_text=_('Select a .zip file of images to upload into a new Gallery.'))
@@ -309,7 +316,7 @@ class GalleryUpload(models.Model):
                             break
                         count = count + 1
             zip.close()
-            return gallery
+            return gallery'''
 
 
 class ImageModel(models.Model):
@@ -572,6 +579,7 @@ class Photo(ImageModel):
                                   help_text=_('A "slug" is a unique URL-friendly title for an object.'))
     caption = models.TextField(_('caption'),
                                blank=True)
+    gallery = models.ForeignKey('Gallery')
     date_added = models.DateTimeField(_('date added'),
                                       default=now)
     is_public = models.BooleanField(_('is public'),
@@ -595,24 +603,21 @@ class Photo(ImageModel):
 
     def get_absolute_url(self):
         return reverse('pl-photo', args=[self.id])
+    
+    # parameter size - 'small', 'medium', 'large'
+    def get_url(self,category,size):
+        func = getattr(self, 'get_'+category+'_'+size+'_url', None)
+        return func() if func else ''
 
-    def public_galleries(self):
+    '''def public_galleries(self):
         """Return the public galleries to which this photo belongs."""
-        return self.galleries.filter(is_public=True)
+        return self.galleries.filter(is_public=True)'''
 
-    def get_previous_in_gallery(self, gallery):
-        try:
-            return self.get_previous_by_date_added(galleries__exact=gallery,
-                                                   is_public=True)
-        except Photo.DoesNotExist:
-            return None
+    def get_previous_in_gallery(self):
+        pass
 
-    def get_next_in_gallery(self, gallery):
-        try:
-            return self.get_next_by_date_added(galleries__exact=gallery,
-                                               is_public=True)
-        except Photo.DoesNotExist:
-            return None
+    def get_next_in_gallery(self):
+        pass
 
 
 class BaseEffect(models.Model):
@@ -858,7 +863,12 @@ class PhotoSizeCache(object):
 
     def reset(self):
         self.sizes = {}
-
+        
+'''class PhotoGallery(models.Model):
+    photo = models.ForeignKey('Photo')
+    gallery = models.ForeignKey('Gallery')
+    add_time = models.DateTimeField(auto_now_add=True)
+    visits = models.PositiveIntegerField(default=0)'''
 
 # Set up the accessor methods
 def add_methods(sender, instance, signal, *args, **kwargs):

@@ -191,6 +191,10 @@ class DateTimeWidget(MultiWidget):
 class PhotoWidget(Select):
     PHOTOS_PER_PAGE = 10
     def __init__(self, attrs=None):
+        if 'category' in attrs:
+            self.category = attrs['category']
+        else:
+            self.category = 'photo'
         super(PhotoWidget, self).__init__(attrs)
 
     def render(self, name, value, attrs=None):
@@ -200,16 +204,15 @@ class PhotoWidget(Select):
         if value:
             current_image = Photo.objects.get(id=value)
             if current_image:
-                current_image = format_html('<img id="img-{0}" src="{1}">',name,current_image.get_photo_small_url())
-        js = '<script type="text/javascript">'\
-                         'load_gallery_list("'+name+'",'+(str(value) if value else 'undefined')+');\n'\
-                         '$("#ip-gallery-'+name+'" ).change(function() {\n'\
-                         '    load_gallery_photo_list("'+name+'",this.value,'+(str(value) if value else 'undefined')+');\n '\
-                         '});\n'\
-                         '</script>'
+                current_image = format_html('<img id="img-{0}" src="{1}">',name,current_image.get_url(self.category,'medium'))
+        js = '<script type="text/javascript">\n'\
+             '//$(document).ready(function(){\n'\
+                 'image_picker_widget_init("'+name+'",'+(str(value) if value else 'undefined')+',"'+self.category+'");\n'\
+             '//});\n'\
+             '</script>'
         current = current_image
         from django.core.urlresolvers import reverse
-        btns = '<button class="btn btn-primary" data-toggle="modal" data-target="#select-modal-'+name+'">Pick a Photo</button>\n'\
+        btns = '<button class="btn btn-primary" data-toggle="modal" data-target="#select-modal-'+name+'" id="select-btn-'+name+'">Pick a Photo</button>\n'\
                 '<a class="btn btn-primary" href="javascript:popup_page(\''+reverse('photologue.views.photo_new')+'?popup=true\')">Upload a Photo</a>'
         select_modal = '<div class="modal fade" id="select-modal-'+name+'" tabindex="-1" role="dialog" aria-labelledby="select-modal-'+name+'Label" aria-hidden="true">\n'\
                   '<div class="modal-dialog">\n'\

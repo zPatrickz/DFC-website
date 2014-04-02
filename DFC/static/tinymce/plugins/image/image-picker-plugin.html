@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<link rel="stylesheet" type="text/css" href="/static/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="/static/css/image-picker.css">
+	<script type="text/javascript" src="/static/js/jquery.min.js"></script>
+	<script type="text/javascript" src="/static/js/image-picker.min.js"></script>
+	<script type="text/javascript" src="/static/js/image-picker-widget.js"></script>
+</head>
+<body>
+	<div class="container">
+		<div class="image-picker-plugin" style="margin-top:20px">
+	
+	
+	    <strong>Gallery:   </strong><select id="ip-gallery-"></select><a class="btn btn-primary" href="javascript:popup_page('/photo/add/?popup=true')">Upload a Photo</a>
+	    <hr/>
+	    <select class="image-picker"></select>
+		</div>
+	</div>
+	<script type="text/javascript">
+		var args = top.tinymce.activeEditor.windowManager.getParams();
+		ip_name = 'ip-'+args.editor_id;
+		$('.image-picker-plugin #ip-gallery-').attr('id','ip-gallery-'+ip_name);
+		$('.image-picker-plugin .image-picker').attr('id',ip_name);
+		$('.image-picker-plugin .image-picker').attr('name',ip_name);
+		image_picker_plugin_init(ip_name,null,'photo',top.tinymce.activeEditor);
+	</script>
+</body>
+</html>

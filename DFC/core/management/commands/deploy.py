@@ -48,7 +48,7 @@ class Command(BaseCommand):
             if err != '':
                  print err
                  return
-            p6=subprocess.Popen(["git rm -r -f "+photo_file_path],stdin=subprocess.PIPE,stderr=subprocess.PIPE,shell=True)
+            p6=subprocess.Popen(["git rm --ignore-unmatch -r -f "+photo_file_path],stdin=subprocess.PIPE,stderr=subprocess.PIPE,shell=True)
             (out,err) = p6.communicate()
             if err != '':
                  print err
@@ -114,6 +114,9 @@ class Command(BaseCommand):
             p4.stdin.write("no\n")#crop to fit
             p4.stdin.write("yes\n")#pre cache
             p4.stdin.write("yes\n")#increment count
+            print 'creating first organization (for development only)'
+            from core.models import Organization
+            Organization.objects.create()
             print "site successfully deployed!"
         else:
             print self.usage_str
