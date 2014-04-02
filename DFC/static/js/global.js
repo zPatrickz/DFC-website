@@ -30,9 +30,9 @@ $(document).ready(function(){
 function share(content){
 	window._bd_share_config = {
 		common : {
-			bdText : content,	
-			bdDesc : '自定义分享摘要',	
-			bdUrl : '自定义分享url地址', 	
+			bdText : content,
+			bdDesc : '自定义分享摘要',
+			bdUrl : '自定义分享url地址',
 			bdPic : '自定义分享图片'
 		},
 		share : [{
