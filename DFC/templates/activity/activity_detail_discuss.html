@@ -6,33 +6,32 @@ active
 {% block activity-content %}
 <div class="col-md-9" id="rightCol" style="font-size: 80%;">
 	<div  style="margin-left: 70px;">
-		<div class="well">
-			<h3>Title:&nbsp;<u>写属于你们的故事</u></h3>
-			<div class="editor-container" style="height: 100px">
-				<textarea id="content" name="content"></textarea>
-			</div>
-			<div class="row" style=" margin-top: 20px;">
-				<div class="pull-right">
-					<button class="btn btn-info" style="margin-right: 50px;">放弃</button>
-					<button class="btn btn-info">保存</button>
-					<button class="btn btn-info">完成</button>
-				</div>
-			</div>
-		</div>
+
+		{{ post_form.media }}
+		<form method="POST" action="{% url 'activity_detail_post_new' activity.id %}">
+		{% csrf_token %}
+		{{ post_form.title }}
+		{{ post_form.content }}
+		<input type="hidden" name="author" value="3">
+		<input type="hidden" name="activity" value="{{activity.id}}">
+		<input type="hidden" name="category" value="DIS">
+		<button type="submit">Post</button>
+		</form>
 		<a href="#">仅看最热门</a>
 		<p class="text-right">
 			<ul class="list-unstyled">
+				{% for post in activity.discusses %}
 				<li style="border:1px solid gray; margin-top: 10px;">
 					<div class="row" style="margin-left: 1px">
 						<div class="col-md-1" style="background-color: #d6d6d6">
-							<img src="img/icon/profile.svg">
-							<p class="text-center">曾明陟</p>
+							<img src="{% static 'img/icon/profile.svg' %}">
+							<p class="text-center">{{post.author.first_name}}{{post.author.last_name}}</p>
 						</div>
 						<div class="col-md-11">
 							<div>
 								<div class="pull-left">
 									<p>
-										回复&nbsp;<a href="#">曾明陟</a>
+										{{post.title}}
 									</p>
 								</div>
 								<div class="pull-right">
@@ -43,75 +42,15 @@ active
 							</div>
 							<hr>
 							<div>
-								<p><strong>滚粗。。。</strong></p>	
+								<p><strong>{{post.content}}</strong></p>	
 							</div>
 							<div class="pull-right">
-								<p>9月2日 13:22&nbsp;<span class="glyphicon glyphicon-thumbs-up"></span></p>
+								<p>{{post.create_time}}&nbsp;<span class="glyphicon glyphicon-thumbs-up"></span></p>
 							</div>
 						</div>
 					</div>
 				</li>
-				<li style="border:1px solid gray; margin-top: 10px;">
-					<div class="row" style="margin-left: 1px">
-						<div class="col-md-1" style="background-color: #d6d6d6">
-							<img src="img/icon/profile.svg">
-							<p class="text-center">曾明陟</p>
-						</div>
-						<div class="col-md-11">
-							<div>
-								<div class="pull-left">
-									<p>
-										回复&nbsp;<a href="#">谢闯</a>
-									</p>
-								</div>
-								<div class="pull-right">
-									<p>
-										<a href="#">回复</a>&nbsp;<span class="glyphicon glyphicon-share"></span>
-									</p>
-								</div>
-							</div>
-							<hr>
-							<div>
-								<p><strong>我能说丑吗？</strong></p>	
-							</div>
-							<div class="pull-right">
-								<p>9月2日 13:22&nbsp;<span class="glyphicon glyphicon-thumbs-up"></span></p>
-							</div>
-						</div>
-					</div>
-				</li>
-				<li style="border:1px solid gray; margin-top: 10px;">
-					<div class="row" style="margin-left: 1px">
-						<div class="col-md-1" style="background-color: #d6d6d6">
-							<img src="img/icon/profile.svg">
-							<p class="text-center">曾明陟</p>
-						</div>
-						<div class="col-md-11">
-							<div>
-								<div class="pull-left">
-									<p>
-										我拍的照片
-									</p>
-								</div>
-								<div class="pull-right">
-									<p>
-										<a href="#">回复</a>&nbsp;<span class="glyphicon glyphicon-share"></span>
-									</p>
-								</div>
-							</div>
-							<hr>
-							<div>
-								<a href="#"><img src="img/wall/bg1.jpg" style="height:80px"></a>
-								<img src="img/wall/bg2.gif" style="height:80px">
-								<img src="img/wall/bg3.jpg" style="height:80px">
-								<p><strong>快看快看，我拍的照片怎么样？</strong></p>	
-							</div>
-							<div class="pull-right">
-								<p>9月2日 13:22&nbsp;<span class="glyphicon glyphicon-thumbs-up"></span></p>
-							</div>
-						</div>
-					</div>
-				</li>
+				{% endfor %}
 			</ul>
 		</p>
 	</div>

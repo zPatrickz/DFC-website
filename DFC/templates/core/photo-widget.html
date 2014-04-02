@@ -1,0 +1,22 @@
+<img id="img-{{name}}" src="{{img_src}}"/>
+<button class="btn btn-primary" data-toggle="modal" data-target="#select-modal-{{name}}" id="select-btn-{{name}}">Pick a Photo</button>
+<a class="btn btn-primary" href="javascript:popup_page('{% url 'photologue.views.photo_new' %}?popup=true')">Upload a Photo</a>
+<div class="modal fade" id="select-modal-{{name}}" tabindex="-1" role="dialog" aria-labelledby="select-modal-{{name}}Label" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title" id="select-modal-{{name}}Label">Select Photo</h4>
+      </div>
+      <div class="modal-body">
+      <strong>Gallery:   </strong><select id="ip-gallery-{{name}}"></select>
+      <hr/>
+      <select class="image-picker" id="{{name}}" name="{{name}}"></select>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script type="text/javascript">
+ image_picker_widget_init("{{name}}",{% if value %}{{value}}{% else %}null{% endif %},"{{category}}");
+</script>

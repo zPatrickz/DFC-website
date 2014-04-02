@@ -12,9 +12,8 @@ urlpatterns = patterns('',
     url(r'^(?P<act_id>\d+)/doc',views.detail_doc, name = 'activity_detail_doc'),
     url(r'^(?P<act_id>\d+)/member',views.detail_member, name = 'activity_detail_member'),
     url(r'^(?P<act_id>\d+)/notice',views.detail_notice, name = 'activity_detail_notice'),
+    url(r'^(?P<act_id>\d+)/post/new',views.detail_post_new, name = 'activity_detail_post_new'),
     url(r'^(?P<act_id>\d+)/post',views.detail_post, name = 'activity_detail_post'),
     url(r'^(?P<act_id>\d+)/settings/(?P<category>\w*)',views.detail_settings, name = 'activity_detail_settings'),
     url(r'^(?P<act_id>\d+)/',views.detail_post, name = 'activity_detail'),
-    
-    
 )

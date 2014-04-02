@@ -10,6 +10,8 @@ from core.fields import *
 from tinymce.models import HTMLField
 from core.managers import EmailUserManager
 from core.managers import EmailUserManager, EmailOrganizationManager
+from django.contrib.contenttypes.models import ContentType
+from django.contrib.contenttypes import generic
 
 # Core classes for DFC Project
 
@@ -335,6 +337,22 @@ class Activity(models.Model):
             self.cover = saved_cover
         super(Activity, self).save(*args, **kwargs)'''
     
+    @property
+    def posts(self):
+        return ActivityPost.objects.filter(activity__exact=self, category__exact='PST')
+    
+    @property
+    def discusses(self):
+        return ActivityPost.objects.filter(activity__exact=self, category__exact='DIS')
+    
+    @property
+    def organizations(self):
+        return self.organizations.all()
+        
+    @property
+    def places(self):
+        return self.places.all()
+    
     def __unicode__(self):
         return self.name
     
@@ -342,7 +360,8 @@ class Activity(models.Model):
         return unicode(self).encode('utf-8')
     
     def __eq__(self, other):
-        return self.name == other.name and self.organizations == other.organizations and self.place == other.place
+        return super(Activity,self).__eq__(other)
+        #return self.name == other.name and self.organizations == other.organizations and self.place == other.place
     
     class Meta:
         pass
@@ -356,24 +375,11 @@ class Post(models.Model):
     '''
     title = models.CharField(max_length=256, blank=False)
     content = models.TextField(blank=False)
-    # organization = models.ForeignKey(settings.AUTH_USER_MODEL)
     author = models.ForeignKey('User')
-    activity = models.ForeignKey('Activity')
     create_time = models.DateTimeField(auto_now_add=True)
     update_time = models.DateTimeField(auto_now=True)
     visits = models.PositiveIntegerField(default=0)
-    @classmethod
-    def create(cls,title,content,author,organization,activity):
-        '''
-        Create a post.
-        # parameter title - title of the post
-        # parameter content,author,organization,activity
-        # return a new Place instance that has been saved in the database.
-        '''
-        pst = cls(title=title,content=content,organization=organization,activity=activity)
-        pst.save()
-        pst.authors.add(author)
-        return pst
+
     def update_title(self,val):
         '''
         Edit the content of the post.
@@ -398,14 +404,26 @@ class Post(models.Model):
         '''
         self.content = val
         self.save()
+        
+    
+    class Meta:
+        abstract = True
+        
     def __unicode__(self):
         return self.title
     def __str__(self):
         return unicode(self).encode('utf-8')
     def __eq__(self, other):
-        return self.organization == other.organization and self.activity == other.activity and self.title == other.title
-        
+        return self.title == other.title
 
+class ActivityPost(Post):
+    CATEGORY_CHOICES = (
+        ('PST','Post'),
+        ('DIS','Discuss'),
+    )
+    activity = ForeignKey('Activity')
+    category = models.CharField(max_length=3, choices=CATEGORY_CHOICES)
+    
 class Participation(models.Model):
     '''
     Participation describes the relationship between users and activities

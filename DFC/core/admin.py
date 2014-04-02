@@ -64,7 +64,7 @@ class OrganizationAdmin(UserAdmin):
 admin.site.register(User, EmailUserAdmin)
 admin.site.register(Organization, OrganizationAdmin)
 admin.site.register(Place)
-admin.site.register(Post)
+admin.site.register(ActivityPost)
 admin.site.register(Activity)
 admin.site.register(Participation)
 admin.site.register(Membership)

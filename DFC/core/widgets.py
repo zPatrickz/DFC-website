@@ -4,7 +4,7 @@ __author__ = 'Alfredo Saglimbeni'
 import re
 import uuid
 
-from django.forms.widgets import  MultiWidget , to_current_timezone, DateTimeInput, Select
+from django.forms.widgets import  MultiWidget , to_current_timezone, DateTimeInput, Select, Widget, Input
 from datetime import datetime
 from django.utils.formats import get_format, get_language
 from django.utils.html import format_html,escapejs
@@ -200,38 +200,41 @@ class PhotoWidget(Select):
     def render(self, name, value, attrs=None):
         images_html = ''
         images = Photo.objects.all()
-        current_image = format_html('<img id="img-{0}">',name)
+        current_image = ""
         if value:
             current_image = Photo.objects.get(id=value)
             if current_image:
-                current_image = format_html('<img id="img-{0}" src="{1}">',name,current_image.get_url(self.category,'medium'))
-        js = '<script type="text/javascript">\n'\
-             '//$(document).ready(function(){\n'\
-                 'image_picker_widget_init("'+name+'",'+(str(value) if value else 'undefined')+',"'+self.category+'");\n'\
-             '//});\n'\
-             '</script>'
-        current = current_image
-        from django.core.urlresolvers import reverse
-        btns = '<button class="btn btn-primary" data-toggle="modal" data-target="#select-modal-'+name+'" id="select-btn-'+name+'">Pick a Photo</button>\n'\
-                '<a class="btn btn-primary" href="javascript:popup_page(\''+reverse('photologue.views.photo_new')+'?popup=true\')">Upload a Photo</a>'
-        select_modal = '<div class="modal fade" id="select-modal-'+name+'" tabindex="-1" role="dialog" aria-labelledby="select-modal-'+name+'Label" aria-hidden="true">\n'\
-                  '<div class="modal-dialog">\n'\
-                    '<div class="modal-content">\n'\
-                      '<div class="modal-header">\n'\
-                        '<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>\n'\
-                        '<h4 class="modal-title" id="select-modal-'+name+'Label">Select Photo</h4>\n'\
-                      '</div>\n'\
-                      '<div class="modal-body">\n'\
-                      '<strong>Gallery:   </strong><select id="ip-gallery-'+name+'"></select>\n'\
-                      '<hr/>\n'\
-                      '<select class="image-picker" id="'+name+'" name="'+name+'"></select>\n'\
-                      '</div>\n'\
-                    '</div>\n'\
-                  '</div>\n'\
-                '</div>';
-        return format_html(current+btns+select_modal)+mark_safe(js)
+                current_image = current_image.get_url(self.category,'medium')
+        from django.template import Context, Template
+        from django.template.loader import get_template
+        widget_template = get_template('core/photo-widget.html')
+        html =  widget_template.render(Context({"img_src":current_image,"name":name,"value":value,"category":self.category}))
+        return html
         
     def _media(self):
         return widgets.Media(css={'all': ('css/image-picker.css',)},
                                js=('js/image-picker.min.js','js/image-picker-widget.js'))
+    media = property(_media)
+    
+class SimpleEditorTitleWidget(Input):
+    def __init__(self, attrs=None):
+        super(SimpleEditorTitleWidget, self).__init__(attrs)
+
+    def render(self, name, value, attrs=None):
+        return format_html('<input type="text" name="'+name+'" value="'+(value if value else "")+'" placeholder="Title Here" class="editor-title" tabindex="0">')
+        
+class SimpleEditorContentWidget(Input):
+    def __init__(self, attrs=None):
+        super(SimpleEditorContentWidget, self).__init__(attrs)
+
+    def render(self, name, value, attrs=None):
+        from django.template import Context, Template
+        from django.template.loader import get_template
+        widget_template = get_template('core/editor-simple-widget.html')
+        html =  widget_template.render(Context({"name":name}))
+        return html
+        
+    def _media(self):
+        return widgets.Media(css={'all': ('css/editor-simple.css',)},
+                               js=('js/editor-simple.js',))
     media = property(_media)

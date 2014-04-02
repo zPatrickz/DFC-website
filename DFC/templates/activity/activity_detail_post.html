@@ -5,6 +5,17 @@ active
 {% endblock %}
 {% block activity-content %}
 <div class="col-md-9" id="rightCol"  style="display: inline-block; font-size: 80%;">
+	{% load crispy_forms_tags %}
+	{{ post_form.media }}
+	<form method="POST" action="{% url 'activity_detail_post_new' activity.id %}">
+	{% csrf_token %}
+	{{ post_form.title }}
+	{{ post_form.content }}
+	<input type="hidden" name="author" value="3">
+	<input type="hidden" name="activity" value="{{activity.id}}">
+	<input type="hidden" name="category" value="PST">
+	<button type="submit">Post</button>
+	</form>
 	<div  style="margin-left: 70px;border-left: solid gray;">
 		<dl >
 		  <dt style="margin-top: 10px">

@@ -54,20 +54,20 @@
 	{% block activity-nav %}
 	<div class="col-md-3" id="leftCol">
       	<div class="list-group" id="sidebar" style="margin-left: 70px;">
-          <a href="{% url 'activity_detail_detail' act_id %}" class="list-group-item {% block activity-detail-active %}{% endblock %}">活动详情</a>
-          <a href="{% url 'activity_detail_post' act_id %}" class="list-group-item {% block activity-post-active %}{% endblock %}">活动动态</a>
+          <a href="{% url 'activity_detail_detail' activity.id %}" class="list-group-item {% block activity-detail-active %}{% endblock %}">活动详情</a>
+          <a href="{% url 'activity_detail_post' activity.id %}" class="list-group-item {% block activity-post-active %}{% endblock %}">活动动态</a>
         </div>
         <div class="list-group" id="sidebar" style="margin-left: 70px;">
-          <a href="{% url 'activity_detail_discuss' act_id %}" class="list-group-item {% block activity-discuss-active %}{% endblock %}">讨论区域</a>
-          <a href="{% url 'activity_detail_notice' act_id %}" class="list-group-item {% block activity-notification-active %}{% endblock %}">通知发布</a>
+          <a href="{% url 'activity_detail_discuss' activity.id %}" class="list-group-item {% block activity-discuss-active %}{% endblock %}">讨论区域</a>
+          <a href="{% url 'activity_detail_notice' activity.id %}" class="list-group-item {% block activity-notification-active %}{% endblock %}">通知发布</a>
         </div>
         <div class="list-group" id="sidebar" style="margin-left: 70px;">
-          <a href="{% url 'activity_detail_album' act_id %}" class="list-group-item {% block activity-album-active %}{% endblock %}">活动相册</a>
-          <a href="{% url 'activity_detail_doc' act_id %}" class="list-group-item {% block activity-doc-active %}{% endblock %}">共享文档</a>
+          <a href="{% url 'activity_detail_album' activity.id %}" class="list-group-item {% block activity-album-active %}{% endblock %}">活动相册</a>
+          <a href="{% url 'activity_detail_doc' activity.id %}" class="list-group-item {% block activity-doc-active %}{% endblock %}">共享文档</a>
       	</div>
         <div class="list-group" id="sidebar" style="margin-left: 70px;">
-          <a href="{% url 'activity_detail_settings' act_id '' %}" class="list-group-item {% block activity-settings-active %}{% endblock %}">活动设置</a>
-          <a href="{% url 'activity_detail_member' act_id %}" class="list-group-item {% block activity-member-active %}{% endblock %}">组员管理</a>
+          <a href="{% url 'activity_detail_settings' activity.id '' %}" class="list-group-item {% block activity-settings-active %}{% endblock %}">活动设置</a>
+          <a href="{% url 'activity_detail_member' activity.id %}" class="list-group-item {% block activity-member-active %}{% endblock %}">组员管理</a>
       	</div>
 	</div>
 	{% endblock %}

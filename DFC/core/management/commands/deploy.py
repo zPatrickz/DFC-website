@@ -116,7 +116,14 @@ class Command(BaseCommand):
             p4.stdin.write("yes\n")#increment count
             print 'creating first organization (for development only)'
             from core.models import Organization
-            Organization.objects.create()
+            org = Organization(username="org1",email="org1@hahahahah.com")
+            org.set_password("123456")
+            org.save()
+            print 'creating first user (for development only)'
+            from core.models import User
+            usr = User(first_name="W",last_name="TF",email="usr1@hahahahah.com")
+            usr.set_password("123456")
+            usr.save()
             print "site successfully deployed!"
         else:
             print self.usage_str
