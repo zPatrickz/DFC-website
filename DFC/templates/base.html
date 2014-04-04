@@ -41,7 +41,7 @@
       		<li {% block nav-activity-active %}{% endblock %}><a href="{% url 'activity_home'%}">{% trans 'Activity' %}</a></li>
 	      	<li {% block nav-story-active %}{% endblock %}><a href="#">{% trans 'Story' %}</a></li>
 	      	{% if not user.is_authenticated %}
-	      	<li {% block nav-organization-active %}{% endblock %}><a href="{% url 'signup_organization' %}">{% trans 'Organization' %}</a></li>
+	      	<li {% block nav-organization-active %}{% endblock %}><a href="{% url 'register_organization' %}">{% trans 'Organization' %}</a></li>
 	      	{% endif %}
 	      	<li {% block nav-award-active %}{% endblock %}><a href="#">{% trans 'Award' %}</a></li>
     	</ul>
@@ -67,7 +67,7 @@
 	  	                <li><a href="#">Org 2</a></li>
   		                <li class="divider"></li>
 		                <li><a href="{% url 'logout' %}" id="logout">{% trans 'Log out' %}</a></li>
-		                <li><a href="{% url 'profile' %}" target="content">{% trans 'Profile' %}</a></li>
+		                <li><a href="{% url 'profile' %}">{% trans 'Profile' %}</a></li>
 	                </ul>
 	            </li>
 		    {% else %}

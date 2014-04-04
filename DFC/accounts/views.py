@@ -13,19 +13,27 @@ def register(request):
         form = UserCreationForm(request.POST)
         if form.is_valid():
             form.save()
+            if request.user.is_authenticated():
+                auth_logout(request)
+            user = authenticate(email=request.POST['email'], password=request.POST['password'])
+            auth_login(request, user)
             return HttpResponseRedirect(reverse('index'))
     return render(request, 'accounts/register.html', {
         'form': form,
     })
 
-def signup_organization(request):
+def register_organization(request):
     form = OrganizationCreationForm()
     if request.method == 'POST':
         form = OrganizationCreationForm(request.POST)
         if form.is_valid():
             form.save()
+            if request.user.is_authenticated():
+                auth_logout(request)
+            organization = authenticate(email=request.POST['email'], password=request.POST['password'])
+            auth_login(request, organization)
             return HttpResponseRedirect(reverse('index'))
-    return render(request, 'accounts/organization_signup.html', {
+    return render(request, 'accounts/organization_register.html', {
             'form': form,
     })
 
@@ -55,4 +63,6 @@ def logout(request):
 
 @login_required
 def user_profile(request):
-    pass
+    return render(request, 'accounts/profile.html')
+
+

@@ -121,7 +121,7 @@ class Organization(BaseEmailUser):
     telephone = models.CharField(_('telephone number'), max_length=20, blank=True)
     descriptions = models.CharField(_('descriptions'), max_length=512, blank=True)
     credit = models.IntegerField(_('credit value'), blank=True, default=0)
-    users = models.ManyToManyField(User, null=True, through='Membership')
+    users = models.ManyToManyField(User, blank=True, null=True, through='Membership')
     
     objects = EmailOrganizationManager()
 
