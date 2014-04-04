@@ -1,4 +1,4 @@
-from django.shortcuts import render_to_response
+from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import login as auth_login, logout as auth_logout, authenticate
 from django.template import RequestContext
@@ -14,9 +14,9 @@ def register(request):
         if form.is_valid():
             form.save()
             return HttpResponseRedirect(reverse('index'))
-    return render_to_response('accounts/register.html', {
+    return render(request, 'accounts/register.html', {
         'form': form,
-    }, context_instance=RequestContext(request))
+    })
 
 def signup_organization(request):
     form = OrganizationCreationForm()
@@ -25,9 +25,9 @@ def signup_organization(request):
         if form.is_valid():
             form.save()
             return HttpResponseRedirect(reverse('index'))
-    return render_to_response('accounts/organization_signup.html', {
+    return render(request, 'accounts/organization_signup.html', {
             'form': form,
-    }, context_instance=RequestContext(request))
+    })
 
 def login(request):
     form = SignInForm()
@@ -44,9 +44,9 @@ def login(request):
             else:
                 request.session.set_expiry(0)
             return HttpResponseRedirect(reverse('index'))
-    return render_to_response('accounts/login.html', {
+    return render(request, 'accounts/login.html', {
         'form': form, 
-    }, context_instance=RequestContext(request))
+    })
 
 def logout(request):
     if request.user.is_authenticated():
