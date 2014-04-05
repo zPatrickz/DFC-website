@@ -63,6 +63,13 @@ def logout(request):
 
 @login_required
 def user_profile(request):
+    if request.user.is_organization:
+        return render(request, 'accounts/organization_profile.html')
     return render(request, 'accounts/profile.html')
+    
+@login_required
+def user_message(request):
+    return render(request, 'accounts/messages.html')
+
 
 

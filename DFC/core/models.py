@@ -25,13 +25,13 @@ from django.contrib.contenttypes import generic
 
 class BaseEmailUser(AbstractBaseUser, PermissionsMixin):
     """
-    Abstract User Model: authenticated using email
+    Base Auth User Model: authenticated using email
     """
     
     email = models.EmailField(_('email address'), max_length=255, 
-        unique=True, db_index=True)
+        unique=True, db_index=True) 
     is_staff = models.BooleanField(_('staff status'), default=False, 
-        help_text=_('Designates whether the user can log into the admin site'))
+        help_text=_('Designates whether the user is a staff')) 
     is_active = models.BooleanField(_('active'), default=True, 
         help_text=_('Designates whether this user should be treated as active'))
     is_organization = models.BooleanField(_('is organization'), default=False, 

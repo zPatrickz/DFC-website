@@ -133,6 +133,10 @@ PHOTOLOGUE_DIR = 'photo'
 
 AUTH_USER_MODEL = 'core.BaseEmailUser'
 
+AUTHENTICATION_BACKENDS = (
+    'core.auth_backends.UserModelBackend', 
+)
+
 CRISPY_TEMPLATE_PACK = 'bootstrap3'
 TINYMCE_JS_URL = STATIC_URL+'tinymce/tinymce.min.js'
 TINYMCE_JS_ROOT = os.path.join(STATIC_ROOT, "tinymce")
