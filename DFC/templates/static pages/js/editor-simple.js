@@ -1,15 +1,17 @@
 var selection;
+var editorcolor='#444';
 $(document).ready(function(){
 		
 	$('.editor-field').keydown(function(event){
 		if(event.keyCode==13 && event.ctrlKey){
 			alert('Send!');
 		}
-	})
+	});
 	
 	
 	$('.color-picker').click(function(){
-		$('#editor-field').css('color',$(this).attr('value'));
+		editorcolor=$(this).attr('value');
+		$('#editor-field').css('color',editorcolor);
 		//var content=$('<div></div>');
 		//content.append($('#editor-field').html());
 		//content.css('color',$(this).attr('value'));
@@ -17,6 +19,8 @@ $(document).ready(function(){
 	});
 	
 	$('#add-link').click(function(){
+		text=addlink(document.getElementById('editor-field'),'link-disp','link');
+		alert(text);
         selection = window.getSelection();
         range = window.getSelection().getRangeAt(0);
 		$('#link-block').modal();
@@ -27,6 +31,8 @@ $(document).ready(function(){
 		insertHtmlAfterSelection('<a href="'+$('#link-link').val()+'">'+$('#link-display').val()+'</a>',range,selection);
 	});
 	
+	$('#editor-submit').click(sbmt);
+		
 });
 
 //used to insert a link after a selection 
@@ -112,3 +118,38 @@ function highlight(){
 	sel.removeAllRanges();
 	sel.addRange(range);
 }
+
+function sbmt() {
+  	var param = '"sdf"';
+  	// jQuery
+  	param = "<div style='color:"+editorcolor+";'>"+$('#editor-field').html()+"</div>"; //.replace("'","\\'").replace('"','\\"')
+
+  	// Now that you have these values you should add them to your form as an input
+  	// input fields are how you send data through forms to wherever you are posting them
+  	// build the input field
+  	var paraminput = $("<input type='text' name='param' class='hide'/>");
+  	paraminput.val(param);
+  	
+	
+  	// append it to the form
+  	$('#editor-form').append(paraminput);
+  	
+
+  	// finally submit the form.
+  	$('#editor-form').submit();
+}
+
+//select an area using rangy library;
+function addlink(el,linkdisp,linklink) {
+    var sel = rangy.getSelection().getRangeAt(0);
+    var rangeCount = sel.rangeCount;
+    if(rangeCount!=0 && sel.intersectsNode(el) && sel.toString()!=""){
+	    var mylink=document.createElement('a');
+	    mylink.href=linklink;
+    	sel.surroundContents(mylink);
+    }
+    else{
+    	$('#alert-box').html('<span class="text-warning">Warning:</span> You need to specify a range of text before adding a link!');
+    }
+}
+

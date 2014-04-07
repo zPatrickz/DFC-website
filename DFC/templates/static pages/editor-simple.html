@@ -12,7 +12,8 @@
 <script src="js/editor-simple.js"></script>
 </head>
 <div class="col-md-6">
-	<form class="editor-wrapper">
+	<script src="js/rangy-core.js"></script>
+	<form class="editor-wrapper" id="editor-form">
 		<div>
 			<input type="text" placeholder="标题" class="editor-title" tabindex="0">
 		</div>
@@ -30,10 +31,11 @@
 				<a href="javascript:void(0)" class="text-muted" id="add-link"><span class="glyphicon glyphicon-link"></span>链接</a>&nbsp;&nbsp;&nbsp;
 				<a href="javascript:void(0)" class="text-muted"><span class="glyphicon glyphicon-picture"></span>图片</a>&nbsp;&nbsp;&nbsp;
 				<a href="javascript:void(0)" class="text-muted"><span class="glyphicon glyphicon-user"></span>表情</a>&nbsp;&nbsp;&nbsp;
-				<a href="javascript:void(0)" class="text-muted"><span class="glyphicon glyphicon-eye-open"></span>预览</a>&nbsp;
+				<a href="javascript:void(0)" class="text-muted"><span class="glyphicon glyphicon-eye-open"></span>预览</a>&nbsp;&nbsp;&nbsp;
+				<button type="button" class="btn btn-default editor-submit" id="editor-submit">Submit</button>
 			</div>
 		</div>
-		<p class="help-block" style="margin-top: 10px;"></p>
+		<p class="help-block" style="margin-top: 10px;" id="alert-box"></p>
 	</form>
 </div>
 
@@ -47,7 +49,14 @@
 				<h4 class="modal-title">添加链接</h4>
 			</div>
 			<div class="modal-body">
-				
+				<form class="form-horizontal">
+					<div class="form-group">
+						<label class="col-md-4 control-label" for="link-link">链接到</label>
+						<div class="col-md-8">
+							<input class="form-control" id="link-link" />
+						</div>
+					</div>
+				</form>
 			</div>
 			<div class="modal-footer">
 		        <button type="button" class="btn btn-info" data-dismiss="modal" id="link-insert">插入</button>
@@ -55,8 +64,6 @@
 		</div>
 	</div>
 </div>
-
-
 
 
 </html>
