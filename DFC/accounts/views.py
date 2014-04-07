@@ -6,7 +6,6 @@ from django.http import HttpResponseRedirect
 from django.core.urlresolvers import reverse
 from forms import *
 
-
 def register(request):
     form = UserCreationForm()
     if request.method == 'POST':
@@ -81,7 +80,4 @@ def user_settings(request):
     return render(request, 'accounts/settings.html', {
         'form': form, 
     })
-    
-
-
 

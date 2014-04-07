@@ -1,10 +1,9 @@
 {% extends "base.html" %}
 {% load i18n %}
+
 {% block title %}{% trans "Profile" %}{% endblock %}
 
 {% block content %}
-
-<h1>{{ user.last_name }}</h1>
-This is the place to display user's information.
-
+<h1>{{ user }}</h1>
+Welcome to Volunteer2Here!
 {% endblock %}
