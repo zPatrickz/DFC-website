@@ -37,6 +37,8 @@ def register_organization(request):
     })
 
 def login(request):
+    if request.user.is_authenticated():
+        return HttpResponseRedirect(reverse('index'))
     form = SignInForm()
     if request.method == 'POST':
         form = SignInForm(request.POST)
