@@ -4,7 +4,7 @@ from django.contrib.auth import login as auth_login, logout as auth_logout, auth
 from django.template import RequestContext
 from django.http import HttpResponseRedirect
 from django.core.urlresolvers import reverse
-from forms import OrganizationCreationForm, UserCreationForm, SignInForm
+from forms import OrganizationCreationForm, UserCreationForm, SignInForm, UserChangeForm
 
 
 def register(request):
@@ -63,6 +63,13 @@ def logout(request):
 
 @login_required
 def user_profile(request):
-    return render(request, 'accounts/profile.html')
-
+    form = UserChangeForm()
+    if request.method == 'POST':
+        form = UserChangeForm(request.POST)
+        if form.is_valid and request.user.is_authenticated():
+            form.save()
+            return HttpResponseRedirect(reverse('index'))
+    return render(request, 'accounts/profile.html', {
+        'form': form,
+    })
 
