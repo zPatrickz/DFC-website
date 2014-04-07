@@ -146,6 +146,29 @@ class OrganizationCreationForm(BaseCreationForm):
         return organization
 
 
+class OrganizationSettingsForm(forms.ModelForm):
+    """
+    The Settings Form of organization
+    """
+    def __init__(self, *args, **kwargs):
+        super(OrganizationSettingsForm, self).__init__(*args, **kwargs)
+        self.helper = FormHelper()
+        self.helper.form_action = ''
+        self.helper.form_method = 'POST'
+        self.helper.form_class = 'form-horizontal'
+        self.helper.label_class = 'col-md-3'
+        self.helper.field_class = 'col-md-6'
+        self.helper.layout = Layout(
+            Fieldset(
+                '', 
+                'username', 'pay_link', 'organization_page', 'birthday', 'descriptions', 
+            )
+        )
+    
+    class Meta:
+        model = Organization
+
+
 class SignInForm(forms.Form):
     """
     Sign in form

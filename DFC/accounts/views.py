@@ -4,7 +4,7 @@ from django.contrib.auth import login as auth_login, logout as auth_logout, auth
 from django.template import RequestContext
 from django.http import HttpResponseRedirect
 from django.core.urlresolvers import reverse
-from forms import OrganizationCreationForm, UserCreationForm, SignInForm
+from forms import *
 
 
 def register(request):
@@ -70,6 +70,18 @@ def user_profile(request):
 @login_required
 def user_message(request):
     return render(request, 'accounts/messages.html')
+    
+@login_required
+def user_settings(request):
+    form = OrganizationSettingsForm()
+    if request.user.is_organization:
+        return render(request, 'accounts/organization_settings.html', {
+            'form': form, 
+        })
+    return render(request, 'accounts/settings.html', {
+        'form': form, 
+    })
+    
 
 
 

@@ -89,7 +89,7 @@ class User(BaseEmailUser):
     objects = EmailUserManager()
     
     def __unicode__(self):
-        return self.email
+        return "user: %s %s, email: %s" % (self.first_name, self.last_name, self.email)
         
     def add_organization(self, organization):
         try:
@@ -126,7 +126,7 @@ class Organization(BaseEmailUser):
     objects = EmailOrganizationManager()
 
     def __unicode__(self):
-        return self.username
+        return "org: %s, email: %s" % (self.username, self.email)
     
     def is_member(self, user):
         return True if user in self.users.all() else False
