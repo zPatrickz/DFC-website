@@ -47,11 +47,6 @@
     	</ul>
 	    <ul class="nav navbar-nav navbar-right">
 		  	{% if user.is_authenticated %}
-			  	<li>
-	                <a href="message.html" target="content" style="padding:15px;">
-	                	<img class="avatar-small" src="{% static 'img/icon/message.svg' %}">
-	                </a>
-	            </li>
 	            <li class="dropdown">
 	                <a href="#" class="dropdown-toggle" data-toggle="dropdown" style="padding:13px;">
 	             		<img src="{% static 'img/icon/avatar.svg' %}" class="avatar-small">
@@ -59,15 +54,10 @@
 	              		<b class="caret"></b>
 	                </a>
 	                <ul class="dropdown-menu">
-		                <li><a href="#">Act 1</a></li>
-		                <li><a href="#">Act 2</a></li>
-		                <!--<li><a href="#">备忘</a></li>-->
-		                <li class="divider"></li>
-		                <li><a href="#">Org 1</a></li>
-	  	                <li><a href="#">Org 2</a></li>
-  		                <li class="divider"></li>
-		                <li><a href="{% url 'logout' %}" id="logout">{% trans 'Log out' %}</a></li>
+		                <li><a href="{% url 'messages' %}">{% trans 'Messages' %}</a></li>
 		                <li><a href="{% url 'profile' %}">{% trans 'Profile' %}</a></li>
+		                <li><a href="{% url 'settings' %}">{% trans 'Settings' %}</a></li>
+						<li><a href="{% url 'logout' %}" id="logout">{% trans 'Log out' %}</a></li>
 	                </ul>
 	            </li>
 		    {% else %}

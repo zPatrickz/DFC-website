@@ -4,8 +4,7 @@ from django.contrib.auth import login as auth_login, logout as auth_logout, auth
 from django.template import RequestContext
 from django.http import HttpResponseRedirect
 from django.core.urlresolvers import reverse
-from forms import OrganizationCreationForm, UserCreationForm, SignInForm, UserChangeForm
-
+from forms import *
 
 def register(request):
     form = UserCreationForm()
@@ -38,6 +37,8 @@ def register_organization(request):
     })
 
 def login(request):
+    if request.user.is_authenticated():
+        return HttpResponseRedirect(reverse('index'))
     form = SignInForm()
     if request.method == 'POST':
         form = SignInForm(request.POST)
@@ -63,13 +64,22 @@ def logout(request):
 
 @login_required
 def user_profile(request):
-    form = UserChangeForm()
-    if request.method == 'POST':
-        form = UserChangeForm(request.POST)
-        if form.is_valid and request.user.is_authenticated():
-            form.save()
-            return HttpResponseRedirect(reverse('index'))
-    return render(request, 'accounts/profile.html', {
-        'form': form,
+    if request.user.is_organization:
+        return render(request, 'accounts/organization_profile.html')
+    return render(request, 'accounts/profile.html')
+    
+@login_required
+def user_message(request):
+    return render(request, 'accounts/messages.html')
+    
+@login_required
+def user_settings(request):
+    form = OrganizationSettingsForm()
+    if request.user.is_organization:
+        return render(request, 'accounts/organization_settings.html', {
+            'form': form, 
+        })
+    return render(request, 'accounts/settings.html', {
+        'form': form, 
     })
 

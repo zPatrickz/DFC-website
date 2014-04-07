@@ -1,0 +1,266 @@
+<!doctype html>
+<!--Navigator Block-->
+<html>
+<head>
+<meta charset="utf-8">
+<title>I Can</title>
+<link href="css/bootstrap.min.css" rel="stylesheet">
+<link href="css/ican.css" rel="stylesheet">
+<script src="js/jquery.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script type="text/javascript" src="http://api.map.baidu.com/api?v=1.5&ak=2b866a6daac9014292432d81fe9b47e3"></script>
+<script src="js/setactivity.js"></script>
+<script type="text/javascript" src="js/bootstrap-datetimepicker.min.js"></script>
+<link rel="stylesheet" href="css/redactor.css" />
+<script src="js/redactor.js"></script>
+</head>
+<body style="background-color:#EEEEEE; background-size: cover;">
+<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+	    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+	        <span class="sr-only">Toggle navigation</span>
+	        <span class="icon-bar"></span>
+	        <span class="icon-bar"></span>
+	        <span class="icon-bar"></span>
+	    </button>
+    <a class="navbar-brand" href="#">I Can</a>
+    </div>
+
+  	<!-- Collect the nav links, forms, and other content for toggling -->
+  	<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+    	<ul class="nav navbar-nav" id="nav1-ul">
+      		<li class="active"><a href="#">首页</a></li>
+      		<li><a href="#">公益行动</a></li>
+	      	<li><a href="#">公益故事</a></li>
+	      	<li><a href="#">公益团队</a></li>
+	      	<li><a href="#">大奖赛</a></li>
+    	</ul>
+	    <ul class="nav navbar-nav navbar-right">
+	      	<li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" style="padding:15px;">
+                	<img class="avatar-small" src="img/icon/message.svg">
+              	</a>
+              	<ul class="dropdown-menu">
+                  	<li><a href="myact.html" target="content">推送（<span style="color: red">8</span>）</a></li>
+                  	<li><a href="myteam.html" target="content">站内信（<span style="color: red">8</span>）</a></li>
+                  	<li><a href="myteam.html" target="content">通知（0）</a></li>
+                  	<!--<li><a href="#">备忘</a></li>-->
+              	</ul>
+            </li>
+	      	<li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" style="padding:13px;">
+          		  	<img src="img/icon/avatar.svg" class="avatar-small">
+          		  	<span class="small-grey">个人面板</span>
+          		  	<b class="caret"></b>
+              	</a>
+              	<ul class="dropdown-menu">
+                  	<li><a href="myact.html" target="content">活动1</a></li>
+                  	<li><a href="myteam.html" target="content">活动2</a></li>
+                  	<!--<li><a href="#">备忘</a></li>-->
+                  	<li class="divider"></li>
+                  	<li><a href="myact.html" target="content">组织1</a></li>
+                  	<li><a href="myteam.html" target="content">组织2</a></li>
+                  	<li class="divider"></li>
+                  	<li><a href="#" id="logout">注销</a></li>
+                  	<li><a href="profile.html" target="content">修改个人资料</a></li>
+              	</ul>
+            </li>
+	    </ul>
+	    <form class="navbar-form navbar-right" role="search">
+	      	<div class="form-group">
+	        	<input type="text" class="form-control" placeholder="活动/组织/用户">
+	      	</div>
+	      	<button type="submit" class="btn btn-default" style="margin-right: 30px;">搜索</button>
+	    </form>
+  	</div><!-- /.navbar-collapse -->
+</nav>
+
+<script>
+	$('#nav1-ul li').click(function(){
+		$('#nav1-ul li').removeClass('active');
+		$(this).addClass('active');
+	});
+</script>
+  
+  
+<!--Content  e61610-->
+<div class="container">
+	<div class="row" style="margin-top: 80px;">
+		<div class="col-md-6">
+			<h2 style="color: skyblue">谢闯</h2>
+			<p><small>信用度 58 活跃度 77</small></p>
+			<img src="img/avatar/1.jpg">
+			<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla quam velit, vulputate eu pharetra nec, mattis ac neque. Duis vulputate commodo lectus, ac blandit elit tincidunt id. Sed rhoncus, tortor sed eleifend tristique, tortor mauris molestie elit, et lacinia ipsum quam nec dui. Quisque nec mauris sit amet elit iaculis pretium sit amet quis magna. Aenean velit odio, elementum in tempus ut, vehicula eu diam. Pellentesque rhoncus aliquam mattis. Ut vulputate eros sed felis sodales nec vulputate justo hendrerit. Vivamus varius pretium ligula, a aliquam odio euismod sit amet. Quisque laoreet sem sit amet orci ullamcorper at ultricies metus viverra. Pellentesque arcu mauris, malesuada quis ornare accumsan, blandit sed diam.</p>
+		</div>
+
+		<div class="col-md-6">
+			<div class="row">
+				<div class="col-md-offset-6 col-md-6">
+					<a href="#">赞（8）</a>
+					<a href="#">关注（18）</a>
+					<a href="">分享（18）</a>
+				</div>
+			</div>
+			<h3>档案</h3>
+			<p>2013年4月8日 加入</p>
+			<p>联系方式：保密</p>
+			<p>爱好与特长：篮球，排球，动漫 </p>
+			<p>生日：1990年4月2日</p>
+			<p>学校：南京理工学院</p>
+		</div>
+	</div>
+
+	<!-- begin of feed -->
+	<div class="row" style="margin-top: 30px;">
+		<div class="panel panel-default">
+		  <div class="panel-heading">动态（108）</div>
+		  <div class="panel-body">
+		  <ul class="list-unstyled" style="margin-top: 30px; margin-bottom: 30px;">
+			    <li style="margin-top: 10px"><a href="#">cacate</a> 关注了 <strong>谢闯</strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2013年9月7日 12:12</li>
+			    <li style="margin-top: 10px"><strong>谢闯</strong> 创建了活动 <a href="#">翠竹园流浪猫问题</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2013年9月7日 12:12</li>
+			    <li style="margin-top: 10px"><strong>谢闯</strong> 加入了 <a href="#">DFC南京</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2013年9月7日 12:12</li>
+			    <li style="margin-top: 10px">Porta ac consectetur ac</li>
+			    <li style="margin-top: 10px">Vestibulum at eros</li>
+			  </ul>
+			</div>
+		</div>
+	</div>
+	<!-- end of feed -->
+
+	<!-- begin of followers -->
+	<div class="row">
+		<div class="panel panel-default">
+		  <div class="panel-heading">动态（108）</div>
+		  <div class="panel-body">
+		  	<div class="row">
+		  		<div class="col-md-10">
+				  	<img src="img/icon/avatar.svg" style="margin-left: 4px;margin-top: 4px; width: 30px">
+				  	<img src="img/icon/avatar.svg" style="margin-left: 4px;margin-top: 4px; width: 30px">
+				  	<img src="img/icon/avatar.svg" style="margin-left: 4px;margin-top: 4px; width: 30px">
+				  	<img src="img/icon/avatar.svg" style="margin-left: 4px;margin-top: 4px; width: 30px">
+				  	<img src="img/icon/avatar.svg" style="margin-left: 4px;margin-top: 4px; width: 30px">
+				  	<img src="img/icon/avatar.svg" style="margin-left: 4px;margin-top: 4px; width: 30px">
+				  	<img src="img/icon/avatar.svg" style="margin-left: 4px;margin-top: 4px; width: 30px">
+				  	<img src="img/icon/avatar.svg" style="margin-left: 4px;margin-top: 4px; width: 30px">
+				  	<img src="img/icon/avatar.svg" style="margin-left: 4px;margin-top: 4px; width: 30px">
+				  	<img src="img/icon/avatar.svg" style="margin-left: 4px;margin-top: 4px; width: 30px">
+				  	<img src="img/icon/avatar.svg" style="margin-left: 4px;margin-top: 4px; width: 30px">
+				  	<img src="img/icon/avatar.svg" style="margin-left: 4px;margin-top: 4px; width: 30px">
+				  	<img src="img/icon/avatar.svg" style="margin-left: 4px;margin-top: 4px; width: 30px">
+				  	<img src="img/icon/avatar.svg" style="margin-left: 4px;margin-top: 4px; width: 30px">
+				  	<img src="img/icon/avatar.svg" style="margin-left: 4px;margin-top: 4px; width: 30px">
+				  	<img src="img/icon/avatar.svg" style="margin-left: 4px;margin-top: 4px; width: 30px">
+				  	<img src="img/icon/avatar.svg" style="margin-left: 4px;margin-top: 4px; width: 30px">
+				  	<img src="img/icon/avatar.svg" style="margin-left: 4px;margin-top: 4px; width: 30px">
+				  	<img src="img/icon/avatar.svg" style="margin-left: 4px;margin-top: 4px; width: 30px">
+				  	<img src="img/icon/avatar.svg" style="margin-left: 4px;margin-top: 4px; width: 30px">
+				  	<img src="img/icon/avatar.svg" style="margin-left: 4px;margin-top: 4px; width: 30px">
+				  	<img src="img/icon/avatar.svg" style="margin-left: 4px;margin-top: 4px; width: 30px">
+				  	<img src="img/icon/avatar.svg" style="margin-left: 4px;margin-top: 4px; width: 30px">
+				  	<img src="img/icon/avatar.svg" style="margin-left: 4px;margin-top: 4px; width: 30px">
+				  	<img src="img/icon/avatar.svg" style="margin-left: 4px;margin-top: 4px; width: 30px">
+				  	<img src="img/icon/avatar.svg" style="margin-left: 4px;margin-top: 4px; width: 30px">
+				  	<img src="img/icon/avatar.svg" style="margin-left: 4px;margin-top: 4px; width: 30px">
+				  	<img src="img/icon/avatar.svg" style="margin-left: 4px;margin-top: 4px; width: 30px">
+				  	<img src="img/icon/avatar.svg" style="margin-left: 4px;margin-top: 4px; width: 30px">
+				  	<img src="img/icon/avatar.svg" style="margin-left: 4px;margin-top: 4px; width: 30px">
+				  	<img src="img/icon/avatar.svg" style="margin-left: 4px;margin-top: 4px; width: 30px">
+				  	<img src="img/icon/avatar.svg" style="margin-left: 4px;margin-top: 4px; width: 30px">
+				  	<img src="img/icon/avatar.svg" style="margin-left: 4px;margin-top: 4px; width: 30px">
+				  	<img src="img/icon/avatar.svg" style="margin-left: 4px;margin-top: 4px; width: 30px">
+				  	<img src="img/icon/avatar.svg" style="margin-left: 4px;margin-top: 4px; width: 30px">
+				  	<img src="img/icon/avatar.svg" style="margin-left: 4px;margin-top: 4px; width: 30px">
+				  	<img src="img/icon/avatar.svg" style="margin-left: 4px;margin-top: 4px; width: 30px">
+				  	<img src="img/icon/avatar.svg" style="margin-left: 4px;margin-top: 4px; width: 30px">
+				  	<img src="img/icon/avatar.svg" style="margin-left: 4px;margin-top: 4px; width: 30px">
+				  	<img src="img/icon/avatar.svg" style="margin-left: 4px;margin-top: 4px; width: 30px">
+				  	<img src="img/icon/avatar.svg" style="margin-left: 4px;margin-top: 4px; width: 30px">
+				  	<img src="img/icon/avatar.svg" style="margin-left: 4px;margin-top: 4px; width: 30px">
+				  	<img src="img/icon/avatar.svg" style="margin-left: 4px;margin-top: 4px; width: 30px">
+				  	<img src="img/icon/avatar.svg" style="margin-left: 4px;margin-top: 4px; width: 30px">
+				  	<img src="img/icon/avatar.svg" style="margin-left: 4px;margin-top: 4px; width: 30px">
+				  	<img src="img/icon/avatar.svg" style="margin-left: 4px;margin-top: 4px; width: 30px">
+				  	<img src="img/icon/avatar.svg" style="margin-left: 4px;margin-top: 4px; width: 30px">
+				  	<img src="img/icon/avatar.svg" style="margin-left: 4px;margin-top: 4px; width: 30px">
+				  	<img src="img/icon/avatar.svg" style="margin-left: 4px;margin-top: 4px; width: 30px">
+				  	<img src="img/icon/avatar.svg" style="margin-left: 4px;margin-top: 4px; width: 30px">
+				  	<img src="img/icon/avatar.svg" style="margin-left: 4px;margin-top: 4px; width: 30px">
+				  	<img src="img/icon/avatar.svg" style="margin-left: 4px;margin-top: 4px; width: 30px">
+				  	<img src="img/icon/avatar.svg" style="margin-left: 4px;margin-top: 4px; width: 30px">
+				  	<img src="img/icon/avatar.svg" style="margin-left: 4px;margin-top: 4px; width: 30px">
+				  	<img src="img/icon/avatar.svg" style="margin-left: 4px;margin-top: 4px; width: 30px">
+				  	<img src="img/icon/avatar.svg" style="margin-left: 4px;margin-top: 4px; width: 30px">
+				  	<img src="img/icon/avatar.svg" style="margin-left: 4px;margin-top: 4px; width: 30px">
+				  	<img src="img/icon/avatar.svg" style="margin-left: 4px;margin-top: 4px; width: 30px">
+				  	<img src="img/icon/avatar.svg" style="margin-left: 4px;margin-top: 4px; width: 30px">
+				  	<img src="img/icon/avatar.svg" style="margin-left: 4px;margin-top: 4px; width: 30px">
+				  	<img src="img/icon/avatar.svg" style="margin-left: 4px;margin-top: 4px; width: 30px">
+				  	<img src="img/icon/avatar.svg" style="margin-left: 4px;margin-top: 4px; width: 30px">
+				  	<img src="img/icon/avatar.svg" style="margin-left: 4px;margin-top: 4px; width: 30px">
+				  	<img src="img/icon/avatar.svg" style="margin-left: 4px;margin-top: 4px; width: 30px">
+				  	<img src="img/icon/avatar.svg" style="margin-left: 4px;margin-top: 4px; width: 30px">
+				  	<img src="img/icon/avatar.svg" style="margin-left: 4px;margin-top: 4px; width: 30px">
+			  	</div>
+			  	<div class="col-md-2">
+			  		<img src="img/icon/love-big-red.png">
+			  	</div>
+		  	</div>
+		  </div>
+		</div>		
+	</div>
+	<!-- end of followers -->
+
+</div>
+
+<!--Footer Block-->
+<div style="width: 100%; margin-top: 100px;">
+<div style="background-color: #777; padding:20px;">
+	<div class="container">
+
+		<div class="row">
+			<div class="col-md-3">
+				<ul class="list-unstyled">
+					<li>
+						<h5>关于I Can</h5>
+					</li>
+					<li>了解I Can</li>
+					<li>团队介绍</li>
+					<li>联系我们</li>
+				</ul>
+			</div>
+			<div class="col-md-3">
+				<ul class="list-unstyled">
+					<li>
+						<h5>帮助</h5>
+					</li>
+					<li>建议反馈</li>
+					<li>网站使用手册</li>
+					<li>网站管理条例</li>
+				</ul>
+			</div>
+			<div class="col-md-3">
+				<ul class="list-unstyled">
+					<li>
+						<h5>关注I Can</h5>
+					</li>
+					<li>新浪微博</li>
+					<li>人人网</li>
+					<li>豆瓣小组</li>
+				</ul>
+			</div>
+			
+			<div class="col-md-3">
+				<ul class="list-unstyled">
+					<li>
+						<h5>官方微信</h5>
+					</li>
+					<li><img src="img/wall/bg4.jpg" class="avatar-large" /></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+</div>
+</div>
+</body>
+</html>
