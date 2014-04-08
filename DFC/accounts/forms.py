@@ -75,8 +75,8 @@ class UserCreationForm(BaseCreationForm):
         )
 
     class Meta:
-        model = get_user_model()
-        exclude = ['last_login', 'date_joined', 'user_type']
+        model = User
+        exclude = ['last_login', 'date_joined', 'credit']
 
     def save(self, commit=True):
         user = super(UserCreationForm, self).save(commit=False)
@@ -118,7 +118,7 @@ class OrganizationCreationForm(BaseCreationForm):
     def __init__(self, *args, **kwargs):
         super(OrganizationCreationForm, self).__init__(*args, **kwargs)
         self.helper = FormHelper()
-        self.helper.form_action = 'signup_organization'
+        self.helper.form_action = 'register_organization'
         self.helper.form_method = 'POST'
         self.helper.form_class = 'form-horizontal'
         self.helper.label_class = 'col-sm-2'
@@ -138,11 +138,12 @@ class OrganizationCreationForm(BaseCreationForm):
         exclude = ['last_login', 'date_joined', 'credit']
     
     def save(self, commit=True):
-        user = super(OrganizationCreationForm, self).save(commit=False)
-        user.set_password(self.cleaned_data["password"])
+        organization = super(OrganizationCreationForm, self).save(commit=False)
+        organization.is_organization = True
+        organization.set_password(self.cleaned_data["password"])
         if commit:
-            user.save()
-        return user
+            organization.save()
+        return organization
 
 
 class SignInForm(forms.Form):

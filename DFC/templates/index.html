@@ -2,11 +2,10 @@
 {% load i18n static %}
 
 
-{%block body_class%}body-mainpage{%endblock%}
-{% block nav-home-active %}
-class='active'
-{% endblock %}
+{% block body_class %} body-mainpage {%endblock%}
+{% block nav-home-active %} class='active' {% endblock %}
 {% block content %}
+{% if not user.is_authenticated %}
 <div class="container">
 	<div class="row" style="height: 130px; margin-bottom: 30px;">
 		<div class="col-md-12" align="left">
@@ -248,4 +247,7 @@ class='active'
 		</div>
 	</div>
 </div>
+{% else %}
+	<div><h2>Display other information about the {% if user.is_organization %} organization {% else %} user {% endif %}, like activities followed!</h2></div>
+{% endif %}
 {% endblock %}
