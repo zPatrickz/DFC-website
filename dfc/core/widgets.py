@@ -236,5 +236,5 @@ class SimpleEditorContentWidget(Input):
         
     def _media(self):
         return widgets.Media(css={'all': ('css/editor-simple.css',)},
-                               js=('js/editor-simple.js',))
+                               js=('js/rangy-core.js','js/editor-simple.js'))
     media = property(_media)

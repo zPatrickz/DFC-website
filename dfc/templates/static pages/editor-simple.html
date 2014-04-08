@@ -9,54 +9,28 @@
 <link href="css/editor-simple.css" rel="stylesheet">
 <script src="js/jquery.min.js"></script>
 <script src="js/bootstrap.min.js"></script>
+<script src="js/rangy-core.js"></script>
 <script src="js/editor-simple.js"></script>
 </head>
 <div class="col-md-6">
-	<form class="editor-wrapper">
+	<form class="editor-wrapper" id="id1-form">
 		<div>
 			<input type="text" placeholder="标题" class="editor-title" tabindex="0">
 		</div>
-		<div>
-			<div contenteditable="" class="editor-field" id="editor-field"></div>
+		<div class="editor-simple" id="id1-content">
+			<textarea id="id1-area" class="hide"></textarea>
 		</div>
-		<div class="editor-bottom">
-			<a href="javascript:void(0)" value="#256" class="color-picker"><span style="color: #256" class="glyphicon glyphicon-tint"></span></a>&nbsp;&nbsp;&nbsp;
-			<a href="javascript:void(0)" value="#444" class="color-picker"><span style="color: #444" class="glyphicon glyphicon-tint"></span></a>&nbsp;&nbsp;&nbsp;
-			<a href="javascript:void(0)" value="#525" class="color-picker"><span style="color: #525" class="glyphicon glyphicon-tint"></span></a>&nbsp;&nbsp;&nbsp;
-			<a href="javascript:void(0)" value="#226" class="color-picker"><span style="color: #226" class="glyphicon glyphicon-tint"></span></a>&nbsp;&nbsp;&nbsp;
-			<a href="javascript:void(0)" value="#373" class="color-picker"><span style="color: #373" class="glyphicon glyphicon-tint"></span></a>&nbsp;&nbsp;&nbsp;
-			<div class="pull-right">
-				<a href="javascript:void(0)" class="text-muted"><span class="glyphicon glyphicon-paperclip"></span>附件</a>&nbsp;&nbsp;&nbsp;
-				<a href="javascript:void(0)" class="text-muted" id="add-link"><span class="glyphicon glyphicon-link"></span>链接</a>&nbsp;&nbsp;&nbsp;
-				<a href="javascript:void(0)" class="text-muted"><span class="glyphicon glyphicon-picture"></span>图片</a>&nbsp;&nbsp;&nbsp;
-				<a href="javascript:void(0)" class="text-muted"><span class="glyphicon glyphicon-user"></span>表情</a>&nbsp;&nbsp;&nbsp;
-				<a href="javascript:void(0)" class="text-muted"><span class="glyphicon glyphicon-eye-open"></span>预览</a>&nbsp;
-			</div>
-		</div>
-		<p class="help-block" style="margin-top: 10px;"></p>
 	</form>
 </div>
-
-
-
-<div class="modal" id="link-block">
-	<div class="modal-dialog">
-		<div class="modal-content">
-			<div class="modal-header">
-				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-				<h4 class="modal-title">添加链接</h4>
-			</div>
-			<div class="modal-body">
-				
-			</div>
-			<div class="modal-footer">
-		        <button type="button" class="btn btn-info" data-dismiss="modal" id="link-insert">插入</button>
-		    </div>
+<div class="col-md-6">
+	<form class="editor-wrapper" id="id2-form">
+		<div>
+			<input type="text" placeholder="标题" class="editor-title" tabindex="0">
 		</div>
-	</div>
+		<div class="editor-simple" id="id2-content">
+			<textarea id="id2-area" class="hide"></textarea>
+		</div>
+	</form>
 </div>
-
-
-
 
 </html>

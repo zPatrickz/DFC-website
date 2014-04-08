@@ -98,10 +98,25 @@ class UserChangeForm(forms.ModelForm):
             "<a href=\"password/\">this form</a>"))
 
     class Meta:
-        model = get_user_model()
+        model = User
 
     def __init__(self, *args, **kwargs):
         super(UserChangeForm, self).__init__(*args, **kwargs)
+        self.helper = FormHelper()
+        self.helper.form_action = 'register'
+        self.helper.form_method = 'POST'
+        self.helper.form_class = 'form-horizontal'
+        self.helper.label_class = 'col-sm-2'
+        self.helper.field_class = 'col-sm-4'
+        self.helper.layout = Layout(
+            Fieldset(
+                'Update your account',
+                'first_name', 'last_name', 'descriptions', 'birthday', 'qq', 'telephone',
+                FormActions(
+                    Submit('sign up', _('Sign Up'), css_class='btn col-sm-offset-2'),
+                ),
+            )
+        )
         f = self.fields.get('user_permissions', None)
         if f is not None:
             f.queryset = f.queryset.select_related('content_type')
@@ -144,6 +159,29 @@ class OrganizationCreationForm(BaseCreationForm):
         if commit:
             organization.save()
         return organization
+
+
+class OrganizationSettingsForm(forms.ModelForm):
+    """
+    The Settings Form of organization
+    """
+    def __init__(self, *args, **kwargs):
+        super(OrganizationSettingsForm, self).__init__(*args, **kwargs)
+        self.helper = FormHelper()
+        self.helper.form_action = ''
+        self.helper.form_method = 'POST'
+        self.helper.form_class = 'form-horizontal'
+        self.helper.label_class = 'col-md-3'
+        self.helper.field_class = 'col-md-6'
+        self.helper.layout = Layout(
+            Fieldset(
+                '', 
+                'username', 'pay_link', 'organization_page', 'birthday', 'descriptions', 
+            )
+        )
+    
+    class Meta:
+        model = Organization
 
 
 class SignInForm(forms.Form):

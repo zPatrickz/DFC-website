@@ -56,7 +56,7 @@ def detail_post(request,act_id=None):
     activity = get_object_or_404(Activity,id=act_id)
     from core.forms import ActivityPostForm
     post_form = ActivityPostForm()
-    return render(request,'activity/activity_detail_post.html',{'post_form':post_form,'activity':activity})
+    return render(request,'activity/activity_detail_post.html',{'post_form':post_form,'activity':activity,'form_id':'addpost-form'})
     
 def detail_settings(request,act_id=None,category='general'):
     activity = get_object_or_404(Activity,id=act_id)

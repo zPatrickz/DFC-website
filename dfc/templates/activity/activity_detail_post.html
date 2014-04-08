@@ -7,7 +7,7 @@ active
 <div class="col-md-9" id="rightCol"  style="display: inline-block; font-size: 80%;">
 	{% load crispy_forms_tags %}
 	{{ post_form.media }}
-	<form method="POST" action="{% url 'activity_detail_post_new' activity.id %}">
+	<form method="POST" action="{% url 'activity_detail_post_new' activity.id %}" id='{{form_id}}'>
 	{% csrf_token %}
 	{{ post_form.title }}
 	{{ post_form.content }}
@@ -155,4 +155,6 @@ active
 		<p class="text-right"><a href="#">显示更早</a></p>
 	</div>
 </div>
+
+<script>initialize_editor();</script>
 {% endblock %}

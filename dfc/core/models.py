@@ -25,13 +25,13 @@ from django.contrib.contenttypes import generic
 
 class BaseEmailUser(AbstractBaseUser, PermissionsMixin):
     """
-    Abstract User Model: authenticated using email
+    Base Auth User Model: authenticated using email
     """
     
     email = models.EmailField(_('email address'), max_length=255, 
-        unique=True, db_index=True)
+        unique=True, db_index=True) 
     is_staff = models.BooleanField(_('staff status'), default=False, 
-        help_text=_('Designates whether the user can log into the admin site'))
+        help_text=_('Designates whether the user is a staff')) 
     is_active = models.BooleanField(_('active'), default=True, 
         help_text=_('Designates whether this user should be treated as active'))
     is_organization = models.BooleanField(_('is organization'), default=False, 
@@ -72,6 +72,13 @@ class User(BaseEmailUser):
     This model is used as authentication model
     """
     
+    CONTACT_METHOD_CHOICES = (
+        ('WC', 'WeChat'), 
+        ('TP', 'Telephone'), 
+        ('EM', 'Email'), 
+        ('QQ', 'QQ'), 
+        ('MC', 'Message Center'), 
+    )
     first_name = models.CharField(_('first name'), max_length=30, 
         validators=[
             validators.RegexValidator(re.compile('^[\w.@+-]+$'), _('Enter a valid first name.'), 'invalid')
@@ -80,16 +87,22 @@ class User(BaseEmailUser):
         validators=[
             validators.RegexValidator(re.compile('^[\w.@+-]+$'), _('Enter a valid last name.'), 'invalid')
         ])
+    avatar = PhotoField(category='user_avatar', default=None, blank=True, null=True)
     birthday = models.DateTimeField(_('birthday'), blank=True, null=True, auto_now_add=False)
+    school = models.CharField(_('school'), max_length=60, blank=True)
     qq = models.IntegerField(_('qq'), blank=True, null=True)
     telephone = models.CharField(_('telephone number'), max_length=20, blank=True)
-    descriptions = models.CharField(_('descriptions'), max_length=512, blank=True)
+    wechat = models.CharField(_('wechat'), max_length=20, blank=True)
+    perferred_contact_way = models.CharField(max_length=2, default='EM', 
+        choices=CONTACT_METHOD_CHOICES, blank=True)
+    descriptions = models.CharField(_('descriptions'), max_length=1024, blank=True)
+    speciality = models.CharField(_('speciality'), max_length=1024, blank=True)
     credit = models.IntegerField(_('credit value'), blank=True, default=0)
     
     objects = EmailUserManager()
     
     def __unicode__(self):
-        return self.email
+        return "user: %s %s, email: %s" % (self.first_name, self.last_name, self.email)
         
     def add_organization(self, organization):
         try:
@@ -115,8 +128,10 @@ class Organization(BaseEmailUser):
         validators=[
             validators.RegexValidator(re.compile('^[\w.@+-]+$'), _('Enter a valid orgnization name'), 'invalid')
         ])
+    organization_logo = PhotoField(category='org_logo', default=None, blank=True, null=True)
     organization_page = models.CharField(_('organization page link'), max_length=512, blank=True)
     pay_link = models.CharField(_('organization pay link'), max_length=512, blank=True)
+    volunteer_group_qq = models.IntegerField(_('volunteer group qq'), blank=True, null=True)
     birthday = models.DateTimeField(_('birthday'), blank=True, null=True, auto_now_add=False)
     telephone = models.CharField(_('telephone number'), max_length=20, blank=True)
     descriptions = models.CharField(_('descriptions'), max_length=512, blank=True)
@@ -126,7 +141,7 @@ class Organization(BaseEmailUser):
     objects = EmailOrganizationManager()
 
     def __unicode__(self):
-        return self.username
+        return "org: %s, email: %s" % (self.username, self.email)
     
     def is_member(self, user):
         return True if user in self.users.all() else False
@@ -219,36 +234,36 @@ class Activity(models.Model):
     DEFAULT_OVERFLOW_RATE = 133
     SHOW_ON_INDEXPAGE = 10
     
-    name            = models.CharField(max_length = 256, blank = False)
-    organizations   = models.ManyToManyField('Organization')
-    participants    = models.ManyToManyField('User', through = "Participation",blank=True)
-    places          = models.ManyToManyField('Place',blank=True)
-    desc            = models.TextField(blank=True)
-    content         = HTMLField(blank=True)
-    content_file    = models.FileField(blank=True, null=True,upload_to='doc')
-    is_private      = models.BooleanField(default=False)
-    cover           = PhotoField(category='activity_cover',default=None,blank=True,null=True)# Always use PhotoField instead of ImageField
+    name = models.CharField(max_length=256, blank=False)
+    organizations = models.ManyToManyField('Organization')
+    participants = models.ManyToManyField('User', through="Participation", blank=True)
+    places = models.ManyToManyField('Place', blank=True)
+    desc = models.TextField(blank=True)
+    content = HTMLField(blank=True)
+    content_file = models.FileField(blank=True, null=True, upload_to='doc')
+    is_private = models.BooleanField(default=False)
+    cover = PhotoField(category='activity_cover', default=None, blank=True, null=True)# Always use PhotoField instead of ImageField
     
-    required_participants   = models.PositiveIntegerField(null = True, blank = True)
-    overflow_rate           = models.PositiveIntegerField(default = DEFAULT_OVERFLOW_RATE, blank = True)
-    volunteer_requirements  = models.TextField(blank = True)
-    volunteer_tasks         = models.TextField(blank = True)
-    volunteer_obligation    = models.TextField(blank = True)
-    volunteer_right         = models.TextField(blank = True)
-    volunteer_hours         = models.PositiveIntegerField(null = True, blank = True)
-    volunteer_auto_confirm  = models.BooleanField(default=True,blank=True)
-    volunteer_auto_confirm_hour_ahead = models.PositiveIntegerField(default = 24,blank=True)
-    notification_method     = models.CharField(max_length = 3,default = 'USR',choices = CONTACT_METHOD_CHOICES,blank=True)
+    required_participants = models.PositiveIntegerField(null=True, blank=True)
+    overflow_rate = models.PositiveIntegerField(default=DEFAULT_OVERFLOW_RATE, blank=True)
+    volunteer_requirements = models.TextField(blank=True)
+    volunteer_tasks = models.TextField(blank=True)
+    volunteer_obligation = models.TextField(blank=True)
+    volunteer_right = models.TextField(blank=True)
+    volunteer_hours = models.PositiveIntegerField(null=True, blank=True)
+    volunteer_auto_confirm = models.BooleanField(default=True, blank=True)
+    volunteer_auto_confirm_hour_ahead = models.PositiveIntegerField(default=24, blank=True)
+    notification_method = models.CharField(max_length=3, default='USR', choices=CONTACT_METHOD_CHOICES, blank=True)
     
     tags = TagField()# Use tagging here. Should be a single line text in a form. Make sure you have installed 'django-tagging'
     
-    official_link   = models.URLField( blank=True)
-    create_time     = models.DateTimeField(auto_now_add=True)
-    update_time     = models.DateTimeField(auto_now=True)
-    status          = models.CharField(max_length=3, choices=STATUS_CHOICES, default='PRP',blank=True)
-    start_time      = models.DateTimeField(null=True, blank=True)
-    end_time        = models.DateTimeField(null=True, blank=True)
-    visits          = models.PositiveIntegerField(default = 0)
+    official_link = models.URLField( blank=True)
+    create_time = models.DateTimeField(auto_now_add=True)
+    update_time = models.DateTimeField(auto_now=True)
+    status = models.CharField(max_length=3, choices=STATUS_CHOICES, default='PRP', blank=True)
+    start_time = models.DateTimeField(null=True, blank=True)
+    end_time = models.DateTimeField(null=True, blank=True)
+    visits = models.PositiveIntegerField(default=0)
 
     
     @classmethod
