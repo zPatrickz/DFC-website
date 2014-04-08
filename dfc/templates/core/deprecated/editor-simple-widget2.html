@@ -1,0 +1,57 @@
+<div>
+	<form class="editor-wrapper" id="editor-form">
+		<!--<div>
+			<input type="text" placeholder="标题" class="editor-title" tabindex="0">
+		</div>-->
+		<div>
+		<input type="hidden" id="editor-input-{{name}}" name="{{name}}">
+		<div contenteditable="" class="editor-field" id="editor-field-{{name}}"></div>
+		<script>$('#editor-input-{{name}}').syncSimpleEditor();</script>
+		</div>
+		<div>
+			<div contenteditable="" class="editor-field" id="editor-field"></div>
+		</div>
+		<div class="editor-bottom">
+			<a href="javascript:void(0)" value="#256" class="color-picker"><span style="color: #256" class="glyphicon glyphicon-tint"></span></a>&nbsp;&nbsp;&nbsp;
+			<a href="javascript:void(0)" value="#444" class="color-picker"><span style="color: #444" class="glyphicon glyphicon-tint"></span></a>&nbsp;&nbsp;&nbsp;
+			<a href="javascript:void(0)" value="#525" class="color-picker"><span style="color: #525" class="glyphicon glyphicon-tint"></span></a>&nbsp;&nbsp;&nbsp;
+			<a href="javascript:void(0)" value="#226" class="color-picker"><span style="color: #226" class="glyphicon glyphicon-tint"></span></a>&nbsp;&nbsp;&nbsp;
+			<a href="javascript:void(0)" value="#373" class="color-picker"><span style="color: #373" class="glyphicon glyphicon-tint"></span></a>&nbsp;&nbsp;&nbsp;
+			<div class="pull-right">
+				<a href="javascript:void(0)" class="text-muted"><span class="glyphicon glyphicon-paperclip"></span>附件</a>&nbsp;&nbsp;&nbsp;
+				<a href="javascript:void(0)" class="text-muted" id="add-link"><span class="glyphicon glyphicon-link"></span>链接</a>&nbsp;&nbsp;&nbsp;
+				<a href="javascript:void(0)" class="text-muted"><span class="glyphicon glyphicon-picture"></span>图片</a>&nbsp;&nbsp;&nbsp;
+				<a href="javascript:void(0)" class="text-muted"><span class="glyphicon glyphicon-user"></span>表情</a>&nbsp;&nbsp;&nbsp;
+				<a href="javascript:void(0)" class="text-muted"><span class="glyphicon glyphicon-eye-open"></span>预览</a>&nbsp;&nbsp;&nbsp;
+				<button type="button" class="btn btn-default editor-submit" id="editor-submit">Submit</button>
+			</div>
+		</div>
+		<p class="help-block" style="margin-top: 10px;" id="alert-box"></p>
+	</form>
+</div>
+
+
+
+<div class="modal" id="link-block">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+				<h4 class="modal-title">添加链接</h4>
+			</div>
+			<div class="modal-body">
+				<form class="form-horizontal">
+					<div class="form-group">
+						<label class="col-md-2 control-label" for="link-link">Link to </label>
+						<div class="col-md-10">
+							<input class="form-control" id="link-link" />
+						</div>
+					</div>
+				</form>
+			</div>
+			<div class="modal-footer">
+		        <button type="button" class="btn btn-info" data-dismiss="modal" id="link-insert">插入</button>
+		    </div>
+		</div>
+	</div>
+</div>
