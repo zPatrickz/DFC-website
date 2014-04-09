@@ -1,7 +1,7 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from core.models import *
 from activity.forms import *
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect,HttpResponse
 #Views for Activity
 
 def index(request):

@@ -1,7 +1,8 @@
 from django.forms import ModelChoiceField
 from django.db.models.fields import Field,CharField
 from django.db.models.fields.related import ForeignKey,ManyToOneRel
-from core.widgets import PhotoWidget, SimpleEditorTitleWidget,SimpleEditorContentWidget
+from core.widgets import PhotoWidget
+from simpleeditor.widgets import SimpleEditorTitleWidget,SimpleEditorContentWidget
 from photologue.models import Photo,Gallery
 from south.modelsinspector import add_introspection_rules
 
@@ -50,7 +51,5 @@ class PhotoField(ForeignKey):
         
 try:
     add_introspection_rules([], ["^core\.fields\.PhotoField"])
-    add_introspection_rules([], ["^core\.fields\.SimpleEditorTitleField"])
-    add_introspection_rules([], ["^core\.fields\.SimpleEditorContentField"])
 except:
     pass

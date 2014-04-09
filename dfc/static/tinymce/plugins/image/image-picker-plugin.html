@@ -23,7 +23,11 @@
 		$('.image-picker-plugin #ip-gallery-').attr('id','ip-gallery-'+ip_name);
 		$('.image-picker-plugin .image-picker').attr('id',ip_name);
 		$('.image-picker-plugin .image-picker').attr('name',ip_name);
-		image_picker_plugin_init(ip_name,null,'photo',top.tinymce.activeEditor);
+		function editor_callback(img_src,img_label){
+	    	top.tinymce.activeEditor.insertContent('<img src="'+img_src+'" alt="'+img_label+'" />');
+			top.tinymce.activeEditor.windowManager.close();
+		};
+		image_picker_plugin_init(ip_name,null,'photo',editor_callback);
 	</script>
 </body>
 </html>

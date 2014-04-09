@@ -434,6 +434,14 @@ class Post(models.Model):
         self.content = val
         self.save()
         
+    @property
+    def content_as_md(self):
+        import markdown
+        from django.utils.safestring import mark_safe
+        md = markdown.Markdown(extensions=['simpleeditor'])
+        md_content = md.convert(self.content)
+        return mark_safe(md_content)
+        
     
     class Meta:
         abstract = True

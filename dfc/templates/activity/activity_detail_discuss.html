@@ -15,41 +15,52 @@ active
 		<input type="hidden" name="author" value="3">
 		<input type="hidden" name="activity" value="{{activity.id}}">
 		<input type="hidden" name="category" value="DIS">
-		<button type="submit">Post</button>
+		<button type="submit" class="btn btn-default editor-submit">Post</button>
 		</form>
 		<a href="#">仅看最热门</a>
 		<p class="text-right">
 			<ul class="list-unstyled">
 				{% for post in activity.discusses %}
-				<li style="border:1px solid gray; margin-top: 10px;">
-					<div class="row" style="margin-left: 1px">
-						<div class="col-md-1" style="background-color: #d6d6d6">
-							<img src="{% static 'img/icon/profile.svg' %}">
-							<p class="text-center">{{post.author.first_name}}{{post.author.last_name}}</p>
-						</div>
-						<div class="col-md-11">
-							<div>
-								<div class="pull-left">
-									<p>
-										{{post.title}}
-									</p>
-								</div>
-								<div class="pull-right">
-									<p>
-										<a href="#">回复</a>&nbsp;<span class="glyphicon glyphicon-share"></span>
-									</p>
-								</div>
+				
+				
+				<div class="row">
+					<div class="col-md-1">
+						<div class=" bubble-left-author pull-right">
+							<div class="row">
+								<img src="img/avatar/2.jpg" class="avatar-middle pull-right" style="display: block;">
 							</div>
-							<hr>
-							<div>
-								<p><strong>{{post.content}}</strong></p>	
+							<div class="row">
+								<a class="text-primary pull-right" href="#" style="font-size: 0.8em;">{{post.author.first_name}}{{post.author.last_name}}</a>
 							</div>
-							<div class="pull-right">
-								<p>{{post.create_time}}&nbsp;<span class="glyphicon glyphicon-thumbs-up"></span></p>
+							<div class="row">
+								<span class="text-muted pull-right" style="font-size: 0.8em;">{{post.create_time}}</span>
 							</div>
 						</div>
 					</div>
-				</li>
+					<div class="col-md-7">
+						<div class="bubble">
+							<div class="row" style="padding-left: 20px; padding-right: 20px; padding-bottom: 7px;">
+								<span class="bubble-title">
+								<span class="text-muted">[19#]</span> {{post.title}} 
+								</span>
+								<div class="bubble-opblock pull-right">
+									<a href="javascript:void(0)" title="Share this Content"><span class="glyphicon glyphicon-share"></span><span style="font-size: 0.8em;">11</span></a>&nbsp;&nbsp;
+									<a href="javascript:void(0)" title="up"><span class="glyphicon glyphicon-thumbs-up"></span><span style="font-size: 0.8em;">11</span></a>&nbsp;&nbsp;
+									<span class="dropdown">
+										<a href="javascript:void(0)" title="Operation" id="dropdownMenu1" class="dropdown-toggle" data-toggle='dropdown'><span class="glyphicon glyphicon-cog"></span></a>
+										<ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+											<li role="presentation"><a href="javascript:void(0)" role="menuitem" tabindex="-1">回复</a></li>
+											<li role="presentation"><a href="javascript:void(0)" role="menuitem" tabindex="-1">删除</a></li>
+										</ul>
+									</span>
+								</div>
+							</div>
+							<div class="row" style="padding-left: 20px; padding-right: 20px; padding-bottom: 7px;">
+								<p class="bubble-p">{{post.content_as_md}} </p>
+							</div>
+						</div>
+					</div>
+				</div>
 				{% endfor %}
 			</ul>
 		</p>

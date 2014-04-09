@@ -11,7 +11,7 @@ class Command(BaseCommand):
     )
 
     help = ('Deploy the site.')
-    usage_str = "Usage: ./manage.py deploy [--new]"
+    usage_str = "Usage: sudo ./manage.py deploy [--new]"
     
 
     def handle(self, new=False, **options):
@@ -23,6 +23,10 @@ class Command(BaseCommand):
             photologue_migrations_path = os.path.join(BASE_DIR,'photologue/migrations')
             manage_file_path = os.path.join(BASE_DIR, 'manage.py')
             photo_file_path = os.path.join(BASE_DIR, 'mediaroot/photo')
+            markdown_extension_file_path = os.path.join(BASE_DIR, 'simpleeditor/markdown_extension/simpleeditor.py')
+            import site
+            SITE_PACKAGE_DIR = [x for x in site.getsitepackages() if 'site-packages' in x][0]
+            markdown_extension_path = os.path.join(SITE_PACKAGE_DIR, 'markdown/extensions')
             import subprocess
             print 'removing existing databases...'
             p=subprocess.Popen(["rm -f "+db_file_path],stdin=subprocess.PIPE,stderr=subprocess.PIPE,shell=True)
@@ -114,6 +118,13 @@ class Command(BaseCommand):
             p4.stdin.write("no\n")#crop to fit
             p4.stdin.write("yes\n")#pre cache
             p4.stdin.write("yes\n")#increment count
+            print 'setting up markdown...'
+            p4=subprocess.Popen(["cp -rf "+markdown_extension_file_path+" "+markdown_extension_path],stdin=subprocess.PIPE,stdout=subprocess.PIPE,stderr=subprocess.PIPE,shell=True)
+            (out,err) = p4.communicate()
+            if err != '':
+                 print err
+                 return
+            print 'setting up development environment...'
             print 'creating first organization (for development only)'
             from core.models import Organization
             org = Organization(username="org1",email="org1@hahahahah.com")

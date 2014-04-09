@@ -18,6 +18,10 @@ It is highly recommended to use **virtualenv**.
 `django-tagging` is an open django app for tagging. To install `django-tagging`, please refer to http://code.google.com/p/django-tagging/, quick install:
 
 	sudo pip install django-tagging
+	
+`markdown` is an open django app for tagging. To install `makrdown`, please refer to http://pythonhosted.org//Markdown/index.html, quick install:
+
+	sudo pip install markdown
 
 ### Configure
 
@@ -36,6 +40,10 @@ To use `ImageField`, please make sure you have installed Pillow. Use:
 To put yourself away from case sensitive issues, please make sure your git is case sensitive, quick settings:
 	
 	git config --global core.ignorecase false
+	
+To quickly deploy the site, use:
+
+	sudo python manage.py deploy --new
 
 
 ### Database

@@ -1,4 +1,4 @@
-function load_gallery_photo_list(name,gallery_id,current_photo,category,editor){
+function load_gallery_photo_list(name,gallery_id,current_photo,category,editor_callback,simpleeditor_callback){
 	$('#'+name+' option').remove();
 	$.getJSON("/api/gallery/"+gallery_id+"/list", { "resultType": "json","category":category }, function(data, textStatus)  
 	{  
@@ -11,27 +11,29 @@ function load_gallery_photo_list(name,gallery_id,current_photo,category,editor){
 		$('.image_picker_image').mouseover(function() {
 		    $(this).css('cursor', 'pointer');
 		});
-		$('.image_picker_image').click(function() {
+		$('#'+name).on('change',function() {
+			selected_thumbnail = $('#'+name).parent().find('.thumbnail.selected').find('img');
+			
 			if(category == 'activity_cover'){
-				img_src = $('#'+name+' option[data-img-src="'+$(this).attr('src')+'"]').attr('data-medium-img-src');
+				img_src = $('#'+name+' option[data-img-src="'+selected_thumbnail.attr('src')+'"]').attr('data-medium-img-src');
 			}else if(category == 'photo'){
-				img_src = $('#'+name+' option[data-img-src="'+$(this).attr('src')+'"]').attr('data-large-img-src');
+				img_src = $('#'+name+' option[data-img-src="'+selected_thumbnail.attr('src')+'"]').attr('data-large-img-src');
 			}
-			img_label = $('#'+name+' option[data-img-src="'+$(this).attr('src')+'"]').attr('data-img-label');
-		    if(editor){
-		    	editor.insertContent('<img src="'+img_src+'" alt="'+img_label+'" />');
-				editor.windowManager.close();
+			img_label = $('#'+name+' option[data-img-src="'+selected_thumbnail.attr('src')+'"]').attr('data-img-label');
+		    if(simpleeditor_callback){
+				simpleeditor_callback($('#'+name).val());
+			}else if(editor_callback){
+				editor_callback(img_src,img_label);
 		    }else{
 				$('#img-'+name).attr('src',img_src);
 			}
 		});
-
 	}); 
 }
 
 
 
-function load_gallery_list(name,current_photo,category,editor){
+function load_gallery_list(name,current_photo,category,editor_callback,simpleeditor_callback){
 	$('#ip-gallery-'+name+' option').remove();
 	$.getJSON("/api/gallery/list", { "resultType": "json" ,"category":category}, function(data, textStatus)  
 	{
@@ -39,7 +41,7 @@ function load_gallery_list(name,current_photo,category,editor){
 	    	$('#ip-gallery-'+name).append('<option value="'+data[i].id+'">'+data[i].title+'</option>');   
 	    }
 		if(data.length > 0){
-			load_gallery_photo_list(name,data[0].id,current_photo,category,editor);
+			load_gallery_photo_list(name,data[0].id,current_photo,category,editor_callback,simpleeditor_callback);
 		}
 	}); 
 }
@@ -53,12 +55,20 @@ function image_picker_widget_init(name,current_photo_id,category){
     });
 }
 
-function image_picker_plugin_init(name,current_photo_id,category,editor){
-    load_gallery_list(name,current_photo_id,category,editor);
+function image_picker_plugin_init(name,current_photo_id,category,editor_callback){
+    load_gallery_list(name,current_photo_id,category,editor_callback);
     $("#ip-gallery-"+name).change(function() {
-        load_gallery_photo_list(name,this.value,current_photo_id,category,editor);
+        load_gallery_photo_list(name,this.value,current_photo_id,category,editor_callback);
     });
 }
+
+function image_picker_simpleeditor_plugin_init(name,current_photo_id,category,simpleeditor_callback){
+    load_gallery_list(name,current_photo_id,category,null,simpleeditor_callback);
+    $("#ip-gallery-"+name).change(function() {
+        load_gallery_photo_list(name,this.value,current_photo_id,category,null,simpleeditor_callback);
+    });
+}
+
 
 
 function popup_page(page_url){ 

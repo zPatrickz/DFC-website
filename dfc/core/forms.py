@@ -1,6 +1,6 @@
 from django import forms
 from core.models import ActivityPost
-from core.widgets import SimpleEditorTitleWidget,SimpleEditorContentWidget
+from simpleeditor.widgets import SimpleEditorTitleWidget,SimpleEditorContentWidget
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Layout, Fieldset, ButtonHolder, Submit, Div, Field
 
