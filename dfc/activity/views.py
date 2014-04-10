@@ -1,5 +1,8 @@
+# -*- coding: utf-8 -*-
 from django.shortcuts import render, get_object_or_404, redirect
 from core.models import *
+from document.models import Document
+from document.forms import DocumentForm
 from activity.forms import *
 from django.http import HttpResponseRedirect,HttpResponse
 #Views for Activity
@@ -25,6 +28,26 @@ def detail_discuss(request,act_id=None):
 def detail_doc(request,act_id=None):
     activity = get_object_or_404(Activity,id=act_id)
     return render(request,'activity/activity_detail_doc.html',{'activity':activity})
+
+def detail_doc_new(request,act_id=None):
+    activity = get_object_or_404(Activity,id=act_id)
+    if request.method == 'POST':
+        form = DocumentForm(request.POST, request.FILES)
+        if form.is_valid():
+            doc = form.save()
+            return redirect('activity_detail_doc_detail',act_id,doc.id)
+        else:
+            print form.errors
+    else:
+        form = DocumentForm()
+    from django.contrib.contenttypes.models import ContentType
+    content_type = ContentType.objects.get(app_label='core',model='activity').id
+    return render(request,'activity/activity_detail_doc_new.html',{'activity':activity,'form':form,'content_type':content_type})
+
+def detail_doc_detail(request,act_id=None,doc_id=None):
+    activity = get_object_or_404(Activity,id=act_id)
+    doc = get_object_or_404(Document,id=doc_id)
+    return render(request,'activity/activity_detail_doc_detail.html',{'activity':activity,'doc':doc})
     
 def detail_member(request,act_id=None):
     activity = get_object_or_404(Activity,id=act_id)
@@ -38,10 +61,6 @@ def detail_post_new(request,act_id=None):
     from core.forms import ActivityPostForm
     if request.method == 'POST': # If the form has been submitted
         form = ActivityPostForm(request.POST, request.FILES)
-        print request.POST['activity']
-        print
-        print
-        print
         if form.is_valid():
             post = form.save()
             if post.category == 'PST':

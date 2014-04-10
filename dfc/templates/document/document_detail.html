@@ -1,0 +1,6 @@
+{% extends "document/document_base.html" %}
+{% load static %}
+{% block title %}View Document{% endblock %}
+{% block content %}
+{% include 'document/document_detail_template.html' with doc=doc %}
+{% endblock %}

@@ -22,3 +22,4 @@ class ActivityPostForm(forms.ModelForm):
             "content":SimpleEditorContentWidget
         }
         fields = ['title','content','activity','author','category']
+        

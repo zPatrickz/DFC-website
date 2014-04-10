@@ -1,0 +1,26 @@
+{% extends "activity/activity_detail_base.html" %}
+{% load i18n static%}
+{% block activity-doc-active %}
+active
+{% endblock %}
+{% block activity-content %}
+<div class="col-md-9" >
+	<h1>New Document</h1>
+	{% if errors %}
+	  {% for error in errors %}
+	      <li>{{ error }}</li>
+	  {% endfor %}
+	{% endif %}
+	{% if form.is_multipart %}
+	  <form enctype="multipart/form-data" method="post" action="">
+	{% else %}
+	  <form method="post" action="">
+	{% endif %}
+	{% load crispy_forms_tags %}
+	<input name="content_type" type="hidden" value="{{content_type}}">
+	<input name="object_id" type="hidden" value="{{activity.id}}">
+	{% crispy form %}
+
+	</form>
+</div>
+{% endblock %}

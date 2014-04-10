@@ -10,8 +10,8 @@ from core.fields import *
 from tinymce.models import HTMLField
 from core.managers import EmailUserManager
 from core.managers import EmailUserManager, EmailOrganizationManager
+from document.models import Document
 from django.contrib.contenttypes.models import ContentType
-from django.contrib.contenttypes import generic
 
 # Core model classes for DFC Project
 
@@ -240,7 +240,7 @@ class Activity(models.Model):
     places = models.ManyToManyField('Place', blank=True)
     desc = models.TextField(blank=True)
     content = HTMLField(blank=True)
-    content_file = models.FileField(blank=True, null=True, upload_to='doc')
+    content_file = models.FileField(blank=True, null=True,upload_to='docs/')
     is_private = models.BooleanField(default=False)
     cover = PhotoField(category='activity_cover', default=None, blank=True, null=True)# Always use PhotoField instead of ImageField
     
@@ -367,6 +367,11 @@ class Activity(models.Model):
     @property
     def places(self):
         return self.places.all()
+        
+    @property
+    def docs(self):
+        from django.contrib.contenttypes.models import ContentType
+        return Document.objects.filter(content_type=ContentType.objects.get(app_label='core',model='activity').id,object_id=self.id)
     
     def __unicode__(self):
         return self.name
@@ -382,8 +387,7 @@ class Activity(models.Model):
         pass
         #unique_together = (("name","organization"))
         ##The reason not to use unique_together here and in other models:https://code.djangoproject.com/ticket/702
-
-
+    
 class Post(models.Model):
     '''
     Forum posts.

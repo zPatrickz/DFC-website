@@ -58,7 +58,7 @@ MEDIA_ROOT = ''
 # URL that handles the media served from MEDIA_ROOT. Make sure to use a
 # trailing slash.
 # Examples: "http://example.com/media/", "http://media.example.com/"
-MEDIA_URL = ''
+MEDIA_URL = '/media/'
 
 # Absolute path to the directory static files should be collected to.
 # Don't put anything in this directory yourself; store your static files
@@ -127,7 +127,10 @@ INSTALLED_APPS = (
     'photologue',
     'south',
     'tagging',
-    'tinymce'
+    'tinymce',
+    'filer',
+    'easy_thumbnails',
+    'document',
 )
 PHOTOLOGUE_DIR = 'photo'
 
@@ -138,6 +141,7 @@ AUTHENTICATION_BACKENDS = (
 )
 
 CRISPY_TEMPLATE_PACK = 'bootstrap3'
+
 TINYMCE_JS_URL = STATIC_URL+'tinymce/tinymce.min.js'
 TINYMCE_JS_ROOT = os.path.join(STATIC_ROOT, "tinymce")
 TINYMCE_DEFAULT_CONFIG = {
@@ -151,6 +155,15 @@ TINYMCE_DEFAULT_CONFIG = {
 }
 TINYMCE_SPELLCHECKER = True
 TINYMCE_COMPRESSOR = False
+
+THUMBNAIL_PROCESSORS = (
+    'easy_thumbnails.processors.colorspace',
+    'easy_thumbnails.processors.autocrop',
+    'easy_thumbnails.processors.scale_and_crop',
+    'filer.thumbnail_processors.scale_and_crop_with_subject_location',
+    'easy_thumbnails.processors.filters',
+)
+
 # A sample logging configuration. The only tangible logging
 # performed by this configuration is to send an email to
 # the site admins on every HTTP 500 error when DEBUG=False.

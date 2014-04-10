@@ -1,0 +1,11 @@
+{% extends "activity/activity_detail_base.html" %}
+{% load i18n static%}
+{% block activity-doc-active %}
+active
+{% endblock %}
+{% block activity-content %}
+<div class="col-md-9" >
+	<a href="{{doc.url}}" class="btn btn-primary">Download This Document</a>
+	{% include 'document/document_detail_template.html' with doc=doc %}
+</div>
+{% endblock %}

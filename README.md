@@ -22,6 +22,9 @@ It is highly recommended to use **virtualenv**.
 `markdown` is an open django app for tagging. To install `makrdown`, please refer to http://pythonhosted.org//Markdown/index.html, quick install:
 
 	sudo pip install markdown
+	
+`django-filer` is an open django file manager. To install `django-filer`, please refer to http://django-filer.readthedocs.org/en/latest/installation.html.
+
 
 ### Configure
 

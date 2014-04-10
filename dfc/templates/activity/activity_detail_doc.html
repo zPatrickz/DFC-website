@@ -7,33 +7,17 @@ active
 <div class="col-md-9" >
 	<div  style="margin-left: 70px;">
 
-		<div class="control-group">
-		    <input type="file" class="input-xlarge" id="fileUpLoad">
-		</div>
-
-		<dl >
+		<a href="{% url 'activity_detail_doc_new' activity.id %}" class="btn btn-primary">Upload a Document</a>
+		{% for doc in activity.docs %}
+		<dl>
 		  <dt style="margin-top: 10px">
-		  	<a href="#">策划.doc</a>&nbsp;
-		  	<a href="#"><small>下载</small></a>&nbsp;
-		  	<a href="#"><small>在线查看</small></a>&nbsp;
+		  	<a href="#">{{ doc.original_filename }}</a>&nbsp;
+		  	<a href="{{ doc.url }}"><small>下载</small></a>&nbsp;
 		  	<a href="#"><small>删除</small></a>
 		  </dt>
-		  <dd>Note:本次活动的策划稿，请参与活动的志愿者务必查看哦</dd>
-		  <dt style="margin-top: 10px">
-		  	<a href="#">策划.doc</a>&nbsp;
-		  	<a href="#"><small>下载</small></a>&nbsp;
-		  	<a href="#"><small>在线查看</small></a>&nbsp;
-		  	<a href="#"><small>删除</small></a>
-		  </dt>
-		  <dd>Note:本次活动的策划稿，请参与活动的志愿者务必查看哦</dd>
-		  <dt style="margin-top: 10px">
-		  	<a href="#">策划.doc</a>&nbsp;
-		  	<a href="#"><small>下载</small></a>&nbsp;
-		  	<a href="#"><small>在线查看</small></a>&nbsp;
-		  	<a href="#"><small>删除</small></a>
-		  </dt>
-		  <dd>Note:本次活动的策划稿，请参与活动的志愿者务必查看哦</dd>
+		  <dd>{{ doc.description }}</dd>
 		</dl>
+		{% endfor %}
 	</div>
 </div>
 {% endblock %}

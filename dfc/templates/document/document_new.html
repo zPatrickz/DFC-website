@@ -1,0 +1,9 @@
+{% extends "document/document_base.html" %}
+{% load i18n %}
+
+{% block title %}{% trans "New Document" %}{% endblock %}
+
+{% block content %}
+<h1>New Document</h1>
+{% include 'document/document_form.html' with form=form %}
+{% endblock %}

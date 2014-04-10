@@ -48,6 +48,8 @@ class PhotoField(ForeignKey):
                 params={'model': self.rel.to._meta.verbose_name, 'pk': value},
             )'''
             
+
+
         
 try:
     add_introspection_rules([], ["^core\.fields\.PhotoField"])

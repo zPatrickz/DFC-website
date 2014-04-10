@@ -15,6 +15,7 @@ urlpatterns = patterns('',
     url(r'^activity/', include('activity.urls')),
     url(r'^tinymce/', include('tinymce.urls')),
     url(r'^api/', include('api.urls')),
+    url(r'^doc/', include('document.urls')),
 )
 urlpatterns += staticfiles_urlpatterns()
 urlpatterns += pl_urlpatterns
