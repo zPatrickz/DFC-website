@@ -23,6 +23,7 @@ class Command(BaseCommand):
             photologue_migrations_path = os.path.join(BASE_DIR,'photologue/migrations')
             manage_file_path = os.path.join(BASE_DIR, 'manage.py')
             photo_file_path = os.path.join(BASE_DIR, 'mediaroot/photo')
+            doc_file_path = os.path.join(BASE_DIR, 'mediaroot/filer_public')
             markdown_extension_file_path = os.path.join(BASE_DIR, 'simpleeditor/markdown_extension/simpleeditor.py')
             import site
             SITE_PACKAGE_DIR = [x for x in site.getsitepackages() if ('dist-packages' in x) or ('site-packages' in x)][0]
@@ -53,6 +54,18 @@ class Command(BaseCommand):
                  print err
                  return
             p6=subprocess.Popen(["git rm --ignore-unmatch -r -f "+photo_file_path],stdin=subprocess.PIPE,stderr=subprocess.PIPE,shell=True)
+            (out,err) = p6.communicate()
+            if err != '':
+                 print err
+                 return
+            print 'removing existing document files...'
+            
+            p5=subprocess.Popen(["rm -r -f "+doc_file_path],stdin=subprocess.PIPE,stderr=subprocess.PIPE,shell=True)
+            (out,err) = p5.communicate()
+            if err != '':
+                 print err
+                 return
+            p6=subprocess.Popen(["git rm --ignore-unmatch -r -f "+doc_file_path],stdin=subprocess.PIPE,stderr=subprocess.PIPE,shell=True)
             (out,err) = p6.communicate()
             if err != '':
                  print err
