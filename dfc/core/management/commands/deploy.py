@@ -25,7 +25,7 @@ class Command(BaseCommand):
             photo_file_path = os.path.join(BASE_DIR, 'mediaroot/photo')
             markdown_extension_file_path = os.path.join(BASE_DIR, 'simpleeditor/markdown_extension/simpleeditor.py')
             import site
-            SITE_PACKAGE_DIR = [x for x in site.getsitepackages() if 'site-packages' in x][0]
+            SITE_PACKAGE_DIR = [x for x in site.getsitepackages() if ('dist-packages' in x) or ('site-packages' in x)][0]
             markdown_extension_path = os.path.join(SITE_PACKAGE_DIR, 'markdown/extensions')
             import subprocess
             print 'removing existing databases...'
